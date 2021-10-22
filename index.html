@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AhorrADAs</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+    <script src="https://kit.fontawesome.com/fc20ae3cbb.js" crossorigin="anonymous"></script>
+</head>
+
+<body class="has-background-light">
+    <!-- Seccion Nav Main -->
+    <nav class="navbar is-primary is-spaced mb-5" aria-label="Barra de navegacion">
+        <div class="navbar-brand">
+            <!-- Icono izquierda ahorradas -->
+            <a class="navbar-item" href="index.html">
+                <h1 class="title is-2 has-text-white is-family-secondary">
+                    <i class="fas fa-wallet mr-2"></i> AhorrADAs
+                </h1>
+            </a>
+        </div>
+        <!-- botones derecho -->
+        <div id="navbarBasicExample" class="navbar-menu">
+            <div class="navbar-end">
+                <a id="boton-balance" class="navbar-item">
+                    <i class="fas fa-chart-line mr-2 "></i> Balance
+                </a>
+
+                <a id="boton-categorias" class="navbar-item">
+                    <i class="fas fa-tag mr-2 "></i> Categorías
+                </a>
+
+                <a class="navbar-item">
+                    <i class="fas fa-chart-pie mr-2 "></i> Reportes
+                </a>
+            </div>
+        </div>
+    </nav>
+    <section id="seccion-central" class="section">
+        <div class="conteiner ">
+
+            <div class="columns">
+
+                <!-- Box Balance -->
+                <div class=" column is-offset-1 is-3">
+
+
+                    <div class="box">
+                        <h2 class="title has-text-weight-bold has-text-grey-dark mb-6">Balance</h2>
+                        <div class="columns">
+                            <div class="column is-size-5">Ganancias </div>
+                            <div class="column has-text-success has-text-right ">+$0</div>
+                        </div>
+                        <div class="columns">
+                            <div class="column is-size-5">Gastos </div>
+                            <div class="column has-text-danger has-text-right">-$0</div>
+                        </div>
+                        <div class="columns">
+                            <div class="column is-size-4">Total </div>
+                            <div class="column has-text-weight-bold has-text-right">$0</div>
+                        </div>
+                    </div>
+
+                    <!-- Box Filtros -->
+                    <article class=" box">
+                        <div class="columns">
+                            <h2 class="title column is-4 has-text-weight-bold has-text-grey-dark">Filtros</h2>
+                            <button class="button is-offset-3 column has-text-right is-info is-inverted ">Ocultar filtros</button>
+                        </div>
+
+                        <form>
+
+                            <!-- Select Tipo  -->
+                            <div class="field">
+                                <label class="label" for="selectTipo">Tipo</label>
+                                <div class="select is-fullwidth ">
+                                    <select id="selectTipo">
+                                         <option>Todos</option>
+                                         <option>Gasto</option>
+                                         <option>Ganancia</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <!-- Select Categoría -->
+                            <div class="field">
+                                <label class="label" for="selectCategoria">Categoría</label>
+                                <div class="select is-fullwidth  ">
+                                    <select id="selectCategoria">
+                                         <option>Todos</option>
+                                         <option>Comida</option>
+                                         <option>Servicios</option>
+                                         <option>Salidas</option>
+                                         <option>Educación</option>
+                                         <option>Transporte</option>
+                                         <option>Trabajo</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <!-- Seleccion de fecha -->
+                            <div class="field">
+                                <label class="label" for="date">Desde</label>
+                                <div class="control">
+                                    <input class="input" id="date" type="date">
+                                </div>
+                            </div>
+
+
+                            <!-- Select Ordenar por -->
+                            <div class="field">
+                                <label class="label" for="selectOdenar">Categoría</label>
+                                <div class="select is-fullwidth  ">
+                                    <select id="selectOrdenar">
+                                         <option>Más reciente</option>
+                                         <option>Menos reciente</option>
+                                         <option>Mayor monto</option>
+                                         <option>Menor monto</option>
+                                         <option>A/Z</option>
+                                         <option>Z/A</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </form>
+                    </article>
+                </div>
+
+                <!-- Box Operaciones -->
+                <div class="column is-7">
+                    <div class="box ">
+                        <div class="columns">
+                            <h2 class="title column is-size-4 has-text-weight-bold has-text-grey-dark">Operaciones</h2>
+                            <div class="column  has-text-right">
+                                <button class="button is-primary">+ Nueva operación</button>
+                            </div>
+                        </div>
+
+                        <div class="columns my-5">
+
+                            <!-- Funcion de lo que aparece cuando se agrega una operacion -->
+                            <!-- <div class=" column">
+
+                                <div class="columns">
+                                    <div class="column">Descropción</div>
+                                    <div class="column is-1 has-text-centered">Categoría</div>
+                                    <div class="column  has-text-centered">Fecha</div>
+                                    <div class="column">Monto</div>
+                                    <div class="column">Acciones</div>
+                                </div>
+
+                                <div>
+                                    <div class="" id="tarjeta">asdas</div>
+                                </div>
+                            </div> -->
+
+
+                            <figure class="image column is-offset-3 is-6">
+                                <img src="imagenes/undraw_Pie_chart_re_bgs8.svg">
+
+                            </figure>
+
+                        </div>
+                        <div class="columns">
+                            <div class="column has-text-centered is-size-4 has-text-weight-semibold has-text-grey-dark">Sin resultados</div>
+
+                        </div>
+                        <div class="columns mb-6">
+                            <div class="column has-text-centered">Cambia los filtros o agrega operaciones</div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+    </section>
+    <section class="section ">
+        <!-- Seccion Categorias - is hidden -->
+        <div class="conteiner">
+            <div class=" column is-offset-2 is-8">
+
+
+                <div id="seccion-categorias" class="box is-hidden">
+                    <h2 class="title has-text-weight-bold has-text-grey-dark mb-6">Categorías</h2>
+                    <div class="field ">
+                        <label class="label " for="username">Nombre</label>
+                        <div class="columns">
+                            <div class="control column is-10">
+                                <div>
+                                    <input class="input" id="username" type="text">
+                                </div>
+                            </div>
+                            <div class="column has-text-right">
+                                <button class="button is-success">Agregar</button>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <div class="columns">
+                        <div class="column">
+
+                            <div class="column has-background-success-light has-text-success-dark">Comidas </div>
+
+                        </div>
+                        <div class="columns">
+                            <div class="column">
+                                <button class="button column is-info is-inverted  ">Editar</button>
+
+                            </div>
+                            <div class="column">
+                                <button class="button column is-info is-inverted ">Eliminar</button>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- <div class="columns">
+                        <div class="columns">
+
+                            <div class="column has-background-success-light has-text-success-dark">Comidas </div>
+
+
+                        </div>
+                        <div class="columns">
+
+                            <button class="button is-info is-inverted  ">Editar</button>
+                            <button class="button is-info is-inverted ">Eliminar</button>
+
+                        </div>
+
+                    </div> -->
+
+
+            </div>
+        </div>
+    </section>
+
+
+
+    <script src="index.js"></script>
+</body>
+
+</html>
