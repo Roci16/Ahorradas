@@ -33,7 +33,7 @@
                     <i class="fas fa-tag mr-2 "></i> Categorías
                 </a>
 
-                <a class="navbar-item">
+                <a id="boton-reportes" class="navbar-item">
                     <i class="fas fa-chart-pie mr-2 "></i> Reportes
                 </a>
             </div>
@@ -164,11 +164,11 @@
 
                         </div>
                         <div class="columns">
-                            <div class="column has-text-centered is-size-4 has-text-weight-semibold has-text-grey-dark">Sin resultados</div>
+                            <p class="column has-text-centered is-size-4 has-text-weight-semibold has-text-grey-dark">Sin resultados</p>
 
                         </div>
                         <div class="columns mb-6">
-                            <div class="column has-text-centered">Cambia los filtros o agrega operaciones</div>
+                            <p class="column has-text-centered">Cambia los filtros o agrega operaciones</p>
                         </div>
                     </div>
 
@@ -177,14 +177,14 @@
 
         </div>
 
+
     </section>
-    <section class="section ">
+    <section class="section is-hidden" id="seccion-categorias">
         <!-- Seccion Categorias - is hidden -->
         <div class="conteiner">
             <div class=" column is-offset-2 is-8">
 
-
-                <div id="seccion-categorias" class="box is-hidden">
+                <div class="box ">
                     <h2 class="title has-text-weight-bold has-text-grey-dark mb-6">Categorías</h2>
                     <div class="field ">
                         <label class="label " for="username">Nombre</label>
@@ -222,6 +222,7 @@
                     </div>
                 </div>
 
+
                 <!-- <div class="columns">
                         <div class="columns">
 
@@ -243,7 +244,35 @@
         </div>
     </section>
 
+    <!-- Seccion reportes -->
+    <section id="seccion-reportes" class="section is-hidden m-1">
+        <div class="column is-8 is-offset-2">
+            <div class="box">
 
+                <div class="columns">
+                    <h2 class="title column is-size-2 has-text-weight-bold ">Reportes</h2>
+                </div>
+
+                <div class="columns my-5">
+
+                    <figure class="image column is-offset-3 is-6">
+                        <img src="imagenes/undraw_investment_data_re_sh9x.svg">
+                    </figure>
+
+                </div>
+
+                <div class="columns">
+                    <p class="column has-text-centered is-size-4 has-text-weight-semibold has-text-grey-dark">Operaciones insuficientes</p>
+                </div>
+
+                <div class="columns mb-6">
+                    <p class="column has-text-centered">Prueba agregando más operaciones</p>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
 
     <script src="index.js"></script>
 </body>
