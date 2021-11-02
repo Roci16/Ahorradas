@@ -1,24 +1,35 @@
 const tarjeta = document.getElementById("tarjeta")
 const botonCategorias = document.getElementById("boton-categorias")
 const botonBalance = document.getElementById("boton-balance")
+const botonReporte = document.getElementById("boton-reportes")
 const seccionCategorias = document.getElementById("seccion-categorias")
 const seccionCentral = document.getElementById("seccion-central")
-
+const seccionReportes = document.getElementById("seccion-reportes")
 
 // Funciones Botones Nav Superior
 botonBalance.onclick = () => {
 
     seccionCategorias.classList.add("is-hidden")
     seccionCentral.classList.remove("is-hidden")
+    seccionReportes.classList.add("is-hidden")
 
 }
+
 botonCategorias.onclick = () => {
 
     seccionCategorias.classList.remove("is-hidden")
     seccionCentral.classList.add("is-hidden")
+    seccionReportes.classList.add("is-hidden")
 
 }
 
+botonReporte.onclick = () => {
+
+    seccionReportes.classList.remove("is-hidden")
+    seccionCentral.classList.add("is-hidden")
+    seccionCategorias.classList.add("is-hidden")
+
+}
 
 
 
