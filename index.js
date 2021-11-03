@@ -5,6 +5,9 @@ const botonReporte = document.getElementById("boton-reportes")
 const seccionCategorias = document.getElementById("seccion-categorias")
 const seccionCentral = document.getElementById("seccion-central")
 const seccionReportes = document.getElementById("seccion-reportes")
+const botonNuevaOperacion = document.getElementById("boton-nueva-operacion")
+const ventanaNuevaOperacion = document.getElementById("accion-boton-nueva-operacion")
+
 
 // Funciones Botones Nav Superior
 botonBalance.onclick = () => {
@@ -30,6 +33,14 @@ botonReporte.onclick = () => {
     seccionCategorias.classList.add("is-hidden")
 
 }
+
+//Balance
+
+botonNuevaOperacion.onclick = () => {
+    seccionCentral.classList.add("is-hidden")
+    ventanaNuevaOperacion.classList.remove("is-hidden")
+}
+
 
 
 
@@ -78,7 +89,7 @@ const operaciones = [{
 ];
 
 
-
+// Reporte
 
 const convertirOperacionesAHTML = (operaciones) => {
     let acc = ""
@@ -86,15 +97,15 @@ const convertirOperacionesAHTML = (operaciones) => {
     operaciones.map((operacion) => {
         acc = acc + `
         <div class="columns ">
-            <div class="column">${operacion.descripcion}</div>
+            <p class="column">${operacion.descripcion}</p>
             <div class="column is-1" >
-            <div class="has-background-primary-light has-text-primary-dark has-text-centered">
-            ${operacion.categoria}
+                <p class="has-background-primary-light has-text-primary-dark has-text-centered">
+                 ${operacion.categoria}
+                 </p> 
             </div> 
-            </div> 
-            <div class="column  has-text-centered" >${operacion.fecha}</div> 
-            <div class="column has-text-success has-text-weight-bold">${operacion.monto}</div> 
-            <div class="column">${operacion.tipo}</div>               
+            <p class="column  has-text-centered" >${operacion.fecha}</p> 
+            <p class="column has-text-success has-text-weight-bold">${operacion.monto}</p> 
+            <p class="column">${operacion.tipo}</p>               
         </div>
         `
         return acc

@@ -75,9 +75,9 @@
 
                             <!-- Select Tipo  -->
                             <div class="field">
-                                <label class="label" for="selectTipo">Tipo</label>
+                                <label class="label" for="select-tipo">Tipo</label>
                                 <div class="select is-fullwidth ">
-                                    <select id="selectTipo">
+                                    <select id="select-tipo">
                                          <option>Todos</option>
                                          <option>Gasto</option>
                                          <option>Ganancia</option>
@@ -87,9 +87,9 @@
 
                             <!-- Select Categoría -->
                             <div class="field">
-                                <label class="label" for="selectCategoria">Categoría</label>
+                                <label class="label" for="select-categoria">Categoría</label>
                                 <div class="select is-fullwidth  ">
-                                    <select id="selectCategoria">
+                                    <select id="select-categoria">
                                          <option>Todos</option>
                                          <option>Comida</option>
                                          <option>Servicios</option>
@@ -112,9 +112,9 @@
 
                             <!-- Select Ordenar por -->
                             <div class="field">
-                                <label class="label" for="selectOdenar">Categoría</label>
+                                <label class="label" for="select-odenar">Categoría</label>
                                 <div class="select is-fullwidth  ">
-                                    <select id="selectOrdenar">
+                                    <select id="select-ordenar">
                                          <option>Más reciente</option>
                                          <option>Menos reciente</option>
                                          <option>Mayor monto</option>
@@ -134,7 +134,7 @@
                         <div class="columns">
                             <h2 class="title column is-size-4 has-text-weight-bold has-text-grey-dark">Operaciones</h2>
                             <div class="column  has-text-right">
-                                <button class="button is-primary">+ Nueva operación</button>
+                                <button id="boton-nueva-operacion" class="button is-primary">+ Nueva operación</button>
                             </div>
                         </div>
 
@@ -163,6 +163,9 @@
                             </figure>
 
                         </div>
+
+
+
                         <div class="columns">
                             <p class="column has-text-centered is-size-4 has-text-weight-semibold has-text-grey-dark">Sin resultados</p>
 
@@ -176,7 +179,61 @@
             </div>
 
         </div>
+        <!--Tarjeta de nueva operacion  -->
+        <section id="accion-boton-nueva-operacion" class=" columns m-5 is-hidden">
+            <div class="box column is-8 is-offset-2">
+                <h2 class="title is-size-2 has-text-weight-bold has-text-black-ter my-5">Nueva operación</h2>
 
+                <form>
+
+                    <div class="field">
+                        <label class="label" for="descripcion-nueva-operacion">Descripción</label>
+                        <input class="input" type="text" id="descripcion-nueva-operacion">
+                    </div>
+
+                    <div class="field">
+                        <label class="label" for="monto-nueva-operacion">Monto</label>
+                        <input class="input" type="number" id="monto-nueva-operacion" value="0">
+                    </div>
+
+                    <div class="field">
+                        <label class="label" for="select-tipo-nueva-operacion">Tipo</label>
+                        <div class="select is-fullwidth ">
+                            <select id="select-tipo-nueva-operacion"> 
+                                         <option>Gasto</option>
+                                         <option>Ganancia</option>
+                                    </select>
+                        </div>
+                    </div>
+
+                    <div class="field">
+                        <label class="label" for="select-categoria-nueva-operacion">Categoría</label>
+                        <div class="select is-fullwidth  ">
+                            <select id="select-categoria-nueva-operacion">                        
+                                                 <option>Comida</option>
+                                                 <option>Servicios</option>
+                                                 <option>Salidas</option>
+                                                 <option>Educación</option>
+                                                 <option>Transporte</option>
+                                                 <option>Trabajo</option>
+                                            </select>
+                        </div>
+                    </div>
+
+                    <div class="field">
+                        <label class="label" for="date">Desde</label>
+                        <div class="control">
+                            <input class="input" id="date" type="date">
+                        </div>
+                    </div>
+
+                </form>
+                <div class="column has-text-right">
+                    <button class="button mt-5 is-light">Cancelar</button>
+                    <button class="button mt-5 is-success">Agregar</button>
+                </div>
+            </div>
+        </section>
 
     </section>
     <section class="section is-hidden" id="seccion-categorias">
@@ -202,8 +259,10 @@
 
 
 
-                    <div class="columns">
-                        <div class="column">
+                    <div id="nombres-de-las-categorias" class="columns">
+
+                    </div>
+                    <!-- <div class="column">
 
                             <div class="column has-background-success-light has-text-success-dark">Comidas </div>
 
@@ -217,13 +276,13 @@
                                 <button class="button column is-info is-inverted ">Eliminar</button>
                             </div>
 
-                        </div>
+                        </div> -->
 
-                    </div>
                 </div>
+            </div>
 
 
-                <!-- <div class="columns">
+            <!-- <div class="columns">
                         <div class="columns">
 
                             <div class="column has-background-success-light has-text-success-dark">Comidas </div>
@@ -240,7 +299,7 @@
                     </div> -->
 
 
-            </div>
+        </div>
         </div>
     </section>
 
