@@ -88,9 +88,114 @@ const operaciones = [{
     },
 ];
 
+// -------------funciones formulario FILTROS-------------------
+//llamo a los elemento del form
+const formulario = document.getElementById("form")
+const filtroTipo = document.getElementById("select-tipo")
+const filtroCategorias = document.getElementById("select-categoria")
+const filtroFecha = document.getElementById("date")
+const filtroOrdenarPor = document.getElementById("select-ordenar")
+const divOperaciones = document.getElementById("div-operaciones")
+// funcion mostrar en html
+const aplicarDescripcionAOperaciones = () =>{
+   return  `<div class="columns has-text-weight-semibold is-hidden-mobile">
+            <div class="column is-3">Descripción</div>
+            <div class="column is-3">Categoría</div>
+            <div class="column is-2 has-text-right">Fecha</div>
+            <div class="column is-2 has-text-right">Monto</div>
+            <div class="column is-2 has-text-right">Acciones</div>
+             </div> ` 
+}
+const mostrarOperacionesEnHTML = (array) => {
+    
+  let acc = ""
+    array.map((operacion) => {
+      acc = acc + `
+      <div class="fila columns">
+      <div class="column is-3 has-text-weight-semibold">
+        <p>${operacion.descripcion}</p>
+        </div>
+        <div class="column is-3">
+        <p>${operacion.categoria}</p>
+        </div>
+        <div class="column is-2 has-text-right">
+        <p>${operacion.fecha}</p>
+        </div>
+        <div class="column is-2 has-text-right">
+        <p>${operacion.tipo}</p>
+        </div>
+        <div class="column is-2 has-text-right">
+        <p>${operacion.monto}</p>
+        </div>
+      </div>
+      `
+    })
+  
+    divOperaciones.innerHTML = aplicarDescripcionAOperaciones() + acc
+  }
+  mostrarOperacionesEnHTML(operaciones)
+// -------------------Función aplicar filtros-----------------
+
+  const aplicarFiltros = () => {
+    const tipo = filtroTipo.value //filtro por tipo
+    const filtradoPorTipo = operaciones.filter((operacion) => {
+      if (tipo === "Todos") {
+        return operacion
+      }
+      return operacion.tipo === tipo 
+    })
+    
+    const categoria = filtroCategorias.value //filtro por categoria aplicando el filtro de tipo
+    const filtradoPorCategoria = filtradoPorTipo.filter((operacion) => { 
+      if (categoria === "Todos") {
+        return operacion
+      }
+      return operacion.categoria === categoria
+    })
+  
+      const arrayFiltradoPorFechas = filtradoPorCategoria.map((operacion) => { //filtro por fechas
+        const nuevoElemento = {...operacion}
+        nuevoElemento.fecha = new Date(operacion.fecha).toLocaleDateString() 
+        return nuevoElemento
+      })
+//---------ordenar------------------------
+   const arrayOrdenadoPorFechas = arrayFiltradoPorFechas.sort((a, b) => { //ordeno 
+        return new Date(a.fecha) - new Date(b.fecha)
+      })
+
+
+  return arrayOrdenadoPorFechas
+  }
+
+
+
+
+  //----Agrega filtro a tipo y categoria cuando modifico los select------
+  filtroTipo.onchange = () => {
+    const arrayFiltrado = aplicarFiltros() 
+  }
+  
+  filtroCategorias.onchange = () => {
+   const arrayFiltrado = aplicarFiltros()
+    mostrarOperacionesEnHTML(arrayFiltrado)
+  }
+  
+// elijo a partir de la fecha
+  filtroFecha.oninput = () => {
+    const arrayFiltrado = aplicarFiltros()
+    mostrarOperacionesEnHTML(arrayFiltrado)
+  }
+
+
+//----este e.preventDefault evita que el formulario se envie -----
+formulario.onsubmit = (e) => {
+ e.preventDefault()
+  }
+
+// -------------FIN-------------------
 
 // Reporte
-
+/* 
 const convertirOperacionesAHTML = (operaciones) => {
     let acc = ""
 
@@ -114,3 +219,4 @@ const convertirOperacionesAHTML = (operaciones) => {
     tarjeta.innerHTML = acc
 }
 console.log(convertirOperacionesAHTML(operaciones));
+*/
