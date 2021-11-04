@@ -1,3 +1,4 @@
+
 const tarjeta = document.getElementById("tarjeta")
 const botonCategorias = document.getElementById("boton-categorias")
 const botonBalance = document.getElementById("boton-balance")
@@ -37,9 +38,11 @@ botonReporte.onclick = () => {
 //Balance
 
 botonNuevaOperacion.onclick = () => {
-    seccionCentral.classList.add("is-hidden")
     ventanaNuevaOperacion.classList.remove("is-hidden")
+    seccionCentral.classList.add("is-hidden")
 }
+
+
 
 
 
