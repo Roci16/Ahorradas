@@ -179,37 +179,38 @@
             </div>
 
         </div>
-        <!--Tarjeta de nueva operacion  -->
-        <section id="accion-boton-nueva-operacion" class=" columns m-5 is-hidden">
-            <div class="box column is-8 is-offset-2">
-                <h2 class="title is-size-2 has-text-weight-bold has-text-black-ter my-5">Nueva operación</h2>
+    </section>
+    <!--Tarjeta de nueva operacion  -->
+    <section id="accion-boton-nueva-operacion" class=" columns m-5 is-hidden">
+        <div class="box column is-8 is-offset-2">
+            <h2 class="title is-size-2 has-text-weight-bold has-text-black-ter my-5">Nueva operación</h2>
 
-                <form>
+            <form>
 
-                    <div class="field">
-                        <label class="label" for="descripcion-nueva-operacion">Descripción</label>
-                        <input class="input" type="text" id="descripcion-nueva-operacion">
-                    </div>
+                <div class="field">
+                    <label class="label" for="descripcion-nueva-operacion">Descripción</label>
+                    <input class="input" type="text" id="descripcion-nueva-operacion">
+                </div>
 
-                    <div class="field">
-                        <label class="label" for="monto-nueva-operacion">Monto</label>
-                        <input class="input" type="number" id="monto-nueva-operacion" value="0">
-                    </div>
+                <div class="field">
+                    <label class="label" for="monto-nueva-operacion">Monto</label>
+                    <input class="input" type="number" id="monto-nueva-operacion" value="0">
+                </div>
 
-                    <div class="field">
-                        <label class="label" for="select-tipo-nueva-operacion">Tipo</label>
-                        <div class="select is-fullwidth ">
-                            <select id="select-tipo-nueva-operacion"> 
+                <div class="field">
+                    <label class="label" for="select-tipo-nueva-operacion">Tipo</label>
+                    <div class="select is-fullwidth ">
+                        <select id="select-tipo-nueva-operacion"> 
                                          <option>Gasto</option>
                                          <option>Ganancia</option>
                                     </select>
-                        </div>
                     </div>
+                </div>
 
-                    <div class="field">
-                        <label class="label" for="select-categoria-nueva-operacion">Categoría</label>
-                        <div class="select is-fullwidth  ">
-                            <select id="select-categoria-nueva-operacion">                        
+                <div class="field">
+                    <label class="label" for="select-categoria-nueva-operacion">Categoría</label>
+                    <div class="select is-fullwidth  ">
+                        <select id="select-categoria-nueva-operacion">                        
                                                  <option>Comida</option>
                                                  <option>Servicios</option>
                                                  <option>Salidas</option>
@@ -217,25 +218,25 @@
                                                  <option>Transporte</option>
                                                  <option>Trabajo</option>
                                             </select>
-                        </div>
                     </div>
-
-                    <div class="field">
-                        <label class="label" for="date">Desde</label>
-                        <div class="control">
-                            <input class="input" id="date" type="date">
-                        </div>
-                    </div>
-
-                </form>
-                <div class="column has-text-right">
-                    <button class="button mt-5 is-light">Cancelar</button>
-                    <button class="button mt-5 is-success">Agregar</button>
                 </div>
-            </div>
-        </section>
 
+                <div class="field">
+                    <label class="label" for="date">Desde</label>
+                    <div class="control">
+                        <input class="input" id="date" type="date">
+                    </div>
+                </div>
+
+            </form>
+            <div class="column has-text-right">
+                <button class="button mt-5 is-light">Cancelar</button>
+                <button class="button mt-5 is-success">Agregar</button>
+            </div>
+        </div>
     </section>
+
+
     <section class="section is-hidden" id="seccion-categorias">
         <!-- Seccion Categorias - is hidden -->
         <div class="conteiner">
