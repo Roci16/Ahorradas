@@ -134,8 +134,9 @@ const mostrarOperacionesEnHTML = (array) => {
     divOperaciones.innerHTML = aplicarDescripcionAOperaciones() + acc
   }
   mostrarOperacionesEnHTML(operaciones)
-// -------------------Función aplicar filtros-----------------
 
+
+// -------------------Función aplicar filtros-----------------
   const aplicarFiltros = () => {
     const tipo = filtroTipo.value //filtro por tipo
     const filtradoPorTipo = operaciones.filter((operacion) => {
@@ -153,7 +154,7 @@ const mostrarOperacionesEnHTML = (array) => {
       return operacion.categoria === categoria
     })
   
-      const arrayFiltradoPorFechas = filtradoPorCategoria.map((operacion) => { //filtro por fechas
+   const arrayFiltradoPorFechas = filtradoPorCategoria.map((operacion) => { //filtro por fechas
         const nuevoElemento = {...operacion}
         nuevoElemento.fecha = new Date(operacion.fecha).toLocaleDateString() 
         return nuevoElemento
