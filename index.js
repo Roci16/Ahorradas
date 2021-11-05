@@ -7,8 +7,9 @@ const seccionCategorias = document.getElementById("seccion-categorias")
 const seccionCentral = document.getElementById("seccion-central")
 const seccionReportes = document.getElementById("seccion-reportes")
 const botonNuevaOperacion = document.getElementById("boton-nueva-operacion")
-const ventanaNuevaOperacion = document.getElementById("accion-boton-nueva-operacion")
-
+const seccionNuevaOperacion = document.getElementById("accion-boton-nueva-operacion")
+const botonCancelar = document.querySelector("#boton-cancelar");
+const botonAgregar = document.querySelector("#boton-agregar");
 
 // Funciones Botones Nav Superior
 botonBalance.onclick = () => {
@@ -38,8 +39,36 @@ botonReporte.onclick = () => {
 //Balance
 
 botonNuevaOperacion.onclick = () => {
-    ventanaNuevaOperacion.classList.remove("is-hidden")
+    seccionNuevaOperacion.classList.remove("is-hidden")
     seccionCentral.classList.add("is-hidden")
+}
+
+
+function mostrarBotonCancelar () {
+    botonCancelar.style.display = 'none';
+    botonCancelar.style.display = 'inline';
+}
+function mostrarBotonAgregar () {
+    botonAgregar.style.display = 'none';
+    botonAgregar.style.display = 'inline';
+}
+
+//Boton Cancelar
+
+botonCancelar.onclick = () => {
+    botonReporte.classList.add("is-hidden");
+    seccionCategorias.classList.add("is-hidden");
+    seccionNuevaOperacion.classList.add("is-hidden");
+    botonBalance.classList.remove("is-hidden");
+}
+
+//Boton Agregar
+
+botonAgregar.onclick = () => {
+    botonReporte.classList.add("is-hidden");
+    seccionCategorias.classList.add("is-hidden");
+    seccionNuevaOperacion.classList.add("is-hidden");
+    botonBalance.classList.remove("is-hidden");
 }
 
 
@@ -47,6 +76,8 @@ botonNuevaOperacion.onclick = () => {
 
 
 
+
+  console.log("hola mundo")
 const operaciones = [{
         descripcion: 'Sueldo',
         categoria: 'Trabajo',
