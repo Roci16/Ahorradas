@@ -160,14 +160,28 @@ const mostrarOperacionesEnHTML = (array) => {
         return nuevoElemento
       })
 //---------ordenar------------------------
-   const arrayOrdenadoPorFechas = arrayFiltradoPorFechas.sort((a, b) => { //ordeno 
-        return new Date(a.fecha) - new Date(b.fecha)
+   const arrayOrdenadoPor = arrayFiltradoPorFechas.sort((a, b) => { //ordeno 
+        
       })
 
 
-  return arrayOrdenadoPorFechas
+  return arrayOrdenadoPor
   }
 
+//filtros
+//se debe filtrar por tipo
+//se debe filtrar por categoria
+// debo poder elegir la fecha desde donde le aplico el filtro quiero que me muestra todos los resultados A PARTIR de esa fecha
+//ordenar por:
+//Mas reciente, aca involucra fechas
+// Menos reciente; aca involucra fechas
+//Mayor monto implica la catergoria monto en el objeto dentro del array
+//menor monto ""
+//ordeno de A/z
+//ordeno de Z/a
+//para ordenar tengo dos ides
+//por un lado definir funciones afuera y llamarlas en una sola funcion dentro de la funcion aplicar filtros que se llame ordenar Por
+//puedo hacer una funcion ordenar por que ejecute funciones dentro de if
 
 
 
@@ -195,29 +209,3 @@ formulario.onsubmit = (e) => {
 
 // -------------FIN-------------------
 
-// Reporte
-/* 
-const convertirOperacionesAHTML = (operaciones) => {
-    let acc = ""
-
-    operaciones.map((operacion) => {
-        acc = acc + `
-        <div class="columns ">
-            <p class="column">${operacion.descripcion}</p>
-            <div class="column is-1" >
-                <p class="has-background-primary-light has-text-primary-dark has-text-centered">
-                 ${operacion.categoria}
-                 </p> 
-            </div> 
-            <p class="column  has-text-centered" >${operacion.fecha}</p> 
-            <p class="column has-text-success has-text-weight-bold">${operacion.monto}</p> 
-            <p class="column">${operacion.tipo}</p>               
-        </div>
-        `
-        return acc
-    })
-
-    tarjeta.innerHTML = acc
-}
-console.log(convertirOperacionesAHTML(operaciones));
-*/
