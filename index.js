@@ -77,7 +77,6 @@ botonAgregar.onclick = () => {
 
 
 
-  console.log("hola mundo")
 const operaciones = [{
         descripcion: 'Sueldo',
         categoria: 'Trabajo',
