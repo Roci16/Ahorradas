@@ -25,7 +25,6 @@ botonCategorias.onclick = () => {
     seccionCategorias.classList.remove("is-hidden")
     seccionCentral.classList.add("is-hidden")
     seccionReportes.classList.add("is-hidden")
-    ventanaNuevaOperacion.classList.add("is-hidden")
 
 }
 
@@ -34,7 +33,6 @@ botonReporte.onclick = () => {
     seccionReportes.classList.remove("is-hidden")
     seccionCentral.classList.add("is-hidden")
     seccionCategorias.classList.add("is-hidden")
-    ventanaNuevaOperacion.classList.add("is-hidden")
 
 }
 
@@ -74,12 +72,6 @@ botonAgregar.onclick = () => {
 }
 
 
-
-
-
-
-
-  console.log("hola mundo")
 const operaciones = [{
         descripcion: 'Sueldo',
         categoria: 'Trabajo',
@@ -93,8 +85,10 @@ const operaciones = [{
         fecha: '02/01/2021',
         monto: 15000,
         tipo: 'Gasto',
-    },
+    }
+    
     {
+    
         descripcion: 'Pago de expensas',
         categoria: 'Alquiler',
         fecha: '02/01/2021',
@@ -123,6 +117,29 @@ const operaciones = [{
         tipo: 'Gasto',
     },
 ];
+
+
+
+
+
+
+// Reporte
+
+const convertirOperacionesAHTML = (operaciones) => {
+    let acc = ""
+
+    operaciones.map((operacion) => {
+        acc = acc + `
+        <div class="columns ">
+            <p class="column">${operacion.descripcion}</p>
+            <div class="column is-1" >
+                <p class="has-background-primary-light has-text-primary-dark has-text-centered">
+                 ${operacion.categoria}
+                 </p> 
+            </div> 
+            <p class="column  has-text-centered" >${operacion.fecha}</p> 
+            <p class="column has-text-success has-text-weight-bold">${operacion.monto}</p> 
+            <p class="column">${operacion.tipo}</p>               
 
 // -------------funciones formulario FILTROS-------------------
 //llamo a los elemento del form
