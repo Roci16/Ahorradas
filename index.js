@@ -94,7 +94,7 @@ const formulario = document.getElementById("form")
 const filtroTipo = document.getElementById("select-tipo")
 const filtroCategorias = document.getElementById("select-categoria")
 const filtroFecha = document.getElementById("date")
-const filtroOrdenarPor = document.getElementById("select-ordenar")
+const selectOrdenarPor = document.getElementById("select-ordenar")
 const divOperaciones = document.getElementById("div-operaciones")
 // funcion mostrar en html
 const aplicarDescripcionAOperaciones = () =>{
@@ -135,6 +135,7 @@ const mostrarOperacionesEnHTML = (array) => {
   }
   mostrarOperacionesEnHTML(operaciones)
 //--------------------funciones para ordenar los filtros
+//funciones auxiliares
 
 const ordenarPorFechaMasReciente  = (array) =>{
   return array.sort((a, b)=>{
@@ -142,7 +143,7 @@ const ordenarPorFechaMasReciente  = (array) =>{
 })
 }
 
-const ordenarPorFechaMasAntigua  = (array) =>{
+const ordenarPorFechaMenosReciente  = (array) =>{
   return array.sort((a, b)=>{
     return new Date(b.fecha) - new Date(a.fecha)
 })
@@ -167,7 +168,27 @@ const ordenarPorMenorMonto = (array) =>{
 })
 }
 
-
+//Funcion ordenar por filtros que reune a todas las 
+const filtroOrdenarPor = (array)=>{
+if(selectOrdenarPor.value === "Más reciente"){
+  return ordenarPorFechaMasReciente(array)
+}
+else if(selectOrdenarPor.value === "Menos reciente"){
+  return ordenarPorFechaMenosReciente(array)
+}
+else if(selectOrdenarPor.value === "Mayor monto"){
+  return ordenarPorMayorMonto(array)
+}
+else if(selectOrdenarPor.value === "Menor monto"){
+  return ordenarPorMenorMonto(array)
+}
+else if(selectOrdenarPor.value === "A/Z"){
+  return ordenarAZ(array)
+}
+else{
+  return ordenarZA(array)
+}
+}
 
 
 
@@ -195,12 +216,10 @@ const ordenarPorMenorMonto = (array) =>{
         return nuevoElemento
       })
 //---------ordenar------------------------
-   const arrayOrdenadoPor = arrayFiltradoPorFechas.sort((a, b) => { //ordeno 
-        
-      })
+  
 
 
-  return arrayOrdenadoPor
+  return filtroOrdenarPor(arrayFiltradoPorFechas)
   }
 
 //filtros
