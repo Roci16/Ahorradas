@@ -25,7 +25,6 @@ botonCategorias.onclick = () => {
     seccionCategorias.classList.remove("is-hidden")
     seccionCentral.classList.add("is-hidden")
     seccionReportes.classList.add("is-hidden")
-    ventanaNuevaOperacion.classList.add("is-hidden")
 
 }
 
@@ -34,7 +33,6 @@ botonReporte.onclick = () => {
     seccionReportes.classList.remove("is-hidden")
     seccionCentral.classList.add("is-hidden")
     seccionCategorias.classList.add("is-hidden")
-    ventanaNuevaOperacion.classList.add("is-hidden")
 
 }
 
@@ -74,11 +72,6 @@ botonAgregar.onclick = () => {
 }
 
 
-
-
-
-
-
 const operaciones = [{
         descripcion: 'Sueldo',
         categoria: 'Trabajo',
@@ -92,8 +85,10 @@ const operaciones = [{
         fecha: '02/01/2021',
         monto: 15000,
         tipo: 'Gasto',
-    },
+    }
+    
     {
+    
         descripcion: 'Pago de expensas',
         categoria: 'Alquiler',
         fecha: '02/01/2021',
@@ -122,6 +117,9 @@ const operaciones = [{
         tipo: 'Gasto',
     },
 ];
+
+
+
 
 
 // Reporte
