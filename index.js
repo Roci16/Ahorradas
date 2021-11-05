@@ -189,64 +189,59 @@ const mostrarOperacionesEnHTML = (array) => {
 
     divOperaciones.innerHTML = aplicarDescripcionAOperaciones() + acc
 
-  }
-  mostrarOperacionesEnHTML(operaciones)
-//--------------------funciones para ordenar los filtros
-//funciones auxiliares
+}
+mostrarOperacionesEnHTML(operaciones)
+    //--------------------funciones para ordenar los filtros
+    //funciones auxiliares
 
-const ordenarPorFechaMasReciente  = (array) =>{
-  return array.sort((a, b)=>{
-  return new Date(a.fecha) - new Date(b.fecha)
-})
+const ordenarPorFechaMasReciente = (array) => {
+    return array.sort((a, b) => {
+        return new Date(a.fecha) - new Date(b.fecha)
+    })
 }
 
-const ordenarPorFechaMenosReciente  = (array) =>{
-  return array.sort((a, b)=>{
-    return new Date(b.fecha) - new Date(a.fecha)
-})
+const ordenarPorFechaMenosReciente = (array) => {
+    return array.sort((a, b) => {
+        return new Date(b.fecha) - new Date(a.fecha)
+    })
 }
-const ordenarAZ = (array) =>{
-  return array.sort()
-}
-
-const ordenarZA = (array) =>{
-  return array.sort().reverse()
+const ordenarAZ = (array) => {
+    return array.sort()
 }
 
-const ordenarPorMayorMonto = (array) =>{
-  return array.sort((a, b)=>{
-  return a.monto - b.monto
-})
+const ordenarZA = (array) => {
+    return array.sort().reverse()
 }
 
-const ordenarPorMenorMonto = (array) =>{
-  return array.sort((a, b)=>{
-  return b.monto - a.monto
-})
+const ordenarPorMayorMonto = (array) => {
+    return array.sort((a, b) => {
+        return a.monto - b.monto
+    })
+}
+
+const ordenarPorMenorMonto = (array) => {
+    return array.sort((a, b) => {
+        return b.monto - a.monto
+    })
 
 }
 
 
 //Funcion ordenar por filtros que reune a todas las 
-const filtroOrdenarPor = (array)=>{
-if(selectOrdenarPor.value === "Más reciente"){
-  return ordenarPorFechaMasReciente(array)
-}
-else if(selectOrdenarPor.value === "Menos reciente"){
-  return ordenarPorFechaMenosReciente(array)
-}
-else if(selectOrdenarPor.value === "Mayor monto"){
-  return ordenarPorMayorMonto(array)
-}
-else if(selectOrdenarPor.value === "Menor monto"){
-  return ordenarPorMenorMonto(array)
-}
-else if(selectOrdenarPor.value === "A/Z"){
-  return ordenarAZ(array)
-}
-else{
-  return ordenarZA(array)
-}
+const filtroOrdenarPor = (array) => {
+    if (selectOrdenarPor.value === "Más reciente") {
+        return ordenarPorFechaMasReciente(array)
+    } else if (selectOrdenarPor.value === "Menos reciente") {
+        return ordenarPorFechaMenosReciente(array)
+    } else if (selectOrdenarPor.value === "Mayor monto") {
+        return ordenarPorMayorMonto(array)
+    } else if (selectOrdenarPor.value === "Menor monto") {
+        return ordenarPorMenorMonto(array)
+    } else if (selectOrdenarPor.value === "A/Z") {
+        return ordenarAZ(array)
+    } else {
+        return ordenarZA(array)
+    }
 }
 
 
@@ -260,37 +255,37 @@ const aplicarFiltros = () => {
         }
         return operacion.tipo === tipo
     })
+}
 
-    const categoriaSelect = filtroCategorias.value //filtro por categoria aplicando el filtro de tipo
-    const filtradoPorCategoria = filtradoPorTipo.filter((operacion) => {
-        if (categoriaSelect === "Todos") {
-            return operacion
-        }
-        return operacion.categoriaSelect === categoriaSelect
-    })
+const categoriaSelect = filtroCategorias.value //filtro por categoria aplicando el filtro de tipo
+const filtradoPorCategoria = filtradoPorTipo.filter((operacion) => {
+    if (categoriaSelect === "Todos") {
+        return operacion
+    }
+    return operacion.categoriaSelect === categoriaSelect
+})
 
-  
-   const arrayFiltradoPorFechas = filtradoPorCategoria.map((operacion) => { //filtro por fechas
-        const nuevoElemento = {...operacion}
-        nuevoElemento.fecha = new Date(operacion.fecha).toLocaleDateString() 
+
+const arrayFiltradoPorFechas = filtradoPorCategoria.map((operacion) => { //filtro por fechas
+        const nuevoElemento = {...operacion }
+        nuevoElemento.fecha = new Date(operacion.fecha).toLocaleDateString()
         return nuevoElemento
-      })
-//---------ordenar------------------------
-  
+    })
+    //---------ordenar------------------------
 
 
-    const arrayFiltradoPorFechas = filtradoPorCategoria.map((operacion) => { //filtro por fechas
-            const nuevoElemento = {...operacion }
-            nuevoElemento.fecha = new Date(operacion.fecha).toLocaleDateString()
-            return nuevoElemento
-        })
-        //---------ordenar------------------------
-    const arrayOrdenadoPor = arrayFiltradoPorFechas.sort((a, b) => { //ordeno 
+
+const arrayFiltradoPorFechas = filtradoPorCategoria.map((operacion) => { //filtro por fechas
+        const nuevoElemento = {...operacion }
+        nuevoElemento.fecha = new Date(operacion.fecha).toLocaleDateString()
+        return nuevoElemento
+    })
+    //---------ordenar------------------------
+const arrayOrdenadoPor = arrayFiltradoPorFechas.sort((a, b) => { //ordeno 
 
 
-  return filtroOrdenarPor(arrayFiltradoPorFechas)
-  }
-
+    return filtroOrdenarPor(arrayFiltradoPorFechas)
+})
 
 //filtros
 //se debe filtrar por tipo
