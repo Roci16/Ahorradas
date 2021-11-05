@@ -25,6 +25,7 @@ botonCategorias.onclick = () => {
     seccionCategorias.classList.remove("is-hidden")
     seccionCentral.classList.add("is-hidden")
     seccionReportes.classList.add("is-hidden")
+    ventanaNuevaOperacion.classList.add("is-hidden")
 
 }
 
@@ -33,6 +34,7 @@ botonReporte.onclick = () => {
     seccionReportes.classList.remove("is-hidden")
     seccionCentral.classList.add("is-hidden")
     seccionCategorias.classList.add("is-hidden")
+    ventanaNuevaOperacion.classList.add("is-hidden")
 
 }
 
