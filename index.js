@@ -134,6 +134,41 @@ const mostrarOperacionesEnHTML = (array) => {
     divOperaciones.innerHTML = aplicarDescripcionAOperaciones() + acc
   }
   mostrarOperacionesEnHTML(operaciones)
+//--------------------funciones para ordenar los filtros
+
+const ordenarPorFechaMasReciente  = (array) =>{
+  const fechaJs = new Date(array.fecha)
+  return array.sort((a, b)=>{
+  return a.fechaJs > b.fechaJs
+})
+}
+
+const ordenarPorFechaMasAntigua  = (array) =>{
+  const fechaJs = new Date(array.fecha)
+  return array.sort((a, b)=>{
+  return a.fechaJs < b.fechaJs
+})
+}
+const ordenarAZ = (array) =>{
+  return array.sort((a, b)=>{
+  return a.descripcion - b.descripcion
+})
+}
+
+const ordenarZA = (array) =>{
+  return array.sort((a, b)=>{
+  return b.descripcion - a.descripcion
+})
+}
+
+const ordenarPorMonto = (array) =>{
+  return array.sort((a, b)=>{
+  return b.monto - a.monto
+})
+}
+
+
+
 
 
 // -------------------Función aplicar filtros-----------------
@@ -182,12 +217,18 @@ const mostrarOperacionesEnHTML = (array) => {
 //para ordenar tengo dos ides
 //por un lado definir funciones afuera y llamarlas en una sola funcion dentro de la funcion aplicar filtros que se llame ordenar Por
 //puedo hacer una funcion ordenar por que ejecute funciones dentro de if
+//solo tengo que hacer 3 funciones con if 
+//una por ordenar por fecha
+//una de ordenar por monto
+//otra de ordenar por orden alfabetico la DESCRIPCION
 
+//para la funcion ordenar tengo que tomar el array de objetos y mostrarlos en el orden de acuerdo a lo que requiere. en monto tengo que ordenar de acuerdo a monto
 
 
   //----Agrega filtro a tipo y categoria cuando modifico los select------
   filtroTipo.onchange = () => {
     const arrayFiltrado = aplicarFiltros() 
+    mostrarOperacionesEnHTML(arrayFiltrado)
   }
   
   filtroCategorias.onchange = () => {
