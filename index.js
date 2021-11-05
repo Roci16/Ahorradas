@@ -7,8 +7,8 @@ const seccionCentral = document.getElementById("seccion-central")
 const seccionReportes = document.getElementById("seccion-reportes")
 const botonNuevaOperacion = document.getElementById("boton-nueva-operacion")
 const seccionNuevaOperacion = document.getElementById("accion-boton-nueva-operacion")
-const botonCancelar = document.querySelector("#boton-cancelar");
-const botonAgregar = document.querySelector("#boton-agregar");
+const botonCancelarOperacion = document.querySelector("#boton-cancelar-operacion");
+const botonAgregarOperacion = document.querySelector("#boton-agregar-operacion");
 const botonAgregarCategoria = document.getElementById("agregar-categoria-boton")
 const inputCategoriaNuevoNombre = document.getElementById("input-categorias-nuevo-nombre")
 
@@ -47,19 +47,19 @@ botonNuevaOperacion.onclick = () => {
 }
 
 
-function mostrarBotonCancelar() {
-    botonCancelar.style.display = 'none';
-    botonCancelar.style.display = 'inline';
+function mostrarBotonCancelarOperacion() {
+    botonCancelarOperacion.style.display = 'none';
+    botonCancelarOperacion.style.display = 'inline';
 }
 
-function mostrarBotonAgregar() {
-    botonAgregar.style.display = 'none';
-    botonAgregar.style.display = 'inline';
+function mostrarBotonAgregarOperacion() {
+    botonAgregarOperacion.style.display = 'none';
+    botonAgregarOperacion.style.display = 'inline';
 }
 
 //Boton Cancelar
 
-botonCancelar.onclick = () => {
+botonCancelarOperacion.onclick = () => {
     botonReporte.classList.add("is-hidden");
     seccionCategorias.classList.add("is-hidden");
     seccionNuevaOperacion.classList.add("is-hidden");
@@ -68,7 +68,7 @@ botonCancelar.onclick = () => {
 
 //Boton Agregar
 
-botonAgregar.onclick = () => {
+botonAgregarOperacion.onclick = () => {
     botonReporte.classList.add("is-hidden");
     seccionCategorias.classList.add("is-hidden");
     seccionNuevaOperacion.classList.add("is-hidden");
