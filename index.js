@@ -137,31 +137,31 @@ const mostrarOperacionesEnHTML = (array) => {
 //--------------------funciones para ordenar los filtros
 
 const ordenarPorFechaMasReciente  = (array) =>{
-  const fechaJs = new Date(array.fecha)
   return array.sort((a, b)=>{
-  return a.fechaJs > b.fechaJs
+  return new Date(a.fecha) - new Date(b.fecha)
 })
 }
 
 const ordenarPorFechaMasAntigua  = (array) =>{
-  const fechaJs = new Date(array.fecha)
   return array.sort((a, b)=>{
-  return a.fechaJs < b.fechaJs
+    return new Date(b.fecha) - new Date(a.fecha)
 })
 }
 const ordenarAZ = (array) =>{
-  return array.sort((a, b)=>{
-  return a.descripcion - b.descripcion
-})
+  return array.sort()
 }
 
 const ordenarZA = (array) =>{
+  return array.sort().reverse()
+}
+
+const ordenarPorMayorMonto = (array) =>{
   return array.sort((a, b)=>{
-  return b.descripcion - a.descripcion
+  return a.monto - b.monto
 })
 }
 
-const ordenarPorMonto = (array) =>{
+const ordenarPorMenorMonto = (array) =>{
   return array.sort((a, b)=>{
   return b.monto - a.monto
 })
