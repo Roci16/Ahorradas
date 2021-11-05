@@ -142,7 +142,6 @@
 
                             <!-- Funcion de lo que aparece cuando se agrega una operacion -->
                             <!-- <div class=" column">
-
                                 <div class="columns">
                                     <div class="column">Descropción</div>
                                     <div class="column is-1 has-text-centered">Categoría</div>
@@ -150,7 +149,6 @@
                                     <div class="column">Monto</div>
                                     <div class="column">Acciones</div>
                                 </div>
-
                                 <div>
                                     <div class="" id="tarjeta">asdas</div>
                                 </div>
@@ -179,37 +177,38 @@
             </div>
 
         </div>
-        <!--Tarjeta de nueva operacion  -->
-        <section id="accion-boton-nueva-operacion" class=" columns m-5 is-hidden">
-            <div class="box column is-8 is-offset-2">
-                <h2 class="title is-size-2 has-text-weight-bold has-text-black-ter my-5">Nueva operación</h2>
+    </section>
+    <!--Tarjeta de nueva operacion  -->
+    <section id="accion-boton-nueva-operacion" class=" columns m-5 is-hidden">
+        <div class="box column is-8 is-offset-2">
+            <h2 class="title is-size-2 has-text-weight-bold has-text-black-ter my-5">Nueva operación</h2>
 
-                <form>
+            <form>
 
-                    <div class="field">
-                        <label class="label" for="descripcion-nueva-operacion">Descripción</label>
-                        <input class="input" type="text" id="descripcion-nueva-operacion">
-                    </div>
+                <div class="field">
+                    <label class="label" for="descripcion-nueva-operacion">Descripción</label>
+                    <input class="input" type="text" id="descripcion-nueva-operacion">
+                </div>
 
-                    <div class="field">
-                        <label class="label" for="monto-nueva-operacion">Monto</label>
-                        <input class="input" type="number" id="monto-nueva-operacion" value="0">
-                    </div>
+                <div class="field">
+                    <label class="label" for="monto-nueva-operacion">Monto</label>
+                    <input class="input" type="number" id="monto-nueva-operacion" value="0">
+                </div>
 
-                    <div class="field">
-                        <label class="label" for="select-tipo-nueva-operacion">Tipo</label>
-                        <div class="select is-fullwidth ">
-                            <select id="select-tipo-nueva-operacion"> 
+                <div class="field">
+                    <label class="label" for="select-tipo-nueva-operacion">Tipo</label>
+                    <div class="select is-fullwidth ">
+                        <select id="select-tipo-nueva-operacion"> 
                                          <option>Gasto</option>
                                          <option>Ganancia</option>
                                     </select>
-                        </div>
                     </div>
+                </div>
 
-                    <div class="field">
-                        <label class="label" for="select-categoria-nueva-operacion">Categoría</label>
-                        <div class="select is-fullwidth  ">
-                            <select id="select-categoria-nueva-operacion">                        
+                <div class="field">
+                    <label class="label" for="select-categoria-nueva-operacion">Categoría</label>
+                    <div class="select is-fullwidth  ">
+                        <select id="select-categoria-nueva-operacion">                        
                                                  <option>Comida</option>
                                                  <option>Servicios</option>
                                                  <option>Salidas</option>
@@ -217,25 +216,27 @@
                                                  <option>Transporte</option>
                                                  <option>Trabajo</option>
                                             </select>
-                        </div>
                     </div>
-
-                    <div class="field">
-                        <label class="label" for="date">Desde</label>
-                        <div class="control">
-                            <input class="input" id="date" type="date">
-                        </div>
-                    </div>
-
-                </form>
-                <div class="column has-text-right">
-                    <button class="button mt-5 is-light">Cancelar</button>
-                    <button class="button mt-5 is-success">Agregar</button>
                 </div>
-            </div>
-        </section>
 
+                <div class="field">
+                    <label class="label" for="date">Desde</label>
+                    <div class="control">
+                        <input class="input" id="date" type="date">
+                    </div>
+                </div>
+
+            </form>
+            <div class="column has-text-right">
+
+                <button class="button mt-5 is-light" id="boton-cancelar">Cancelar</button>
+                <button class="button mt-5 is-success" id="boton-agregar">Agregar</button>
+
+            </div>
+        </div>
     </section>
+
+
     <section class="section is-hidden" id="seccion-categorias">
         <!-- Seccion Categorias - is hidden -->
         <div class="conteiner">
@@ -248,58 +249,40 @@
                         <div class="columns">
                             <div class="control column is-10">
                                 <div>
-                                    <input class="input" id="username" type="text">
+                                    <input id="input-categorias-nuevo-nombre" class="input" id="username" type="text">
                                 </div>
                             </div>
                             <div class="column has-text-right">
-                                <button class="button is-success">Agregar</button>
+                                <button id="agregar-categoria-boton" class="button is-success">Agregar</button>
                             </div>
                         </div>
                     </div>
 
-
-
-                    <div id="nombres-de-las-categorias" class="columns">
+                    <div id="lista-categoria">
 
                     </div>
-                    <!-- <div class="column">
 
-                            <div class="column has-background-success-light has-text-success-dark">Comidas </div>
 
-                        </div>
-                        <div class="columns">
-                            <div class="column">
-                                <button class="button column is-info is-inverted  ">Editar</button>
+                    <!--------------------------------------------------------
+                                 MAQUETADO DE TARJETA QUE VA EN JS
+                     --------------------------------------------------------->
 
-                            </div>
-                            <div class="column">
-                                <button class="button column is-info is-inverted ">Eliminar</button>
-                            </div>
 
-                        </div> -->
+                    <!-- <div class=" columns">
+                    <div class="column">
+                        <span class=" has-background-success-light has-text-success-dark">Comidas</span>
+                    </div>
+                    <div class="column has-text-right">
+                        <button class="button is-info is-inverted">Editar</button>
+
+
+                        <button class="button  is-info is-inverted">Eliminar</button>
+                    </div>
+                </div> -->
 
                 </div>
+
             </div>
-
-
-            <!-- <div class="columns">
-                        <div class="columns">
-
-                            <div class="column has-background-success-light has-text-success-dark">Comidas </div>
-
-
-                        </div>
-                        <div class="columns">
-
-                            <button class="button is-info is-inverted  ">Editar</button>
-                            <button class="button is-info is-inverted ">Eliminar</button>
-
-                        </div>
-
-                    </div> -->
-
-
-        </div>
         </div>
     </section>
 

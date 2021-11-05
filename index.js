@@ -6,7 +6,12 @@ const seccionCategorias = document.getElementById("seccion-categorias")
 const seccionCentral = document.getElementById("seccion-central")
 const seccionReportes = document.getElementById("seccion-reportes")
 const botonNuevaOperacion = document.getElementById("boton-nueva-operacion")
-const ventanaNuevaOperacion = document.getElementById("accion-boton-nueva-operacion")
+const seccionNuevaOperacion = document.getElementById("accion-boton-nueva-operacion")
+const botonCancelar = document.querySelector("#boton-cancelar");
+const botonAgregar = document.querySelector("#boton-agregar");
+const botonAgregarCategoria = document.getElementById("agregar-categoria-boton")
+const inputCategoriaNuevoNombre = document.getElementById("input-categorias-nuevo-nombre")
+
 
 
 // Funciones Botones Nav Superior
@@ -37,11 +42,38 @@ botonReporte.onclick = () => {
 //Balance
 
 botonNuevaOperacion.onclick = () => {
+    seccionNuevaOperacion.classList.remove("is-hidden")
     seccionCentral.classList.add("is-hidden")
-    ventanaNuevaOperacion.classList.remove("is-hidden")
 }
 
 
+function mostrarBotonCancelar() {
+    botonCancelar.style.display = 'none';
+    botonCancelar.style.display = 'inline';
+}
+
+function mostrarBotonAgregar() {
+    botonAgregar.style.display = 'none';
+    botonAgregar.style.display = 'inline';
+}
+
+//Boton Cancelar
+
+botonCancelar.onclick = () => {
+    botonReporte.classList.add("is-hidden");
+    seccionCategorias.classList.add("is-hidden");
+    seccionNuevaOperacion.classList.add("is-hidden");
+    botonBalance.classList.remove("is-hidden");
+}
+
+//Boton Agregar
+
+botonAgregar.onclick = () => {
+    botonReporte.classList.add("is-hidden");
+    seccionCategorias.classList.add("is-hidden");
+    seccionNuevaOperacion.classList.add("is-hidden");
+    botonBalance.classList.remove("is-hidden");
+}
 
 
 const operaciones = [{
@@ -88,29 +120,53 @@ const operaciones = [{
     },
 ];
 
-// -------------funciones formulario FILTROS-------------------
-//llamo a los elemento del form
+
+
+
+
+
+// Reporte
+
+const convertirOperacionesAHTML = (operaciones) => {
+        let acc = ""
+
+        operaciones.map((operacion) => {
+            acc = acc + `
+        <div class="columns ">
+            <p class="column">${operacion.descripcion}</p>
+            <div class="column is-1" >
+                <p class="has-background-primary-light has-text-primary-dark has-text-centered">
+                 ${operacion.categoria}
+                 </p> 
+            </div> 
+            <p class="column  has-text-centered" >${operacion.fecha}</p> 
+            <p class="column has-text-success has-text-weight-bold">${operacion.monto}</p> 
+            <p class="column">${operacion.tipo}</p> `
+        })
+    }
+    // -------------funciones formulario FILTROS-------------------
+    //llamo a los elemento del form
 const formulario = document.getElementById("form")
 const filtroTipo = document.getElementById("select-tipo")
 const filtroCategorias = document.getElementById("select-categoria")
 const filtroFecha = document.getElementById("date")
 const selectOrdenarPor = document.getElementById("select-ordenar")
 const divOperaciones = document.getElementById("div-operaciones")
-// funcion mostrar en html
-const aplicarDescripcionAOperaciones = () =>{
-   return  `<div class="columns has-text-weight-semibold is-hidden-mobile">
+    // funcion mostrar en html
+const aplicarDescripcionAOperaciones = () => {
+    return `<div class="columns has-text-weight-semibold is-hidden-mobile">
             <div class="column is-3">Descripción</div>
             <div class="column is-3">Categoría</div>
             <div class="column is-2 has-text-right">Fecha</div>
             <div class="column is-2 has-text-right">Monto</div>
             <div class="column is-2 has-text-right">Acciones</div>
-             </div> ` 
+             </div> `
 }
 const mostrarOperacionesEnHTML = (array) => {
-    
-  let acc = ""
+
+    let acc = ""
     array.map((operacion) => {
-      acc = acc + `
+        acc = acc + `
       <div class="fila columns">
       <div class="column is-3 has-text-weight-semibold">
         <p>${operacion.descripcion}</p>
@@ -130,8 +186,9 @@ const mostrarOperacionesEnHTML = (array) => {
       </div>
       `
     })
-  
+
     divOperaciones.innerHTML = aplicarDescripcionAOperaciones() + acc
+
   }
   mostrarOperacionesEnHTML(operaciones)
 //--------------------funciones para ordenar los filtros
@@ -166,7 +223,9 @@ const ordenarPorMenorMonto = (array) =>{
   return array.sort((a, b)=>{
   return b.monto - a.monto
 })
+
 }
+
 
 //Funcion ordenar por filtros que reune a todas las 
 const filtroOrdenarPor = (array)=>{
@@ -193,22 +252,23 @@ else{
 
 
 // -------------------Función aplicar filtros-----------------
-  const aplicarFiltros = () => {
+const aplicarFiltros = () => {
     const tipo = filtroTipo.value //filtro por tipo
     const filtradoPorTipo = operaciones.filter((operacion) => {
-      if (tipo === "Todos") {
-        return operacion
-      }
-      return operacion.tipo === tipo 
+        if (tipo === "Todos") {
+            return operacion
+        }
+        return operacion.tipo === tipo
     })
-    
-    const categoria = filtroCategorias.value //filtro por categoria aplicando el filtro de tipo
-    const filtradoPorCategoria = filtradoPorTipo.filter((operacion) => { 
-      if (categoria === "Todos") {
-        return operacion
-      }
-      return operacion.categoria === categoria
+
+    const categoriaSelect = filtroCategorias.value //filtro por categoria aplicando el filtro de tipo
+    const filtradoPorCategoria = filtradoPorTipo.filter((operacion) => {
+        if (categoriaSelect === "Todos") {
+            return operacion
+        }
+        return operacion.categoriaSelect === categoriaSelect
     })
+
   
    const arrayFiltradoPorFechas = filtradoPorCategoria.map((operacion) => { //filtro por fechas
         const nuevoElemento = {...operacion}
@@ -219,8 +279,18 @@ else{
   
 
 
+    const arrayFiltradoPorFechas = filtradoPorCategoria.map((operacion) => { //filtro por fechas
+            const nuevoElemento = {...operacion }
+            nuevoElemento.fecha = new Date(operacion.fecha).toLocaleDateString()
+            return nuevoElemento
+        })
+        //---------ordenar------------------------
+    const arrayOrdenadoPor = arrayFiltradoPorFechas.sort((a, b) => { //ordeno 
+
+
   return filtroOrdenarPor(arrayFiltradoPorFechas)
   }
+
 
 //filtros
 //se debe filtrar por tipo
@@ -244,28 +314,95 @@ else{
 //para la funcion ordenar tengo que tomar el array de objetos y mostrarlos en el orden de acuerdo a lo que requiere. en monto tengo que ordenar de acuerdo a monto
 
 
-  //----Agrega filtro a tipo y categoria cuando modifico los select------
-  filtroTipo.onchange = () => {
-    const arrayFiltrado = aplicarFiltros() 
-    mostrarOperacionesEnHTML(arrayFiltrado)
-  }
-  
-  filtroCategorias.onchange = () => {
-   const arrayFiltrado = aplicarFiltros()
-    mostrarOperacionesEnHTML(arrayFiltrado)
-  }
-  
-// elijo a partir de la fecha
-  filtroFecha.oninput = () => {
+//----Agrega filtro a tipo y categoria cuando modifico los select------
+filtroTipo.onchange = () => {
     const arrayFiltrado = aplicarFiltros()
     mostrarOperacionesEnHTML(arrayFiltrado)
-  }
+}
+
+filtroCategorias.onchange = ()  => {
+    const arrayFiltrado = aplicarFiltros()
+    mostrarOperacionesEnHTML(arrayFiltrado)
+}
+
+// elijo a partir de la fecha
+filtroFecha.oninput = () => {
+    const arrayFiltrado = aplicarFiltros()
+    mostrarOperacionesEnHTML(arrayFiltrado)
+}
 
 
 //----este e.preventDefault evita que el formulario se envie -----
 formulario.onsubmit = (e) => {
- e.preventDefault()
-  }
+    e.preventDefault()
+}
 
-// -------------FIN-------------------
+// -------------FIN------------------
 
+
+// Seccion categorias
+
+
+
+const categoriasIniciadoras = ["Todos", "Comida", "Servicios", "Salidas", "Educación", "Transporte", "Trabajo"]
+
+
+
+const adicionDeNuevasCategoriasSelect = () => {
+    // const selectCategoria = document.getElementById("select-categoria")
+    // const filtroCategorias = document.getElementById("select-categoria")
+
+    const stringCategoriasIniciadoras = categoriasIniciadoras.reduce((acc, elemento, index) => {
+        return acc + `<option id="opcion-categoria-${index}" value="${elemento}">${elemento}</option>`
+
+    })
+    console.log(categoriasIniciadoras)
+    console.log(stringCategoriasIniciadoras)
+    filtroCategorias.innerHTML = stringCategoriasIniciadoras
+}
+
+const categoriasObtenidas = () => {
+    const categoriasLS = localStorage.getItem("categorias")
+    if (categoriasLS === null) {
+        return categoriasIniciadoras
+    } else {
+        return JSON.parse(categoriasLS)
+    }
+}
+
+const agregarCategoriasAHTML = () => {
+    const categorias = categoriasObtenidas()
+    const lista = document.getElementById("lista-categoria")
+
+    const stringCategoriasIniciadoras = categorias.reduce((acc, elemento, index) => {
+        return acc + ` <div class=" columns">
+            <div class="column">
+                 <span class=" has-background-success-light has-text-success-dark">${elemento}</span>
+            </div>
+         <div class="column has-text-right">
+                 <button id="editar-categoria-${index}" class="button is-info is-inverted">Editar</button>
+
+             <button id="borrar-categoria-${index}" class="button is-info is-inverted">Eliminar</button>
+         </div>
+     </div>`
+    }, "")
+
+    lista.innerHTML = stringCategoriasIniciadoras
+}
+
+agregarCategoriasAHTML()
+adicionDeNuevasCategoriasSelect()
+
+botonAgregarCategoria.onclick = () => {
+    const valorInputCategoriaNuevo = inputCategoriaNuevoNombre.value
+    console.log(valorInputCategoriaNuevo)
+    inputCategoriaNuevoNombre.value = ""
+
+    categoriasIniciadoras.push(valorInputCategoriaNuevo)
+    adicionDeNuevasCategoriasSelect()
+    const categoriasEnJSON = JSON.stringify(categoriasIniciadoras)
+    localStorage.setItem("categorias", categoriasEnJSON)
+    adicionDeNuevasCategoriasSelect()
+    agregarCategoriasAHTML()
+
+}
