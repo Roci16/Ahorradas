@@ -255,29 +255,37 @@ const aplicarFiltros = () => {
         }
         return operacion.tipo === tipo
     })
+}
+
+const categoriaSelect = filtroCategorias.value //filtro por categoria aplicando el filtro de tipo
+const filtradoPorCategoria = filtradoPorTipo.filter((operacion) => {
+    if (categoriaSelect === "Todos") {
+        return operacion
+    }
+    return operacion.categoriaSelect === categoriaSelect
+})
 
 
-    const categoriaSelect = filtroCategorias.value //filtro por categoria aplicando el filtro de tipo
-    const filtradoPorCategoria = filtradoPorTipo.filter((operacion) => {
-        if (categoriaSelect === "Todos") {
-            return operacion
-        }
-        return operacion.categoriaSelect === categoriaSelect
-    })
-
-    const arrayFiltradoPorFechas = filtradoPorCategoria.map((operacion) => { //filtro por fechas
+const arrayFiltradoPorFechas = filtradoPorCategoria.map((operacion) => { //filtro por fechas
         const nuevoElemento = {...operacion }
         nuevoElemento.fecha = new Date(operacion.fecha).toLocaleDateString()
         return nuevoElemento
     })
+    //---------ordenar------------------------
+
+
+
+const arrayFiltradoPorFechas = filtradoPorCategoria.map((operacion) => { //filtro por fechas
+        const nuevoElemento = {...operacion }
+        nuevoElemento.fecha = new Date(operacion.fecha).toLocaleDateString()
+        return nuevoElemento
+    })
+    //---------ordenar------------------------
+const arrayOrdenadoPor = arrayFiltradoPorFechas.sort((a, b) => { //ordeno 
+
 
     return filtroOrdenarPor(arrayFiltradoPorFechas)
-}
-
-
-
-
-
+})
 
 //filtros
 //se debe filtrar por tipo
