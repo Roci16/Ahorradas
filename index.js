@@ -276,17 +276,6 @@ const aplicarFiltros = () => {
         return nuevoElemento
       })
 //---------ordenar------------------------
-  
-
-
-    const arrayFiltradoPorFechas = filtradoPorCategoria.map((operacion) => { //filtro por fechas
-            const nuevoElemento = {...operacion }
-            nuevoElemento.fecha = new Date(operacion.fecha).toLocaleDateString()
-            return nuevoElemento
-        })
-        //---------ordenar------------------------
-    const arrayOrdenadoPor = arrayFiltradoPorFechas.sort((a, b) => { //ordeno 
-
 
   return filtroOrdenarPor(arrayFiltradoPorFechas)
   }
