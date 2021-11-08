@@ -331,65 +331,147 @@ formulario.onsubmit = (e) => {
 
 
 
-const categoriasIniciadoras = ["Todos", "Comida", "Servicios", "Salidas", "Educación", "Transporte", "Trabajo"]
+const categorias = ["Comida", "Servicios", "Salidas", "Educación", "Transporte", "Trabajo"]
 
-
-
-const adicionDeNuevasCategoriasSelect = () => {
-    // const selectCategoria = document.getElementById("select-categoria")
-    // const filtroCategorias = document.getElementById("select-categoria")
-
-    const stringCategoriasIniciadoras = categoriasIniciadoras.reduce((acc, elemento, index) => {
-        return acc + `<option id="opcion-categoria-${index}" value="${elemento}">${elemento}</option>`
-
-    })
-    console.log(categoriasIniciadoras)
-    console.log(stringCategoriasIniciadoras)
-    filtroCategorias.innerHTML = stringCategoriasIniciadoras
-}
-
+// LocalStorage///////////////
 const categoriasObtenidas = () => {
     const categoriasLS = localStorage.getItem("categorias")
     if (categoriasLS === null) {
-        return categoriasIniciadoras
+        return categorias
     } else {
         return JSON.parse(categoriasLS)
     }
 }
+let funcionLS = (elemento) => {
+        const categoriasAJSON = JSON.stringify(elemento)
+        localStorage.setItem("categorias", categoriasAJSON)
+
+
+    }
+    ////////////////////////////// 
+
+const adicionDeNuevasCategoriasSelect = () => {
+        const categorias = categoriasObtenidas()
+        const selectCategoria = document.getElementById("select-categoria")
+
+        const stringCategoriasIniciadoras = categorias.reduce((acc, elemento, index) => {
+            return acc + `<option id="opcion-categoria-${index}" value="${elemento}">${elemento}</option>`
+
+        }, "")
+
+        selectCategoria.innerHTML = stringCategoriasIniciadoras
+    }
+    // const adicionDeNuevasCategoriasSelect = () => {
+    //     // const selectCategoria = document.getElementById("select-categoria")
+    //     // const filtroCategorias = document.getElementById("select-categoria")
+
+//     const stringCategoriasIniciadoras = categoriasIniciadoras.reduce((acc, elemento, index) => {
+//         return acc + `<option id="opcion-categoria-${index}" value="${elemento}">${elemento}</option>`
+
+//     })
+//     console.log(categoriasIniciadoras)
+//     console.log(stringCategoriasIniciadoras)
+//     filtroCategorias.innerHTML = stringCategoriasIniciadoras
+// }
+
+// const categoriasObtenidas = () => {
+//     const categoriasLS = localStorage.getItem("categorias")
+//     if (categoriasLS === null) {
+//         return categoriasIniciadoras
+//     } else {
+//         return JSON.parse(categoriasLS)
+//     }
+// }
 
 const agregarCategoriasAHTML = () => {
     const categorias = categoriasObtenidas()
     const lista = document.getElementById("lista-categoria")
 
     const stringCategoriasIniciadoras = categorias.reduce((acc, elemento, index) => {
+
         return acc + ` <div class=" columns">
             <div class="column">
                  <span class=" has-background-success-light has-text-success-dark">${elemento}</span>
             </div>
          <div class="column has-text-right">
-                 <button id="editar-categoria-${index}" class="button is-info is-inverted">Editar</button>
+                 <button id="editar-categoria-${index}" class="button is-info is-inverted boton-editar-categoria">Editar</button>
 
-             <button id="borrar-categoria-${index}" class="button is-info is-inverted">Eliminar</button>
+             <button id="borrar-${index}"  class="boton-borrar button is-info is-inverted ">Eliminar</button>
          </div>
      </div>`
     }, "")
 
+
     lista.innerHTML = stringCategoriasIniciadoras
+    const botonesBorrar = document.querySelectorAll(".boton-borrar")
+
+    for (let i = 0; i < botonesBorrar.length; i++) {
+        botonesBorrar[i].onclick = () => {
+            const id = botonesBorrar[i].id
+            const indice = id.charAt(7)
+            const nuevasCategoriasFiltradas = categorias.filter((elemento, index) => {
+                return index != indice
+            })
+
+            funcionLS(nuevasCategoriasFiltradas)
+            agregarCategoriasAHTML()
+            adicionDeNuevasCategoriasSelect()
+        }
+
+    }
+
 }
 
 agregarCategoriasAHTML()
 adicionDeNuevasCategoriasSelect()
 
+// const agregarCategoriasAHTML = () => {
+//     const categorias = categoriasObtenidas()
+//     const lista = document.getElementById("lista-categoria")
+
+//     const stringCategoriasIniciadoras = categorias.reduce((acc, elemento, index) => {
+//         return acc + ` <div class=" columns">
+//             <div class="column">
+//                  <span class=" has-background-success-light has-text-success-dark">${elemento}</span>
+//             </div>
+//          <div class="column has-text-right">
+//                  <button id="editar-categoria-${index}" class="button is-info is-inverted">Editar</button>
+
+//              <button id="borrar-categoria-${index}" class="button is-info is-inverted">Eliminar</button>
+//          </div>
+//      </div>`
+//     }, "")
+
+//     lista.innerHTML = stringCategoriasIniciadoras
+// }
+
+// agregarCategoriasAHTML()
+// adicionDeNuevasCategoriasSelect()
+
+// botonAgregarCategoria.onclick = () => {
+//     const valorInputCategoriaNuevo = inputCategoriaNuevoNombre.value
+//     console.log(valorInputCategoriaNuevo)
+//     inputCategoriaNuevoNombre.value = ""
+
+//     categoriasIniciadoras.push(valorInputCategoriaNuevo)
+//     adicionDeNuevasCategoriasSelect()
+//     const categoriasEnJSON = JSON.stringify(categoriasIniciadoras)
+//     localStorage.setItem("categorias", categoriasEnJSON)
+//     adicionDeNuevasCategoriasSelect()
+//     agregarCategoriasAHTML()
+
+// }
 botonAgregarCategoria.onclick = () => {
     const valorInputCategoriaNuevo = inputCategoriaNuevoNombre.value
-    console.log(valorInputCategoriaNuevo)
+    const categorias = categoriasObtenidas()
+    categorias.push(valorInputCategoriaNuevo)
     inputCategoriaNuevoNombre.value = ""
 
-    categoriasIniciadoras.push(valorInputCategoriaNuevo)
-    adicionDeNuevasCategoriasSelect()
-    const categoriasEnJSON = JSON.stringify(categoriasIniciadoras)
-    localStorage.setItem("categorias", categoriasEnJSON)
+    funcionLS(categorias)
+
     adicionDeNuevasCategoriasSelect()
     agregarCategoriasAHTML()
+
+
 
 }
