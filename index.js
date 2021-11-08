@@ -304,18 +304,26 @@ const aplicarFiltros = () => {
 
 
 //----Agrega filtro a tipo y categoria cuando modifico los select------
+
+//evento cuando modifico categoria
 filtroTipo.onchange = () => {
     const arrayFiltrado = aplicarFiltros()
     mostrarOperacionesEnHTML(arrayFiltrado)
 }
-
+//evento cuando modifico tipo
 filtroCategorias.onchange = ()  => {
     const arrayFiltrado = aplicarFiltros()
     mostrarOperacionesEnHTML(arrayFiltrado)
 }
 
-// elijo a partir de la fecha
+// evento elijo a partir de la fecha
 filtroFecha.oninput = () => {
+    const arrayFiltrado = aplicarFiltros()
+    mostrarOperacionesEnHTML(arrayFiltrado)
+}
+
+//evento ordeno por fecha
+selectOrdenarPor.onchange = () =>{
     const arrayFiltrado = aplicarFiltros()
     mostrarOperacionesEnHTML(arrayFiltrado)
 }
