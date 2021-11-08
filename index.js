@@ -87,49 +87,74 @@ botonAgregar.onclick = () => {
 const operaciones = [{
         descripcion: 'Sueldo',
         categoria: 'Trabajo',
-        fecha: '01/01/2021',
+        fecha: '2021-01-01',
         monto: 50000,
         tipo: 'Ganancia',
     },
     {
         descripcion: 'Pago de alquiler',
         categoria: 'Alquiler',
-        fecha: '02/01/2021',
+        fecha: '2021-01-02',
         monto: 15000,
         tipo: 'Gasto',
     },
     {
         descripcion: 'Pago de expensas',
         categoria: 'Alquiler',
-        fecha: '02/01/2021',
+        fecha: '2021-01-02',
         monto: 5000,
         tipo: 'Gasto',
     },
     {
         descripcion: 'Pago de internet',
         categoria: 'Servicios',
-        fecha: '10/01/2021',
+        fecha: '2021-01-10',
         monto: 2000,
         tipo: 'Gasto',
     },
     {
         descripcion: 'Trabajo freelance',
         categoria: 'Trabajo',
-        fecha: '15/01/2021',
+        fecha: '2021-01-15',
         monto: 20000,
         tipo: 'Ganancia',
     },
     {
         descripcion: 'Cena con amigas',
         categoria: 'Salidas',
-        fecha: '18/01/2021',
+        fecha: '2021-01-18',
         monto: 1500,
         tipo: 'Gasto',
     },
+    {
+        descripcion: 'Salida turistica',
+        categoria: 'Salidas',
+        fecha: '2020-01-18',
+        monto: 3500,
+        tipo: 'Gasto',
+    },
+    {
+        descripcion: 'Pasantía',
+        categoria: 'Educación',
+        fecha: '2020-06-13',
+        monto: 6600,
+        tipo: 'Gasto',
+    },
+    {
+        descripcion: 'Viaje a las toninas',
+        categoria: 'Transporte',
+        fecha: '2020-05-18',
+        monto: 4000,
+        tipo: 'Gasto',
+    },
+    {
+        descripcion: 'Edelap',
+        categoria: 'Servicios',
+        fecha: '2021-04-18',
+        monto: 300,
+        tipo: 'Gasto',
+    },
 ];
-
-
-// Reporte
 
 const convertirOperacionesAHTML = (operaciones) => {
         let acc = ""
@@ -151,7 +176,8 @@ const convertirOperacionesAHTML = (operaciones) => {
 
 
 
-    //---------- Funcion mostrar en HTML---------------------
+    //---------- Funcion mostrar en HTML------------flor---------
+    //esta funcion muestra los titulos de las categorias una vez que se ingresan los datos (no debe ser parte de la acumuladora)
 const aplicarDescripcionAOperaciones = () => {
     return `<div class="columns has-text-weight-semibold is-hidden-mobile">
             <div class="column is-3">Descripción</div>
@@ -161,6 +187,7 @@ const aplicarDescripcionAOperaciones = () => {
             <div class="column is-2 has-text-right">Acciones</div>
              </div> `
 }
+//aca junto la funcion anterior mas la acumuladora que toma los datos del objeto y los muestra
 const mostrarOperacionesEnHTML = (array) => {
 
     let acc = ""
@@ -191,7 +218,7 @@ const mostrarOperacionesEnHTML = (array) => {
   }
   mostrarOperacionesEnHTML(operaciones)
 
-//-----------funciones para ordenar los filtros-----------------
+//-----------funciones para ordenar los filtros-----flor------------
 
 //funciones auxiliares
 
@@ -226,7 +253,7 @@ const ordenarPorMenorMonto = (array) =>{
 })
 }
 
-//Funcion ordenar por filtros que reune a todas las funciones auxiliares
+//Funcion ordenar por filtros que reune a todas las funciones auxiliares ----flor
 
 const filtroOrdenarPor = (array)=>{
 if(selectOrdenarPor.value === "Más reciente"){
@@ -249,7 +276,7 @@ else{
 }
 }
 
-// -------------------Función aplicar filtros-----------------
+// -------------------Función aplicar filtros----------------- florr
 const aplicarFiltros = () => {
     const tipo = filtroTipo.value //filtro por tipo
     const filtradoPorTipo = operaciones.filter((operacion) => {
@@ -264,7 +291,7 @@ const aplicarFiltros = () => {
         if (categoriaSelect === "Todos") {
             return operacion
         }
-        return operacion.categoriaSelect === categoriaSelect
+        return operacion.categoria === categoriaSelect
     })
 
   
@@ -279,7 +306,7 @@ const aplicarFiltros = () => {
   }
 
 
-//----Agrega filtro cuando modifico los select------
+//----Agrega filtro cuando modifico los select-----flor-
 
 // evento cuando modifico categoria
 filtroTipo.onchange = () => {
@@ -305,12 +332,12 @@ selectOrdenarPor.onchange = () =>{
 }
 
 
-//----este e.preventDefault evita que el formulario se envie -----
+//----este e.preventDefault evita que el formulario se envie --flor---
 formulario.onsubmit = (e) => {
     e.preventDefault()
 }
 
-// -------------FIN------------------
+// ----------------------------
 
 
 
