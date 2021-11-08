@@ -11,6 +11,14 @@ const botonCancelarOperacion = document.querySelector("#boton-cancelar-operacion
 const botonAgregarOperacion = document.querySelector("#boton-agregar-operacion");
 const botonAgregarCategoria = document.getElementById("agregar-categoria-boton")
 const inputCategoriaNuevoNombre = document.getElementById("input-categorias-nuevo-nombre")
+ // -------------funciones formulario FILTROS-------------------
+const formulario = document.getElementById("form")
+const filtroTipo = document.getElementById("select-tipo")
+const filtroCategorias = document.getElementById("select-categoria")
+const filtroFecha = document.getElementById("date")
+const selectOrdenarPor = document.getElementById("select-ordenar")
+const divOperaciones = document.getElementById("div-operaciones")
+//-----------------------------------------------
 
 
 
@@ -79,53 +87,74 @@ botonAgregarOperacion.onclick = () => {
 const operaciones = [{
         descripcion: 'Sueldo',
         categoria: 'Trabajo',
-        fecha: '01/01/2021',
+        fecha: '2021-01-01',
         monto: 50000,
         tipo: 'Ganancia',
     },
     {
         descripcion: 'Pago de alquiler',
         categoria: 'Alquiler',
-        fecha: '02/01/2021',
+        fecha: '2021-01-02',
         monto: 15000,
         tipo: 'Gasto',
     },
     {
         descripcion: 'Pago de expensas',
         categoria: 'Alquiler',
-        fecha: '02/01/2021',
+        fecha: '2021-01-02',
         monto: 5000,
         tipo: 'Gasto',
     },
     {
         descripcion: 'Pago de internet',
         categoria: 'Servicios',
-        fecha: '10/01/2021',
+        fecha: '2021-01-10',
         monto: 2000,
         tipo: 'Gasto',
     },
     {
         descripcion: 'Trabajo freelance',
         categoria: 'Trabajo',
-        fecha: '15/01/2021',
+        fecha: '2021-01-15',
         monto: 20000,
         tipo: 'Ganancia',
     },
     {
         descripcion: 'Cena con amigas',
         categoria: 'Salidas',
-        fecha: '18/01/2021',
+        fecha: '2021-01-18',
         monto: 1500,
         tipo: 'Gasto',
     },
+    {
+        descripcion: 'Salida turistica',
+        categoria: 'Salidas',
+        fecha: '2020-01-18',
+        monto: 3500,
+        tipo: 'Gasto',
+    },
+    {
+        descripcion: 'Pasantía',
+        categoria: 'Educación',
+        fecha: '2020-06-13',
+        monto: 6600,
+        tipo: 'Gasto',
+    },
+    {
+        descripcion: 'Viaje a las toninas',
+        categoria: 'Transporte',
+        fecha: '2020-05-18',
+        monto: 4000,
+        tipo: 'Gasto',
+    },
+    {
+        descripcion: 'Edelap',
+        categoria: 'Servicios',
+        fecha: '2021-04-18',
+        monto: 300,
+        tipo: 'Gasto',
+    },
 ];
-
-
-
-
-
-
-// Reporte
 
 const convertirOperacionesAHTML = (operaciones) => {
         let acc = ""
@@ -144,15 +173,11 @@ const convertirOperacionesAHTML = (operaciones) => {
             <p class="column">${operacion.tipo}</p> `
         })
     }
-    // -------------funciones formulario FILTROS-------------------
-    //llamo a los elemento del form
-const formulario = document.getElementById("form")
-const filtroTipo = document.getElementById("select-tipo")
-const filtroCategorias = document.getElementById("select-categoria")
-const filtroFecha = document.getElementById("date")
-const selectOrdenarPor = document.getElementById("select-ordenar")
-const divOperaciones = document.getElementById("div-operaciones")
-    // funcion mostrar en html
+
+
+
+    //---------- Funcion mostrar en HTML------------flor---------
+    //esta funcion muestra los titulos de las categorias una vez que se ingresan los datos (no debe ser parte de la acumuladora)
 const aplicarDescripcionAOperaciones = () => {
     return `<div class="columns has-text-weight-semibold is-hidden-mobile">
             <div class="column is-3">Descripción</div>
@@ -162,6 +187,7 @@ const aplicarDescripcionAOperaciones = () => {
             <div class="column is-2 has-text-right">Acciones</div>
              </div> `
 }
+//aca junto la funcion anterior mas la acumuladora que toma los datos del objeto y los muestra
 const mostrarOperacionesEnHTML = (array) => {
 
     let acc = ""
@@ -189,11 +215,13 @@ const mostrarOperacionesEnHTML = (array) => {
 
     divOperaciones.innerHTML = aplicarDescripcionAOperaciones() + acc
 
-}
-mostrarOperacionesEnHTML(operaciones)
-    //--------------------funciones para ordenar los filtros
-    //funciones auxiliares
 
+  }
+  mostrarOperacionesEnHTML(operaciones)
+
+//-----------funciones para ordenar los filtros-----flor------------
+
+//funciones auxiliares
 const ordenarPorFechaMasReciente = (array) => {
     return array.sort((a, b) => {
         return new Date(a.fecha) - new Date(b.fecha)
@@ -219,12 +247,15 @@ const ordenarPorMayorMonto = (array) => {
     })
 }
 
+
 const ordenarPorMenorMonto = (array) => {
     return array.sort((a, b) => {
         return b.monto - a.monto
     })
 
 }
+
+//Funcion ordenar por filtros que reune a todas las funciones auxiliares ----flor
 
 
 //Funcion ordenar por filtros que reune a todas las 
@@ -242,11 +273,10 @@ const filtroOrdenarPor = (array) => {
     } else {
         return ordenarZA(array)
     }
+
 }
 
-
-
-// -------------------Función aplicar filtros-----------------
+// -------------------Función aplicar filtros----------------- florr
 const aplicarFiltros = () => {
     const tipo = filtroTipo.value //filtro por tipo
     const filtradoPorTipo = operaciones.filter((operacion) => {
@@ -262,52 +292,64 @@ const aplicarFiltros = () => {
         if (categoriaSelect === "Todos") {
             return operacion
         }
-        return operacion.categoriaSelect === categoriaSelect
+        return operacion.categoria === categoriaSelect
     })
 
-    const arrayFiltradoPorFechas = filtradoPorCategoria.map((operacion) => { //filtro por fechas
-        const nuevoElemento = {...operacion }
-        nuevoElemento.fecha = new Date(operacion.fecha).toLocaleDateString()
+
+  
+   const arrayFiltradoPorFechas = filtradoPorCategoria.map((operacion) => { //filtro por fechas
+        const nuevoElemento = {...operacion}
+        nuevoElemento.fecha = new Date(operacion.fecha).toLocaleDateString() 
         return nuevoElemento
-    })
-
-    return filtroOrdenarPor(arrayFiltradoPorFechas)
-}
+      })
 
 
-//----Agrega filtro a tipo y categoria cuando modifico los select------
+  return filtroOrdenarPor(arrayFiltradoPorFechas)
+  }
+
+
+//----Agrega filtro cuando modifico los select-----flor-
+
+// evento cuando modifico categoria
+
 filtroTipo.onchange = () => {
     const arrayFiltrado = aplicarFiltros()
     mostrarOperacionesEnHTML(arrayFiltrado)
 }
-
+// evento cuando modifico tipo
 filtroCategorias.onchange = ()  => {
     const arrayFiltrado = aplicarFiltros()
     mostrarOperacionesEnHTML(arrayFiltrado)
 }
 
-// elijo a partir de la fecha
+// evento elijo a partir de la fecha
 filtroFecha.oninput = () => {
     const arrayFiltrado = aplicarFiltros()
     mostrarOperacionesEnHTML(arrayFiltrado)
 }
+
+
+// evento ordeno por 
 
 selectOrdenarPor.onchange = () =>{
     const arrayFiltrado = aplicarFiltros()
     mostrarOperacionesEnHTML(arrayFiltrado)
 }
 
-//----este e.preventDefault evita que el formulario se envie -----
+
+//----este e.preventDefault evita que el formulario se envie --flor---
 formulario.onsubmit = (e) => {
     e.preventDefault()
 }
 
-// -------------FIN------------------
+// ----------------------------
 
 
 //--------------- Seccion categorias----------------------------
 
 
+
+// Seccion categorias
 
 const categorias = ["Comida", "Servicios", "Salidas", "Educación", "Transporte", "Trabajo"]
 
@@ -323,7 +365,6 @@ const categoriasObtenidas = () => {
 let funcionLS = (elemento) => {
         const categoriasAJSON = JSON.stringify(elemento)
         localStorage.setItem("categorias", categoriasAJSON)
-
 
     }
     ////////////////////////////// 
