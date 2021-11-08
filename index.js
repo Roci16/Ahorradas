@@ -327,7 +327,7 @@ formulario.onsubmit = (e) => {
 // -------------FIN------------------
 
 
-// Seccion categorias
+//--------------- Seccion categorias----------------------------
 
 
 
@@ -351,37 +351,17 @@ let funcionLS = (elemento) => {
     ////////////////////////////// 
 
 const adicionDeNuevasCategoriasSelect = () => {
-        const categorias = categoriasObtenidas()
-        const selectCategoria = document.getElementById("select-categoria")
+    const categorias = categoriasObtenidas()
+    const selectCategoria = document.getElementById("select-categoria")
 
-        const stringCategoriasIniciadoras = categorias.reduce((acc, elemento, index) => {
-            return acc + `<option id="opcion-categoria-${index}" value="${elemento}">${elemento}</option>`
+    const stringCategoriasIniciadoras = categorias.reduce((acc, elemento, index) => {
+        return acc + `<option id="opcion-categoria-${index}" value="${elemento}">${elemento}</option>`
 
-        }, "")
+    }, "")
 
-        selectCategoria.innerHTML = stringCategoriasIniciadoras
-    }
-    // const adicionDeNuevasCategoriasSelect = () => {
-    //     // const selectCategoria = document.getElementById("select-categoria")
-    //     // const filtroCategorias = document.getElementById("select-categoria")
+    selectCategoria.innerHTML = stringCategoriasIniciadoras
+}
 
-//     const stringCategoriasIniciadoras = categoriasIniciadoras.reduce((acc, elemento, index) => {
-//         return acc + `<option id="opcion-categoria-${index}" value="${elemento}">${elemento}</option>`
-
-//     })
-//     console.log(categoriasIniciadoras)
-//     console.log(stringCategoriasIniciadoras)
-//     filtroCategorias.innerHTML = stringCategoriasIniciadoras
-// }
-
-// const categoriasObtenidas = () => {
-//     const categoriasLS = localStorage.getItem("categorias")
-//     if (categoriasLS === null) {
-//         return categoriasIniciadoras
-//     } else {
-//         return JSON.parse(categoriasLS)
-//     }
-// }
 
 const agregarCategoriasAHTML = () => {
     const categorias = categoriasObtenidas()
@@ -425,42 +405,7 @@ const agregarCategoriasAHTML = () => {
 agregarCategoriasAHTML()
 adicionDeNuevasCategoriasSelect()
 
-// const agregarCategoriasAHTML = () => {
-//     const categorias = categoriasObtenidas()
-//     const lista = document.getElementById("lista-categoria")
 
-//     const stringCategoriasIniciadoras = categorias.reduce((acc, elemento, index) => {
-//         return acc + ` <div class=" columns">
-//             <div class="column">
-//                  <span class=" has-background-success-light has-text-success-dark">${elemento}</span>
-//             </div>
-//          <div class="column has-text-right">
-//                  <button id="editar-categoria-${index}" class="button is-info is-inverted">Editar</button>
-
-//              <button id="borrar-categoria-${index}" class="button is-info is-inverted">Eliminar</button>
-//          </div>
-//      </div>`
-//     }, "")
-
-//     lista.innerHTML = stringCategoriasIniciadoras
-// }
-
-// agregarCategoriasAHTML()
-// adicionDeNuevasCategoriasSelect()
-
-// botonAgregarCategoria.onclick = () => {
-//     const valorInputCategoriaNuevo = inputCategoriaNuevoNombre.value
-//     console.log(valorInputCategoriaNuevo)
-//     inputCategoriaNuevoNombre.value = ""
-
-//     categoriasIniciadoras.push(valorInputCategoriaNuevo)
-//     adicionDeNuevasCategoriasSelect()
-//     const categoriasEnJSON = JSON.stringify(categoriasIniciadoras)
-//     localStorage.setItem("categorias", categoriasEnJSON)
-//     adicionDeNuevasCategoriasSelect()
-//     agregarCategoriasAHTML()
-
-// }
 botonAgregarCategoria.onclick = () => {
     const valorInputCategoriaNuevo = inputCategoriaNuevoNombre.value
     const categorias = categoriasObtenidas()
@@ -471,7 +416,5 @@ botonAgregarCategoria.onclick = () => {
 
     adicionDeNuevasCategoriasSelect()
     agregarCategoriasAHTML()
-
-
 
 }
