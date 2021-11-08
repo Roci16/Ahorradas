@@ -11,6 +11,14 @@ const botonCancelar = document.querySelector("#boton-cancelar");
 const botonAgregar = document.querySelector("#boton-agregar");
 const botonAgregarCategoria = document.getElementById("agregar-categoria-boton")
 const inputCategoriaNuevoNombre = document.getElementById("input-categorias-nuevo-nombre")
+ // -------------funciones formulario FILTROS-------------------
+const formulario = document.getElementById("form")
+const filtroTipo = document.getElementById("select-tipo")
+const filtroCategorias = document.getElementById("select-categoria")
+const filtroFecha = document.getElementById("date")
+const selectOrdenarPor = document.getElementById("select-ordenar")
+const divOperaciones = document.getElementById("div-operaciones")
+//-----------------------------------------------
 
 
 
@@ -121,10 +129,6 @@ const operaciones = [{
 ];
 
 
-
-
-
-
 // Reporte
 
 const convertirOperacionesAHTML = (operaciones) => {
@@ -144,15 +148,10 @@ const convertirOperacionesAHTML = (operaciones) => {
             <p class="column">${operacion.tipo}</p> `
         })
     }
-    // -------------funciones formulario FILTROS-------------------
-    //llamo a los elemento del form
-const formulario = document.getElementById("form")
-const filtroTipo = document.getElementById("select-tipo")
-const filtroCategorias = document.getElementById("select-categoria")
-const filtroFecha = document.getElementById("date")
-const selectOrdenarPor = document.getElementById("select-ordenar")
-const divOperaciones = document.getElementById("div-operaciones")
-    // funcion mostrar en html
+
+
+
+    //---------- Funcion mostrar en HTML---------------------
 const aplicarDescripcionAOperaciones = () => {
     return `<div class="columns has-text-weight-semibold is-hidden-mobile">
             <div class="column is-3">Descripción</div>
@@ -191,7 +190,9 @@ const mostrarOperacionesEnHTML = (array) => {
 
   }
   mostrarOperacionesEnHTML(operaciones)
-//--------------------funciones para ordenar los filtros
+
+//-----------funciones para ordenar los filtros-----------------
+
 //funciones auxiliares
 
 const ordenarPorFechaMasReciente  = (array) =>{
@@ -223,11 +224,10 @@ const ordenarPorMenorMonto = (array) =>{
   return array.sort((a, b)=>{
   return b.monto - a.monto
 })
-
 }
 
+//Funcion ordenar por filtros que reune a todas las funciones auxiliares
 
-//Funcion ordenar por filtros que reune a todas las 
 const filtroOrdenarPor = (array)=>{
 if(selectOrdenarPor.value === "Más reciente"){
   return ordenarPorFechaMasReciente(array)
@@ -248,8 +248,6 @@ else{
   return ordenarZA(array)
 }
 }
-
-
 
 // -------------------Función aplicar filtros-----------------
 const aplicarFiltros = () => {
@@ -275,42 +273,20 @@ const aplicarFiltros = () => {
         nuevoElemento.fecha = new Date(operacion.fecha).toLocaleDateString() 
         return nuevoElemento
       })
-//---------ordenar------------------------
+
 
   return filtroOrdenarPor(arrayFiltradoPorFechas)
   }
 
 
-//filtros
-//se debe filtrar por tipo
-//se debe filtrar por categoria
-// debo poder elegir la fecha desde donde le aplico el filtro quiero que me muestra todos los resultados A PARTIR de esa fecha
-//ordenar por:
-//Mas reciente, aca involucra fechas
-// Menos reciente; aca involucra fechas
-//Mayor monto implica la catergoria monto en el objeto dentro del array
-//menor monto ""
-//ordeno de A/z
-//ordeno de Z/a
-//para ordenar tengo dos ides
-//por un lado definir funciones afuera y llamarlas en una sola funcion dentro de la funcion aplicar filtros que se llame ordenar Por
-//puedo hacer una funcion ordenar por que ejecute funciones dentro de if
-//solo tengo que hacer 3 funciones con if 
-//una por ordenar por fecha
-//una de ordenar por monto
-//otra de ordenar por orden alfabetico la DESCRIPCION
+//----Agrega filtro cuando modifico los select------
 
-//para la funcion ordenar tengo que tomar el array de objetos y mostrarlos en el orden de acuerdo a lo que requiere. en monto tengo que ordenar de acuerdo a monto
-
-
-//----Agrega filtro a tipo y categoria cuando modifico los select------
-
-//evento cuando modifico categoria
+// evento cuando modifico categoria
 filtroTipo.onchange = () => {
     const arrayFiltrado = aplicarFiltros()
     mostrarOperacionesEnHTML(arrayFiltrado)
 }
-//evento cuando modifico tipo
+// evento cuando modifico tipo
 filtroCategorias.onchange = ()  => {
     const arrayFiltrado = aplicarFiltros()
     mostrarOperacionesEnHTML(arrayFiltrado)
@@ -322,7 +298,7 @@ filtroFecha.oninput = () => {
     mostrarOperacionesEnHTML(arrayFiltrado)
 }
 
-//evento ordeno por fecha
+// evento ordeno por 
 selectOrdenarPor.onchange = () =>{
     const arrayFiltrado = aplicarFiltros()
     mostrarOperacionesEnHTML(arrayFiltrado)
@@ -337,13 +313,10 @@ formulario.onsubmit = (e) => {
 // -------------FIN------------------
 
 
+
 // Seccion categorias
 
-
-
 const categoriasIniciadoras = ["Todos", "Comida", "Servicios", "Salidas", "Educación", "Transporte", "Trabajo"]
-
-
 
 const adicionDeNuevasCategoriasSelect = () => {
     // const selectCategoria = document.getElementById("select-categoria")
