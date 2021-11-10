@@ -7,8 +7,8 @@ const seccionCentral = document.getElementById("seccion-central")
 const seccionReportes = document.getElementById("seccion-reportes")
 const botonNuevaOperacion = document.getElementById("boton-nueva-operacion")
 const seccionNuevaOperacion = document.getElementById("accion-boton-nueva-operacion")
-const botonCancelarOperacion = document.querySelector("#boton-cancelar-operacion");
-const botonAgregarOperacion = document.querySelector("#boton-agregar-operacion");
+const botonCancelarOperacion = document.getElementById("boton-cancelar-operacion");
+const botonAgregarOperacion = document.getElementById("boton-agregar-operacion");
 const botonAgregarCategoria = document.getElementById("agregar-categoria-boton")
 const inputCategoriaNuevoNombre = document.getElementById("input-categorias-nuevo-nombre")
  // -------------funciones formulario FILTROS-------------------
@@ -98,6 +98,7 @@ const operaciones = [{
         monto: 15000,
         tipo: 'Gasto',
     },
+    
     {
         descripcion: 'Pago de expensas',
         categoria: 'Alquiler',
