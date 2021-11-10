@@ -355,7 +355,13 @@ const mostrarFormularioFiltros = (box, boton) =>{
 
 //mostrarFormularioFiltros(formularioFiltros,botonOcultarFiltros)
 botonOcultarFiltros.onclick = () =>{
-cerrarFormularioFiltros(formularioFiltros,botonOcultarFiltros)
+    if(botonOcultarFiltros.textContent === "Ocultar filtros"){
+        return cerrarFormularioFiltros(formularioFiltros,botonOcultarFiltros)
+    }
+    else{
+        return mostrarFormularioFiltros(formularioFiltros,botonOcultarFiltros)
+    }
+
 }
 
 //----este e.preventDefault evita que el formulario se envie --flor---
