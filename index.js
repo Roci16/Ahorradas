@@ -12,12 +12,13 @@ const botonAgregarOperacion = document.querySelector("#boton-agregar-operacion")
 const botonAgregarCategoria = document.getElementById("agregar-categoria-boton")
 const inputCategoriaNuevoNombre = document.getElementById("input-categorias-nuevo-nombre")
  // -------------funciones formulario FILTROS-------------------
-const formulario = document.getElementById("form")
+const formularioFiltros = document.getElementById("form")
 const filtroTipo = document.getElementById("select-tipo")
 const filtroCategorias = document.getElementById("select-categoria")
 const filtroFecha = document.getElementById("date")
 const selectOrdenarPor = document.getElementById("select-ordenar")
 const divOperaciones = document.getElementById("div-operaciones")
+const botonOcultarFiltros = document.getElementById("boton-ocultar-filtros")
 //-----------------------------------------------
 
 
@@ -53,7 +54,6 @@ botonNuevaOperacion.onclick = () => {
     seccionNuevaOperacion.classList.remove("is-hidden")
     seccionCentral.classList.add("is-hidden")
 }
-
 
 function mostrarBotonCancelarOperacion() {
     botonCancelarOperacion.style.display = 'none';
@@ -155,7 +155,7 @@ const operaciones = [{
         tipo: 'Gasto',
     },
 ];
-
+/*
 const convertirOperacionesAHTML = (operaciones) => {
         let acc = ""
 
@@ -174,9 +174,21 @@ const convertirOperacionesAHTML = (operaciones) => {
         })
     }
 
-
+*/
 
     //---------- Funcion mostrar en HTML------------flor---------
+    //aplicar titulo y boton operaciones a mostrar en HTML
+
+    const aplicarTituloYBotonNuevasOperacionesAHTML = () =>{
+        return `<div class="column">
+        <div id="div-operaciones">
+            <div class="columns">
+                <h2 class="title column is-size-4 has-text-weight-bold has-text-grey-dark">Operaciones</h2>
+                <div class="column  has-text-right">
+                    <button id="boton-nueva-operacion" class="button is-primary">+ Nueva operación</button>
+                </div>
+            </div>`
+    }
     //esta funcion muestra los titulos de las categorias una vez que se ingresan los datos (no debe ser parte de la acumuladora)
 const aplicarDescripcionAOperaciones = () => {
     return `<div class="columns has-text-weight-semibold is-hidden-mobile">
@@ -213,7 +225,7 @@ const mostrarOperacionesEnHTML = (array) => {
       `
     })
 
-    divOperaciones.innerHTML = aplicarDescripcionAOperaciones() + acc
+    divOperaciones.innerHTML = aplicarTituloYBotonNuevasOperacionesAHTML() + aplicarDescripcionAOperaciones() + acc
 
 
   }
@@ -246,7 +258,6 @@ const ordenarPorMayorMonto = (array) => {
         return a.monto - b.monto
     })
 }
-
 
 const ordenarPorMenorMonto = (array) => {
     return array.sort((a, b) => {
@@ -309,7 +320,7 @@ const aplicarFiltros = () => {
 
 
 //----Agrega filtro cuando modifico los select-----flor-
-
+//EVENTOS
 // evento cuando modifico categoria
 
 filtroTipo.onchange = () => {
@@ -321,24 +332,34 @@ filtroCategorias.onchange = ()  => {
     const arrayFiltrado = aplicarFiltros()
     mostrarOperacionesEnHTML(arrayFiltrado)
 }
-
 // evento elijo a partir de la fecha
 filtroFecha.oninput = () => {
     const arrayFiltrado = aplicarFiltros()
     mostrarOperacionesEnHTML(arrayFiltrado)
 }
-
-
 // evento ordeno por 
-
 selectOrdenarPor.onchange = () =>{
     const arrayFiltrado = aplicarFiltros()
     mostrarOperacionesEnHTML(arrayFiltrado)
 }
+// evento ocultar filtros
+//funcion auxiliar 
+const cerrarFormularioFiltros = (box, boton) =>{
+   box.classList.add("is-hidden")
+boton.textContent = "Mostrar filtros"
+}
+const mostrarFormularioFiltros = (box, boton) =>{
+    box.classList.remove("is-hidden")
+ boton.textContent = "Ocultar filtros"
+ }
 
+//mostrarFormularioFiltros(formularioFiltros,botonOcultarFiltros)
+botonOcultarFiltros.onclick = () =>{
+cerrarFormularioFiltros(formularioFiltros,botonOcultarFiltros)
+}
 
 //----este e.preventDefault evita que el formulario se envie --flor---
-formulario.onsubmit = (e) => {
+formularioFiltros.onsubmit = (e) => {
     e.preventDefault()
 }
 
