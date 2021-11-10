@@ -121,7 +121,27 @@ const operaciones = [{
 
 
 
+// funcion agregar oparacion html 
 
+formularioAgregarNuevaOperacion.onsubmit = (event) => {
+    event.preventDefault()
+}
+
+botonAgregar.onclick = () => {
+    const seccionNuevaOperacion = {
+        descripcion:Descripcion.value, 
+        monto:Monto.value, 
+        tipo:Tipo.value, 
+        categoria:Categorias.value, 
+        fecha:Fecha.value, 
+    }
+
+    operaciones.push(seccionNuevaOperacion);
+
+    guardarEnLocalStorage(operaciones, "operaciones");
+
+    mostrarOperacionesEnHTML();
+}
 
 
 // Reporte
