@@ -79,6 +79,7 @@ const operaciones = [{
         monto: 50000,
         tipo: 'Ganancia',
     },
+    
     {
         descripcion: 'Pago de alquiler',
         categoria: 'Alquiler',
