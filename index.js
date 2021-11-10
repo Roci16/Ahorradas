@@ -8,8 +8,8 @@ const seccionCentral = document.getElementById("seccion-central")
 const seccionReportes = document.getElementById("seccion-reportes")
 const botonNuevaOperacion = document.getElementById("boton-nueva-operacion")
 const seccionNuevaOperacion = document.getElementById("accion-boton-nueva-operacion")
-const botonCancelar = document.querySelector("#boton-cancelar");
-const botonAgregar = document.querySelector("#boton-agregar");
+const botonCancelar = document.getElementById("boton-cancelar");
+const botonAgregar = document.getElementById("boton-agregar");
 
 // Funciones Botones Nav Superior
 botonBalance.onclick = () => {
@@ -79,7 +79,7 @@ const operaciones = [{
         monto: 50000,
         tipo: 'Ganancia',
     },
-    
+
     {
         descripcion: 'Pago de alquiler',
         categoria: 'Alquiler',
