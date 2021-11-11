@@ -7,8 +7,11 @@ const seccionCentral = document.getElementById("seccion-central")
 const seccionReportes = document.getElementById("seccion-reportes")
 const botonNuevaOperacion = document.getElementById("boton-nueva-operacion")
 const seccionNuevaOperacion = document.getElementById("accion-boton-nueva-operacion")
-const botonCancelarOperacion = document.querySelector("#boton-cancelar-operacion");
-const botonAgregarOperacion = document.querySelector("#boton-agregar-operacion");
+
+const botonCancelar = document.getElementById("boton-cancelar");
+const botonAgregar = document.getElementById("boton-agregar");
+// const botonCancelarOperacion = document.querySelector("#boton-cancelar-operacion");
+// const botonAgregarOperacion = document.querySelector("#boton-agregar-operacion");
 const botonAgregarCategoria = document.getElementById("agregar-categoria-boton")
 const inputCategoriaNuevoNombre = document.getElementById("input-categorias-nuevo-nombre")
  // -------------funciones formulario FILTROS-------------------
@@ -19,7 +22,6 @@ const filtroFecha = document.getElementById("date")
 const selectOrdenarPor = document.getElementById("select-ordenar")
 const divOperaciones = document.getElementById("div-operaciones")
 //-----------------------------------------------
-
 
 
 // Funciones Botones Nav Superior
@@ -91,6 +93,7 @@ const operaciones = [{
         monto: 50000,
         tipo: 'Ganancia',
     },
+
     {
         descripcion: 'Pago de alquiler',
         categoria: 'Alquiler',
@@ -155,6 +158,33 @@ const operaciones = [{
         tipo: 'Gasto',
     },
 ];
+
+
+
+// funcion agregar oparacion html 
+
+formularioAgregarNuevaOperacion.onsubmit = (event) => {
+    event.preventDefault()
+}
+
+botonAgregar.onclick = () => {
+    const seccionNuevaOperacion = {
+        descripcion:Descripcion.value, 
+        monto:Monto.value, 
+        tipo:Tipo.value, 
+        categoria:Categorias.value, 
+        fecha:Fecha.value, 
+    }
+
+    operaciones.push(seccionNuevaOperacion);
+
+    guardarEnLocalStorage(operaciones, "operaciones");
+
+    mostrarOperacionesEnHTML();
+}
+
+
+// Reporte
 
 const convertirOperacionesAHTML = (operaciones) => {
         let acc = ""
