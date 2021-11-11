@@ -229,8 +229,8 @@
             </form>
             <div class="column has-text-right">
 
-                <button class="button mt-5 is-light" id="boton-cancelar" >Cancelar</button>
-                <button class="button mt-5 is-success" id="boton-agregar" >Agregar</button>
+                <button class="button mt-5 is-light" id="boton-cancelar-operacion">Cancelar</button>
+                <button class="button mt-5 is-success" id="boton-agregar-operacion">Agregar</button>
 
             </div>
         </div>
@@ -249,14 +249,19 @@
                         <div class="columns">
                             <div class="control column is-10">
                                 <div>
-                                    <input class="input" id="username" type="text">
+                                    <input id="input-categorias-nuevo-nombre" class="input" id="username" type="text">
                                 </div>
                             </div>
                             <div class="column has-text-right">
-                                <button class="button is-success">Agregar</button>
+                                <button id="agregar-categoria-boton" class="button is-success">Agregar</button>
                             </div>
                         </div>
                     </div>
+
+                    <div id="lista-categoria">
+
+                    </div>
+
 
                     <!--------------------------------------------------------
                                  MAQUETADO DE TARJETA QUE VA EN JS

@@ -1,4 +1,3 @@
-
 const tarjeta = document.getElementById("tarjeta")
 const botonCategorias = document.getElementById("boton-categorias")
 const botonBalance = document.getElementById("boton-balance")
@@ -8,8 +7,22 @@ const seccionCentral = document.getElementById("seccion-central")
 const seccionReportes = document.getElementById("seccion-reportes")
 const botonNuevaOperacion = document.getElementById("boton-nueva-operacion")
 const seccionNuevaOperacion = document.getElementById("accion-boton-nueva-operacion")
+
 const botonCancelar = document.getElementById("boton-cancelar");
 const botonAgregar = document.getElementById("boton-agregar");
+// const botonCancelarOperacion = document.querySelector("#boton-cancelar-operacion");
+// const botonAgregarOperacion = document.querySelector("#boton-agregar-operacion");
+const botonAgregarCategoria = document.getElementById("agregar-categoria-boton")
+const inputCategoriaNuevoNombre = document.getElementById("input-categorias-nuevo-nombre")
+ // -------------funciones formulario FILTROS-------------------
+const formulario = document.getElementById("form")
+const filtroTipo = document.getElementById("select-tipo")
+const filtroCategorias = document.getElementById("select-categoria")
+const filtroFecha = document.getElementById("date")
+const selectOrdenarPor = document.getElementById("select-ordenar")
+const divOperaciones = document.getElementById("div-operaciones")
+//-----------------------------------------------
+
 
 // Funciones Botones Nav Superior
 botonBalance.onclick = () => {
@@ -44,18 +57,19 @@ botonNuevaOperacion.onclick = () => {
 }
 
 
-function mostrarBotonCancelar () {
-    botonCancelar.style.display = 'none';
-    botonCancelar.style.display = 'inline';
+function mostrarBotonCancelarOperacion() {
+    botonCancelarOperacion.style.display = 'none';
+    botonCancelarOperacion.style.display = 'inline';
 }
-function mostrarBotonAgregar () {
-    botonAgregar.style.display = 'none';
-    botonAgregar.style.display = 'inline';
+
+function mostrarBotonAgregarOperacion() {
+    botonAgregarOperacion.style.display = 'none';
+    botonAgregarOperacion.style.display = 'inline';
 }
 
 //Boton Cancelar
 
-botonCancelar.onclick = () => {
+botonCancelarOperacion.onclick = () => {
     botonReporte.classList.add("is-hidden");
     seccionCategorias.classList.add("is-hidden");
     seccionNuevaOperacion.classList.add("is-hidden");
@@ -64,7 +78,7 @@ botonCancelar.onclick = () => {
 
 //Boton Agregar
 
-botonAgregar.onclick = () => {
+botonAgregarOperacion.onclick = () => {
     botonReporte.classList.add("is-hidden");
     seccionCategorias.classList.add("is-hidden");
     seccionNuevaOperacion.classList.add("is-hidden");
@@ -75,7 +89,7 @@ botonAgregar.onclick = () => {
 const operaciones = [{
         descripcion: 'Sueldo',
         categoria: 'Trabajo',
-        fecha: '01/01/2021',
+        fecha: '2021-01-01',
         monto: 50000,
         tipo: 'Ganancia',
     },
@@ -83,38 +97,64 @@ const operaciones = [{
     {
         descripcion: 'Pago de alquiler',
         categoria: 'Alquiler',
-        fecha: '02/01/2021',
+        fecha: '2021-01-02',
         monto: 15000,
         tipo: 'Gasto',
-    }
-    
+    },
     {
-    
         descripcion: 'Pago de expensas',
         categoria: 'Alquiler',
-        fecha: '02/01/2021',
+        fecha: '2021-01-02',
         monto: 5000,
         tipo: 'Gasto',
     },
     {
         descripcion: 'Pago de internet',
         categoria: 'Servicios',
-        fecha: '10/01/2021',
+        fecha: '2021-01-10',
         monto: 2000,
         tipo: 'Gasto',
     },
     {
         descripcion: 'Trabajo freelance',
         categoria: 'Trabajo',
-        fecha: '15/01/2021',
+        fecha: '2021-01-15',
         monto: 20000,
         tipo: 'Ganancia',
     },
     {
         descripcion: 'Cena con amigas',
         categoria: 'Salidas',
-        fecha: '18/01/2021',
+        fecha: '2021-01-18',
         monto: 1500,
+        tipo: 'Gasto',
+    },
+    {
+        descripcion: 'Salida turistica',
+        categoria: 'Salidas',
+        fecha: '2020-01-18',
+        monto: 3500,
+        tipo: 'Gasto',
+    },
+    {
+        descripcion: 'Pasantía',
+        categoria: 'Educación',
+        fecha: '2020-06-13',
+        monto: 6600,
+        tipo: 'Gasto',
+    },
+    {
+        descripcion: 'Viaje a las toninas',
+        categoria: 'Transporte',
+        fecha: '2020-05-18',
+        monto: 4000,
+        tipo: 'Gasto',
+    },
+    {
+        descripcion: 'Edelap',
+        categoria: 'Servicios',
+        fecha: '2021-04-18',
+        monto: 300,
         tipo: 'Gasto',
     },
 ];
@@ -147,10 +187,10 @@ botonAgregar.onclick = () => {
 // Reporte
 
 const convertirOperacionesAHTML = (operaciones) => {
-    let acc = ""
+        let acc = ""
 
-    operaciones.map((operacion) => {
-        acc = acc + `
+        operaciones.map((operacion) => {
+            acc = acc + `
         <div class="columns ">
             <p class="column">${operacion.descripcion}</p>
             <div class="column is-1" >
@@ -160,31 +200,29 @@ const convertirOperacionesAHTML = (operaciones) => {
             </div> 
             <p class="column  has-text-centered" >${operacion.fecha}</p> 
             <p class="column has-text-success has-text-weight-bold">${operacion.monto}</p> 
-            <p class="column">${operacion.tipo}</p>               
+            <p class="column">${operacion.tipo}</p> `
+        })
+    }
 
-// -------------funciones formulario FILTROS-------------------
-//llamo a los elemento del form
-const formulario = document.getElementById("form")
-const filtroTipo = document.getElementById("select-tipo")
-const filtroCategorias = document.getElementById("select-categoria")
-const filtroFecha = document.getElementById("date")
-const filtroOrdenarPor = document.getElementById("select-ordenar")
-const divOperaciones = document.getElementById("div-operaciones")
-// funcion mostrar en html
-const aplicarDescripcionAOperaciones = () =>{
-   return  `<div class="columns has-text-weight-semibold is-hidden-mobile">
+
+
+    //---------- Funcion mostrar en HTML------------flor---------
+    //esta funcion muestra los titulos de las categorias una vez que se ingresan los datos (no debe ser parte de la acumuladora)
+const aplicarDescripcionAOperaciones = () => {
+    return `<div class="columns has-text-weight-semibold is-hidden-mobile">
             <div class="column is-3">Descripción</div>
             <div class="column is-3">Categoría</div>
             <div class="column is-2 has-text-right">Fecha</div>
             <div class="column is-2 has-text-right">Monto</div>
             <div class="column is-2 has-text-right">Acciones</div>
-             </div> ` 
+             </div> `
 }
+//aca junto la funcion anterior mas la acumuladora que toma los datos del objeto y los muestra
 const mostrarOperacionesEnHTML = (array) => {
-    
-  let acc = ""
+
+    let acc = ""
     array.map((operacion) => {
-      acc = acc + `
+        acc = acc + `
       <div class="fila columns">
       <div class="column is-3 has-text-weight-semibold">
         <p>${operacion.descripcion}</p>
@@ -204,123 +242,228 @@ const mostrarOperacionesEnHTML = (array) => {
       </div>
       `
     })
-  
+
     divOperaciones.innerHTML = aplicarDescripcionAOperaciones() + acc
+
+
   }
   mostrarOperacionesEnHTML(operaciones)
-//--------------------funciones para ordenar los filtros
 
-const ordenarPorFechaMasReciente  = (array) =>{
-  const fechaJs = new Date(array.fecha)
-  return array.sort((a, b)=>{
-  return a.fechaJs > b.fechaJs
-})
+//-----------funciones para ordenar los filtros-----flor------------
+
+//funciones auxiliares
+const ordenarPorFechaMasReciente = (array) => {
+    return array.sort((a, b) => {
+        return new Date(a.fecha) - new Date(b.fecha)
+    })
 }
 
-const ordenarPorFechaMasAntigua  = (array) =>{
-  const fechaJs = new Date(array.fecha)
-  return array.sort((a, b)=>{
-  return a.fechaJs < b.fechaJs
-})
+const ordenarPorFechaMenosReciente = (array) => {
+    return array.sort((a, b) => {
+        return new Date(b.fecha) - new Date(a.fecha)
+    })
 }
-const ordenarAZ = (array) =>{
-  return array.sort((a, b)=>{
-  return a.descripcion - b.descripcion
-})
+const ordenarAZ = (array) => {
+    return array.sort()
 }
 
-const ordenarZA = (array) =>{
-  return array.sort((a, b)=>{
-  return b.descripcion - a.descripcion
-})
+const ordenarZA = (array) => {
+    return array.sort().reverse()
 }
 
-const ordenarPorMonto = (array) =>{
-  return array.sort((a, b)=>{
-  return b.monto - a.monto
-})
+const ordenarPorMayorMonto = (array) => {
+    return array.sort((a, b) => {
+        return a.monto - b.monto
+    })
 }
 
 
+const ordenarPorMenorMonto = (array) => {
+    return array.sort((a, b) => {
+        return b.monto - a.monto
+    })
+
+}
+
+//Funcion ordenar por filtros que reune a todas las funciones auxiliares ----flor
 
 
+//Funcion ordenar por filtros que reune a todas las 
+const filtroOrdenarPor = (array) => {
+    if (selectOrdenarPor.value === "Más reciente") {
+        return ordenarPorFechaMasReciente(array)
+    } else if (selectOrdenarPor.value === "Menos reciente") {
+        return ordenarPorFechaMenosReciente(array)
+    } else if (selectOrdenarPor.value === "Mayor monto") {
+        return ordenarPorMayorMonto(array)
+    } else if (selectOrdenarPor.value === "Menor monto") {
+        return ordenarPorMenorMonto(array)
+    } else if (selectOrdenarPor.value === "A/Z") {
+        return ordenarAZ(array)
+    } else {
+        return ordenarZA(array)
+    }
 
-// -------------------Función aplicar filtros-----------------
-  const aplicarFiltros = () => {
+}
+
+// -------------------Función aplicar filtros----------------- florr
+const aplicarFiltros = () => {
     const tipo = filtroTipo.value //filtro por tipo
     const filtradoPorTipo = operaciones.filter((operacion) => {
-      if (tipo === "Todos") {
-        return operacion
-      }
-      return operacion.tipo === tipo 
+        if (tipo === "Todos") {
+            return operacion
+        }
+        return operacion.tipo === tipo
     })
-    
-    const categoria = filtroCategorias.value //filtro por categoria aplicando el filtro de tipo
-    const filtradoPorCategoria = filtradoPorTipo.filter((operacion) => { 
-      if (categoria === "Todos") {
-        return operacion
-      }
-      return operacion.categoria === categoria
+
+
+    const categoriaSelect = filtroCategorias.value //filtro por categoria aplicando el filtro de tipo
+    const filtradoPorCategoria = filtradoPorTipo.filter((operacion) => {
+        if (categoriaSelect === "Todos") {
+            return operacion
+        }
+        return operacion.categoria === categoriaSelect
     })
+
+
   
    const arrayFiltradoPorFechas = filtradoPorCategoria.map((operacion) => { //filtro por fechas
         const nuevoElemento = {...operacion}
         nuevoElemento.fecha = new Date(operacion.fecha).toLocaleDateString() 
         return nuevoElemento
       })
-//---------ordenar------------------------
-   const arrayOrdenadoPor = arrayFiltradoPorFechas.sort((a, b) => { //ordeno 
-        
-      })
 
 
-  return arrayOrdenadoPor
+  return filtroOrdenarPor(arrayFiltradoPorFechas)
   }
 
-//filtros
-//se debe filtrar por tipo
-//se debe filtrar por categoria
-// debo poder elegir la fecha desde donde le aplico el filtro quiero que me muestra todos los resultados A PARTIR de esa fecha
-//ordenar por:
-//Mas reciente, aca involucra fechas
-// Menos reciente; aca involucra fechas
-//Mayor monto implica la catergoria monto en el objeto dentro del array
-//menor monto ""
-//ordeno de A/z
-//ordeno de Z/a
-//para ordenar tengo dos ides
-//por un lado definir funciones afuera y llamarlas en una sola funcion dentro de la funcion aplicar filtros que se llame ordenar Por
-//puedo hacer una funcion ordenar por que ejecute funciones dentro de if
-//solo tengo que hacer 3 funciones con if 
-//una por ordenar por fecha
-//una de ordenar por monto
-//otra de ordenar por orden alfabetico la DESCRIPCION
 
-//para la funcion ordenar tengo que tomar el array de objetos y mostrarlos en el orden de acuerdo a lo que requiere. en monto tengo que ordenar de acuerdo a monto
+//----Agrega filtro cuando modifico los select-----flor-
 
+// evento cuando modifico categoria
 
-  //----Agrega filtro a tipo y categoria cuando modifico los select------
-  filtroTipo.onchange = () => {
-    const arrayFiltrado = aplicarFiltros() 
-    mostrarOperacionesEnHTML(arrayFiltrado)
-  }
-  
-  filtroCategorias.onchange = () => {
-   const arrayFiltrado = aplicarFiltros()
-    mostrarOperacionesEnHTML(arrayFiltrado)
-  }
-  
-// elijo a partir de la fecha
-  filtroFecha.oninput = () => {
+filtroTipo.onchange = () => {
     const arrayFiltrado = aplicarFiltros()
     mostrarOperacionesEnHTML(arrayFiltrado)
-  }
+}
+// evento cuando modifico tipo
+filtroCategorias.onchange = ()  => {
+    const arrayFiltrado = aplicarFiltros()
+    mostrarOperacionesEnHTML(arrayFiltrado)
+}
+
+// evento elijo a partir de la fecha
+filtroFecha.oninput = () => {
+    const arrayFiltrado = aplicarFiltros()
+    mostrarOperacionesEnHTML(arrayFiltrado)
+}
 
 
-//----este e.preventDefault evita que el formulario se envie -----
+// evento ordeno por 
+
+selectOrdenarPor.onchange = () =>{
+    const arrayFiltrado = aplicarFiltros()
+    mostrarOperacionesEnHTML(arrayFiltrado)
+}
+
+
+//----este e.preventDefault evita que el formulario se envie --flor---
 formulario.onsubmit = (e) => {
- e.preventDefault()
-  }
+    e.preventDefault()
+}
 
-// -------------FIN-------------------
+// ----------------------------
 
+
+//--------------- Seccion categorias----------------------------
+
+
+
+// Seccion categorias
+
+const categorias = ["Comida", "Servicios", "Salidas", "Educación", "Transporte", "Trabajo"]
+
+// LocalStorage///////////////
+const categoriasObtenidas = () => {
+    const categoriasLS = localStorage.getItem("categorias")
+    if (categoriasLS === null) {
+        return categorias
+    } else {
+        return JSON.parse(categoriasLS)
+    }
+}
+let funcionLS = (elemento) => {
+        const categoriasAJSON = JSON.stringify(elemento)
+        localStorage.setItem("categorias", categoriasAJSON)
+
+    }
+    ////////////////////////////// 
+
+const adicionDeNuevasCategoriasSelect = () => {
+    const categorias = categoriasObtenidas()
+    const selectCategoria = document.getElementById("select-categoria")
+
+    const stringCategoriasIniciadoras = categorias.reduce((acc, elemento, index) => {
+        return acc + `<option id="opcion-categoria-${index}" value="${elemento}">${elemento}</option>`
+
+    }, "")
+
+    selectCategoria.innerHTML = stringCategoriasIniciadoras
+}
+
+
+const agregarCategoriasAHTML = () => {
+    const categorias = categoriasObtenidas()
+    const lista = document.getElementById("lista-categoria")
+
+    const stringCategoriasIniciadoras = categorias.reduce((acc, elemento, index) => {
+
+        return acc + ` <div class=" columns">
+            <div class="column">
+                 <span class=" has-background-success-light has-text-success-dark">${elemento}</span>
+            </div>
+         <div class="column has-text-right">
+                 <button id="editar-categoria-${index}" class="button is-info is-inverted boton-editar-categoria">Editar</button>
+
+             <button id="borrar-${index}"  class="boton-borrar button is-info is-inverted ">Eliminar</button>
+         </div>
+     </div>`
+    }, "")
+
+
+    lista.innerHTML = stringCategoriasIniciadoras
+    const botonesBorrar = document.querySelectorAll(".boton-borrar")
+
+    for (let i = 0; i < botonesBorrar.length; i++) {
+        botonesBorrar[i].onclick = () => {
+            const id = botonesBorrar[i].id
+            const indice = id.charAt(7)
+            const nuevasCategoriasFiltradas = categorias.filter((elemento, index) => {
+                return index != indice
+            })
+
+            funcionLS(nuevasCategoriasFiltradas)
+            agregarCategoriasAHTML()
+            adicionDeNuevasCategoriasSelect()
+        }
+
+    }
+
+}
+
+agregarCategoriasAHTML()
+adicionDeNuevasCategoriasSelect()
+
+
+botonAgregarCategoria.onclick = () => {
+    const valorInputCategoriaNuevo = inputCategoriaNuevoNombre.value
+    const categorias = categoriasObtenidas()
+    categorias.push(valorInputCategoriaNuevo)
+    inputCategoriaNuevoNombre.value = ""
+
+    funcionLS(categorias)
+
+    adicionDeNuevasCategoriasSelect()
+    agregarCategoriasAHTML()
+
+}
