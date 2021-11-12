@@ -363,11 +363,11 @@ const categoriasObtenidas = () => {
     }
 }
 let funcionLS = (elemento) => {
-        const categoriasAJSON = JSON.stringify(elemento)
-        localStorage.setItem("categorias", categoriasAJSON)
+    const categoriasAJSON = JSON.stringify(elemento)
+    localStorage.setItem("categorias", categoriasAJSON)
 
-    }
-    ////////////////////////////// 
+}
+////////////////////////////// 
 
 const adicionDeNuevasCategoriasSelect = () => {
     const categorias = categoriasObtenidas()
@@ -387,23 +387,21 @@ const agregarCategoriasAHTML = () => {
     const lista = document.getElementById("lista-categoria")
 
     const stringCategoriasIniciadoras = categorias.reduce((acc, elemento, index) => {
-
         return acc + ` <div class=" columns">
             <div class="column">
-                 <span class=" has-background-success-light has-text-success-dark">${elemento}</span>
+                 <span id="nombre-categoria-${index}" class="nombre-categoria has-background-success-light has-text-success-dark">${elemento}</span>
             </div>
-         <div class="column has-text-right">
-                 <button id="editar-categoria-${index}" class="button is-info is-inverted boton-editar-categoria">Editar</button>
-
-             <button id="borrar-${index}"  class="boton-borrar button is-info is-inverted ">Eliminar</button>
-         </div>
+            <div class="column has-text-right">
+                <button id="editar-categoria-${index}" class="button is-info is-inverted boton-editar-categoria">Editar</button>
+                <button id="borrar-${index}"  class="boton-borrar button is-info is-inverted ">Eliminar</button>
+            </div>
      </div>`
     }, "")
 
-
     lista.innerHTML = stringCategoriasIniciadoras
-    const botonesBorrar = document.querySelectorAll(".boton-borrar")
 
+    ///// boton borrar categorias
+    const botonesBorrar = document.querySelectorAll(".boton-borrar")
     for (let i = 0; i < botonesBorrar.length; i++) {
         botonesBorrar[i].onclick = () => {
             const id = botonesBorrar[i].id
@@ -416,15 +414,57 @@ const agregarCategoriasAHTML = () => {
             agregarCategoriasAHTML()
             adicionDeNuevasCategoriasSelect()
         }
-
     }
 
+    botonEditarSeccionCategoria()
 }
+
+
+//////// boton editar categoria- BrendaLamas
+const botonEditarSeccionCategoria = () =>{
+    const botonEditarCategoria = document.querySelectorAll(".boton-editar-categoria")
+    const tarjetaEditarCategoria = document.querySelector(".tarjeta-editar-categoria")
+    const botonCancelarCategoriaEditada = document.querySelector(".boton-cancelar-categoria-editada")
+
+    for (let i = 0; i < botonEditarCategoria.length; i++) {
+        botonEditarCategoria[i].onclick = () => {
+        
+                for (let i = 0; i < botonEditarCategoria.length; i++) {
+                    botonEditarCategoria[i].onclick = () => {
+                    const idRecortado = botonEditarCategoria[i].id.slice(22)
+                    idDelBoton = Number(idRecortado);
+
+                    seccionCategorias.classList.add("is-hidden")
+                    tarjetaEditarCategoria.classList.remove("is-hidden")
+                    console.log(botonEditarCategoria[i]); 
+                    inputModificarNombreCategoria(botonEditarCategoria[i])
+
+                    crearFormularioEditar(idDelBoton)
+                  };
+                }
+            
+        }
+
+        botonCancelarCategoriaEditada.onclick = () => {
+            seccionCategorias.classList.remove("is-hidden")
+            tarjetaEditarCategoria.classList.add("is-hidden")
+        }
+} 
+}
+
+const inputModificarNombreCategoria = (i)=>{
+    // const inputCategoriasNombreEditar = document.querySelector(".input-categorias-nombre-editar")
+    const nombreCategoria = document.querySelectorAll(".nombre-categoria")
+    console.log(nombreCategoria[i]);
+    
+
+}
+
 
 agregarCategoriasAHTML()
 adicionDeNuevasCategoriasSelect()
 
-
+//boton agregar categoria 
 botonAgregarCategoria.onclick = () => {
     const valorInputCategoriaNuevo = inputCategoriaNuevoNombre.value
     const categorias = categoriasObtenidas()
