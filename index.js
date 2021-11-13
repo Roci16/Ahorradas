@@ -10,8 +10,8 @@ const seccionNuevaOperacion = document.getElementById("accion-boton-nueva-operac
 
 const botonCancelar = document.getElementById("boton-cancelar");
 const botonAgregar = document.getElementById("boton-agregar");
-// const botonCancelarOperacion = document.querySelector("#boton-cancelar-operacion");
-// const botonAgregarOperacion = document.querySelector("#boton-agregar-operacion");
+const botonCancelarOperacion = document.querySelector("#boton-cancelar-operacion");
+const botonAgregarOperacion = document.querySelector("#boton-agregar-operacion");
 const botonAgregarCategoria = document.getElementById("agregar-categoria-boton")
 const inputCategoriaNuevoNombre = document.getElementById("input-categorias-nuevo-nombre")
  // -------------funciones formulario FILTROS-------------------
@@ -163,25 +163,25 @@ const operaciones = [{
 
 // funcion agregar oparacion html 
 
-formularioAgregarNuevaOperacion.onsubmit = (event) => {
-    event.preventDefault()
-}
+// formularioAgregarNuevaOperacion.onsubmit = (event) => {
+//     event.preventDefault()
+// }
 
-botonAgregar.onclick = () => {
-    const seccionNuevaOperacion = {
-        descripcion:Descripcion.value, 
-        monto:Monto.value, 
-        tipo:Tipo.value, 
-        categoria:Categorias.value, 
-        fecha:Fecha.value, 
-    }
+// botonAgregar.onclick = () => {
+//     const seccionNuevaOperacion = {
+//         descripcion:Descripcion.value, 
+//         monto:Monto.value, 
+//         tipo:Tipo.value, 
+//         categoria:Categorias.value, 
+//         fecha:Fecha.value, 
+//     }
 
-    operaciones.push(seccionNuevaOperacion);
+//     operaciones.push(seccionNuevaOperacion);
 
-    guardarEnLocalStorage(operaciones, "operaciones");
+//     guardarEnLocalStorage(operaciones, "operaciones");
 
-    mostrarOperacionesEnHTML();
-}
+//     mostrarOperacionesEnHTML();
+// }
 
 
 // Reporte
@@ -455,40 +455,30 @@ const botonEditarSeccionCategoria = () =>{
     const botonEditarCategoria = document.querySelectorAll(".boton-editar-categoria")
     const tarjetaEditarCategoria = document.querySelector(".tarjeta-editar-categoria")
     const botonCancelarCategoriaEditada = document.querySelector(".boton-cancelar-categoria-editada")
+    const botonEditarCategoriaEditada = document.querySelector(".boton-editar-categoria-editada")
+    const inputCategoriasNombreEditar = document.querySelector(".input-categorias-nombre-editar")
+    const nombreCategoria = document.querySelectorAll(".nombre-categoria")
 
     for (let i = 0; i < botonEditarCategoria.length; i++) {
         botonEditarCategoria[i].onclick = () => {
-        
-                for (let i = 0; i < botonEditarCategoria.length; i++) {
-                    botonEditarCategoria[i].onclick = () => {
-                    const idRecortado = botonEditarCategoria[i].id.slice(22)
-                    idDelBoton = Number(idRecortado);
+            seccionCategorias.classList.add("is-hidden")
+            tarjetaEditarCategoria.classList.remove("is-hidden")
+            inputCategoriasNombreEditar.value = nombreCategoria[i].textContent
 
-                    seccionCategorias.classList.add("is-hidden")
-                    tarjetaEditarCategoria.classList.remove("is-hidden")
-                    console.log(botonEditarCategoria[i]); 
-                    inputModificarNombreCategoria(botonEditarCategoria[i])
-
-                    crearFormularioEditar(idDelBoton)
-                  };
-                }
-            
-        }
-
-        botonCancelarCategoriaEditada.onclick = () => {
-            seccionCategorias.classList.remove("is-hidden")
-            tarjetaEditarCategoria.classList.add("is-hidden")
-        }
-} 
-}
-
-const inputModificarNombreCategoria = (i)=>{
-    // const inputCategoriasNombreEditar = document.querySelector(".input-categorias-nombre-editar")
-    const nombreCategoria = document.querySelectorAll(".nombre-categoria")
-    console.log(nombreCategoria[i]);
+            botonCancelarCategoriaEditada.onclick = () => {
+                seccionCategorias.classList.remove("is-hidden")
+                tarjetaEditarCategoria.classList.add("is-hidden")
+            }
     
-
+            botonEditarCategoriaEditada.onclick = ()=>{
+                seccionCategorias.classList.remove("is-hidden")
+                tarjetaEditarCategoria.classList.add("is-hidden")
+                nombreCategoria[i].textContent = inputCategoriasNombreEditar.value
+            }
+        }
+    } 
 }
+
 
 
 agregarCategoriasAHTML()
