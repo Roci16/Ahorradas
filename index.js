@@ -234,10 +234,12 @@ const mostrarOperacionesEnHTML = (array) => {
         <p>${operacion.fecha}</p>
         </div>
         <div class="column is-2 has-text-right">
-        <p>${operacion.tipo}</p>
+        <p>${operacion.monto}</p>
         </div>
         <div class="column is-2 has-text-right">
-        <p>${operacion.monto}</p>
+        <p>
+        <button>Editar </button> <button>Eliminar </button>
+        </p>
         </div>
       </div>
       `
