@@ -186,6 +186,24 @@ botonAgregar.onclick = () => {
 
 // Reporte
 
+// LocalStorage operaciones///////////////
+const operacionesObtenidas = () => {
+    const operacionesLS = localStorage.getItem("operaciones")
+    if (operacionesLS === null) {
+        return operaciones
+    } else {
+        return JSON.parse(operacionesLS)
+    }
+}
+
+let funcionOperacionesLS = (elemento) => {
+        const operacionesAJSON = JSON.stringify(elemento)
+        localStorage.setItem("operaciones", operacionesAJSON)
+
+    }
+    ////////////////////////////// 
+
+
 const convertirOperacionesAHTML = (operaciones) => {
     let acc = ""
 
