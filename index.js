@@ -14,14 +14,14 @@ const botonAgregar = document.getElementById("boton-agregar");
 // const botonAgregarOperacion = document.querySelector("#boton-agregar-operacion");
 const botonAgregarCategoria = document.getElementById("agregar-categoria-boton")
 const inputCategoriaNuevoNombre = document.getElementById("input-categorias-nuevo-nombre")
- // -------------funciones formulario FILTROS-------------------
+    // -------------funciones formulario FILTROS-------------------
 const formulario = document.getElementById("form")
 const filtroTipo = document.getElementById("select-tipo")
 const filtroCategorias = document.getElementById("select-categoria")
 const filtroFecha = document.getElementById("date")
 const selectOrdenarPor = document.getElementById("select-ordenar")
 const divOperaciones = document.getElementById("div-operaciones")
-//-----------------------------------------------
+    //-----------------------------------------------
 
 
 // Funciones Botones Nav Superior
@@ -169,11 +169,11 @@ formularioAgregarNuevaOperacion.onsubmit = (event) => {
 
 botonAgregar.onclick = () => {
     const seccionNuevaOperacion = {
-        descripcion:Descripcion.value, 
-        monto:Monto.value, 
-        tipo:Tipo.value, 
-        categoria:Categorias.value, 
-        fecha:Fecha.value, 
+        descripcion: Descripcion.value,
+        monto: Monto.value,
+        tipo: Tipo.value,
+        categoria: Categorias.value,
+        fecha: Fecha.value,
     }
 
     operaciones.push(seccionNuevaOperacion);
@@ -187,10 +187,10 @@ botonAgregar.onclick = () => {
 // Reporte
 
 const convertirOperacionesAHTML = (operaciones) => {
-        let acc = ""
+    let acc = ""
 
-        operaciones.map((operacion) => {
-            acc = acc + `
+    operaciones.map((operacion) => {
+        acc = acc + `
         <div class="columns ">
             <p class="column">${operacion.descripcion}</p>
             <div class="column is-1" >
@@ -201,28 +201,32 @@ const convertirOperacionesAHTML = (operaciones) => {
             <p class="column  has-text-centered" >${operacion.fecha}</p> 
             <p class="column has-text-success has-text-weight-bold">${operacion.monto}</p> 
             <p class="column">${operacion.tipo}</p> `
-        })
-    }
+    })
+}
 
 
 
-    //---------- Funcion mostrar en HTML------------flor---------
-    //esta funcion muestra los titulos de las categorias una vez que se ingresan los datos (no debe ser parte de la acumuladora)
+//---------- Funcion mostrar en HTML------------flor---------
+//esta funcion muestra los titulos de las categorias una vez que se ingresan los datos (no debe ser parte de la acumuladora)
 const aplicarDescripcionAOperaciones = () => {
-    return `<div class="columns has-text-weight-semibold is-hidden-mobile">
+        return `<div class="columns has-text-weight-semibold is-hidden-mobile">
             <div class="column is-3">Descripción</div>
             <div class="column is-3">Categoría</div>
             <div class="column is-2 has-text-right">Fecha</div>
             <div class="column is-2 has-text-right">Monto</div>
             <div class="column is-2 has-text-right">Acciones</div>
              </div> `
-}
-//aca junto la funcion anterior mas la acumuladora que toma los datos del objeto y los muestra
+    }
+    //aca junto la funcion anterior mas la acumuladora que toma los datos del objeto y los muestra
 const mostrarOperacionesEnHTML = (array) => {
 
-    let acc = ""
-    array.map((operacion) => {
-        acc = acc + `
+    const operaciones = operacionesObtenidas()
+
+
+    const html = array.reduce((acc, operacion, index) => {
+        return (
+            acc +
+            `
       <div class="fila columns">
       <div class="column is-3 has-text-weight-semibold">
         <p>${operacion.descripcion}</p>
@@ -237,17 +241,19 @@ const mostrarOperacionesEnHTML = (array) => {
         <p>${operacion.tipo}</p>
         </div>
         <div class="column is-2 has-text-right">
-        <p>${operacion.monto}</p>
+        <button id="editar-categoria-${index}" class="button is-info is-inverted boton-editar-categoria">Editar</button>
+        <button id="borrar-${index}"  class="boton-borrar-operacion button is-info is-inverted ">Eliminar</button>
         </div>
       </div>
       `
-    })
+        );
+    }, "")
 
-    divOperaciones.innerHTML = aplicarDescripcionAOperaciones() + acc
+    divOperaciones.innerHTML = aplicarDescripcionAOperaciones() + html;
 
 
-  }
-  mostrarOperacionesEnHTML(operaciones)
+}
+mostrarOperacionesEnHTML(operaciones)
 
 //-----------funciones para ordenar los filtros-----flor------------
 
@@ -326,16 +332,16 @@ const aplicarFiltros = () => {
     })
 
 
-  
-   const arrayFiltradoPorFechas = filtradoPorCategoria.map((operacion) => { //filtro por fechas
-        const nuevoElemento = {...operacion}
-        nuevoElemento.fecha = new Date(operacion.fecha).toLocaleDateString() 
+
+    const arrayFiltradoPorFechas = filtradoPorCategoria.map((operacion) => { //filtro por fechas
+        const nuevoElemento = {...operacion }
+        nuevoElemento.fecha = new Date(operacion.fecha).toLocaleDateString()
         return nuevoElemento
-      })
+    })
 
 
-  return filtroOrdenarPor(arrayFiltradoPorFechas)
-  }
+    return filtroOrdenarPor(arrayFiltradoPorFechas)
+}
 
 
 //----Agrega filtro cuando modifico los select-----flor-
@@ -343,10 +349,10 @@ const aplicarFiltros = () => {
 // evento cuando modifico categoria
 
 filtroTipo.onchange = () => {
-    const arrayFiltrado = aplicarFiltros()
-    mostrarOperacionesEnHTML(arrayFiltrado)
-}
-// evento cuando modifico tipo
+        const arrayFiltrado = aplicarFiltros()
+        mostrarOperacionesEnHTML(arrayFiltrado)
+    }
+    // evento cuando modifico tipo
 filtroCategorias.onchange = ()  => {
     const arrayFiltrado = aplicarFiltros()
     mostrarOperacionesEnHTML(arrayFiltrado)
@@ -361,7 +367,7 @@ filtroFecha.oninput = () => {
 
 // evento ordeno por 
 
-selectOrdenarPor.onchange = () =>{
+selectOrdenarPor.onchange = () => {
     const arrayFiltrado = aplicarFiltros()
     mostrarOperacionesEnHTML(arrayFiltrado)
 }
