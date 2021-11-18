@@ -269,6 +269,20 @@ const mostrarOperacionesEnHTML = (array) => {
 
     divOperaciones.innerHTML = aplicarDescripcionAOperaciones() + html;
 
+    const botonesBorrarOperaciones = document.querySelectorAll(".boton-borrar-operacion")
+    for (let i = 0; i < botonesBorrarOperaciones.length; i++) {
+        botonesBorrarOperaciones[i].onclick = () => {
+            const idOperaciones = botonesBorrarOperaciones[i].id
+            const indiceOperaciones = idOperaciones.slice(7)
+            const filtrarOperaciones = operaciones.filter((elemento, index) => {
+                return index != indiceOperaciones
+            })
+
+            funcionOperacionesLS(filtrarOperaciones)
+            mostrarOperacionesEnHTML(filtrarOperaciones)
+
+        }
+    }
 
 }
 mostrarOperacionesEnHTML(operaciones)
