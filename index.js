@@ -10,8 +10,8 @@ const seccionNuevaOperacion = document.getElementById("accion-boton-nueva-operac
 
 const botonCancelar = document.getElementById("boton-cancelar");
 const botonAgregar = document.getElementById("boton-agregar");
-// const botonCancelarOperacion = document.querySelector("#boton-cancelar-operacion");
-// const botonAgregarOperacion = document.querySelector("#boton-agregar-operacion");
+const botonCancelarOperacion = document.querySelector("#boton-cancelar-operacion");
+const botonAgregarOperacion = document.querySelector("#boton-agregar-operacion");
 const botonAgregarCategoria = document.getElementById("agregar-categoria-boton")
 const inputCategoriaNuevoNombre = document.getElementById("input-categorias-nuevo-nombre")
     // -------------funciones formulario FILTROS-------------------
@@ -163,25 +163,25 @@ const operaciones = [{
 
 // funcion agregar oparacion html 
 
-formularioAgregarNuevaOperacion.onsubmit = (event) => {
-    event.preventDefault()
-}
+// formularioAgregarNuevaOperacion.onsubmit = (event) => {
+//     event.preventDefault()
+// }
 
-botonAgregar.onclick = () => {
-    const seccionNuevaOperacion = {
-        descripcion: Descripcion.value,
-        monto: Monto.value,
-        tipo: Tipo.value,
-        categoria: Categorias.value,
-        fecha: Fecha.value,
-    }
+// botonAgregar.onclick = () => {
+//     const seccionNuevaOperacion = {
+//         descripcion: Descripcion.value,
+//         monto: Monto.value,
+//         tipo: Tipo.value,
+//         categoria: Categorias.value,
+//         fecha: Fecha.value,
+//     }
 
-    operaciones.push(seccionNuevaOperacion);
+//     operaciones.push(seccionNuevaOperacion);
 
-    guardarEnLocalStorage(operaciones, "operaciones");
+//     guardarEnLocalStorage(operaciones, "operaciones");
 
-    mostrarOperacionesEnHTML();
-}
+//     mostrarOperacionesEnHTML();
+// }
 
 
 // Reporte
