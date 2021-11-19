@@ -238,7 +238,8 @@ const mostrarOperacionesEnHTML = (array) => {
         </div>
         <div class="column is-2 has-text-right">
         <p>
-        <button>Editar </button> <button>Eliminar </button>
+        <button class="boton-editar-seccion-principal">Editar</button> 
+        <button>Eliminar</button>
         </p>
         </div>
       </div>
@@ -449,10 +450,18 @@ const agregarCategoriasAHTML = () => {
     }
 
     botonEditarSeccionCategoria()
+    
 }
 
 
 //////// boton editar categoria- BrendaLamas
+const botonEditarSeccionPrincipal = ()=>{
+    const botonEditarSeccionPrincipal = document.querySelectorAll(".boton-editar-seccion-principal")
+    botonEditarSeccionPrincipal[i].onclick = ()=>{
+        console.log("hiciste click en editar");
+    }
+
+}
 const botonEditarSeccionCategoria = () =>{
     const botonEditarCategoria = document.querySelectorAll(".boton-editar-categoria")
     const tarjetaEditarCategoria = document.querySelector(".tarjeta-editar-categoria")
