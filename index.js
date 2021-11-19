@@ -252,8 +252,6 @@ const mostrarOperacionesEnHTML = (array) => {
   mostrarOperacionesEnHTML(operaciones)
 
   //--------Balances-----------
-
-
 //---------- Funcion mostrar suma total de ganancias en la seccion balances-----
 const mostrarGananciasEnBalances = (array) =>{
 const gananciasFiltradas = array.filter((elemento)=>{
@@ -262,7 +260,7 @@ const gananciasFiltradas = array.filter((elemento)=>{
 console.log(gananciasFiltradas)
 
     const sumarGanancias = gananciasFiltradas.reduce((acc, elemento)=>{
-return acc + elemento
+return acc + elemento.monto
     },0)
     
 return balancesSumaGanancias.textContent = sumarGanancias
@@ -276,7 +274,7 @@ const mostrarGastosEnBalances = (array) =>{
         })
     
         const sumarGastos = gastosFiltrados.reduce((acc, elemento)=>{
-    return acc + elemento
+    return acc + elemento.monto
         },0)
         
     return balancesSumaGastos.textContent = sumarGastos
