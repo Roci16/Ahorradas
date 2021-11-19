@@ -1,4 +1,4 @@
-const tarjeta = document.getElementById("tarjeta")
+const tarjetaOperacionesAgregadas = document.getElementById("tarjeta-operaciones-agregadas")
 const botonCategorias = document.getElementById("boton-categorias")
 const botonBalance = document.getElementById("boton-balance")
 const botonReporte = document.getElementById("boton-reportes")
@@ -10,22 +10,24 @@ const seccionNuevaOperacion = document.getElementById("accion-boton-nueva-operac
 
 const botonCancelar = document.getElementById("boton-cancelar");
 const botonAgregar = document.getElementById("boton-agregar");
-// const botonCancelarOperacion = document.querySelector("#boton-cancelar-operacion");
-// const botonAgregarOperacion = document.querySelector("#boton-agregar-operacion");
+const botonCancelarOperacion = document.querySelector("#boton-cancelar-operacion");
+const botonAgregarOperacion = document.querySelector("#boton-agregar-operacion");
 const botonAgregarCategoria = document.getElementById("agregar-categoria-boton")
 const inputCategoriaNuevoNombre = document.getElementById("input-categorias-nuevo-nombre")
+
 //-------- Totales balances-----------
 const balancesSumaGanancias = document.querySelector(".sumaGanancias")
 const balancesSumaGastos = document.querySelector(".sumaGastos")
 const balancesTotalFinal = document.querySelector(".totalBalances")
  // -------------funciones formulario FILTROS-------------------
+
 const formulario = document.getElementById("form")
 const filtroTipo = document.getElementById("select-tipo")
 const filtroCategorias = document.getElementById("select-categoria")
 const filtroFecha = document.getElementById("date")
 const selectOrdenarPor = document.getElementById("select-ordenar")
-const divOperaciones = document.getElementById("div-operaciones")
-//-----------------------------------------------
+    // const divOperaciones = document.getElementById("div-operaciones")
+    //-----------------------------------------------
 
 
 // Funciones Botones Nav Superior
@@ -59,17 +61,20 @@ botonNuevaOperacion.onclick = () => {
     seccionNuevaOperacion.classList.remove("is-hidden")
     seccionCentral.classList.add("is-hidden")
 }
-
-
-function mostrarBotonCancelarOperacion() {
-    botonCancelarOperacion.style.display = 'none';
-    botonCancelarOperacion.style.display = 'inline';
+botonAgregarOperacion.onclick = () => {
+    seccionNuevaOperacion.classList.add("is-hidden")
+        // seccionCentral.classList.add("is-hidden")
 }
 
-function mostrarBotonAgregarOperacion() {
-    botonAgregarOperacion.style.display = 'none';
-    botonAgregarOperacion.style.display = 'inline';
-}
+// function mostrarBotonCancelarOperacion() {
+//     botonCancelarOperacion.style.display = 'none';
+//     botonCancelarOperacion.style.display = 'inline';
+// }
+
+// function mostrarBotonAgregarOperacion() {
+//     botonAgregarOperacion.style.display = 'none';
+//     botonAgregarOperacion.style.display = 'inline';
+// }
 
 //Boton Cancelar
 /*
@@ -165,34 +170,56 @@ const operaciones = [{
 
 
 // funcion agregar oparacion html 
-/* 
-formularioAgregarNuevaOperacion.onsubmit = (event) => {
-    event.preventDefault()
-}
 
-botonAgregar.onclick = () => {
-    const seccionNuevaOperacion = {
-        descripcion:Descripcion.value, 
-        monto:Monto.value, 
-        tipo:Tipo.value, 
-        categoria:Categorias.value, 
-        fecha:Fecha.value, 
+
+// formularioAgregarNuevaOperacion.onsubmit = (event) => {
+//     event.preventDefault()
+// }
+
+// botonAgregar.onclick = () => {
+//     const seccionNuevaOperacion = {
+//         descripcion: Descripcion.value,
+//         monto: Monto.value,
+//         tipo: Tipo.value,
+//         categoria: Categorias.value,
+//         fecha: Fecha.value,
+//     }
+
+//     operaciones.push(seccionNuevaOperacion);
+
+//     guardarEnLocalStorage(operaciones, "operaciones");
+
+//     mostrarOperacionesEnHTML();
+// }
+
+
+
+// Reporte
+
+// LocalStorage operaciones///////////////
+const operacionesObtenidas = () => {
+    const operacionesLS = localStorage.getItem("operaciones")
+    if (operacionesLS === null) {
+        return operaciones
+    } else {
+        return JSON.parse(operacionesLS)
     }
-
-    operaciones.push(seccionNuevaOperacion);
-
-    guardarEnLocalStorage(operaciones, "operaciones");
-
-    mostrarOperacionesEnHTML();
 }
 
+let funcionOperacionesLS = (elemento) => {
+        const operacionesAJSON = JSON.stringify(elemento)
+        localStorage.setItem("operaciones", operacionesAJSON)
 
-*/
+    }
+    ////////////////////////////// 
+
+
+
 const convertirOperacionesAHTML = (operaciones) => {
-        let acc = ""
+    let acc = ""
 
-        operaciones.map((operacion) => {
-            acc = acc + `
+    operaciones.map((operacion) => {
+        acc = acc + `
         <div class="columns ">
             <p class="column">${operacion.descripcion}</p>
             <div class="column is-1" >
@@ -203,28 +230,20 @@ const convertirOperacionesAHTML = (operaciones) => {
             <p class="column  has-text-centered" >${operacion.fecha}</p> 
             <p class="column has-text-success has-text-weight-bold">${operacion.monto}</p> 
             <p class="column">${operacion.tipo}</p> `
-        })
-    }
-
-
-
-    //---------- Funcion mostrar en HTML----------
-    //esta funcion muestra los titulos de las categorias una vez que se ingresan los datos (no debe ser parte de la acumuladora)
-const aplicarDescripcionAOperaciones = () => {
-    return `<div class="columns has-text-weight-semibold is-hidden-mobile">
-            <div class="column is-3">Descripción</div>
-            <div class="column is-3">Categoría</div>
-            <div class="column is-2 has-text-right">Fecha</div>
-            <div class="column is-2 has-text-right">Monto</div>
-            <div class="column is-2 has-text-right">Acciones</div>
-             </div> `
+    })
 }
+
+
 //aca junto la funcion anterior mas la acumuladora que toma los datos del objeto y los muestra
 const mostrarOperacionesEnHTML = (array) => {
 
-    let acc = ""
-    array.map((operacion) => {
-        acc = acc + `
+    const operaciones = operacionesObtenidas()
+
+
+    const html = array.reduce((acc, operacion, index) => {
+        return (
+            acc +
+            `
       <div class="fila columns">
       <div class="column is-3 has-text-weight-semibold">
         <p>${operacion.descripcion}</p>
@@ -239,17 +258,33 @@ const mostrarOperacionesEnHTML = (array) => {
         <p>${operacion.tipo}</p>
         </div>
         <div class="column is-2 has-text-right">
-        <p>${operacion.monto}</p>
+        <button id="editar-categoria-${index}" class="button is-info is-inverted boton-editar-categoria">Editar</button>
+        <button id="borrar-${index}"  class="boton-borrar-operacion button is-info is-inverted ">Eliminar</button>
         </div>
       </div>
       `
-    })
+        );
+    }, "")
 
-    divOperaciones.innerHTML = aplicarDescripcionAOperaciones() + acc
+    tarjetaOperacionesAgregadas.innerHTML = html;
 
+    const botonesBorrarOperaciones = document.querySelectorAll(".boton-borrar-operacion")
+    for (let i = 0; i < botonesBorrarOperaciones.length; i++) {
+        botonesBorrarOperaciones[i].onclick = () => {
+            const idOperaciones = botonesBorrarOperaciones[i].id
+            const indiceOperaciones = idOperaciones.slice(7)
+            const filtrarOperaciones = operaciones.filter((elemento, index) => {
+                return index != indiceOperaciones
+            })
 
-  }
-  mostrarOperacionesEnHTML(operaciones)
+            funcionOperacionesLS(filtrarOperaciones)
+            mostrarOperacionesEnHTML(filtrarOperaciones)
+
+        }
+    }
+
+}
+mostrarOperacionesEnHTML(operaciones)
 
   //--------Balances-----------
 //---------- Funcion mostrar suma total de ganancias en la seccion balances-----
@@ -364,16 +399,16 @@ const aplicarFiltros = () => {
     })
 
 
-  
-   const arrayFiltradoPorFechas = filtradoPorCategoria.map((operacion) => { //filtro por fechas
-        const nuevoElemento = {...operacion}
-        nuevoElemento.fecha = new Date(operacion.fecha).toLocaleDateString() 
+
+    const arrayFiltradoPorFechas = filtradoPorCategoria.map((operacion) => { //filtro por fechas
+        const nuevoElemento = {...operacion }
+        nuevoElemento.fecha = new Date(operacion.fecha).toLocaleDateString()
         return nuevoElemento
-      })
+    })
 
 
-  return filtroOrdenarPor(arrayFiltradoPorFechas)
-  }
+    return filtroOrdenarPor(arrayFiltradoPorFechas)
+}
 
 
 //----Agrega filtro cuando modifico los select-----
@@ -381,10 +416,10 @@ const aplicarFiltros = () => {
 // evento cuando modifico categoria
 
 filtroTipo.onchange = () => {
-    const arrayFiltrado = aplicarFiltros()
-    mostrarOperacionesEnHTML(arrayFiltrado)
-}
-// evento cuando modifico tipo
+        const arrayFiltrado = aplicarFiltros()
+        mostrarOperacionesEnHTML(arrayFiltrado)
+    }
+    // evento cuando modifico tipo
 filtroCategorias.onchange = ()  => {
     const arrayFiltrado = aplicarFiltros()
     mostrarOperacionesEnHTML(arrayFiltrado)
@@ -398,7 +433,7 @@ filtroFecha.oninput = () => {
 
 // evento ordeno por 
 
-selectOrdenarPor.onchange = () =>{
+selectOrdenarPor.onchange = () => {
     const arrayFiltrado = aplicarFiltros()
     mostrarOperacionesEnHTML(arrayFiltrado)
 }
