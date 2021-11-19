@@ -1,4 +1,4 @@
-const tarjeta = document.getElementById("tarjeta")
+const tarjetaOperacionesAgregadas = document.getElementById("tarjeta-operaciones-agregadas")
 const botonCategorias = document.getElementById("boton-categorias")
 const botonBalance = document.getElementById("boton-balance")
 const botonReporte = document.getElementById("boton-reportes")
@@ -20,7 +20,7 @@ const filtroTipo = document.getElementById("select-tipo")
 const filtroCategorias = document.getElementById("select-categoria")
 const filtroFecha = document.getElementById("date")
 const selectOrdenarPor = document.getElementById("select-ordenar")
-const divOperaciones = document.getElementById("div-operaciones")
+    // const divOperaciones = document.getElementById("div-operaciones")
     //-----------------------------------------------
 
 
@@ -55,17 +55,20 @@ botonNuevaOperacion.onclick = () => {
     seccionNuevaOperacion.classList.remove("is-hidden")
     seccionCentral.classList.add("is-hidden")
 }
-
-
-function mostrarBotonCancelarOperacion() {
-    botonCancelarOperacion.style.display = 'none';
-    botonCancelarOperacion.style.display = 'inline';
+botonAgregarOperacion.onclick = () => {
+    seccionNuevaOperacion.classList.add("is-hidden")
+        // seccionCentral.classList.add("is-hidden")
 }
 
-function mostrarBotonAgregarOperacion() {
-    botonAgregarOperacion.style.display = 'none';
-    botonAgregarOperacion.style.display = 'inline';
-}
+// function mostrarBotonCancelarOperacion() {
+//     botonCancelarOperacion.style.display = 'none';
+//     botonCancelarOperacion.style.display = 'inline';
+// }
+
+// function mostrarBotonAgregarOperacion() {
+//     botonAgregarOperacion.style.display = 'none';
+//     botonAgregarOperacion.style.display = 'inline';
+// }
 
 //Boton Cancelar
 
@@ -225,17 +228,17 @@ const convertirOperacionesAHTML = (operaciones) => {
 
 
 //---------- Funcion mostrar en HTML------------flor---------
-//esta funcion muestra los titulos de las categorias una vez que se ingresan los datos (no debe ser parte de la acumuladora)
-const aplicarDescripcionAOperaciones = () => {
-        return `<div class="columns has-text-weight-semibold is-hidden-mobile">
-            <div class="column is-3">Descripción</div>
-            <div class="column is-3">Categoría</div>
-            <div class="column is-2 has-text-right">Fecha</div>
-            <div class="column is-2 has-text-right">Monto</div>
-            <div class="column is-2 has-text-right">Acciones</div>
-             </div> `
-    }
-    //aca junto la funcion anterior mas la acumuladora que toma los datos del objeto y los muestra
+// //esta funcion muestra los titulos de las categorias una vez que se ingresan los datos (no debe ser parte de la acumuladora)
+// const aplicarDescripcionAOperaciones = () => {
+//         return `<div class="columns has-text-weight-semibold is-hidden-mobile">
+//             <div class="column is-3">Descripción</div>
+//             <div class="column is-3">Categoría</div>
+//             <div class="column is-2 has-text-right">Fecha</div>
+//             <div class="column is-2 has-text-right">Monto</div>
+//             <div class="column is-2 has-text-right">Acciones</div>
+//              </div> `
+//     }
+//aca junto la funcion anterior mas la acumuladora que toma los datos del objeto y los muestra
 const mostrarOperacionesEnHTML = (array) => {
 
     const operaciones = operacionesObtenidas()
@@ -267,7 +270,7 @@ const mostrarOperacionesEnHTML = (array) => {
         );
     }, "")
 
-    divOperaciones.innerHTML = aplicarDescripcionAOperaciones() + html;
+    tarjetaOperacionesAgregadas.innerHTML = html;
 
     const botonesBorrarOperaciones = document.querySelectorAll(".boton-borrar-operacion")
     for (let i = 0; i < botonesBorrarOperaciones.length; i++) {
