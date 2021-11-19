@@ -134,17 +134,40 @@
                     <!-- Box Operaciones -->
                     <div class="column is-7">
                         <div class="box" id="div-operaciones">
-                            <div class="columns">
-                                <h2 class="title column is-size-4 has-text-weight-bold has-text-grey-dark">Operaciones</h2>
-                                <div class="column  has-text-right">
-                                    <button id="boton-nueva-operacion" class="button is-primary">+ Nueva operación</button>
+                            <div id="tarjeta-sin-operaciones">
+                                <div class="columns">
+                                    <h2 class="title column is-size-4 has-text-weight-bold has-text-grey-dark">Operaciones</h2>
+                                    <div class="column  has-text-right">
+                                        <button id="boton-nueva-operacion" class="button is-primary">+ Nueva operación</button>
+                                    </div>
+                                </div>
+
+                                <div class="columns my-5">
+
+                                    <!-- Funcion de lo que aparece cuando se agrega una operacion -->
+
+
+                                    <figure class="image column is-offset-3 is-6">
+                                        <img src="imagenes/undraw_Pie_chart_re_bgs8.svg">
+
+                                    </figure>
+
+                                </div>
+
+
+
+                                <div class="columns">
+                                    <p class="column has-text-centered is-size-4 has-text-weight-semibold has-text-grey-dark">Sin resultados</p>
+
+                                </div>
+                                <div class="columns mb-6">
+                                    <p class="column has-text-centered">Cambia los filtros o agrega operaciones</p>
                                 </div>
                             </div>
 
-                            <div class="columns my-5">
 
-                                <!-- Funcion de lo que aparece cuando se agrega una operacion -->
-                                <!-- <div class=" column">
+                            <!-- Tarjeta de operaciones que ya se agregaron -->
+                            <div id="contenedor-operaciones-agregadas" class="column">
                                 <div class="columns">
                                     <div class="column">Descropción</div>
                                     <div class="column is-1 has-text-centered">Categoría</div>
@@ -153,26 +176,8 @@
                                     <div class="column">Acciones</div>
                                 </div>
                                 <div>
-                                    <div class="" id="tarjeta">asdas</div>
+                                    <div id="tarjeta-operaciones-agregadas"></div>
                                 </div>
-                            </div> -->
-
-
-                                <figure class="image column is-offset-3 is-6">
-                                    <img src="imagenes/undraw_Pie_chart_re_bgs8.svg">
-
-                                </figure>
-
-                            </div>
-
-
-
-                            <div class="columns">
-                                <p class="column has-text-centered is-size-4 has-text-weight-semibold has-text-grey-dark">Sin resultados</p>
-
-                            </div>
-                            <div class="columns mb-6">
-                                <p class="column has-text-centered">Cambia los filtros o agrega operaciones</p>
                             </div>
                         </div>
 
