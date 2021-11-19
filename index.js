@@ -252,13 +252,7 @@ const mostrarOperacionesEnHTML = (array) => {
   mostrarOperacionesEnHTML(operaciones)
 
   //--------Balances-----------
-//ganancias suma los montos que sean de tipo ganancia
-//gastos resta los montos que sean de tipo gasttos
-//total une ambas
-//tengo que hacer dos funciones en total
-//tengo que tomar el array entero de todas las operaciones y filtrarlas solo por las que sean de gastos o de ganancias
-// hago una funcion que dentro de la misma filtre el array se quede con solo las ganancias y despues con un reduce sumo o resto todo
-//tengo que llamar al numero y reeplazarlo por el resultado de la funcion
+
 
 //---------- Funcion mostrar suma total de ganancias en la seccion balances-----
 const mostrarGananciasEnBalances = (array) =>{
