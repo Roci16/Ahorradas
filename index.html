@@ -7,11 +7,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AhorrADAs</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+    <link rel="stylesheet" href="estilo.css">
     <script src="https://kit.fontawesome.com/fc20ae3cbb.js" crossorigin="anonymous"></script>
     <link rel="icon" type="image/ico" href="favicon/beneficios.png" />
 </head>
 
-<body class="has-background-light">
+<body class="has-background-light sec">
     <!-- Seccion Nav Main -->
     <nav class="navbar is-primary is-spaced mb-5" aria-label="Barra de navegacion">
         <div class="navbar-brand">
@@ -39,6 +40,7 @@
             </div>
         </div>
     </nav>
+        <!-- "Seccion central" -->
     <section id="seccion-central" class="section">
         <div class="conteiner ">
 
@@ -52,15 +54,15 @@
                         <h2 class="title has-text-weight-bold has-text-grey-dark mb-6">Balance</h2>
                         <div class="columns">
                             <div class="column is-size-5">Ganancias </div>
-                            <div class="column has-text-success has-text-right ">+$0</div>
+                            <div class="column has-text-success has-text-right sumaGanancias">+$0</div>
                         </div>
                         <div class="columns">
                             <div class="column is-size-5">Gastos </div>
-                            <div class="column has-text-danger has-text-right">-$0</div>
+                            <div class="column has-text-danger has-text-right sumaGastos">-$0</div>
                         </div>
                         <div class="columns">
                             <div class="column is-size-4">Total </div>
-                            <div class="column has-text-weight-bold has-text-right">$0</div>
+                            <div class="column has-text-weight-bold has-text-right totalBalances">$0</div>
                         </div>
                     </div>
 
@@ -68,13 +70,13 @@
                     <article class=" box">
                         <div class="columns">
                             <h2 class="title column is-5 has-text-weight-bold has-text-grey-dark">Filtros</h2>
-                            <button class="button  column has-text-right is-info is-inverted ">Ocultar filtros</button>
+                            <button class="button  column has-text-right is-info is-inverted " id="boton-ocultar-filtros">Ocultar filtros</button>
                         </div>
 
                         <form id="form">
 
                             <!-- Select Tipo  -->
-                            <div class="field">
+                            <div class="field" id="div-formulario-filtros">
                                 <label class="label" for="select-tipo">Tipo</label>
                                 <div class="select is-fullwidth ">
                                     <select id="select-tipo">
@@ -90,7 +92,7 @@
                                 <label class="label" for="select-categoria">Categoría</label>
                                 <div class="select is-fullwidth  ">
                                     <select id="select-categoria">
-                                         <option>Todos</option>
+                                         <option>Todas</option>
                                          <option>Comida</option>
                                          <option>Servicios</option>
                                          <option>Salidas</option>
@@ -112,7 +114,7 @@
 
                             <!-- Select Ordenar por -->
                             <div class="field">
-                                <label class="label" for="select-odenar">Categoría</label>
+                                <label class="label" for="select-odenar">Ordenar por</label>
                                 <div class="select is-fullwidth  ">
                                     <select id="select-ordenar">
                                          <option>Más reciente</option>
