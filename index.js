@@ -459,13 +459,21 @@ const agregarCategoriasAHTML = () => {
 const botonEditarSeccionPrincipal = ()=>{
     const botonEditarSeccionPrincipal = document.querySelectorAll(".boton-editar-seccion-principal")
     const tarjetaEditarOperacion = document.querySelector(".tarjeta-editar-operacion")
-
+    const botonCancelarSeccionPrincipal = document.querySelector(".boton-cancelar-seccion-principal")
+    const inputDescripcion = document.querySelector(".input-descripcion")
+    
     for (let i = 0; i < botonEditarSeccionPrincipal.length; i++) {
         
         botonEditarSeccionPrincipal[i].onclick = ()=>{
-            // tarjeta que aparece cuando hago click en el boton Editar
-            tarjetaEditarOperacion.classList.remove("is-hidden")
             seccionCentral.classList.add("is-hidden")
+            tarjetaEditarOperacion.classList.remove("is-hidden")
+
+
+
+            botonCancelarSeccionPrincipal.onclick = () => {
+                seccionCentral.classList.remove("is-hidden")
+                tarjetaEditarOperacion.classList.add("is-hidden")
+            }
         }
     }
         
@@ -482,9 +490,11 @@ const botonEditarSeccionCategoria = () =>{
     const nombreCategoria = document.querySelectorAll(".nombre-categoria")
 
     for (let i = 0; i < botonEditarCategoria.length; i++) {
+
         botonEditarCategoria[i].onclick = () => {
             seccionCategorias.classList.add("is-hidden")
             tarjetaEditarCategoria.classList.remove("is-hidden")
+            
             inputCategoriasNombreEditar.value = nombreCategoria[i].textContent
 
             botonCancelarCategoriaEditada.onclick = () => {
