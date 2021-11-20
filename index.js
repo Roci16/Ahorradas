@@ -450,6 +450,7 @@ const agregarCategoriasAHTML = () => {
     }
 
     botonEditarSeccionCategoria()
+    botonEditarSeccionPrincipal()
     
 }
 
@@ -457,11 +458,21 @@ const agregarCategoriasAHTML = () => {
 //////// boton editar categoria- BrendaLamas
 const botonEditarSeccionPrincipal = ()=>{
     const botonEditarSeccionPrincipal = document.querySelectorAll(".boton-editar-seccion-principal")
-    botonEditarSeccionPrincipal[i].onclick = ()=>{
-        console.log("hiciste click en editar");
-    }
+    const tarjetaEditarOperacion = document.querySelector(".tarjeta-editar-operacion")
 
+    for (let i = 0; i < botonEditarSeccionPrincipal.length; i++) {
+        
+        botonEditarSeccionPrincipal[i].onclick = ()=>{
+            // tarjeta que aparece cuando hago click en el boton Editar
+            tarjetaEditarOperacion.classList.remove("is-hidden")
+            seccionCentral.classList.add("is-hidden")
+        }
+    }
+        
 }
+    
+
+
 const botonEditarSeccionCategoria = () =>{
     const botonEditarCategoria = document.querySelectorAll(".boton-editar-categoria")
     const tarjetaEditarCategoria = document.querySelector(".tarjeta-editar-categoria")
@@ -489,6 +500,7 @@ const botonEditarSeccionCategoria = () =>{
         }
     } 
 }
+
 
 
 
