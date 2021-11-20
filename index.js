@@ -1,19 +1,27 @@
 const tarjeta = document.getElementById("tarjeta")
+// Botones Nav
 const botonCategorias = document.getElementById("boton-categorias")
 const botonBalance = document.getElementById("boton-balance")
 const botonReporte = document.getElementById("boton-reportes")
+// Secciones
 const seccionCategorias = document.getElementById("seccion-categorias")
 const seccionCentral = document.getElementById("seccion-central")
 const seccionReportes = document.getElementById("seccion-reportes")
-const botonNuevaOperacion = document.getElementById("boton-nueva-operacion")
 const seccionNuevaOperacion = document.getElementById("accion-boton-nueva-operacion")
-
+// Boton nueva operacion 
+const botonNuevaOperacion = document.getElementById("boton-nueva-operacion")
+// BOTON QUE NO SE LO QUE HACE TODAVIA
 const botonCancelar = document.getElementById("boton-cancelar");
-const botonAgregar = document.getElementById("boton-agregar");
-// const botonCancelarOperacion = document.querySelector("#boton-cancelar-operacion");
-// const botonAgregarOperacion = document.querySelector("#boton-agregar-operacion");
+// ---Boton Agregar/cancelar operaciones
+const botonCancelarOperacion = document.getElementById("boton-cancelar-operacion")
+const botonAgregarOperacion = document.getElementById("boton-agregar-operacion");
+// Boton Agregar categorias
 const botonAgregarCategoria = document.getElementById("agregar-categoria-boton")
 const inputCategoriaNuevoNombre = document.getElementById("input-categorias-nuevo-nombre")
+//-------- Totales balances-----------
+const balancesSumaGanancias = document.querySelector(".sumaGanancias")
+const balancesSumaGastos = document.querySelector(".sumaGastos")
+const balancesTotalFinal = document.querySelector(".totalBalances")
  // -------------funciones formulario FILTROS-------------------
 const formulario = document.getElementById("form")
 const filtroTipo = document.getElementById("select-tipo")
@@ -48,44 +56,31 @@ botonReporte.onclick = () => {
     seccionCategorias.classList.add("is-hidden")
 
 }
-
-//Balance
+// Boton nueva operacion
 
 botonNuevaOperacion.onclick = () => {
     seccionNuevaOperacion.classList.remove("is-hidden")
     seccionCentral.classList.add("is-hidden")
 }
-
-
-function mostrarBotonCancelarOperacion() {
-    botonCancelarOperacion.style.display = 'none';
-    botonCancelarOperacion.style.display = 'inline';
-}
-
-function mostrarBotonAgregarOperacion() {
-    botonAgregarOperacion.style.display = 'none';
-    botonAgregarOperacion.style.display = 'inline';
-}
-
-//Boton Cancelar
+//Boton Cancelar nueva operacion
 
 botonCancelarOperacion.onclick = () => {
-    botonReporte.classList.add("is-hidden");
-    seccionCategorias.classList.add("is-hidden");
-    seccionNuevaOperacion.classList.add("is-hidden");
-    botonBalance.classList.remove("is-hidden");
-}
 
+    seccionCategorias.classList.add("is-hidden")
+    seccionCentral.classList.remove("is-hidden")
+    seccionReportes.classList.add("is-hidden")
+
+}
 //Boton Agregar
 
 botonAgregarOperacion.onclick = () => {
-    botonReporte.classList.add("is-hidden");
+  
     seccionCategorias.classList.add("is-hidden");
     seccionNuevaOperacion.classList.add("is-hidden");
     botonBalance.classList.remove("is-hidden");
 }
 
-
+//Array de prueba
 const operaciones = [{
         descripcion: 'Sueldo',
         categoria: 'Trabajo',
@@ -160,8 +155,7 @@ const operaciones = [{
 ];
 
 
-
-// funcion agregar oparacion html 
+// funcion agregar operacion html 
 
 formularioAgregarNuevaOperacion.onsubmit = (event) => {
     event.preventDefault()
@@ -184,7 +178,6 @@ botonAgregar.onclick = () => {
 }
 
 
-// Reporte
 
 const convertirOperacionesAHTML = (operaciones) => {
         let acc = ""
@@ -206,7 +199,7 @@ const convertirOperacionesAHTML = (operaciones) => {
 
 
 
-    //---------- Funcion mostrar en HTML------------flor---------
+    //---------- Funcion mostrar en HTML----------
     //esta funcion muestra los titulos de las categorias una vez que se ingresan los datos (no debe ser parte de la acumuladora)
 const aplicarDescripcionAOperaciones = () => {
     return `<div class="columns has-text-weight-semibold is-hidden-mobile">
@@ -249,7 +242,46 @@ const mostrarOperacionesEnHTML = (array) => {
   }
   mostrarOperacionesEnHTML(operaciones)
 
-//-----------funciones para ordenar los filtros-----flor------------
+  //--------Balances-----------
+//---------- Funcion mostrar suma total de ganancias en la seccion balances-----
+const mostrarGananciasEnBalances = (array) =>{
+const gananciasFiltradas = array.filter((elemento)=>{
+    return elemento.tipo === "Ganancia"
+    })
+console.log(gananciasFiltradas)
+
+    const sumarGanancias = gananciasFiltradas.reduce((acc, elemento)=>{
+return acc + elemento.monto
+    },0)
+    
+return balancesSumaGanancias.textContent = sumarGanancias
+}
+console.log(mostrarGananciasEnBalances(operaciones))
+
+//---------- Funcion mostrar suma total de gastos en la seccion balances-----
+const mostrarGastosEnBalances = (array) =>{
+    const gastosFiltrados = array.filter((elemento)=>{
+        return elemento.tipo === "Gasto"
+        })
+    
+        const sumarGastos = gastosFiltrados.reduce((acc, elemento)=>{
+    return acc + elemento.monto
+        },0)
+        
+    return balancesSumaGastos.textContent = sumarGastos
+    }
+    console.log(mostrarGastosEnBalances(operaciones))
+
+    //---------- Funcion mostrar suma total de gastos en la seccion balances-----
+    const mostrarTotalEnBalances = (array) =>{
+      const resultadoFinalGanancias = mostrarGananciasEnBalances(array)
+      const resultadoFinalGastos = mostrarGastosEnBalances(array)
+      const resultadoFinal = resultadoFinalGanancias - resultadoFinalGastos
+        return balancesTotalFinal.textContent = resultadoFinal
+    }
+    mostrarTotalEnBalances(operaciones)
+
+//-----------funciones para ordenar los filtros-----
 
 //funciones auxiliares
 const ordenarPorFechaMasReciente = (array) => {
@@ -285,10 +317,7 @@ const ordenarPorMenorMonto = (array) => {
 
 }
 
-//Funcion ordenar por filtros que reune a todas las funciones auxiliares ----flor
-
-
-//Funcion ordenar por filtros que reune a todas las 
+//Funcion ordenar por filtros que reune a todas las funciones auxiliares ---
 const filtroOrdenarPor = (array) => {
     if (selectOrdenarPor.value === "Más reciente") {
         return ordenarPorFechaMasReciente(array)
@@ -306,7 +335,7 @@ const filtroOrdenarPor = (array) => {
 
 }
 
-// -------------------Función aplicar filtros----------------- florr
+// -------------------Función aplicar filtros---------------
 const aplicarFiltros = () => {
     const tipo = filtroTipo.value //filtro por tipo
     const filtradoPorTipo = operaciones.filter((operacion) => {
@@ -338,7 +367,7 @@ const aplicarFiltros = () => {
   }
 
 
-//----Agrega filtro cuando modifico los select-----flor-
+//----Agrega filtro cuando modifico los select-----
 
 // evento cuando modifico categoria
 
@@ -358,7 +387,6 @@ filtroFecha.oninput = () => {
     mostrarOperacionesEnHTML(arrayFiltrado)
 }
 
-
 // evento ordeno por 
 
 selectOrdenarPor.onchange = () =>{
@@ -366,18 +394,12 @@ selectOrdenarPor.onchange = () =>{
     mostrarOperacionesEnHTML(arrayFiltrado)
 }
 
-
 //----este e.preventDefault evita que el formulario se envie --flor---
 formulario.onsubmit = (e) => {
     e.preventDefault()
 }
 
-// ----------------------------
-
-
 //--------------- Seccion categorias----------------------------
-
-
 
 // Seccion categorias
 
