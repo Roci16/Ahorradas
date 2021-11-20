@@ -1,17 +1,24 @@
+
+ // Botones Nav
 const tarjetaOperacionesAgregadas = document.getElementById("tarjeta-operaciones-agregadas")
 const botonCategorias = document.getElementById("boton-categorias")
 const botonBalance = document.getElementById("boton-balance")
 const botonReporte = document.getElementById("boton-reportes")
+// Secciones
 const seccionCategorias = document.getElementById("seccion-categorias")
 const seccionCentral = document.getElementById("seccion-central")
 const seccionReportes = document.getElementById("seccion-reportes")
-const botonNuevaOperacion = document.getElementById("boton-nueva-operacion")
 const seccionNuevaOperacion = document.getElementById("accion-boton-nueva-operacion")
-
+// Boton nueva operacion 
+const botonNuevaOperacion = document.getElementById("boton-nueva-operacion")
+// BOTON QUE NO SE LO QUE HACE TODAVIA
 const botonCancelar = document.getElementById("boton-cancelar");
-const botonAgregar = document.getElementById("boton-agregar");
-const botonCancelarOperacion = document.querySelector("#boton-cancelar-operacion");
-const botonAgregarOperacion = document.querySelector("#boton-agregar-operacion");
+const botonAgregar = document.getElementById("boton-agregar")
+
+// ---Boton Agregar/cancelar operaciones
+const botonCancelarOperacion = document.getElementById("boton-cancelar-operacion")
+const botonAgregarOperacion = document.getElementById("boton-agregar-operacion");
+// Boton Agregar categorias
 const botonAgregarCategoria = document.getElementById("agregar-categoria-boton")
 const inputCategoriaNuevoNombre = document.getElementById("input-categorias-nuevo-nombre")
 
@@ -19,6 +26,7 @@ const inputCategoriaNuevoNombre = document.getElementById("input-categorias-nuev
 const balancesSumaGanancias = document.querySelector(".sumaGanancias")
 const balancesSumaGastos = document.querySelector(".sumaGastos")
 const balancesTotalFinal = document.querySelector(".totalBalances")
+
  // -------------funciones formulario FILTROS-------------------
 
 const formulario = document.getElementById("form")
@@ -44,6 +52,7 @@ botonCategorias.onclick = () => {
     seccionCategorias.classList.remove("is-hidden")
     seccionCentral.classList.add("is-hidden")
     seccionReportes.classList.add("is-hidden")
+    seccionNuevaOperacion.classList.add("is-hidden")
 
 }
 
@@ -54,47 +63,39 @@ botonReporte.onclick = () => {
     seccionCategorias.classList.add("is-hidden")
 
 }
-
-//Balance
+// Boton nueva operacion
 
 botonNuevaOperacion.onclick = () => {
     seccionNuevaOperacion.classList.remove("is-hidden")
     seccionCentral.classList.add("is-hidden")
 }
+
+//Boton Cancelar nueva operacion
+
+botonCancelarOperacion.onclick = () => {
+
+    seccionCategorias.classList.add("is-hidden")
+    seccionCentral.classList.remove("is-hidden")
+    seccionReportes.classList.add("is-hidden")
+}
+//  Repetida?
 botonAgregarOperacion.onclick = () => {
     seccionNuevaOperacion.classList.add("is-hidden")
         // seccionCentral.classList.add("is-hidden")
 }
 
-// function mostrarBotonCancelarOperacion() {
-//     botonCancelarOperacion.style.display = 'none';
-//     botonCancelarOperacion.style.display = 'inline';
-// }
-
-// function mostrarBotonAgregarOperacion() {
-//     botonAgregarOperacion.style.display = 'none';
-//     botonAgregarOperacion.style.display = 'inline';
-// }
-
-//Boton Cancelar
-/*
-botonCancelarOperacion.onclick = () => {
-    botonReporte.classList.add("is-hidden");
-    seccionCategorias.classList.add("is-hidden");
-    seccionNuevaOperacion.classList.add("is-hidden");
-    botonBalance.classList.remove("is-hidden");
-}
-
 //Boton Agregar
 
 botonAgregarOperacion.onclick = () => {
-    botonReporte.classList.add("is-hidden");
+  
     seccionCategorias.classList.add("is-hidden");
     seccionNuevaOperacion.classList.add("is-hidden");
     botonBalance.classList.remove("is-hidden");
 }
 
- */
+
+//Array de prueba
+
 const operaciones = [{
         descripcion: 'Sueldo',
         categoria: 'Trabajo',
@@ -169,8 +170,8 @@ const operaciones = [{
 ];
 
 
-// funcion agregar oparacion html 
 
+// funcion agregar oparacion html 
 
 // formularioAgregarNuevaOperacion.onsubmit = (event) => {
 //     event.preventDefault()
@@ -194,7 +195,6 @@ const operaciones = [{
 
 
 
-// Reporte
 
 // LocalStorage operaciones///////////////
 const operacionesObtenidas = () => {
@@ -232,6 +232,7 @@ const convertirOperacionesAHTML = (operaciones) => {
             <p class="column">${operacion.tipo}</p> `
     })
 }
+
 
 
 //aca junto la funcion anterior mas la acumuladora que toma los datos del objeto y los muestra
@@ -324,6 +325,47 @@ const mostrarGastosEnBalances = (array) =>{
         return balancesTotalFinal.textContent = resultadoFinal
     }
     mostrarTotalEnBalances(operaciones)
+
+
+  //--------Balances-----------
+//---------- Funcion mostrar suma total de ganancias en la seccion balances-----
+const mostrarGananciasEnBalances = (array) =>{
+const gananciasFiltradas = array.filter((elemento)=>{
+    return elemento.tipo === "Ganancia"
+    })
+console.log(gananciasFiltradas)
+
+    const sumarGanancias = gananciasFiltradas.reduce((acc, elemento)=>{
+return acc + elemento.monto
+    },0)
+    
+return balancesSumaGanancias.textContent = sumarGanancias
+}
+console.log(mostrarGananciasEnBalances(operaciones))
+
+//---------- Funcion mostrar suma total de gastos en la seccion balances-----
+const mostrarGastosEnBalances = (array) =>{
+    const gastosFiltrados = array.filter((elemento)=>{
+        return elemento.tipo === "Gasto"
+        })
+    
+        const sumarGastos = gastosFiltrados.reduce((acc, elemento)=>{
+    return acc + elemento.monto
+        },0)
+        
+    return balancesSumaGastos.textContent = sumarGastos
+    }
+    console.log(mostrarGastosEnBalances(operaciones))
+
+    //---------- Funcion mostrar suma total de gastos en la seccion balances-----
+    const mostrarTotalEnBalances = (array) =>{
+      const resultadoFinalGanancias = mostrarGananciasEnBalances(array)
+      const resultadoFinalGastos = mostrarGastosEnBalances(array)
+      const resultadoFinal = resultadoFinalGanancias - resultadoFinalGastos
+        return balancesTotalFinal.textContent = resultadoFinal
+    }
+    mostrarTotalEnBalances(operaciones)
+
 
 //-----------funciones para ordenar los filtros-----
 
