@@ -46,6 +46,7 @@ botonCategorias.onclick = () => {
     seccionCategorias.classList.remove("is-hidden")
     seccionCentral.classList.add("is-hidden")
     seccionReportes.classList.add("is-hidden")
+    seccionNuevaOperacion.classList.add("is-hidden")
 
 }
 
