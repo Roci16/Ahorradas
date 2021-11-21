@@ -224,23 +224,27 @@ const mostrarOperacionesEnHTML = (array) => {
     array.map((operacion) => {
         acc = acc + `
       <div class="fila columns">
-      <div class="column is-3 has-text-weight-semibold">
-        <p>${operacion.descripcion}</p>
+        <div class="column is-3 has-text-weight-semibold">
+            <span class="span-descripcion">${operacion.descripcion}</span>
         </div>
+
         <div class="column is-3">
-        <p>${operacion.categoria}</p>
+            <span class="span-categoria">${operacion.categoria}</span>
         </div>
+
         <div class="column is-2 has-text-right">
-        <p>${operacion.fecha}</p>
+            <span>${operacion.fecha}</span>
         </div>
+
         <div class="column is-2 has-text-right">
-        <p>${operacion.monto}</p>
+            <span class="span-monto">${operacion.monto}</span>
         </div>
+
         <div class="column is-2 has-text-right">
-        <p>
-        <button class="boton-editar-seccion-principal">Editar</button> 
-        <button>Eliminar</button>
-        </p>
+            <p>
+                <button class="boton-editar-seccion-principal">Editar</button> 
+                <button>Eliminar</button>
+            </p>
         </div>
       </div>
       `
@@ -460,19 +464,42 @@ const botonEditarSeccionPrincipal = ()=>{
     const botonEditarSeccionPrincipal = document.querySelectorAll(".boton-editar-seccion-principal")
     const tarjetaEditarOperacion = document.querySelector(".tarjeta-editar-operacion")
     const botonCancelarSeccionPrincipal = document.querySelector(".boton-cancelar-seccion-principal")
+    const botonEditarEditadoSeccionPrincipal = document.querySelector(".boton-editar-seccion-principal")
+
+    
     const inputDescripcion = document.querySelector(".input-descripcion")
+    const inputMonto = document.querySelector(".input-monto")
+    const inputCategoria = document.querySelector(".input-categoria")
+
+    const spanDescripcion = document.querySelectorAll(".span-descripcion")
+    const spanMonto = document.querySelectorAll(".span-monto")
+    const spanCategoria = document.querySelectorAll(".span-categoria")
+
+
+    
     
     for (let i = 0; i < botonEditarSeccionPrincipal.length; i++) {
-        
+        // click en botonEditar-seccionCentral
         botonEditarSeccionPrincipal[i].onclick = ()=>{
+            // aparece y desaparece la tarjeta
             seccionCentral.classList.add("is-hidden")
             tarjetaEditarOperacion.classList.remove("is-hidden")
+            // valores predeterminados
+            inputDescripcion.value = spanDescripcion[i].textContent
+            inputMonto.value = spanMonto[i].textContent
+            inputCategoria.value = spanCategoria[i].textContent
 
-
-
+            // click en botonCancelar-seccionCentral
             botonCancelarSeccionPrincipal.onclick = () => {
                 seccionCentral.classList.remove("is-hidden")
                 tarjetaEditarOperacion.classList.add("is-hidden")
+            }
+            
+            // click en botonEditar- editando seccionCentral
+            botonEditarEditadoSeccionPrincipal.onclick = ()=>{
+                seccionCentral.classList.remove("is-hidden")
+                tarjetaEditarOperacion.classList.add("is-hidden")
+                
             }
         }
     }
@@ -492,16 +519,17 @@ const botonEditarSeccionCategoria = () =>{
     for (let i = 0; i < botonEditarCategoria.length; i++) {
 
         botonEditarCategoria[i].onclick = () => {
+            // click en botonEditar-seccionCategoria
             seccionCategorias.classList.add("is-hidden")
             tarjetaEditarCategoria.classList.remove("is-hidden")
-            
+            // valor del input seleccionado igual al contenido de la categoria seleccionada
             inputCategoriasNombreEditar.value = nombreCategoria[i].textContent
-
+            // click en botonCancelar-seccionCategoria
             botonCancelarCategoriaEditada.onclick = () => {
                 seccionCategorias.classList.remove("is-hidden")
                 tarjetaEditarCategoria.classList.add("is-hidden")
             }
-    
+            // click en botonEditar editando-seccionCategoria
             botonEditarCategoriaEditada.onclick = ()=>{
                 seccionCategorias.classList.remove("is-hidden")
                 tarjetaEditarCategoria.classList.add("is-hidden")
@@ -510,9 +538,6 @@ const botonEditarSeccionCategoria = () =>{
         }
     } 
 }
-
-
-
 
 agregarCategoriasAHTML()
 adicionDeNuevasCategoriasSelect()
