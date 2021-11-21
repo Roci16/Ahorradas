@@ -464,7 +464,7 @@ const botonEditarSeccionPrincipal = ()=>{
     const botonEditarSeccionPrincipal = document.querySelectorAll(".boton-editar-seccion-principal")
     const tarjetaEditarOperacion = document.querySelector(".tarjeta-editar-operacion")
     const botonCancelarSeccionPrincipal = document.querySelector(".boton-cancelar-seccion-principal")
-    const botonEditarEditadoSeccionPrincipal = document.querySelector(".boton-editar-seccion-principal")
+    const botonEditarEditadoSeccionPrincipal = document.querySelector(".boton-editar-editado-seccion-principal")
 
     
     const inputDescripcion = document.querySelector(".input-descripcion")
@@ -487,7 +487,7 @@ const botonEditarSeccionPrincipal = ()=>{
             // valores predeterminados
             inputDescripcion.value = spanDescripcion[i].textContent
             inputMonto.value = spanMonto[i].textContent
-            inputCategoria.value = spanCategoria[i].textContent
+            inputCategoria.textContent = spanCategoria[i].textContent
 
             // click en botonCancelar-seccionCentral
             botonCancelarSeccionPrincipal.onclick = () => {
@@ -499,7 +499,11 @@ const botonEditarSeccionPrincipal = ()=>{
             botonEditarEditadoSeccionPrincipal.onclick = ()=>{
                 seccionCentral.classList.remove("is-hidden")
                 tarjetaEditarOperacion.classList.add("is-hidden")
-                
+                // valores predeterminados cambiados
+                spanDescripcion[i].textContent = inputDescripcion.value 
+                spanMonto[i].textContent = inputMonto.value 
+                spanCategoria[i].textContent = inputCategoria.textContent  
+
             }
         }
     }
