@@ -211,10 +211,10 @@ const convertirOperacionesAHTML = (operaciones) => {
 const aplicarDescripcionAOperaciones = () => {
     return `<div class="columns has-text-weight-semibold is-hidden-mobile">
             <div class="column is-3">Descripción</div>
-            <div class="column is-3">Categoría</div>
-            <div class="column is-2 has-text-right">Fecha</div>
+            <div class="column is-2">Categoría</div>
+            <div class="column is-2 has-text-centered">Fecha</div>
             <div class="column is-2 has-text-right">Monto</div>
-            <div class="column is-2 has-text-right">Acciones</div>
+            <div class="column is-3 has-text-centered">Acciones</div>
              </div> `
 }
 //aca junto la funcion anterior mas la acumuladora que toma los datos del objeto y los muestra
@@ -228,7 +228,7 @@ const mostrarOperacionesEnHTML = (array) => {
             <span class="span-descripcion">${operacion.descripcion}</span>
         </div>
 
-        <div class="column is-3">
+        <div class="column is-2">
             <span class="span-categoria">${operacion.categoria}</span>
         </div>
 
@@ -240,11 +240,11 @@ const mostrarOperacionesEnHTML = (array) => {
             <span class="span-monto">${operacion.monto}</span>
         </div>
 
-        <div class="column is-2 has-text-right">
-            <p>
-                <button class="boton-editar-seccion-principal">Editar</button> 
-                <button>Eliminar</button>
-            </p>
+        <div class="column is-3 has-text-right">
+            
+                <button class="boton-editar-seccion-principal button is-info is-inverted">Editar</button> 
+                <button class="button is-info is-inverted">Eliminar</button>
+            
         </div>
       </div>
       `
