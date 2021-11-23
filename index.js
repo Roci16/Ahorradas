@@ -150,11 +150,20 @@ const operaciones = [{
         monto: 4000,
         tipo: 'Gasto',
     },
+
     {
         descripcion: 'Edelap',
         categoria: 'Servicios',
         fecha: '2021-04-18',
         monto: 300,
+        tipo: 'Gasto',
+    },
+
+    {
+        descripcion: 'cena en la playa',
+        categoria: 'Salidas',
+        fecha: '2021-04-19',
+        monto: 3000,
         tipo: 'Gasto',
     },
 ];
