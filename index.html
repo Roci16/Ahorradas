@@ -142,32 +142,32 @@
                                     </div>
                                 </div>
 
-                                <div class="columns my-5">
+                                <div id="tarjeta-sin-operaciones">
+                                    <div class="columns my-5">
 
-                                    <!-- Funcion de lo que aparece cuando se agrega una operacion -->
-
-
-                                    <figure class="image column is-offset-3 is-6">
-                                        <img src="imagenes/undraw_Pie_chart_re_bgs8.svg">
-
-                                    </figure>
-
-                                </div>
+                                        <!-- Funcion de lo que aparece cuando se agrega una operacion -->
 
 
+                                        <figure class="image column is-offset-3 is-6">
+                                            <img src="imagenes/undraw_Pie_chart_re_bgs8.svg">
 
-                                <div class="columns">
-                                    <p class="column has-text-centered is-size-4 has-text-weight-semibold has-text-grey-dark">Sin resultados</p>
+                                        </figure>
 
-                                </div>
-                                <div class="columns mb-6">
-                                    <p class="column has-text-centered">Cambia los filtros o agrega operaciones</p>
+                                    </div>
+
+                                    <div class="columns">
+                                        <p class="column has-text-centered is-size-4 has-text-weight-semibold has-text-grey-dark">Sin resultados</p>
+
+                                    </div>
+                                    <div class="columns mb-6">
+                                        <p class="column has-text-centered">Cambia los filtros o agrega operaciones</p>
+                                    </div>
                                 </div>
                             </div>
 
 
                             <!-- Tarjeta de operaciones que ya se agregaron -->
-                            <div id="contenedor-operaciones-agregadas" class="column">
+                            <div id="contenedor-operaciones-agregadas" class="column is-hidden">
                                 <div class="columns">
                                     <div class="column">Descropción</div>
                                     <div class="column is-1 has-text-centered">Categoría</div>
@@ -207,9 +207,9 @@
                         <label class="label" for="select-tipo-nueva-operacion">Tipo</label>
                         <div class="select is-fullwidth ">
                             <select id="select-tipo-nueva-operacion"> 
-                                         <option>Gasto</option>
-                                         <option>Ganancia</option>
-                                    </select>
+                                         <option value="gastos">Gasto</option>
+                                         <option value="ganancias">Ganancia</option>
+                            </select>
                         </div>
                     </div>
 
@@ -217,20 +217,20 @@
                         <label class="label" for="select-categoria-nueva-operacion">Categoría</label>
                         <div class="select is-fullwidth  ">
                             <select id="select-categoria-nueva-operacion">                        
-                                                 <option>Comida</option>
-                                                 <option>Servicios</option>
-                                                 <option>Salidas</option>
-                                                 <option>Educación</option>
-                                                 <option>Transporte</option>
-                                                 <option>Trabajo</option>
+                                                 <option value="comida">Comida</option>
+                                                 <option value="servicios">Servicios</option>
+                                                 <option value="salidas">Salidas</option>
+                                                 <option value="educacion">Educación</option>
+                                                 <option value="transporte">Transporte</option>
+                                                 <option value="trabajo">Trabajo</option>
                                             </select>
                         </div>
                     </div>
 
                     <div class="field">
-                        <label class="label" for="date">Desde</label>
+                        <label class="label" for="dateNuevaOperacion">Desde</label>
                         <div class="control">
-                            <input class="input" id="date" type="date">
+                            <input class="input" id="dateNuevaOperacion" type="date">
                         </div>
                     </div>
 
