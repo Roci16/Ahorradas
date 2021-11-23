@@ -7,12 +7,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AhorrADAs</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+    <link rel="stylesheet" href="estilo.css">
     <script src="https://kit.fontawesome.com/fc20ae3cbb.js" crossorigin="anonymous"></script>
     <link rel="icon" type="image/ico" href="favicon/beneficios.png" />
 </head>
 
 <body>
-
     <!-- Seccion Nav Main -->
     <nav class="navbar  is-primary is-spaced" aria-label="Barra de navegacion">
         <div class="navbar-brand">
@@ -41,6 +41,10 @@
         </div>
     </nav>
 
+        <!-- "Seccion central" -->
+    <section id="seccion-central" class="section">
+        <div class="conteiner ">
+
     <div class="hero has-background-light  is-fullheight">
         <section id="seccion-central" class="section">
             <div class="conteiner ">
@@ -51,36 +55,37 @@
                     <div class=" column is-offset-1 is-3">
 
 
-                        <div class="box">
-                            <h2 class="title has-text-weight-bold has-text-grey-dark mb-6">Balance</h2>
-                            <div class="columns">
-                                <div class="column is-size-5">Ganancias </div>
-                                <div class="column has-text-success has-text-right ">+$0</div>
-                            </div>
-                            <div class="columns">
-                                <div class="column is-size-5">Gastos </div>
-                                <div class="column has-text-danger has-text-right">-$0</div>
-                            </div>
-                            <div class="columns">
-                                <div class="column is-size-4">Total </div>
-                                <div class="column has-text-weight-bold has-text-right">$0</div>
-                            </div>
+                    <div class="box">
+                        <h2 class="title has-text-weight-bold has-text-grey-dark mb-6">Balance</h2>
+                        <div class="columns">
+                            <div class="column is-size-5">Ganancias </div>
+                            <div class="column has-text-success has-text-right sumaGanancias">+$0</div>
+                        </div>
+                        <div class="columns">
+                            <div class="column is-size-5">Gastos </div>
+                            <div class="column has-text-danger has-text-right sumaGastos">-$0</div>
+                        </div>
+                        <div class="columns">
+                            <div class="column is-size-4">Total </div>
+                            <div class="column has-text-weight-bold has-text-right totalBalances">$0</div>
+                        </div>
+                    </div>
+
+                    <!-- Box Filtros -->
+                    <article class=" box">
+                        <div class="columns">
+                            <h2 class="title column is-5 has-text-weight-bold has-text-grey-dark">Filtros</h2>
+                            <button class="button  column has-text-right is-info is-inverted " id="boton-ocultar-filtros">Ocultar filtros</button>
                         </div>
 
-                        <!-- Box Filtros -->
-                        <article class=" box">
-                            <div class="columns">
-                                <h2 class="title column is-5 has-text-weight-bold has-text-grey-dark">Filtros</h2>
-                                <button class="button  column has-text-right is-info is-inverted ">Ocultar filtros</button>
-                            </div>
+       
 
                             <form id="form">
-
-                                <!-- Select Tipo  -->
-                                <div class="field">
-                                    <label class="label" for="select-tipo">Tipo</label>
-                                    <div class="select is-fullwidth ">
-                                        <select id="select-tipo">
+                            <!-- Select Tipo  -->
+                            <div class="field" id="div-formulario-filtros">
+                                <label class="label" for="select-tipo">Tipo</label>
+                                <div class="select is-fullwidth ">
+                                    <select id="select-tipo">
                                          <option>Todos</option>
                                          <option>Gasto</option>
                                          <option>Ganancia</option>
@@ -88,12 +93,13 @@
                                     </div>
                                 </div>
 
-                                <!-- Select Categoría -->
-                                <div class="field">
-                                    <label class="label" for="select-categoria">Categoría</label>
-                                    <div class="select is-fullwidth  ">
-                                        <select id="select-categoria">
-                                         <option>Todos</option>
+
+                            <!-- Select Categoría -->
+                            <div class="field">
+                                <label class="label" for="select-categoria">Categoría</label>
+                                <div class="select is-fullwidth  ">
+                                    <select id="select-categoria">
+                                         <option>Todas</option>
                                          <option>Comida</option>
                                          <option>Servicios</option>
                                          <option>Salidas</option>
@@ -113,11 +119,12 @@
                                 </div>
 
 
-                                <!-- Select Ordenar por -->
-                                <div class="field">
-                                    <label class="label" for="select-odenar">Categoría</label>
-                                    <div class="select is-fullwidth  ">
-                                        <select id="select-ordenar">
+
+                            <!-- Select Ordenar por -->
+                            <div class="field">
+                                <label class="label" for="select-odenar">Ordenar por</label>
+                                <div class="select is-fullwidth  ">
+                                    <select id="select-ordenar">
                                          <option>Más reciente</option>
                                          <option>Menos reciente</option>
                                          <option>Mayor monto</option>
