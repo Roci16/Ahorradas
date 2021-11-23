@@ -183,7 +183,7 @@ const operacionesObtenidas = () => {
     const operacionesLS = localStorage.getItem("operaciones")
     console.log(operacionesLS);
     if (operacionesLS === null) {
-        return null
+        return operaciones
     } else {
         tarjetaSinOperaciones.classList.add("is-hidden")
         contenedorOperacionesAgregadas.classList.remove("is-hidden")
@@ -233,7 +233,7 @@ const mostrarOperacionesEnHTML = (array) => {
       <div class="column is-3 has-text-weight-semibold">
         <p>${operacion.descripcion}</p>
         </div>
-        <div class="column is-3">
+        <div class="column is-1">
         <p>${operacion.categoria}</p>
         </div>
         <div class="column is-2 has-text-right">
@@ -242,7 +242,7 @@ const mostrarOperacionesEnHTML = (array) => {
         <div class="column is-2 has-text-right">
         <p >${operacion.monto}</p>
         </div>
-        <div class="column is-2 has-text-right">
+        <div class="column is-3 has-text-right">
         <button id="editar-categoria-${index}" class="button is-info is-inverted boton-editar-categoria">Editar</button>
         <button id="borrar-${index}"  class="boton-borrar-operacion button is-info is-inverted ">Eliminar</button>
         </div>
@@ -496,8 +496,9 @@ botonAgregarOperacion.onclick = () => {
     }
 
     operaciones.push(operacion)
-    mostrarOperacionesEnHTML(operaciones)
     funcionOperacionesLS(operaciones)
+    mostrarOperacionesEnHTML(operaciones)
+
 
     valorInputDescripcionNuevaOperacion.value = ""
     valorInputMontoNuevaOperacion.value = ""
@@ -505,7 +506,9 @@ botonAgregarOperacion.onclick = () => {
     valorInputDateNuevaOperacion.value = ""
     valorOpcionTipoNuevaOperacion.value = ""
 }
-mostrarOperacionesEnHTML(operacionesObtenidas())
+
+const operacion = operacionesObtenidas()
+mostrarOperacionesEnHTML(operacion)
 
 const agregarCategoriasAHTML = () => {
     const categorias = categoriasObtenidas()
