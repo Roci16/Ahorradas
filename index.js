@@ -527,7 +527,7 @@ botonAgregarOperacion.onclick = () => {
 
     operaciones.push(nuevoObjetoOperaciones)
     mostrarOperacionesEnHTML(operaciones)
-    operacionesObtenidas(operaciones)
+    funcionOperacionesLS(operaciones)
     console.log(operaciones);
 }
 mostrarOperacionesEnHTML(operaciones)
