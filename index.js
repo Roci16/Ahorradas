@@ -102,119 +102,88 @@ botonCancelarOperacion.onclick = () => {
 
 
 
-const operaciones = [{
-        descripcion: 'Sueldo',
-        categoria: 'Trabajo',
-        fecha: '2021-01-01',
-        monto: 50000,
-        tipo: 'Ganancia',
-    },
+const operaciones = [
+    // {
+    //     descripcion: 'Sueldo',
+    //     categoria: 'Trabajo',
+    //     fecha: '2021-01-01',
+    //     monto: 50000,
+    //     tipo: 'Ganancia',
+    // },
 
-    {
-        descripcion: 'Pago de alquiler',
-        categoria: 'Alquiler',
-        fecha: '2021-01-02',
-        monto: 15000,
-        tipo: 'Gasto',
-    },
-    {
-        descripcion: 'Pago de expensas',
-        categoria: 'Alquiler',
-        fecha: '2021-01-02',
-        monto: 5000,
-        tipo: 'Gasto',
-    },
-    {
-        descripcion: 'Pago de internet',
-        categoria: 'Servicios',
-        fecha: '2021-01-10',
-        monto: 2000,
-        tipo: 'Gasto',
-    },
-    {
-        descripcion: 'Trabajo freelance',
-        categoria: 'Trabajo',
-        fecha: '2021-01-15',
-        monto: 20000,
-        tipo: 'Ganancia',
-    },
-    {
-        descripcion: 'Cena con amigas',
-        categoria: 'Salidas',
-        fecha: '2021-01-18',
-        monto: 1500,
-        tipo: 'Gasto',
-    },
-    {
-        descripcion: 'Salida turistica',
-        categoria: 'Salidas',
-        fecha: '2020-01-18',
-        monto: 3500,
-        tipo: 'Gasto',
-    },
-    {
-        descripcion: 'Pasantía',
-        categoria: 'Educación',
-        fecha: '2020-06-13',
-        monto: 6600,
-        tipo: 'Gasto',
-    },
-    {
-        descripcion: 'Viaje a las toninas',
-        categoria: 'Transporte',
-        fecha: '2020-05-18',
-        monto: 4000,
-        tipo: 'Gasto',
-    },
-    {
-        descripcion: 'Edelap',
-        categoria: 'Servicios',
-        fecha: '2021-04-18',
-        monto: 300,
-        tipo: 'Gasto',
-    },
+    // {
+    //     descripcion: 'Pago de alquiler',
+    //     categoria: 'Alquiler',
+    //     fecha: '2021-01-02',
+    //     monto: 15000,
+    //     tipo: 'Gasto',
+    // },
+    // {
+    //     descripcion: 'Pago de expensas',
+    //     categoria: 'Alquiler',
+    //     fecha: '2021-01-02',
+    //     monto: 5000,
+    //     tipo: 'Gasto',
+    // },
+    // {
+    //     descripcion: 'Pago de internet',
+    //     categoria: 'Servicios',
+    //     fecha: '2021-01-10',
+    //     monto: 2000,
+    //     tipo: 'Gasto',
+    // },
+    // {
+    //     descripcion: 'Trabajo freelance',
+    //     categoria: 'Trabajo',
+    //     fecha: '2021-01-15',
+    //     monto: 20000,
+    //     tipo: 'Ganancia',
+    // },
+    // {
+    //     descripcion: 'Cena con amigas',
+    //     categoria: 'Salidas',
+    //     fecha: '2021-01-18',
+    //     monto: 1500,
+    //     tipo: 'Gasto',
+    // },
+    // {
+    //     descripcion: 'Salida turistica',
+    //     categoria: 'Salidas',
+    //     fecha: '2020-01-18',
+    //     monto: 3500,
+    //     tipo: 'Gasto',
+    // },
+    // {
+    //     descripcion: 'Pasantía',
+    //     categoria: 'Educación',
+    //     fecha: '2020-06-13',
+    //     monto: 6600,
+    //     tipo: 'Gasto',
+    // },
+    // {
+    //     descripcion: 'Viaje a las toninas',
+    //     categoria: 'Transporte',
+    //     fecha: '2020-05-18',
+    //     monto: 4000,
+    //     tipo: 'Gasto',
+    // },
+    // {
+    //     descripcion: 'Edelap',
+    //     categoria: 'Servicios',
+    //     fecha: '2021-04-18',
+    //     monto: 300,
+    //     tipo: 'Gasto',
+    // },
 ];
 
 
-// funcion agregar oparacion html 
 
-//Boton Agregar
-
-// botonAgregarOperacion.onclick = () =>{
-
-// }
-
-
-
-// formularioAgregarNuevaOperacion.onsubmit = (event) => {
-//     event.preventDefault()
-// }
-
-// botonAgregar.onclick = () => {
-//     const seccionNuevaOperacion = {
-//         descripcion: Descripcion.value,
-//         monto: Monto.value,
-//         tipo: Tipo.value,
-//         categoria: Categorias.value,
-//         fecha: Fecha.value,
-//     }
-
-//     operaciones.push(seccionNuevaOperacion);
-
-//     guardarEnLocalStorage(operaciones, "operaciones");
-
-//     mostrarOperacionesEnHTML();
-// }
-
-
-
-// Reporte
-
-// LocalStorage operaciones///////////////
+// LocalStorage operaciones ///////////////
 const operacionesObtenidas = () => {
     const operacionesLS = localStorage.getItem("operaciones")
+    console.log(operacionesLS);
     if (operacionesLS === null) {
-        return operaciones
+        return null
     } else {
         tarjetaSinOperaciones.classList.add("is-hidden")
         contenedorOperacionesAgregadas.classList.remove("is-hidden")
@@ -503,6 +472,7 @@ const adicionDeNuevasCategoriasSelect = () => {
 
 
 botonAgregarOperacion.onclick = () => {
+
     seccionCategorias.classList.add("is-hidden");
     seccionNuevaOperacion.classList.add("is-hidden");
     seccionCentral.classList.remove("is-hidden")
@@ -517,7 +487,7 @@ botonAgregarOperacion.onclick = () => {
     const valorOpcionTipoNuevaOperacion = selectTipoNuevaOperacion.value
 
 
-    const nuevoObjetoOperaciones = {
+    const operacion = {
         descripcion: valorInputDescripcionNuevaOperacion,
         categoria: valorOpcionCategoriaNuevaOperacion,
         fecha: valorInputDateNuevaOperacion,
@@ -525,12 +495,17 @@ botonAgregarOperacion.onclick = () => {
         tipo: valorOpcionTipoNuevaOperacion,
     }
 
-    operaciones.push(nuevoObjetoOperaciones)
+    operaciones.push(operacion)
     mostrarOperacionesEnHTML(operaciones)
     funcionOperacionesLS(operaciones)
-    console.log(operaciones);
+
+    valorInputDescripcionNuevaOperacion.value = ""
+    valorInputMontoNuevaOperacion.value = ""
+    valorOpcionCategoriaNuevaOperacion.value = ""
+    valorInputDateNuevaOperacion.value = ""
+    valorOpcionTipoNuevaOperacion.value = ""
 }
-mostrarOperacionesEnHTML(operaciones)
+mostrarOperacionesEnHTML(operacionesObtenidas())
 
 const agregarCategoriasAHTML = () => {
     const categorias = categoriasObtenidas()
