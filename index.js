@@ -216,6 +216,8 @@ const operacionesObtenidas = () => {
     if (operacionesLS === null) {
         return operaciones
     } else {
+        tarjetaSinOperaciones.classList.add("is-hidden")
+        contenedorOperacionesAgregadas.classList.remove("is-hidden")
         return JSON.parse(operacionesLS)
     }
 }
@@ -525,6 +527,7 @@ botonAgregarOperacion.onclick = () => {
 
     operaciones.push(nuevoObjetoOperaciones)
     mostrarOperacionesEnHTML(operaciones)
+    operacionesObtenidas(operaciones)
     console.log(operaciones);
 }
 mostrarOperacionesEnHTML(operaciones)
