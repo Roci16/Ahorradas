@@ -181,7 +181,6 @@ const operaciones = [
 // LocalStorage operaciones ///////////////
 const operacionesObtenidas = () => {
     const operacionesLS = localStorage.getItem("operaciones")
-    console.log(operacionesLS);
     if (operacionesLS === null) {
         return operaciones
     } else {
