@@ -482,8 +482,8 @@ const tarjetaEditarOperacionEditar = (id)=>{
                 <div class="control">
                     <label for="Tipo" class="label"> Tipo</label>
                     <div class="select is-fullwidth">
-                        <select value="${objeto.tipo}">
-                        <option>Gasto</option>
+                        <select>
+                        <option value="${objeto.tipo}">Gasto</option>
                         <option>Ganancia</option>
                         </select>
                     </div>
@@ -534,6 +534,7 @@ const tarjetaEditarOperacionEditar = (id)=>{
         objeto.descripcion = valorDescripcion
 
         mostrarOperacionesEnHTML(operaciones)
+        botonEditarSeccionOperaciones() 
     }
 }
 const botonEditarSeccionOperaciones = ()=>{
@@ -592,7 +593,6 @@ const ocultarSecciones = ()=> {
 //         nombreCategoria[i].textContent = inputCategoriasNombreEditar.value
 //     }
 // }
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 agregarCategoriasAHTML()
 adicionDeNuevasCategoriasSelect()
