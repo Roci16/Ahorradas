@@ -453,9 +453,20 @@ const agregarCategoriasAHTML = () => {
         }
     }
     botonEditarSeccionOperaciones()
-    //botonEditarSeccionCategoria()
+    botonEditarSeccionCategoria()
 }
-
+// BOTON EDITAR CATEGORIA
+const botonEditarSeccionOperaciones = ()=>{
+    const botonEditarSeccionOperaciones = document.querySelectorAll(".boton-editar-seccion-operaciones")
+    for (let i = 0; i < botonEditarSeccionOperaciones.length; i++) {
+        botonEditarSeccionOperaciones[i].onclick = ()=>{
+            const idRecortado = botonEditarSeccionOperaciones[i].id.slice(31)
+            idDelBoton = Number(idRecortado)
+            tarjetaEditarOperacionEditar (idDelBoton)
+            ocultarSecciones()
+        }
+    }
+}
 // TARJETA EDITAR CATEGORIA
 const tarjetaEditarOperacionEditar = (id)=>{
     const formTarjetaEditarOperacion = document.querySelector(".form-tarjeta-editar-operacion")
@@ -482,9 +493,8 @@ const tarjetaEditarOperacionEditar = (id)=>{
                 <div class="control">
                     <label for="Tipo" class="label"> Tipo</label>
                     <div class="select is-fullwidth">
-                        <select>
-                        <option value="${objeto.tipo}">Gasto</option>
-                        <option>Ganancia</option>
+                        <select id="editar-tipo-operacion">
+                        <option value="${objeto.tipo}">${objeto.tipo}</option>
                         </select>
                     </div>
                 </div>
@@ -493,8 +503,9 @@ const tarjetaEditarOperacionEditar = (id)=>{
                 <label for="Categoria" class="label"> Categoria</label>
                 <div class="control">
                     <div class="select is-fullwidth">
-                        <select id= "input-categoria" value="${objeto.categoria}">
-                            
+                        <select id="input-categoria">
+                        <option>Gasto</option>
+                        <option>Ganancia</option>
                         </select>
                     </div>
                 </div>         
@@ -514,13 +525,14 @@ const tarjetaEditarOperacionEditar = (id)=>{
     const formSeccionOperacion = document.querySelector(".form-seccion-operacion")
     const inputDescripcion = document.querySelector("#input-descripcion")
     const inputMonto = document.querySelector("#input-monto")
+    const editarTipoOperacion = document.querySelector("#editar-tipo-operacion")
+
     const botonCancelarSeccionOperaciones = document.querySelector("#boton-cancelar-seccion-operaciones")
 
     botonCancelarSeccionOperaciones.onclick = (e) => {
         e.preventDefault()
         ocultarSecciones()
         inputDescripcion.value = objeto.descripcion
-        console.log(inputDescripcion.value);
     }
 
     formSeccionOperacion.onsubmit = (e) => {
@@ -530,6 +542,7 @@ const tarjetaEditarOperacionEditar = (id)=>{
         
         const valorMonto = Number(inputMonto.value)
         const valorDescripcion = inputDescripcion.value
+        // const valorTipo = 
         objeto.monto = valorMonto
         objeto.descripcion = valorDescripcion
 
@@ -537,62 +550,52 @@ const tarjetaEditarOperacionEditar = (id)=>{
         botonEditarSeccionOperaciones() 
     }
 }
-const botonEditarSeccionOperaciones = ()=>{
-    const botonEditarSeccionOperaciones = document.querySelectorAll(".boton-editar-seccion-operaciones")
-    for (let i = 0; i < botonEditarSeccionOperaciones.length; i++) {
-        botonEditarSeccionOperaciones[i].onclick = ()=>{
-            const idRecortado = botonEditarSeccionOperaciones[i].id.slice(31)
-            idDelBoton = Number(idRecortado)
-            tarjetaEditarOperacionEditar (idDelBoton)
-            ocultarSecciones()
-        }
-    }
-}
+
+// funcion auxiliar ocultar secciones - operaciones
 const ocultarSecciones = ()=> {
     const tarjetaEditarOperacion = document.querySelector(".tarjeta-editar-operacion")
     seccionCentral.classList.toggle("is-hidden")
     tarjetaEditarOperacion.classList.toggle("is-hidden")
 }
 
-////////////////////////////////////////////////categoria/////////////////////////////////////////////
+// BOTON EDITAR CATEGORIA
+const botonEditarSeccionCategoria = () =>{
+    const botonEditarCategoria = document.querySelectorAll(".boton-editar-categoria")
+    const inputCategoriasNombreEditar = document.querySelector(".input-categorias-nombre-editar")
+    const nombreCategoria = document.querySelectorAll(".nombre-categoria")
 
-// const botonEditarSeccionCategoria = () =>{
-//     const botonEditarCategoria = document.querySelectorAll(".boton-editar-categoria")
-//     const tarjetaEditarCategoria = document.querySelector(".tarjeta-editar-categoria")
-//     const inputCategoriasNombreEditar = document.querySelector(".input-categorias-nombre-editar")
-//     const nombreCategoria = document.querySelectorAll(".nombre-categoria")
+    for (let i = 0; i < botonEditarCategoria.length; i++) {
+        botonEditarCategoria[i].onclick = () => {
+            const botonEditarCategoriaEditada = document.querySelector(".boton-editar-categoria-editada")
+            const nombreCategoria = document.querySelectorAll(".nombre-categoria")
+            const inputCategoriasNombreEditar = document.querySelector(".input-categorias-nombre-editar")
 
-//     for (let i = 0; i < botonEditarCategoria.length; i++) {
-//         botonEditarCategoria[i].onclick = () => {
-//             seccionCategorias.classList.add("is-hidden")
-//             tarjetaEditarCategoria.classList.remove("is-hidden")
-//             inputCategoriasNombreEditar.value = nombreCategoria[i].textContent
+            inputCategoriasNombreEditar.value = nombreCategoria[i].textContent
 
-//             botonCancelarDentroCategoria ()
-//         }
-//     } 
-// }
-// const botonCancelarDentroCategoria = ()=>{
-//     const botonCancelarCategoriaEditada = document.querySelector(".boton-cancelar-categoria-editada")
-//     const tarjetaEditarCategoria = document.querySelector(".tarjeta-editar-categoria")
+            ocultarSeccionesCategoria()
+            
+            botonEditarCategoriaEditada.onclick = ()=>{
+                ocultarSeccionesCategoria()
+                nombreCategoria[i].textContent = inputCategoriasNombreEditar.value
+            }
+            botonCancelarDentroCategoria ()
 
-//     botonCancelarCategoriaEditada.onclick = () => {
-//         seccionCategorias.classList.remove("is-hidden")
-//         tarjetaEditarCategoria.classList.add("is-hidden")
-//     }
-// }
-// const botonEditarDentroCategoria = () =>{
-//     const botonEditarCategoriaEditada = document.querySelector(".boton-editar-categoria-editada")
-//     const tarjetaEditarCategoria = document.querySelector(".tarjeta-editar-categoria")
-//     const nombreCategoria = document.querySelectorAll(".nombre-categoria")
-//     const inputCategoriasNombreEditar = document.querySelector(".input-categorias-nombre-editar")
+        }
+    } 
+}
+const botonCancelarDentroCategoria = ()=>{
+    const botonCancelarCategoriaEditada = document.querySelector(".boton-cancelar-categoria-editada")
+    botonCancelarCategoriaEditada.onclick = () => {
+        ocultarSeccionesCategoria()
+    }
+}
+// funcion auxiliar ocultar secciones- categoria 
+const ocultarSeccionesCategoria =()=>{
+    const tarjetaEditarCategoria = document.querySelector(".tarjeta-editar-categoria")
+    seccionCategorias.classList.toggle("is-hidden")
+    tarjetaEditarCategoria.classList.toggle("is-hidden")
+}
 
-//     botonEditarCategoriaEditada.onclick = ()=>{
-//         seccionCategorias.classList.remove("is-hidden")
-//         tarjetaEditarCategoria.classList.add("is-hidden")
-//         nombreCategoria[i].textContent = inputCategoriasNombreEditar.value
-//     }
-// }
 
 agregarCategoriasAHTML()
 adicionDeNuevasCategoriasSelect()
