@@ -315,7 +315,7 @@ const filtroOrdenarPor = (array) => {
 
 }
 
-// -------------------Función aplicar filtros----------------- florr
+// -------------------Función aplicar filtros----------------- 
 const aplicarFiltros = () => {
     const tipo = filtroTipo.value //filtro por tipo
     const filtradoPorTipo = operaciones.filter((operacion) => {
@@ -381,7 +381,25 @@ formulario.onsubmit = (e) => {
     e.preventDefault()
 }
 
-// ----------------------------
+//seccion localstorage operaciones
+
+const operacionesLocalStorage = guardarEnLocalStorage();
+	operacionesLocalStorage.operaciones.push(NuevaOperacion);
+	localStorage.setItem(
+		"ahorradas-final",
+		JSON.stringify(operacionesLocalStorage)
+	);
+	mostrarOperaciones();
+
+    const mostrarOperaciones = () => {
+        let mostrarLocalStorage = guardarEnLocalStorage();
+        mostrarEnHTML(mostrarLocalStorage.operaciones);
+    };
+    mostrarOperaciones();
+
+
+
+
 
 
 //--------------- Seccion categorias----------------------------
