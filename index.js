@@ -14,6 +14,9 @@ const botonNuevaOperacion = document.getElementById("boton-nueva-operacion")
 // BOTON QUE NO SE LO QUE HACE TODAVIA
 const botonCancelar = document.getElementById("boton-cancelar");
 
+const botonAgregar = document.getElementById("boton-agregar")
+
+
 // const botonAgregar = document.getElementById("boton-agregar");
 const botonCancelarOperacion = document.querySelector("#boton-cancelar-operacion");
 const botonAgregarOperacion = document.querySelector("#boton-agregar-operacion");
@@ -190,7 +193,9 @@ const operaciones = [
 
 
 
-// LocalStorage operaciones ///////////////
+
+// LocalStorage operaciones///////////////
+
 const operacionesObtenidas = () => {
     const operacionesLS = localStorage.getItem("operaciones")
     if (operacionesLS === null) {
@@ -201,6 +206,7 @@ const operacionesObtenidas = () => {
         return JSON.parse(operacionesLS)
     }
 }
+
 
 let funcionOperacionesLS = (elemento) => {
         const operacionesAJSON = JSON.stringify(elemento)
@@ -231,6 +237,19 @@ const convertirOperacionesAHTML = (operaciones) => {
 
 
 
+
+    //---------- Funcion mostrar en HTML------------flor---------
+    //esta funcion muestra los titulos de las categorias una vez que se ingresan los datos (no debe ser parte de la acumuladora)
+const aplicarDescripcionAOperaciones = () => {
+    return `<div class="columns has-text-weight-semibold is-hidden-mobile">
+            <div class="column is-3">Descripción</div>
+            <div class="column is-2">Categoría</div>
+            <div class="column is-2 has-text-centered">Fecha</div>
+            <div class="column is-2 has-text-right">Monto</div>
+            <div class="column is-3 has-text-centered">Acciones</div>
+             </div> `
+}
+
 //aca junto la funcion anterior mas la acumuladora que toma los datos del objeto y los muestra
 const mostrarOperacionesEnHTML = (array) => {
 
@@ -241,22 +260,29 @@ const mostrarOperacionesEnHTML = (array) => {
         return (
             acc +
             `
+
       <div class="fila columns">
-      <div class="column is-3 has-text-weight-semibold">
-        <p>${operacion.descripcion}</p>
+        <div class="column is-3 has-text-weight-semibold">
+            <span class="span-descripcion">${operacion.descripcion}</span>
         </div>
+
         <div class="column is-1">
         <p>${operacion.categoria}</p>
+
         </div>
+
         <div class="column is-2 has-text-right">
-        <p>${operacion.fecha}</p>
+            <span>${operacion.fecha}</span>
         </div>
+
         <div class="column is-2 has-text-right">
+
         <p >${operacion.monto}</p>
         </div>
         <div class="column is-3 has-text-right">
-        <button id="editar-categoria-${index}" class="button is-info is-inverted boton-editar-categoria">Editar</button>
+        <button id="boton-editar-seccion-principal-${index}" class="button is-info is-inverted boton-editar-categoria">Editar</button>
         <button id="borrar-${index}"  class="boton-borrar-operacion button is-info is-inverted ">Eliminar</button>
+
         </div>
       </div>
       `
@@ -500,11 +526,11 @@ const categoriasObtenidas = () => {
     }
 }
 let funcionLS = (elemento) => {
-        const categoriasAJSON = JSON.stringify(elemento)
-        localStorage.setItem("categorias", categoriasAJSON)
+    const categoriasAJSON = JSON.stringify(elemento)
+    localStorage.setItem("categorias", categoriasAJSON)
 
-    }
-    ////////////////////////////// 
+}
+////////////////////////////// 
 
 const adicionDeNuevasCategoriasSelect = () => {
     const categorias = categoriasObtenidas()
@@ -568,23 +594,21 @@ const agregarCategoriasAHTML = () => {
     const lista = document.getElementById("lista-categoria")
 
     const stringCategoriasIniciadoras = categorias.reduce((acc, elemento, index) => {
-
         return acc + ` <div class=" columns">
             <div class="column">
-                 <span class=" has-background-success-light has-text-success-dark">${elemento}</span>
+                 <span id="nombre-categoria-${index}" class="nombre-categoria has-background-success-light has-text-success-dark">${elemento}</span>
             </div>
-         <div class="column has-text-right">
-                 <button id="editar-categoria-${index}" class="button is-info is-inverted boton-editar-categoria">Editar</button>
-
-             <button id="borrar-${index}"  class="boton-borrar button is-info is-inverted ">Eliminar</button>
-         </div>
+            <div class="column has-text-right">
+                <button id="editar-categoria-${index}" class="button is-info is-inverted boton-editar-categoria">Editar</button>
+                <button id="borrar-${index}"  class="boton-borrar button is-info is-inverted ">Eliminar</button>
+            </div>
      </div>`
     }, "")
 
-
     lista.innerHTML = stringCategoriasIniciadoras
-    const botonesBorrar = document.querySelectorAll(".boton-borrar")
 
+    ///// boton borrar categorias
+    const botonesBorrar = document.querySelectorAll(".boton-borrar")
     for (let i = 0; i < botonesBorrar.length; i++) {
         botonesBorrar[i].onclick = () => {
             const id = botonesBorrar[i].id
@@ -597,15 +621,157 @@ const agregarCategoriasAHTML = () => {
             agregarCategoriasAHTML()
             adicionDeNuevasCategoriasSelect()
         }
+    }
+    botonEditarSeccionOperaciones()
+    botonEditarSeccionCategoria()
+}
+// aca empiezan las funciones de botones
+// BOTON EDITAR CATEGORIA
+const botonEditarSeccionOperaciones = ()=>{
+    const botonEditarSeccionOperaciones = document.querySelectorAll(".boton-editar-seccion-operaciones")
+    for (let i = 0; i < botonEditarSeccionOperaciones.length; i++) {
+        botonEditarSeccionOperaciones[i].onclick = ()=>{
+            const idRecortado = botonEditarSeccionOperaciones[i].id.slice(31)
+            idDelBoton = Number(idRecortado)
+            tarjetaEditarOperacionEditar (idDelBoton)
+            ocultarSecciones()
+        }
+    }
+}
+// TARJETA EDITAR CATEGORIA
+const tarjetaEditarOperacionEditar = (id)=>{
+    const formTarjetaEditarOperacion = document.querySelector(".form-tarjeta-editar-operacion")
 
+    const objeto = operaciones [id]
+    
+    formTarjetaEditarOperacion.innerHTML = `
+    <div class="tarjeta-editar-operacion column is-offset-2 is-8 is-hidden">
+        <form class="box form-seccion-operacion">
+            <h2 class="title is-1 has-text-weight-bold">Editar operación</h2>
+            <div class="field">
+                <div class="control">
+                    <label for="Descripción" class="label"> Descripción </label>
+                    <input class="input" id="input-descripcion" type="text" value="${objeto.descripcion}">
+                </div>
+            </div>
+            <div class="field">
+                <div class="control">
+                    <label for="Monto" class="label"> Monto</label>
+                        <input class="input" id="input-monto" type="number" value="${objeto.monto}">
+                 </div>
+            </div>
+            <div class="field">
+                <div class="control">
+                    <label for="Tipo" class="label"> Tipo</label>
+                    <div class="select is-fullwidth">
+                        <select id="editar-tipo-operacion">
+                        <option value="${objeto.tipo}">${objeto.tipo}</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="field">
+                <label for="Categoria" class="label"> Categoria</label>
+                <div class="control">
+                    <div class="select is-fullwidth">
+                        <select id="input-categoria">
+                        <option>Gasto</option>
+                        <option>Ganancia</option>
+                        </select>
+                    </div>
+                </div>         
+            </div>
+            <div class="field">
+                <div class="control">
+                    <label for="Fecha" class="label"> Fecha</label>
+                    <input class="input" type="date">
+                </div>
+            </div>
+            <div class="has-text-right">
+                <button type="button" id="boton-cancelar-seccion-operaciones" class="button is-light"> Cancelar </button>
+                <input type="submit" value="Editar"  class="button is-success">
+            </div>
+        </form>
+    </div>`
+    const formSeccionOperacion = document.querySelector(".form-seccion-operacion")
+    const inputDescripcion = document.querySelector("#input-descripcion")
+    const inputMonto = document.querySelector("#input-monto")
+    const editarTipoOperacion = document.querySelector("#editar-tipo-operacion")
+
+    const botonCancelarSeccionOperaciones = document.querySelector("#boton-cancelar-seccion-operaciones")
+
+    botonCancelarSeccionOperaciones.onclick = (e) => {
+        e.preventDefault()
+        ocultarSecciones()
+        inputDescripcion.value = objeto.descripcion
     }
 
+    formSeccionOperacion.onsubmit = (e) => {
+        e.preventDefault()
+        ocultarSecciones()
+        console.log(formSeccionOperacion);
+        
+        const valorMonto = Number(inputMonto.value)
+        const valorDescripcion = inputDescripcion.value
+        // const valorTipo = 
+        objeto.monto = valorMonto
+        objeto.descripcion = valorDescripcion
+
+        mostrarOperacionesEnHTML(operaciones)
+        botonEditarSeccionOperaciones() 
+    }
 }
+
+// funcion auxiliar ocultar secciones - operaciones
+const ocultarSecciones = ()=> {
+    const tarjetaEditarOperacion = document.querySelector(".tarjeta-editar-operacion")
+    seccionCentral.classList.toggle("is-hidden")
+    tarjetaEditarOperacion.classList.toggle("is-hidden")
+}
+
+// BOTON EDITAR CATEGORIA
+const botonEditarSeccionCategoria = () =>{
+    const botonEditarCategoria = document.querySelectorAll(".boton-editar-categoria")
+    const inputCategoriasNombreEditar = document.querySelector(".input-categorias-nombre-editar")
+    const nombreCategoria = document.querySelectorAll(".nombre-categoria")
+
+    for (let i = 0; i < botonEditarCategoria.length; i++) {
+        botonEditarCategoria[i].onclick = () => {
+            const botonEditarCategoriaEditada = document.querySelector(".boton-editar-categoria-editada")
+            const nombreCategoria = document.querySelectorAll(".nombre-categoria")
+            const inputCategoriasNombreEditar = document.querySelector(".input-categorias-nombre-editar")
+
+            inputCategoriasNombreEditar.value = nombreCategoria[i].textContent
+
+            ocultarSeccionesCategoria()
+            
+            botonEditarCategoriaEditada.onclick = ()=>{
+                ocultarSeccionesCategoria()
+                nombreCategoria[i].textContent = inputCategoriasNombreEditar.value
+            }
+            botonCancelarDentroCategoria ()
+
+        }
+    } 
+}
+const botonCancelarDentroCategoria = ()=>{
+    const botonCancelarCategoriaEditada = document.querySelector(".boton-cancelar-categoria-editada")
+    botonCancelarCategoriaEditada.onclick = () => {
+        ocultarSeccionesCategoria()
+    }
+}
+// funcion auxiliar ocultar secciones- categoria 
+const ocultarSeccionesCategoria =()=>{
+    const tarjetaEditarCategoria = document.querySelector(".tarjeta-editar-categoria")
+    seccionCategorias.classList.toggle("is-hidden")
+    tarjetaEditarCategoria.classList.toggle("is-hidden")
+}
+
 
 agregarCategoriasAHTML()
 adicionDeNuevasCategoriasSelect()
 
-
+//boton agregar categoria 
 botonAgregarCategoria.onclick = () => {
     const valorInputCategoriaNuevo = inputCategoriaNuevoNombre.value
     const categorias = categoriasObtenidas()
