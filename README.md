@@ -1,14 +1,12 @@
 
-# Ahorradas
+![image](https://user-images.githubusercontent.com/84356356/141305469-73435428-b0f7-4d98-b649-b76edba91bff.png) # Ahorradas
 
-![image](https://user-images.githubusercontent.com/84356356/141305469-73435428-b0f7-4d98-b649-b76edba91bff.png)
-Controlador de gastos: "ahorrADAs"
-
-Este trabajo lo realizamos: 
+Este trabajo fue realizado por: 
 
 Rocio Ibañez
 Carolina Raniti
 florencia Larreategui
+Brenda
 
 Tecnologías utilizadas:
 HTML5
