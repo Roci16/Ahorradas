@@ -455,6 +455,7 @@ const agregarCategoriasAHTML = () => {
     botonEditarSeccionOperaciones()
     botonEditarSeccionCategoria()
 }
+// aca empiezan las funciones de botones
 // BOTON EDITAR CATEGORIA
 const botonEditarSeccionOperaciones = ()=>{
     const botonEditarSeccionOperaciones = document.querySelectorAll(".boton-editar-seccion-operaciones")
