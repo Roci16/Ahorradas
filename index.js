@@ -242,7 +242,7 @@ const mostrarOperacionesEnHTML = (array) => {
 
         <div class="column is-3 has-text-right">
             
-                <button id="boton-editar-seccion-principal-${index}" class="boton-editar-seccion-principal button is-info is-inverted">Editar</button> 
+                <button id="boton-editar-seccion-principal-${index}" class="boton-editar-seccion-operaciones button is-info is-inverted">Editar</button> 
                 <button class="button is-info is-inverted">Eliminar</button>
             
         </div>
@@ -452,14 +452,11 @@ const agregarCategoriasAHTML = () => {
             adicionDeNuevasCategoriasSelect()
         }
     }
-
-    botonEditarSeccionCategoria()
-    botonEditarSeccionPrincipal()
-    
+    botonEditarSeccionOperaciones()
+    //botonEditarSeccionCategoria()
 }
 
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//////// boton editar categoria- BrendaLamas
+// TARJETA EDITAR CATEGORIA
 const tarjetaEditarOperacionEditar = (id)=>{
     const formTarjetaEditarOperacion = document.querySelector(".form-tarjeta-editar-operacion")
 
@@ -509,105 +506,92 @@ const tarjetaEditarOperacionEditar = (id)=>{
                 </div>
             </div>
             <div class="has-text-right">
-                <button class="button is-light boton-cancelar-seccion-principal">Cancelar</button>
-                <input type="submit" value="EditarSubmit" class="button is-success">
+                <button type="button" id="boton-cancelar-seccion-operaciones" class="button is-light"> Cancelar </button>
+                <input type="submit" value="Editar"  class="button is-success">
             </div>
         </form>
     </div>`
     const formSeccionOperacion = document.querySelector(".form-seccion-operacion")
     const inputDescripcion = document.querySelector("#input-descripcion")
     const inputMonto = document.querySelector("#input-monto")
-    const tarjetaEditarOperacion = document.querySelector(".tarjeta-editar-operacion")
+    const botonCancelarSeccionOperaciones = document.querySelector("#boton-cancelar-seccion-operaciones")
 
+    botonCancelarSeccionOperaciones.onclick = (e) => {
+        e.preventDefault()
+        ocultarSecciones()
+        inputDescripcion.value = objeto.descripcion
+        console.log(inputDescripcion.value);
+    }
 
     formSeccionOperacion.onsubmit = (e) => {
         e.preventDefault()
-        seccionCentral.classList.remove("is-hidden")
-        tarjetaEditarOperacion.classList.add("is-hidden")
+        ocultarSecciones()
+        console.log(formSeccionOperacion);
         
         const valorMonto = Number(inputMonto.value)
         const valorDescripcion = inputDescripcion.value
-        console.log(valorMonto);
-        console.log(valorDescripcion);
-
         objeto.monto = valorMonto
         objeto.descripcion = valorDescripcion
+
         mostrarOperacionesEnHTML(operaciones)
-
     }
 }
-
-const botonEditarSeccionPrincipal = ()=>{
-    const botonEditarSeccionPrincipal = document.querySelectorAll(".boton-editar-seccion-principal")
-    for (let i = 0; i < botonEditarSeccionPrincipal.length; i++) {
-
-        botonEditarSeccionPrincipal[i].onclick = ()=>{
-            const idRecortado = botonEditarSeccionPrincipal[i].id.slice(31)
+const botonEditarSeccionOperaciones = ()=>{
+    const botonEditarSeccionOperaciones = document.querySelectorAll(".boton-editar-seccion-operaciones")
+    for (let i = 0; i < botonEditarSeccionOperaciones.length; i++) {
+        botonEditarSeccionOperaciones[i].onclick = ()=>{
+            const idRecortado = botonEditarSeccionOperaciones[i].id.slice(31)
             idDelBoton = Number(idRecortado)
-
             tarjetaEditarOperacionEditar (idDelBoton)
-            const tarjetaEditarOperacion = document.querySelector(".tarjeta-editar-operacion")
-
-            seccionCentral.classList.add("is-hidden")
-            tarjetaEditarOperacion.classList.remove("is-hidden")
-            
-            botonCancelarDentroTarjeta()
+            ocultarSecciones()
         }
-        
     }
 }
-
-const botonEditarSeccionCategoria = () =>{
-    const botonEditarCategoria = document.querySelectorAll(".boton-editar-categoria")
-    const tarjetaEditarCategoria = document.querySelector(".tarjeta-editar-categoria")
-    const inputCategoriasNombreEditar = document.querySelector(".input-categorias-nombre-editar")
-    const nombreCategoria = document.querySelectorAll(".nombre-categoria")
-
-    for (let i = 0; i < botonEditarCategoria.length; i++) {
-        botonEditarCategoria[i].onclick = () => {
-            seccionCategorias.classList.add("is-hidden")
-            tarjetaEditarCategoria.classList.remove("is-hidden")
-            inputCategoriasNombreEditar.value = nombreCategoria[i].textContent
-
-            botonCancelarDentroCategoria ()
-        }
-    } 
-}
-//------------------------------FUNCIONES AUXILIARES-BOTONES---------------------------------------------
-
-// funciones auxiliares de botonCancelar & botonEditar DENTRO de la tarjeta OPERACIONES
-const botonCancelarDentroTarjeta = ()=>{
-    const botonCancelarSeccionPrincipal = document.querySelector(".boton-cancelar-seccion-principal")
+const ocultarSecciones = ()=> {
     const tarjetaEditarOperacion = document.querySelector(".tarjeta-editar-operacion")
-
-    botonCancelarSeccionPrincipal.onclick = () => {
-        seccionCentral.classList.remove("is-hidden")
-        tarjetaEditarOperacion.classList.add("is-hidden")
-    }
+    seccionCentral.classList.toggle("is-hidden")
+    tarjetaEditarOperacion.classList.toggle("is-hidden")
 }
 
-// funciones auxiliares botonCancelar & botonEditar DENTRO de tarjeta CATEGORIA
-const botonCancelarDentroCategoria = ()=>{
-    const botonCancelarCategoriaEditada = document.querySelector(".boton-cancelar-categoria-editada")
-    const tarjetaEditarCategoria = document.querySelector(".tarjeta-editar-categoria")
+////////////////////////////////////////////////categoria/////////////////////////////////////////////
 
-    botonCancelarCategoriaEditada.onclick = () => {
-        seccionCategorias.classList.remove("is-hidden")
-        tarjetaEditarCategoria.classList.add("is-hidden")
-    }
-}
-const botonEditarDentroCategoria = () =>{
-    const botonEditarCategoriaEditada = document.querySelector(".boton-editar-categoria-editada")
-    const tarjetaEditarCategoria = document.querySelector(".tarjeta-editar-categoria")
-    const nombreCategoria = document.querySelectorAll(".nombre-categoria")
-    const inputCategoriasNombreEditar = document.querySelector(".input-categorias-nombre-editar")
+// const botonEditarSeccionCategoria = () =>{
+//     const botonEditarCategoria = document.querySelectorAll(".boton-editar-categoria")
+//     const tarjetaEditarCategoria = document.querySelector(".tarjeta-editar-categoria")
+//     const inputCategoriasNombreEditar = document.querySelector(".input-categorias-nombre-editar")
+//     const nombreCategoria = document.querySelectorAll(".nombre-categoria")
 
-    botonEditarCategoriaEditada.onclick = ()=>{
-        seccionCategorias.classList.remove("is-hidden")
-        tarjetaEditarCategoria.classList.add("is-hidden")
-        nombreCategoria[i].textContent = inputCategoriasNombreEditar.value
-    }
-}
+//     for (let i = 0; i < botonEditarCategoria.length; i++) {
+//         botonEditarCategoria[i].onclick = () => {
+//             seccionCategorias.classList.add("is-hidden")
+//             tarjetaEditarCategoria.classList.remove("is-hidden")
+//             inputCategoriasNombreEditar.value = nombreCategoria[i].textContent
+
+//             botonCancelarDentroCategoria ()
+//         }
+//     } 
+// }
+// const botonCancelarDentroCategoria = ()=>{
+//     const botonCancelarCategoriaEditada = document.querySelector(".boton-cancelar-categoria-editada")
+//     const tarjetaEditarCategoria = document.querySelector(".tarjeta-editar-categoria")
+
+//     botonCancelarCategoriaEditada.onclick = () => {
+//         seccionCategorias.classList.remove("is-hidden")
+//         tarjetaEditarCategoria.classList.add("is-hidden")
+//     }
+// }
+// const botonEditarDentroCategoria = () =>{
+//     const botonEditarCategoriaEditada = document.querySelector(".boton-editar-categoria-editada")
+//     const tarjetaEditarCategoria = document.querySelector(".tarjeta-editar-categoria")
+//     const nombreCategoria = document.querySelectorAll(".nombre-categoria")
+//     const inputCategoriasNombreEditar = document.querySelector(".input-categorias-nombre-editar")
+
+//     botonEditarCategoriaEditada.onclick = ()=>{
+//         seccionCategorias.classList.remove("is-hidden")
+//         tarjetaEditarCategoria.classList.add("is-hidden")
+//         nombreCategoria[i].textContent = inputCategoriasNombreEditar.value
+//     }
+// }
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 agregarCategoriasAHTML()
