@@ -536,6 +536,7 @@ const botonEditarSeccionPrincipal = ()=>{
             seccionCentral.classList.add("is-hidden")
             tarjetaEditarOperacion.classList.remove("is-hidden")
             //valores predeterminados
+            const objeto = operaciones[idDelBoton]
             objeto.descripcion = inputDescripcion
             objeto.monto = Number(inputMonto.value)
             objeto.categoria = inputCategoria.value
