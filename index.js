@@ -187,8 +187,6 @@ botonAgregar.onclick = () => {
 
     operaciones.push(seccionNuevaOperacion);
 
-    guardarEnLocalStorage(operaciones, "operaciones");
-
     mostrarOperacionesEnHTML();
 }
 
