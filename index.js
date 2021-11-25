@@ -580,75 +580,73 @@ const agregarCategoriasAHTML = () => {
 // aca empiezan las funciones de botones
 // BOTON EDITAR CATEGORIA
 const botonEditarSeccionOperaciones = () => {
-    const botonEditarSeccionOperaciones = document.querySelectorAll(".boton-editar-seccion-operaciones")
-    for (let i = 0; i < botonEditarSeccionOperaciones.length; i++) {
-        botonEditarSeccionOperaciones[i].onclick = () => {
-            const idRecortado = botonEditarSeccionOperaciones[i].id.slice(31)
-            idDelBoton = Number(idRecortado)
-            tarjetaEditarOperacionEditar(idDelBoton)
-            ocultarSecciones()
+        const botonEditarSeccionOperaciones = document.querySelectorAll(".boton-editar-seccion-operaciones")
+        for (let i = 0; i < botonEditarSeccionOperaciones.length; i++) {
+            botonEditarSeccionOperaciones[i].onclick = () => {
+                const idRecortado = botonEditarSeccionOperaciones[i].id.slice(31)
+                idDelBoton = Number(idRecortado)
+                tarjetaEditarOperacionEditar(idDelBoton)
+                ocultarSecciones()
+            }
         }
     }
-    console.log(botonEditarSeccionOperaciones);
-}
-
-
-// TARJETA EDITAR CATEGORIA
+    // TARJETA EDITAR CATEGORIA
 const tarjetaEditarOperacionEditar = (id) => {
     const formTarjetaEditarOperacion = document.querySelector(".form-tarjeta-editar-operacion")
-
-    const objeto = operaciones[id]
+    const operacion = operacionesObtenidas()
+    const objeto = operacion[id]
 
     formTarjetaEditarOperacion.innerHTML = `
-    <div class="tarjeta-editar-operacion column is-offset-2 is-8 is-hidden">
-        <form class="box form-seccion-operacion">
-            <h2 class="title is-1 has-text-weight-bold">Editar operación</h2>
-            <div class="field">
-                <div class="control">
-                    <label for="Descripción" class="label"> Descripción </label>
-                    <input class="input" id="input-descripcion" type="text" value="${objeto.descripcion}">
+<div class="tarjeta-editar-operacion column is-offset-2 is-8 is-hidden">
+    <form class="box form-seccion-operacion">
+        <h2 class="title is-1 has-text-weight-bold">Editar operación</h2>
+        <div class="field">
+            <div class="control">
+                <label for="Descripción" class="label"> Descripción </label>
+                <input class="input" id="input-descripcion" type="text" value="${objeto.descripcion}">
+            </div>
+        </div>
+        <div class="field">
+            <div class="control">
+                <label for="Monto" class="label"> Monto</label>
+                    <input class="input" id="input-monto" type="number" value="${objeto.monto}">
+             </div>
+        </div>
+        <div class="field">
+            <div class="control">
+                <label for="Tipo" class="label"> Tipo</label>
+                <div class="select is-fullwidth">
+                    <select id="editar-tipo-operacion">
+                    <option value="ganancias">Ganancias</option>
+                    <option value="gastos">Gastos</option>
+                    </select>
                 </div>
             </div>
-            <div class="field">
-                <div class="control">
-                    <label for="Monto" class="label"> Monto</label>
-                        <input class="input" id="input-monto" type="number" value="${objeto.monto}">
-                 </div>
-            </div>
-            <div class="field">
-                <div class="control">
-                    <label for="Tipo" class="label"> Tipo</label>
-                    <div class="select is-fullwidth">
-                        <select id="editar-tipo-operacion">
-                        <option >Ganancia</option>
-                        <option >Gastos</option>
-                        </select>
-                    </div>
+        </div>
+        <div class="field">
+            <label for="Categoria" class="label"> Categoria</label>
+            <div class="control">
+                <div class="select is-fullwidth">
+                    <select id="input-categoria">
+                    <option>Gasto</option>
+                    <option>Ganancia</option>
+                    </select>
                 </div>
+            </div>         
+        </div>
+        <div class="field">
+            <div class="control">
+                <label for="Fecha" class="label"> Fecha</label>
+                <input class="input" type="date">
             </div>
-            <div class="field">
-                <label for="Categoria" class="label"> Categoria</label>
-                <div class="control">
-                    <div class="select is-fullwidth">
-                        <select id="input-categoria">
-                        <option>Gasto</option>
-                        <option>Ganancia</option>
-                        </select>
-                    </div>
-                </div>         
-            </div>
-            <div class="field">
-                <div class="control">
-                    <label for="Fecha" class="label"> Fecha</label>
-                    <input class="input" type="date">
-                </div>
-            </div>
-            <div class="has-text-right">
-                <button type="button" id="boton-cancelar-seccion-operaciones" class="button is-light"> Cancelar </button>
-                <input type="submit" value="Editar"  class="button is-success">
-            </div>
-        </form>
-    </div>`
+        </div>
+        <div class="has-text-right">
+            <button type="button" id="boton-cancelar-seccion-operaciones" class="button is-light"> Cancelar </button>
+            <input type="submit" value="Editar"  class="button is-success">
+        </div>
+    </form>
+</div>`
+
     const formSeccionOperacion = document.querySelector(".form-seccion-operacion")
     const inputDescripcion = document.querySelector("#input-descripcion")
     const inputMonto = document.querySelector("#input-monto")
@@ -665,7 +663,7 @@ const tarjetaEditarOperacionEditar = (id) => {
     formSeccionOperacion.onsubmit = (e) => {
         e.preventDefault()
         ocultarSecciones()
-        console.log(formSeccionOperacion);
+
 
         const valorMonto = Number(inputMonto.value)
         const valorDescripcion = inputDescripcion.value
@@ -673,9 +671,11 @@ const tarjetaEditarOperacionEditar = (id) => {
         objeto.monto = valorMonto
         objeto.descripcion = valorDescripcion
 
-        mostrarOperacionesEnHTML(operaciones)
+
+        mostrarOperacionesEnHTML(operacion)
         botonEditarSeccionOperaciones()
     }
+
 }
 
 // funcion auxiliar ocultar secciones - operaciones
@@ -722,6 +722,7 @@ const ocultarSeccionesCategoria = () => {
     seccionCategorias.classList.toggle("is-hidden")
     tarjetaEditarCategoria.classList.toggle("is-hidden")
 }
+
 
 
 agregarCategoriasAHTML()
