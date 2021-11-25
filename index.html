@@ -7,7 +7,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AhorrADAs</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
-    <link rel="stylesheet" href="estilo.css">
     <script src="https://kit.fontawesome.com/fc20ae3cbb.js" crossorigin="anonymous"></script>
     <link rel="icon" type="image/ico" href="favicon/beneficios.png" />
 </head>
@@ -302,15 +301,16 @@
         </section>
 
         <!-- Seccion reportes -->
-        <section id="seccion-reportes" class="section is-hidden m-1">
+        <section id="seccion-reportes" class="section  m-1">
             <div class="column is-8 is-offset-2">
                 <div class="box">
 
                     <div class="columns">
                         <h2 class="title column is-size-2 has-text-weight-bold ">Reportes</h2>
                     </div>
-
-                    <div class="columns my-5">
+                          <!-- Este div contiene la imagen y aparece cuando no hay ninguna operacion -->
+                    <div class="box-sin-operaciones is-hidden">
+                    <div class="columns my-5 ">
 
                         <figure class="image column is-offset-3 is-6">
                             <img src="imagenes/undraw_investment_data_re_sh9x.svg">
@@ -325,6 +325,66 @@
                     <div class="columns mb-6">
                         <p class="column has-text-centered">Prueba agregando más operaciones</p>
                     </div>
+                </div>
+        <!-- fin div que desaparece-->
+         <!-- Este div contiene los reportes cuando ya tiene cargadas varias operaciones -->
+         <div class="resumen columns is-8">
+            <div class="column is-8">
+            <h3 class="title is-size-4 column">Resumen</h3>
+            <div>
+            <div id="datos-resumen">
+                <div>
+                    <h3 class="column is-two-fifths has-text-weight-semibold">Categoría con mayor ganancia</h3>
+                    <p>Salidas</p>
+                    <p>monto</p>
+                </div>
+            </div>
+         </div>
+         <div class="resumen columns  is-flex is-flex-direction-column">
+             <div class="column is-8">
+            <h3 class="title is-size-4">Totales por categorías</h3>
+            </div>
+        
+            <div id="datos-totales-por-categorias" class="column is-10">
+               <div class="fila columns ">
+                <div>
+                    <h4 class="column is-two-fifths has-text-weight-semibold">Categoria</h4>
+                 </div>  
+                 <div>
+                    <h4 class="column  has-text-weight-semibold">Ganancias</h4>
+                </div>
+                <div>
+                    <h4 class="column  has-text-weight-semibold">Gastos</h4>
+                </div>
+                 <div>
+                    <h4 class="column  has-text-weight-semibold">Balances</h4>
+                </div>
+                 </div>
+               
+            </div>
+         </div>
+         <div class="resumen columns is-flex is-flex-direction-column">
+            <div class="column is-8">
+            <h3 class="title is-size-4 column">Totales por mes</h3>
+        </div>
+            <div id="datos-totales-por-mes "class=" column is-10">
+                <div class="fila columns ">
+                    <div>
+                        <h4 class="column is-two-fifths has-text-weight-semibold">Categoria</h4>
+                     </div>  
+                     <div>
+                        <h4 class="column  has-text-weight-semibold">Ganancias</h4>
+                    </div>
+                    <div>
+                        <h4 class="column  has-text-weight-semibold">Gastos</h4>
+                    </div>
+                     <div>
+                        <h4 class="column  has-text-weight-semibold">Balances</h4>
+                    </div>
+                     </div>
+            </div>
+         </div>
+          <!-- fin div reportes con operaciones-->
 
                 </div>
 
