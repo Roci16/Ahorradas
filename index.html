@@ -7,7 +7,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AhorrADAs</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
-    <link rel="stylesheet" href="estilo.css">
     <script src="https://kit.fontawesome.com/fc20ae3cbb.js" crossorigin="anonymous"></script>
     <link rel="icon" type="image/ico" href="favicon/beneficios.png" />
 </head>
@@ -41,64 +40,65 @@
         </div>
     </nav>
 
-        <!-- "Seccion central" -->
-    <section id="seccion-central" class="section">
-        <div class="conteiner ">
-
+    <!-- "Seccion central" -->
     <div class="hero has-background-light  is-fullheight">
         <section id="seccion-central" class="section">
             <div class="conteiner ">
 
-                <div class="columns">
 
-                    <!-- Box Balance -->
-                    <div class=" column is-offset-1 is-3">
+                <section id="seccion-central" class="section">
+                    <div class="conteiner ">
 
-
-                    <div class="box">
-                        <h2 class="title has-text-weight-bold has-text-grey-dark mb-6">Balance</h2>
                         <div class="columns">
-                            <div class="column is-size-5">Ganancias </div>
-                            <div class="column has-text-success has-text-right sumaGanancias">+$0</div>
-                        </div>
-                        <div class="columns">
-                            <div class="column is-size-5">Gastos </div>
-                            <div class="column has-text-danger has-text-right sumaGastos">-$0</div>
-                        </div>
-                        <div class="columns">
-                            <div class="column is-size-4">Total </div>
-                            <div class="column has-text-weight-bold has-text-right totalBalances">$0</div>
-                        </div>
-                    </div>
 
-                    <!-- Box Filtros -->
-                    <article class=" box">
-                        <div class="columns">
-                            <h2 class="title column is-5 has-text-weight-bold has-text-grey-dark">Filtros</h2>
-                            <button class="button  column has-text-right is-info is-inverted " id="boton-ocultar-filtros">Ocultar filtros</button>
-                        </div>
+                            <!-- Box Balance -->
+                            <div class=" column is-offset-1 is-3">
 
-       
 
-                            <form id="form">
-                            <!-- Select Tipo  -->
-                            <div class="field" id="div-formulario-filtros">
-                                <label class="label" for="select-tipo">Tipo</label>
-                                <div class="select is-fullwidth ">
-                                    <select id="select-tipo">
+                                <div class="box">
+                                    <h2 class="title has-text-weight-bold has-text-grey-dark mb-6">Balance</h2>
+                                    <div class="columns">
+                                        <div class="column is-size-5">Ganancias </div>
+                                        <div class="column has-text-success has-text-right sumaGanancias">+$0</div>
+                                    </div>
+                                    <div class="columns">
+                                        <div class="column is-size-5">Gastos </div>
+                                        <div class="column has-text-danger has-text-right sumaGastos">-$0</div>
+                                    </div>
+                                    <div class="columns">
+                                        <div class="column is-size-4">Total </div>
+                                        <div class="column has-text-weight-bold has-text-right totalBalances">$0</div>
+                                    </div>
+                                </div>
+
+                                <!-- Box Filtros -->
+                                <article class=" box">
+                                    <div class="columns">
+                                        <h2 class="title column is-5 has-text-weight-bold has-text-grey-dark">Filtros</h2>
+                                        <button class="button  column has-text-right is-info is-inverted " id="boton-ocultar-filtros">Ocultar filtros</button>
+                                    </div>
+
+
+
+                                    <form id="form">
+                                        <!-- Select Tipo  -->
+                                        <div class="field" id="div-formulario-filtros">
+                                            <label class="label" for="select-tipo">Tipo</label>
+                                            <div class="select is-fullwidth ">
+                                                <select id="select-tipo">
                                          <option>Todos</option>
                                          <option>Gasto</option>
                                          <option>Ganancia</option>
                                     </select>
-                                    </div>
-                                </div>
+                                            </div>
+                                        </div>
 
 
-                            <!-- Select Categoría -->
-                            <div class="field">
-                                <label class="label" for="select-categoria">Categoría</label>
-                                <div class="select is-fullwidth  ">
-                                    <select id="select-categoria">
+                                        <!-- Select Categoría -->
+                                        <div class="field">
+                                            <label class="label" for="select-categoria">Categoría</label>
+                                            <div class="select is-fullwidth  ">
+                                                <select id="select-categoria">
                                          <option>Todas</option>
                                          <option>Comida</option>
                                          <option>Servicios</option>
@@ -107,24 +107,24 @@
                                          <option>Transporte</option>
                                          <option>Trabajo</option>
                                     </select>
-                                    </div>
-                                </div>
+                                            </div>
+                                        </div>
 
-                                <!-- Seleccion de fecha -->
-                                <div class="field">
-                                    <label class="label" for="date">Desde</label>
-                                    <div class="control">
-                                        <input class="input" id="date" type="date">
-                                    </div>
-                                </div>
+                                        <!-- Seleccion de fecha -->
+                                        <div class="field">
+                                            <label class="label" for="date">Desde</label>
+                                            <div class="control">
+                                                <input class="input" id="date" type="date">
+                                            </div>
+                                        </div>
 
 
 
-                            <!-- Select Ordenar por -->
-                            <div class="field">
-                                <label class="label" for="select-odenar">Ordenar por</label>
-                                <div class="select is-fullwidth  ">
-                                    <select id="select-ordenar">
+                                        <!-- Select Ordenar por -->
+                                        <div class="field">
+                                            <label class="label" for="select-odenar">Ordenar por</label>
+                                            <div class="select is-fullwidth  ">
+                                                <select id="select-ordenar">
                                          <option>Más reciente</option>
                                          <option>Menos reciente</option>
                                          <option>Mayor monto</option>
@@ -132,11 +132,11 @@
                                          <option>A/Z</option>
                                          <option>Z/A</option>
                                     </select>
-                                    </div>
-                                </div>
-                            </form>
-                        </article>
-                    </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </article>
+                            </div>
 
                     <!-- Box Operaciones -->
                     <div class="column is-7">
@@ -160,35 +160,44 @@
 
                                         </figure>
 
+
                                     </div>
 
                                     <div class="columns">
                                         <p class="column has-text-centered is-size-4 has-text-weight-semibold has-text-grey-dark">Sin resultados</p>
 
+
+                                        <div class="columns">
+                                            <p class="column has-text-centered is-size-4 has-text-weight-semibold has-text-grey-dark">Sin resultados</p>
+
+                                        </div>
+                                        <div class="columns mb-6">
+                                            <p class="column has-text-centered">Cambia los filtros o agrega operaciones</p>
+                                        </div>
                                     </div>
-                                    <div class="columns mb-6">
-                                        <p class="column has-text-centered">Cambia los filtros o agrega operaciones</p>
-                                    </div>
-                                </div>
-                            </div>
 
 
-                            <!-- Tarjeta de operaciones que ya se agregaron -->
-                            <div id="contenedor-operaciones-agregadas" class="column is-hidden">
-                                <div class="columns">
-                                    <div class="column">Descripción</div>
-                                    <div class="column is-1 has-text-centered">Categoría</div>
-                                    <div class="column  has-text-centered">Fecha</div>
-                                    <div class="column">Monto</div>
-                                    <div class="column">Acciones</div>
+                                    <!-- Tarjeta de operaciones que ya se agregaron -->
+                                    <div id="contenedor-operaciones-agregadas" class="column">
+                                        <div class="columns">
+                                            <div class="column">Descropción</div>
+                                            <div class="column is-1 has-text-centered">Categoría</div>
+                                            <div class="column  has-text-centered">Fecha</div>
+                                            <div class="column">Monto</div>
+                                            <div class="column">Acciones</div>
+                                        </div>
+                                        <div>
+                                            <div id="tarjeta-operaciones-agregadas"></div>
+                                        </div>
+                                    </div>
+
                                 </div>
-                                <div>
-                                    <div id="tarjeta-operaciones-agregadas"></div>
-                                </div>
+
                             </div>
                         </div>
 
                     </div>
+
                 </div>
 
 
@@ -202,15 +211,17 @@
 
                 <form>
 
-                    <div class="field">
-                        <label class="label" for="descripcion-nueva-operacion">Descripción</label>
-                        <input class="input" type="text" id="descripcion-nueva-operacion">
-                    </div>
 
-                    <div class="field">
-                        <label class="label" for="monto-nueva-operacion">Monto</label>
-                        <input class="input" type="number" id="monto-nueva-operacion" value="0">
-                    </div>
+                            <div class="field">
+                                <label class="label" for="descripcion-nueva-operacion">Descripción</label>
+                                <input class="input" type="text" id="descripcion-nueva-operacion">
+                            </div>
+
+                            <div class="field">
+                                <label class="label" for="monto-nueva-operacion">Monto</label>
+                                <input class="input" type="number" id="monto-nueva-operacion" value="0">
+                            </div>
+
 
                     <div class="field">
                         <label class="label" for="select-tipo-nueva-operacion">Tipo</label>
@@ -252,43 +263,57 @@
                     <button class="button mt-5 is-light" id="boton-cancelar-operacion">Cancelar</button>
                     <button class="button mt-5 is-success" id="boton-agregar-operacion">Agregar</button>
 
-                </div>
-            </div>
-        </section>
 
-
-        <section class="section is-hidden" id="seccion-categorias">
-            <!-- Seccion Categorias - is hidden -->
-            <div class="conteiner">
-                <div class=" column is-offset-2 is-8">
-
-                    <div class="box ">
-                        <h2 class="title has-text-weight-bold has-text-grey-dark mb-6">Categorías</h2>
-                        <div class="field ">
-                            <label class="label " for="username">Nombre</label>
-                            <div class="columns">
-                                <div class="control column is-10">
-                                    <div>
-                                        <input id="input-categorias-nuevo-nombre" class="input" id="username" type="text">
-                                    </div>
-                                </div>
-                                <div class="column has-text-right">
-                                    <button id="agregar-categoria-boton" class="button is-success">Agregar</button>
+                            <div class="field">
+                                <label class="label" for="date">Desde</label>
+                                <div class="control">
+                                    <input class="input" id="date" type="date">
                                 </div>
                             </div>
+
+                        </form>
+                        <div class="column has-text-right">
+
+                            <button class="button mt-5 is-light" id="boton-cancelar-operacion">Cancelar</button>
+                            <button class="button mt-5 is-success" id="boton-agregar-operacion">Agregar</button>
+
                         </div>
-
-                        <div id="lista-categoria">
-
-                        </div>
+                    </div>
+                </section>
 
 
-                        <!--------------------------------------------------------
+                <section class="section is-hidden" id="seccion-categorias">
+                    <!-- Seccion Categorias - is hidden -->
+                    <div class="conteiner">
+                        <div class=" column is-offset-2 is-8">
+
+                            <div class="box ">
+                                <h2 class="title has-text-weight-bold has-text-grey-dark mb-6">Categorías</h2>
+                                <div class="field ">
+                                    <label class="label " for="username">Nombre</label>
+                                    <div class="columns">
+                                        <div class="control column is-10">
+                                            <div>
+                                                <input id="input-categorias-nuevo-nombre" class="input" id="username" type="text">
+                                            </div>
+                                        </div>
+                                        <div class="column has-text-right">
+                                            <button id="agregar-categoria-boton" class="button is-success">Agregar</button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div id="lista-categoria">
+
+                                </div>
+
+
+                                <!--------------------------------------------------------
                                  MAQUETADO DE TARJETA QUE VA EN JS
                      --------------------------------------------------------->
 
 
-                        <!-- <div class=" columns">
+                                <!-- <div class=" columns">
                     <div class="column">
                         <span class=" has-background-success-light has-text-success-dark">Comidas</span>
                     </div>
@@ -300,7 +325,8 @@
                     </div>
                 </div> -->
 
-                    </div>
+                            </div>
+
 
                 </div>
             </div>
@@ -348,32 +374,32 @@
         </section>
 
 
-                    <div class="columns">
-                        <h2 class="title column is-size-2 has-text-weight-bold ">Reportes</h2>
+                            <div class="columns">
+                                <h2 class="title column is-size-2 has-text-weight-bold ">Reportes</h2>
+                            </div>
+
+                            <div class="columns my-5">
+
+                                <figure class="image column is-offset-3 is-6">
+                                    <img src="imagenes/undraw_investment_data_re_sh9x.svg">
+                                </figure>
+
+                            </div>
+
+                            <div class="columns">
+                                <p class="column has-text-centered is-size-4 has-text-weight-semibold has-text-grey-dark">Operaciones insuficientes</p>
+                            </div>
+
+                            <div class="columns mb-6">
+                                <p class="column has-text-centered">Prueba agregando más operaciones</p>
+                            </div>
+
+                        </div>
+
                     </div>
-
-                    <div class="columns my-5">
-
-                        <figure class="image column is-offset-3 is-6">
-                            <img src="imagenes/undraw_investment_data_re_sh9x.svg">
-                        </figure>
-
-                    </div>
-
-                    <div class="columns">
-                        <p class="column has-text-centered is-size-4 has-text-weight-semibold has-text-grey-dark">Operaciones insuficientes</p>
-                    </div>
-
-                    <div class="columns mb-6">
-                        <p class="column has-text-centered">Prueba agregando más operaciones</p>
-                    </div>
-
-                </div>
-
+                </section>
             </div>
-        </section>
-    </div>
-    <script src="index.js"></script>
+            <script src="index.js"></script>
 </body>
 
 </html>
