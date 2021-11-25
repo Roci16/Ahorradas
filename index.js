@@ -401,7 +401,7 @@ const categoriasObtenidas = () => {
 }
 let funcionLS = (elemento) => {
     const categoriasAJSON = JSON.stringify(elemento)
-    localStorage.setItem("categorias", categoriasAJSON)
+    localStorage.setItem("Categoria", categoriasAJSON)
 
 }
 ////////////////////////////// 
@@ -450,6 +450,7 @@ const agregarCategoriasAHTML = () => {
             funcionLS(nuevasCategoriasFiltradas)
             agregarCategoriasAHTML()
             adicionDeNuevasCategoriasSelect()
+
         }
     }
     botonEditarSeccionOperaciones()
@@ -549,7 +550,9 @@ const tarjetaEditarOperacionEditar = (id)=>{
 
         mostrarOperacionesEnHTML(operaciones)
         botonEditarSeccionOperaciones() 
+        funcionLS (objeto)
     }
+    funcionLS (objeto)
 }
 
 // funcion auxiliar ocultar secciones - operaciones
