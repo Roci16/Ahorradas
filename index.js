@@ -9,8 +9,7 @@ const botonNuevaOperacion = document.getElementById("boton-nueva-operacion")
 
 const seccionNuevaOperacion = document.getElementById("accion-boton-nueva-operacion")
 
-const botonCancelar = document.getElementById("boton-cancelar");
-const botonAgregar = document.getElementById("boton-agregar");
+
 const botonCancelarOperacion = document.querySelector("#boton-cancelar-operacion");
 const botonAgregarOperacion = document.querySelector("#boton-agregar-operacion");
 
@@ -94,6 +93,12 @@ botonAgregarOperacion.onclick = () => {
         // seccionCentral.classList.add("is-hidden")
 }
 
+botonCancelarOperacion.onclick = () => {
+    seccionCategorias.classList.add("is-hidden")
+    seccionCentral.classList.remove("is-hidden")
+    seccionReportes.classList.add("is-hidden")
+    seccionNuevaOperacion.classList.add("is-hidden")
+}
 
 
 // Array de prueba
