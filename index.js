@@ -57,15 +57,6 @@ botonNuevaOperacion.onclick = () => {
 }
 
 
-function mostrarBotonCancelarOperacion() {
-    botonCancelarOperacion.style.display = 'none';
-    botonCancelarOperacion.style.display = 'inline';
-}
-
-function mostrarBotonAgregarOperacion() {
-    botonAgregarOperacion.style.display = 'none';
-    botonAgregarOperacion.style.display = 'inline';
-}
 
 //Boton Cancelar
 
@@ -84,6 +75,7 @@ botonAgregarOperacion.onclick = () => {
     seccionNuevaOperacion.classList.add("is-hidden");
     botonBalance.classList.remove("is-hidden");
 }
+
 
 
 const operaciones = [{
