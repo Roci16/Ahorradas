@@ -226,13 +226,14 @@ const convertirOperacionesAHTML = (operaciones) => {
 //---------- Funcion mostrar en HTML------------flor---------
 //esta funcion muestra los titulos de las categorias una vez que se ingresan los datos (no debe ser parte de la acumuladora)
 const aplicarDescripcionAOperaciones = () => {
-    return `<div class="columns has-text-weight-semibold is-hidden-mobile">
+    return ` <div class="columns has-text-weight-semibold is-hidden-mobile">
             <div class="column is-3">Descripción</div>
             <div class="column is-2">Categoría</div>
             <div class="column is-2 has-text-centered">Fecha</div>
             <div class="column is-2 has-text-right">Monto</div>
             <div class="column is-3 has-text-centered">Acciones</div>
-             </div> `
+             </div> 
+             `
 }
 
 
@@ -266,7 +267,7 @@ const mostrarOperacionesEnHTML = (array) => {
         <p >${operacion.monto}</p>
         </div>
         <div class="column is-3 has-text-right">
-        <button id="boton-editar-seccion-principal-${index}" class="button is-info is-inverted boton-editar-categoria">Editar</button>
+        <button id="boton-editar-seccion-principal-${index}" class="button is-info is-inverted boton-editar-seccion-operaciones">Editar</button>
         <button id="borrar-${index}"  class="boton-borrar-operacion button is-info is-inverted ">Eliminar</button>
 
         </div>
@@ -295,21 +296,21 @@ const mostrarOperacionesEnHTML = (array) => {
 }
 mostrarOperacionesEnHTML(operaciones)
 
-//--------Balances-----------
-//---------- Funcion mostrar suma total de ganancias en la seccion balances-----
-// const mostrarGananciasEnBalances = (array) => {
+// --------Balances-----------
+// ---------- Funcion mostrar suma total de ganancias en la seccion balances-----
+const mostrarGananciasEnBalances = (array) => {
 
-//     const gananciasFiltradas = array.filter((elemento) => {
-//         return elemento.tipo === "Ganancia"
-//     })
+    const gananciasFiltradas = array.filter((elemento) => {
+        return elemento.tipo === "Ganancia"
+    })
+    console.log(gananciasFiltradas);
 
+    const sumarGanancias = gananciasFiltradas.reduce((acc, elemento) => {
+        return acc + elemento.monto
+    }, 0)
 
-//     const sumarGanancias = gananciasFiltradas.reduce((acc, elemento) => {
-//         return acc + elemento.monto
-//     }, 0)
-
-//     return balancesSumaGanancias.textContent = sumarGanancias
-// }
+    return balancesSumaGanancias.textContent = sumarGanancias
+}
 
 
 
@@ -324,47 +325,22 @@ const mostrarGastosEnBalances = (array) => {
         return acc + elemento.monto
     }, 0)
 
-    return sumarGastos
-        // balancesSumaGastos.textContent =
+    return balancesSumaGastos.textContent = sumarGastos
+
 }
 console.log(mostrarGastosEnBalances(operaciones))
 
-//---------- Funcion mostrar suma total de gastos en la seccion balances-----
-// const mostrarTotalEnBalances = (array) => {
-//         const resultadoFinalGanancias = mostrarGananciasEnBalances(array)
-//         const resultadoFinalGastos = mostrarGastosEnBalances(array)
-//         const resultadoFinal = resultadoFinalGanancias - resultadoFinalGastos
-//         return resultadoFinal
-//     }
-//     //  balancesTotalFinal.textContent  =
-// mostrarTotalEnBalances(operaciones)
+// ---------- Funcion mostrar suma total de gastos en la seccion balances-----
+const mostrarTotalEnBalances = (array) => {
+    const resultadoFinalGanancias = mostrarGananciasEnBalances(array)
+    const resultadoFinalGastos = mostrarGastosEnBalances(array)
+    const resultadoFinal = resultadoFinalGanancias - resultadoFinalGastos
+    return balancesTotalFinal.textContent = resultadoFinal
+}
+
+mostrarTotalEnBalances(operaciones)
 
 
-//--------Balances-----------
-//---------- Funcion mostrar suma total de ganancias en la seccion balances-----
-// const mostrarGananciasEnBalances = (array) => {
-//     const gananciasFiltradas = array.filter((elemento) => {
-//         return elemento.tipo === "Ganancia"
-
-//     })
-
-//     const sumarGastos = gastosFiltrados.reduce((acc, elemento) => {
-//         return acc + elemento.monto
-//     }, 0)
-
-//     return balancesSumaGastos.textContent = sumarGastos
-// }
-
-
-
-//---------- Funcion mostrar suma total de gastos en la seccion balances-----
-// const mostrarTotalEnBalances = (array) => {
-//     const resultadoFinalGanancias = mostrarGananciasEnBalances(array)
-//     const resultadoFinalGastos = mostrarGastosEnBalances(array)
-//     const resultadoFinal = resultadoFinalGanancias - resultadoFinalGastos
-//     return balancesTotalFinal.textContent = resultadoFinal
-// }
-// mostrarTotalEnBalances(operaciones)
 
 //-----------funciones para ordenar los filtros-----
 
@@ -613,8 +589,9 @@ const botonEditarSeccionOperaciones = () => {
             ocultarSecciones()
         }
     }
-
+    console.log(botonEditarSeccionOperaciones);
 }
+
 
 // TARJETA EDITAR CATEGORIA
 const tarjetaEditarOperacionEditar = (id) => {
@@ -643,7 +620,8 @@ const tarjetaEditarOperacionEditar = (id) => {
                     <label for="Tipo" class="label"> Tipo</label>
                     <div class="select is-fullwidth">
                         <select id="editar-tipo-operacion">
-                        <option value="${objeto.tipo}">${objeto.tipo}</option>
+                        <option >Ganancia</option>
+                        <option >Gastos</option>
                         </select>
                     </div>
                 </div>
