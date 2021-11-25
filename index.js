@@ -26,7 +26,7 @@ const balancesSumaGastos = document.querySelector(".sumaGastos")
 const balancesTotalFinal = document.querySelector(".totalBalances")
 
 
-    // -------------funciones formulario FILTROS-------------------
+// -------------funciones formulario FILTROS-------------------
 
 
 
@@ -96,13 +96,6 @@ botonAgregarOperacion.onclick = () => {
 // }
 
 //Boton Cancelar
-/*
-botonCancelarOperacion.onclick = () => {
-    botonReporte.classList.add("is-hidden");
-    seccionCategorias.classList.add("is-hidden");
-    seccionNuevaOperacion.classList.add("is-hidden");
-    botonBalance.classList.remove("is-hidden");
-}
 
 //Boton Agregar
 
@@ -229,8 +222,8 @@ const convertirOperacionesAHTML = (operaciones) => {
 
 
 
-    //---------- Funcion mostrar en HTML------------flor---------
-    //esta funcion muestra los titulos de las categorias una vez que se ingresan los datos (no debe ser parte de la acumuladora)
+//---------- Funcion mostrar en HTML------------flor---------
+//esta funcion muestra los titulos de las categorias una vez que se ingresan los datos (no debe ser parte de la acumuladora)
 const aplicarDescripcionAOperaciones = () => {
     return `<div class="columns has-text-weight-semibold is-hidden-mobile">
             <div class="column is-3">Descripción</div>
@@ -303,19 +296,19 @@ mostrarOperacionesEnHTML(operaciones)
 
 //--------Balances-----------
 //---------- Funcion mostrar suma total de ganancias en la seccion balances-----
-const mostrarGananciasEnBalances = (array) => {
+// const mostrarGananciasEnBalances = (array) => {
 
-    const gananciasFiltradas = array.filter((elemento) => {
-        return elemento.tipo === "Ganancia"
-    })
+//     const gananciasFiltradas = array.filter((elemento) => {
+//         return elemento.tipo === "Ganancia"
+//     })
 
 
-    const sumarGanancias = gananciasFiltradas.reduce((acc, elemento) => {
-        return acc + elemento.monto
-    }, 0)
+//     const sumarGanancias = gananciasFiltradas.reduce((acc, elemento) => {
+//         return acc + elemento.monto
+//     }, 0)
 
-    return balancesSumaGanancias.textContent = sumarGanancias
-}
+//     return balancesSumaGanancias.textContent = sumarGanancias
+// }
 
 
 
@@ -336,40 +329,41 @@ const mostrarGastosEnBalances = (array) => {
 console.log(mostrarGastosEnBalances(operaciones))
 
 //---------- Funcion mostrar suma total de gastos en la seccion balances-----
-const mostrarTotalEnBalances = (array) => {
-        const resultadoFinalGanancias = mostrarGananciasEnBalances(array)
-        const resultadoFinalGastos = mostrarGastosEnBalances(array)
-        const resultadoFinal = resultadoFinalGanancias - resultadoFinalGastos
-        return resultadoFinal
-    }
-    //  balancesTotalFinal.textContent  =
-mostrarTotalEnBalances(operaciones)
+// const mostrarTotalEnBalances = (array) => {
+//         const resultadoFinalGanancias = mostrarGananciasEnBalances(array)
+//         const resultadoFinalGastos = mostrarGastosEnBalances(array)
+//         const resultadoFinal = resultadoFinalGanancias - resultadoFinalGastos
+//         return resultadoFinal
+//     }
+//     //  balancesTotalFinal.textContent  =
+// mostrarTotalEnBalances(operaciones)
 
 
-  //--------Balances-----------
+//--------Balances-----------
 //---------- Funcion mostrar suma total de ganancias en la seccion balances-----
-const mostrarGananciasEnBalances = (array) =>{
-const gananciasFiltradas = array.filter((elemento)=>{
-    return elemento.tipo === "Ganancia"
+// const mostrarGananciasEnBalances = (array) => {
+//     const gananciasFiltradas = array.filter((elemento) => {
+//         return elemento.tipo === "Ganancia"
 
-    })
+//     })
 
-    const sumarGastos = gastosFiltrados.reduce((acc, elemento) => {
-        return acc + elemento.monto
-    }, 0)
+//     const sumarGastos = gastosFiltrados.reduce((acc, elemento) => {
+//         return acc + elemento.monto
+//     }, 0)
 
-    return balancesSumaGastos.textContent = sumarGastos
-}
+//     return balancesSumaGastos.textContent = sumarGastos
+// }
+
 
 
 //---------- Funcion mostrar suma total de gastos en la seccion balances-----
-const mostrarTotalEnBalances = (array) => {
-    const resultadoFinalGanancias = mostrarGananciasEnBalances(array)
-    const resultadoFinalGastos = mostrarGastosEnBalances(array)
-    const resultadoFinal = resultadoFinalGanancias - resultadoFinalGastos
-    return balancesTotalFinal.textContent = resultadoFinal
-}
-mostrarTotalEnBalances(operaciones)
+// const mostrarTotalEnBalances = (array) => {
+//     const resultadoFinalGanancias = mostrarGananciasEnBalances(array)
+//     const resultadoFinalGastos = mostrarGastosEnBalances(array)
+//     const resultadoFinal = resultadoFinalGanancias - resultadoFinalGastos
+//     return balancesTotalFinal.textContent = resultadoFinal
+// }
+// mostrarTotalEnBalances(operaciones)
 
 //-----------funciones para ordenar los filtros-----
 
@@ -505,11 +499,11 @@ const categoriasObtenidas = () => {
     }
 }
 let funcionLS = (elemento) => {
-    const categoriasAJSON = JSON.stringify(elemento)
-    localStorage.setItem("categorias", categoriasAJSON)
+        const categoriasAJSON = JSON.stringify(elemento)
+        localStorage.setItem("categorias", categoriasAJSON)
 
-}
-////////////////////////////// 
+    }
+    ////////////////////////////// 
 
 const adicionDeNuevasCategoriasSelect = () => {
     const categorias = categoriasObtenidas()
@@ -569,11 +563,11 @@ const operacion = operacionesObtenidas()
 mostrarOperacionesEnHTML(operacion)
 
 const agregarCategoriasAHTML = () => {
-    const categorias = categoriasObtenidas()
-    const lista = document.getElementById("lista-categoria")
+        const categorias = categoriasObtenidas()
+        const lista = document.getElementById("lista-categoria")
 
-    const stringCategoriasIniciadoras = categorias.reduce((acc, elemento, index) => {
-        return acc + ` <div class=" columns">
+        const stringCategoriasIniciadoras = categorias.reduce((acc, elemento, index) => {
+            return acc + ` <div class=" columns">
             <div class="column">
                  <span id="nombre-categoria-${index}" class="nombre-categoria has-background-success-light has-text-success-dark">${elemento}</span>
             </div>
@@ -582,47 +576,47 @@ const agregarCategoriasAHTML = () => {
                 <button id="borrar-${index}"  class="boton-borrar button is-info is-inverted ">Eliminar</button>
             </div>
      </div>`
-    }, "")
+        }, "")
 
-    lista.innerHTML = stringCategoriasIniciadoras
+        lista.innerHTML = stringCategoriasIniciadoras
 
-    ///// boton borrar categorias
-    const botonesBorrar = document.querySelectorAll(".boton-borrar")
-    for (let i = 0; i < botonesBorrar.length; i++) {
-        botonesBorrar[i].onclick = () => {
-            const id = botonesBorrar[i].id
-            const indice = id.charAt(7)
-            const nuevasCategoriasFiltradas = categorias.filter((elemento, index) => {
-                return index != indice
-            })
+        ///// boton borrar categorias
+        const botonesBorrar = document.querySelectorAll(".boton-borrar")
+        for (let i = 0; i < botonesBorrar.length; i++) {
+            botonesBorrar[i].onclick = () => {
+                const id = botonesBorrar[i].id
+                const indice = id.charAt(7)
+                const nuevasCategoriasFiltradas = categorias.filter((elemento, index) => {
+                    return index != indice
+                })
 
-            funcionLS(nuevasCategoriasFiltradas)
-            agregarCategoriasAHTML()
-            adicionDeNuevasCategoriasSelect()
+                funcionLS(nuevasCategoriasFiltradas)
+                agregarCategoriasAHTML()
+                adicionDeNuevasCategoriasSelect()
+            }
+        }
+        botonEditarSeccionOperaciones()
+        botonEditarSeccionCategoria()
+    }
+    // aca empiezan las funciones de botones
+    // BOTON EDITAR CATEGORIA
+const botonEditarSeccionOperaciones = () => {
+        const botonEditarSeccionOperaciones = document.querySelectorAll(".boton-editar-seccion-operaciones")
+        for (let i = 0; i < botonEditarSeccionOperaciones.length; i++) {
+            botonEditarSeccionOperaciones[i].onclick = () => {
+                const idRecortado = botonEditarSeccionOperaciones[i].id.slice(31)
+                idDelBoton = Number(idRecortado)
+                tarjetaEditarOperacionEditar(idDelBoton)
+                ocultarSecciones()
+            }
         }
     }
-    botonEditarSeccionOperaciones()
-    botonEditarSeccionCategoria()
-}
-// aca empiezan las funciones de botones
-// BOTON EDITAR CATEGORIA
-const botonEditarSeccionOperaciones = ()=>{
-    const botonEditarSeccionOperaciones = document.querySelectorAll(".boton-editar-seccion-operaciones")
-    for (let i = 0; i < botonEditarSeccionOperaciones.length; i++) {
-        botonEditarSeccionOperaciones[i].onclick = ()=>{
-            const idRecortado = botonEditarSeccionOperaciones[i].id.slice(31)
-            idDelBoton = Number(idRecortado)
-            tarjetaEditarOperacionEditar (idDelBoton)
-            ocultarSecciones()
-        }
-    }
-}
-// TARJETA EDITAR CATEGORIA
-const tarjetaEditarOperacionEditar = (id)=>{
+    // TARJETA EDITAR CATEGORIA
+const tarjetaEditarOperacionEditar = (id) => {
     const formTarjetaEditarOperacion = document.querySelector(".form-tarjeta-editar-operacion")
 
-    const objeto = operaciones [id]
-    
+    const objeto = operaciones[id]
+
     formTarjetaEditarOperacion.innerHTML = `
     <div class="tarjeta-editar-operacion column is-offset-2 is-8 is-hidden">
         <form class="box form-seccion-operacion">
@@ -689,27 +683,27 @@ const tarjetaEditarOperacionEditar = (id)=>{
         e.preventDefault()
         ocultarSecciones()
         console.log(formSeccionOperacion);
-        
+
         const valorMonto = Number(inputMonto.value)
         const valorDescripcion = inputDescripcion.value
-        // const valorTipo = 
+            // const valorTipo = 
         objeto.monto = valorMonto
         objeto.descripcion = valorDescripcion
 
         mostrarOperacionesEnHTML(operaciones)
-        botonEditarSeccionOperaciones() 
+        botonEditarSeccionOperaciones()
     }
 }
 
 // funcion auxiliar ocultar secciones - operaciones
-const ocultarSecciones = ()=> {
+const ocultarSecciones = () => {
     const tarjetaEditarOperacion = document.querySelector(".tarjeta-editar-operacion")
     seccionCentral.classList.toggle("is-hidden")
     tarjetaEditarOperacion.classList.toggle("is-hidden")
 }
 
 // BOTON EDITAR CATEGORIA
-const botonEditarSeccionCategoria = () =>{
+const botonEditarSeccionCategoria = () => {
     const botonEditarCategoria = document.querySelectorAll(".boton-editar-categoria")
     const inputCategoriasNombreEditar = document.querySelector(".input-categorias-nombre-editar")
     const nombreCategoria = document.querySelectorAll(".nombre-categoria")
@@ -723,24 +717,24 @@ const botonEditarSeccionCategoria = () =>{
             inputCategoriasNombreEditar.value = nombreCategoria[i].textContent
 
             ocultarSeccionesCategoria()
-            
-            botonEditarCategoriaEditada.onclick = ()=>{
+
+            botonEditarCategoriaEditada.onclick = () => {
                 ocultarSeccionesCategoria()
                 nombreCategoria[i].textContent = inputCategoriasNombreEditar.value
             }
-            botonCancelarDentroCategoria ()
+            botonCancelarDentroCategoria()
 
         }
-    } 
-}
-const botonCancelarDentroCategoria = ()=>{
-    const botonCancelarCategoriaEditada = document.querySelector(".boton-cancelar-categoria-editada")
-    botonCancelarCategoriaEditada.onclick = () => {
-        ocultarSeccionesCategoria()
     }
 }
-// funcion auxiliar ocultar secciones- categoria 
-const ocultarSeccionesCategoria =()=>{
+const botonCancelarDentroCategoria = () => {
+        const botonCancelarCategoriaEditada = document.querySelector(".boton-cancelar-categoria-editada")
+        botonCancelarCategoriaEditada.onclick = () => {
+            ocultarSeccionesCategoria()
+        }
+    }
+    // funcion auxiliar ocultar secciones- categoria 
+const ocultarSeccionesCategoria = () => {
     const tarjetaEditarCategoria = document.querySelector(".tarjeta-editar-categoria")
     seccionCategorias.classList.toggle("is-hidden")
     tarjetaEditarCategoria.classList.toggle("is-hidden")
