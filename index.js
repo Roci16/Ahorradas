@@ -45,6 +45,7 @@ const tarjetaSinOperaciones = document.getElementById("tarjeta-sin-operaciones")
 const inputDescripcionNuevaOperacion = document.getElementById("descripcion-nueva-operacion")
 const inputMontoNuevaOperacion = document.getElementById("monto-nueva-operacion")
 const contenedorOperacionesAgregadas = document.getElementById("contenedor-operaciones-agregadas")
+
 const selectCategoriaNuevaOperacion = document.getElementById("select-categoria-nueva-operacion")
 const inputDateNuevaOperacion = document.getElementById("dateNuevaOperacion")
 const selectTipoNuevaOperacion = document.getElementById("select-tipo-nueva-operacion")
@@ -67,7 +68,7 @@ botonCategorias.onclick = () => {
     seccionCategorias.classList.remove("is-hidden")
     seccionCentral.classList.add("is-hidden")
     seccionReportes.classList.add("is-hidden")
-
+    seccionNuevaOperacion.classList.add("is-hidden")
 }
 
 botonReporte.onclick = () => {
@@ -75,29 +76,24 @@ botonReporte.onclick = () => {
     seccionReportes.classList.remove("is-hidden")
     seccionCentral.classList.add("is-hidden")
     seccionCategorias.classList.add("is-hidden")
+    seccionNuevaOperacion.classList.add("is-hidden")
 
 }
 
 //Balance
 
 botonNuevaOperacion.onclick = () => {
-    seccionNuevaOperacion.classList.remove("is-hidden")
     seccionCentral.classList.add("is-hidden")
+    seccionNuevaOperacion.classList.remove("is-hidden")
+
 }
+
 botonAgregarOperacion.onclick = () => {
     seccionNuevaOperacion.classList.add("is-hidden")
+        // contenedorOperacionesAgregadas.classList.remove("is-hidden")
         // seccionCentral.classList.add("is-hidden")
 }
 
-
-// function mostrarBotonAgregarOperacion() {
-//     botonAgregarOperacion.style.display = 'none';
-//     botonAgregarOperacion.style.display = 'inline';
-// }
-
-//Boton Cancelar
-
-//Boton Agregar
 
 
 // Array de prueba
@@ -529,6 +525,7 @@ botonAgregarOperacion.onclick = () => {
     seccionNuevaOperacion.classList.add("is-hidden");
     seccionCentral.classList.remove("is-hidden")
     tarjetaSinOperaciones.classList.add("is-hidden")
+    tarjetaOperacionesAgregadas.classList.remove("is-hidden")
     contenedorOperacionesAgregadas.classList.remove("is-hidden")
 
 
@@ -563,11 +560,11 @@ const operacion = operacionesObtenidas()
 mostrarOperacionesEnHTML(operacion)
 
 const agregarCategoriasAHTML = () => {
-        const categorias = categoriasObtenidas()
-        const lista = document.getElementById("lista-categoria")
+    const categorias = categoriasObtenidas()
+    const lista = document.getElementById("lista-categoria")
 
-        const stringCategoriasIniciadoras = categorias.reduce((acc, elemento, index) => {
-            return acc + ` <div class=" columns">
+    const stringCategoriasIniciadoras = categorias.reduce((acc, elemento, index) => {
+        return acc + ` <div class=" columns">
             <div class="column">
                  <span id="nombre-categoria-${index}" class="nombre-categoria has-background-success-light has-text-success-dark">${elemento}</span>
             </div>
@@ -576,42 +573,45 @@ const agregarCategoriasAHTML = () => {
                 <button id="borrar-${index}"  class="boton-borrar button is-info is-inverted ">Eliminar</button>
             </div>
      </div>`
-        }, "")
+    }, "")
 
-        lista.innerHTML = stringCategoriasIniciadoras
+    lista.innerHTML = stringCategoriasIniciadoras
 
-        ///// boton borrar categorias
-        const botonesBorrar = document.querySelectorAll(".boton-borrar")
-        for (let i = 0; i < botonesBorrar.length; i++) {
-            botonesBorrar[i].onclick = () => {
-                const id = botonesBorrar[i].id
-                const indice = id.charAt(7)
-                const nuevasCategoriasFiltradas = categorias.filter((elemento, index) => {
-                    return index != indice
-                })
+    ///// boton borrar categorias
+    const botonesBorrar = document.querySelectorAll(".boton-borrar")
+    for (let i = 0; i < botonesBorrar.length; i++) {
+        botonesBorrar[i].onclick = () => {
+            const id = botonesBorrar[i].id
+            const indice = id.charAt(7)
+            const nuevasCategoriasFiltradas = categorias.filter((elemento, index) => {
+                return index != indice
+            })
 
-                funcionLS(nuevasCategoriasFiltradas)
-                agregarCategoriasAHTML()
-                adicionDeNuevasCategoriasSelect()
-            }
+            funcionLS(nuevasCategoriasFiltradas)
+            agregarCategoriasAHTML()
+            adicionDeNuevasCategoriasSelect()
         }
-        botonEditarSeccionOperaciones()
-        botonEditarSeccionCategoria()
     }
-    // aca empiezan las funciones de botones
-    // BOTON EDITAR CATEGORIA
+    botonEditarSeccionOperaciones()
+    botonEditarSeccionCategoria()
+}
+
+// aca empiezan las funciones de botones
+// BOTON EDITAR CATEGORIA
 const botonEditarSeccionOperaciones = () => {
-        const botonEditarSeccionOperaciones = document.querySelectorAll(".boton-editar-seccion-operaciones")
-        for (let i = 0; i < botonEditarSeccionOperaciones.length; i++) {
-            botonEditarSeccionOperaciones[i].onclick = () => {
-                const idRecortado = botonEditarSeccionOperaciones[i].id.slice(31)
-                idDelBoton = Number(idRecortado)
-                tarjetaEditarOperacionEditar(idDelBoton)
-                ocultarSecciones()
-            }
+    const botonEditarSeccionOperaciones = document.querySelectorAll(".boton-editar-seccion-operaciones")
+    for (let i = 0; i < botonEditarSeccionOperaciones.length; i++) {
+        botonEditarSeccionOperaciones[i].onclick = () => {
+            const idRecortado = botonEditarSeccionOperaciones[i].id.slice(31)
+            idDelBoton = Number(idRecortado)
+            tarjetaEditarOperacionEditar(idDelBoton)
+            ocultarSecciones()
         }
     }
-    // TARJETA EDITAR CATEGORIA
+
+}
+
+// TARJETA EDITAR CATEGORIA
 const tarjetaEditarOperacionEditar = (id) => {
     const formTarjetaEditarOperacion = document.querySelector(".form-tarjeta-editar-operacion")
 
