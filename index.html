@@ -138,29 +138,33 @@
                                 </article>
                             </div>
 
-                            <!-- Box Operaciones -->
-                            <div class="column is-7">
-                                <div class="box" id="div-operaciones">
-                                    <div id="tarjeta-sin-operaciones">
-                                        <div class="columns">
-                                            <h2 class="title column is-size-4 has-text-weight-bold has-text-grey-dark">Operaciones</h2>
-                                            <div class="column  has-text-right">
-                                                <button id="boton-nueva-operacion" class="button is-primary">+ Nueva operación</button>
-                                            </div>
-                                        </div>
+                    <!-- Box Operaciones -->
+                    <div class="column is-7">
+                        <div class="box" id="div-operaciones">
+                            <div id="tarjeta-operacion-con-botones">
+                                <div class="columns">
+                                    <h2 class="title column is-size-4 has-text-weight-bold has-text-grey-dark">Operaciones</h2>
+                                    <div class="column  has-text-right">
+                                        <button id="boton-nueva-operacion" class="button is-primary">+ Nueva operación</button>
+                                    </div>
+                                </div>
 
-                                        <div class="columns my-5">
+                                <div id="tarjeta-sin-operaciones">
+                                    <div class="columns my-5">
 
-                                            <!-- Funcion de lo que aparece cuando se agrega una operacion -->
+                                        <!-- Funcion de lo que aparece cuando se agrega una operacion -->
 
 
-                                            <figure class="image column is-offset-3 is-6">
-                                                <img src="imagenes/undraw_Pie_chart_re_bgs8.svg">
+                                        <figure class="image column is-offset-3 is-6">
+                                            <img src="imagenes/undraw_Pie_chart_re_bgs8.svg">
 
-                                            </figure>
+                                        </figure>
 
-                                        </div>
 
+                                    </div>
+
+                                    <div class="columns">
+                                        <p class="column has-text-centered is-size-4 has-text-weight-semibold has-text-grey-dark">Sin resultados</p>
 
 
                                         <div class="columns">
@@ -186,19 +190,27 @@
                                             <div id="tarjeta-operaciones-agregadas"></div>
                                         </div>
                                     </div>
+
                                 </div>
 
                             </div>
                         </div>
 
                     </div>
-                </section>
-                <!--Tarjeta de nueva operacion  -->
-                <section id="accion-boton-nueva-operacion" class=" columns m-5 is-hidden">
-                    <div class="box column is-8 is-offset-2">
-                        <h2 class="title is-size-2 has-text-weight-bold has-text-black-ter my-5">Nueva operación</h2>
 
-                        <form>
+                </div>
+
+
+            </div>
+        </section>
+        <!--Tarjeta de nueva operacion  -->
+        <section id="accion-boton-nueva-operacion" class=" columns m-5 is-hidden">
+            <div class="box column is-8 is-offset-2">
+                <h2 class="title is-size-2 has-text-weight-bold has-text-black-ter my-5">Nueva operación</h2>
+
+
+                <form>
+
 
                             <div class="field">
                                 <label class="label" for="descripcion-nueva-operacion">Descripción</label>
@@ -210,29 +222,47 @@
                                 <input class="input" type="number" id="monto-nueva-operacion" value="0">
                             </div>
 
-                            <div class="field">
-                                <label class="label" for="select-tipo-nueva-operacion">Tipo</label>
-                                <div class="select is-fullwidth ">
-                                    <select id="select-tipo-nueva-operacion"> 
-                                         <option>Gasto</option>
-                                         <option>Ganancia</option>
-                                    </select>
-                                </div>
-                            </div>
 
-                            <div class="field">
-                                <label class="label" for="select-categoria-nueva-operacion">Categoría</label>
-                                <div class="select is-fullwidth  ">
-                                    <select id="select-categoria-nueva-operacion">                        
-                                                 <option>Comida</option>
-                                                 <option>Servicios</option>
-                                                 <option>Salidas</option>
-                                                 <option>Educación</option>
-                                                 <option>Transporte</option>
-                                                 <option>Trabajo</option>
+                    <div class="field">
+                        <label class="label" for="select-tipo-nueva-operacion">Tipo</label>
+                        <div class="select is-fullwidth ">
+                            <select id="select-tipo-nueva-operacion"> 
+                                         <option value="gastos">Gasto</option>
+                                         <option value="ganancias">Ganancia</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="field">
+                        <label class="label" for="select-categoria-nueva-operacion">Categoría</label>
+                        <div class="select is-fullwidth  ">
+                            <select id="select-categoria-nueva-operacion">                        
+
+                                                 <option value="comida">Comida</option>
+                                                 <option value="servicios">Servicios</option>
+                                                 <option value="salidas">Salidas</option>
+                                                 <option value="educacion">Educación</option>
+                                                 <option value="transporte">Transporte</option>
+                                                 <option value="trabajo">Trabajo</option>
+
                                             </select>
-                                </div>
-                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="field">
+                        <label class="label" for="dateNuevaOperacion">Desde</label>
+                        <div class="control">
+                            <input class="input" id="dateNuevaOperacion" type="date">
+                        </div>
+                    </div>
+
+                </form>
+                <div class="column has-text-right">
+
+                    <button class="button mt-5 is-light" id="boton-cancelar-operacion">Cancelar</button>
+                    <button class="button mt-5 is-success" id="boton-agregar-operacion">Agregar</button>
+
 
                             <div class="field">
                                 <label class="label" for="date">Desde</label>
@@ -297,14 +327,52 @@
 
                             </div>
 
+
+                </div>
+            </div>
+
+        </div>
+        
+    </section>
+    <!--------------------------------------------------------
+            TARJETA EDITAR CATEGORIA - brenda
+    --------------------------------------------------------->
+    <div class="section is-hidden tarjeta-editar-categoria">
+        <div class="column is-offset-2 is-8">
+            <div class="box ">
+                <h2 class="title has-text-weight-bold has-text-grey-dark mb-6">Editar categoría</h2>
+                <div class="field">
+                    <label class="label " for="username">Nombre</label>
+                    <div class="columns">
+                        <div class="control column is-12">
+                            <div>
+                                <input class="input input-categorias-nombre-editar" value="" id="username" type="text">
+                            </div>
                         </div>
                     </div>
-                </section>
+                    <div class="has-text-right">
+                            <button class="button is-light boton-cancelar-categoria-editada">Cancelar</button>
+                            <button class="button is-success boton-editar-categoria-editada">Editar</button>
+                    </div>
+                </div>
+                        
+            </div>
+        </div>
+    </div> 
+    <!--------------------------------------------------------- 
+        TARJETA BOTON EDITAR SECCION PRINCIPAL- brenda
+    --------------------------------------------------------->
+    <div class="section form-tarjeta-editar-operacion">
+        
+    </div>
+        
+    <!-- Seccion reportes -->
+    <section id="seccion-reportes" class="section is-hidden m-1">
+        <div class="column is-8 is-offset-2">
+            <div class="box">
 
-                <!-- Seccion reportes -->
-                <section id="seccion-reportes" class="section is-hidden m-1">
-                    <div class="column is-8 is-offset-2">
-                        <div class="box">
+        </section>
+
 
                             <div class="columns">
                                 <h2 class="title column is-size-2 has-text-weight-bold ">Reportes</h2>
