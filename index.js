@@ -798,42 +798,42 @@ const categoriaConMayorGasto = (array) => {
 console.log("MAYOR GASTO:",  montoMayorGasto(operaciones), categoriaConMayorGasto(operaciones)) 
 
 
-// //               funcion html
+//               funcion html
 
-// const contenedorReportes = ()=>{
-//     const seccionReportes = document.querySelector(".seccion-reportes")
-//     seccionReportes.innerHTML = `
-//     <h1>Reportes</h1>
-//     <div class="contenedor-resumen">
-//         <h3>Resumen</h3>
+const contenedorReportes = ()=>{
+    const seccionReportes = document.querySelector(".seccion-reportes")
+    seccionReportes.innerHTML = `
+    <h1>Reportes</h1>
+    <div class="contenedor-resumen">
+        <h3>Resumen</h3>
 
-//         <!-- titulo -->
-//         <div class="contenedor-chico">
-//             <h5>CATEGORIA CON MAYOR GANANCIA</h5>
-//             <h5>CATEGORIA CON MAYOR GASTO</h5>
-//             <h5>CATEGORIA CON MAYOR BALANCE</h5>
-//             <h5>MES CON MAYOR GANANCIA</h5>
-//             <h5>Mes con mayor gasto</h5>
-//         </div>
+        <!-- titulo -->
+        <div class="contenedor-chico">
+            <h5>CATEGORIA CON MAYOR GANANCIA</h5>
+            <h5>CATEGORIA CON MAYOR GASTO</h5>
+            <h5>CATEGORIA CON MAYOR BALANCE</h5>
+            <h5>MES CON MAYOR GANANCIA</h5>
+            <h5>Mes con mayor gasto</h5>
+        </div>
 
-//         <!-- categoria -->
+        <!-- categoria -->
 
-//         <div class="contenedor-chico">
-//         <h5>${categoriaConMayorGanancia(operaciones)}</h5>
-//         <h5>${categoriaConMayorGasto(operaciones)}</h5>
-//         <h5>${categoriaConMayorGanancia(operaciones)}</h5>
-//         <h5>FALTA</h5>
-//         <h5>FALTA</h5>
-//         </div>
+        <div class="contenedor-chico">
+        <h5>${categoriaConMayorGanancia(operaciones)}</h5>
+        <h5>${categoriaConMayorGasto(operaciones)}</h5>
+        <h5>${categoriaConMayorGanancia(operaciones)}</h5>
+        <h5>FALTA</h5>
+        <h5>FALTA</h5>
+        </div>
 
-//         <!-- monto -->
-//         <div class="contenedor-chico">
-//             <h5>${montoMayorGanancia(operaciones)}</h5>
-//             <h5>${montoMayorGasto(operaciones)}</h5>
-//             <h5>${montoMayorGanancia(operaciones)}</h5>
-//             <h5>${montoMayorGanancia(operaciones)}</h5>
-//             <h5>${montoMayorGasto(operaciones)}</h5>
-//         </div>
-//     </div>`
-// }
-// contenedorReportes()
+        <!-- monto -->
+        <div class="contenedor-chico">
+            <h5>${montoMayorGanancia(operaciones)}</h5>
+            <h5>${montoMayorGasto(operaciones)}</h5>
+            <h5>${montoMayorGanancia(operaciones)}</h5>
+            <h5>${montoMayorGanancia(operaciones)}</h5>
+            <h5>${montoMayorGasto(operaciones)}</h5>
+        </div>
+    </div>`
+}
+contenedorReportes()
