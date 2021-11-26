@@ -9,10 +9,12 @@ const botonNuevaOperacion = document.getElementById("boton-nueva-operacion")
 
 const seccionNuevaOperacion = document.getElementById("accion-boton-nueva-operacion")
 
+
 const botonCancelarOperacion = document.querySelector("#boton-cancelar-operacion");
 const botonAgregarOperacion = document.querySelector("#boton-agregar-operacion");
 
 // Boton Agregar categorias
+
 
 const botonAgregarCategoria = document.getElementById("agregar-categoria-boton")
 const inputCategoriaNuevoNombre = document.getElementById("input-categorias-nuevo-nombre")
@@ -22,7 +24,9 @@ const balancesSumaGanancias = document.querySelector(".sumaGanancias")
 const balancesSumaGastos = document.querySelector(".sumaGastos")
 const balancesTotalFinal = document.querySelector(".totalBalances")
 
+
 // -------------funciones formulario FILTROS-------------------
+
 
 
 const formulario = document.getElementById("form")
@@ -35,6 +39,7 @@ const selectOrdenarPor = document.getElementById("select-ordenar")
 
 
 
+
 const tarjetaSinOperaciones = document.getElementById("tarjeta-sin-operaciones")
 const inputDescripcionNuevaOperacion = document.getElementById("descripcion-nueva-operacion")
 const inputMontoNuevaOperacion = document.getElementById("monto-nueva-operacion")
@@ -43,6 +48,7 @@ const contenedorOperacionesAgregadas = document.getElementById("contenedor-opera
 const selectCategoriaNuevaOperacion = document.getElementById("select-categoria-nueva-operacion")
 const inputDateNuevaOperacion = document.getElementById("dateNuevaOperacion")
 const selectTipoNuevaOperacion = document.getElementById("select-tipo-nueva-operacion")
+
 
 
 
@@ -93,6 +99,7 @@ botonCancelarOperacion.onclick = () => {
     seccionReportes.classList.add("is-hidden")
     seccionNuevaOperacion.classList.add("is-hidden")
 }
+
 
 // Array de prueba
 const operaciones = [
@@ -171,6 +178,7 @@ const operaciones = [
 
 
 
+
 // LocalStorage operaciones///////////////
 
 const operacionesObtenidas = () => {
@@ -184,12 +192,14 @@ const operacionesObtenidas = () => {
     }
 }
 
+
 let funcionOperacionesLS = (elemento) => {
         const operacionesAJSON = JSON.stringify(elemento)
         localStorage.setItem("operaciones", operacionesAJSON)
 
     }
     ////////////////////////////// 
+
 
 
 const convertirOperacionesAHTML = (operaciones) => {
@@ -212,6 +222,7 @@ const convertirOperacionesAHTML = (operaciones) => {
 
 
 
+
 //---------- Funcion mostrar en HTML------------flor---------
 //esta funcion muestra los titulos de las categorias una vez que se ingresan los datos (no debe ser parte de la acumuladora)
 const aplicarDescripcionAOperaciones = () => {
@@ -225,10 +236,12 @@ const aplicarDescripcionAOperaciones = () => {
              `
 }
 
+
 //aca junto la funcion anterior mas la acumuladora que toma los datos del objeto y los muestra
 const mostrarOperacionesEnHTML = (array) => {
 
     const operaciones = operacionesObtenidas()
+
 
     const html = array.reduce((acc, operacion, index) => {
         return (
@@ -293,6 +306,7 @@ const mostrarGananciasEnBalances = (array) => {
 }
 
 
+
 //---------- Funcion mostrar suma total de gastos en la seccion balances-----
 const mostrarGastosEnBalances = (array) => {
     const gastosFiltrados = array.filter((elemento) => {
@@ -318,6 +332,7 @@ const mostrarTotalEnBalances = (array) => {
 }
 
 mostrarTotalEnBalances(operaciones)
+
 
 
 //-----------funciones para ordenar los filtros-----
@@ -347,6 +362,7 @@ const ordenarPorMayorMonto = (array) => {
         return a.monto - b.monto
     })
 }
+
 
 const ordenarPorMenorMonto = (array) => {
     return array.sort((a, b) => {
@@ -383,6 +399,7 @@ const aplicarFiltros = () => {
         return operacion.tipo === tipo
     })
 
+
     const categoriaSelect = filtroCategorias.value //filtro por categoria aplicando el filtro de tipo
     const filtradoPorCategoria = filtradoPorTipo.filter((operacion) => {
         if (categoriaSelect === "Todos") {
@@ -392,14 +409,17 @@ const aplicarFiltros = () => {
     })
 
 
+
     const arrayFiltradoPorFechas = filtradoPorCategoria.map((operacion) => { //filtro por fechas
         const nuevoElemento = {...operacion }
         nuevoElemento.fecha = new Date(operacion.fecha).toLocaleDateString()
         return nuevoElemento
     })
 
+
     return filtroOrdenarPor(arrayFiltradoPorFechas)
 }
+
 
 //----Agrega filtro cuando modifico los select-----
 
@@ -468,7 +488,9 @@ const adicionDeNuevasCategoriasSelect = () => {
     selectCategoria.innerHTML = stringCategoriasIniciadoras
 
 
+
 }
+
 
 
 botonAgregarOperacion.onclick = () => {
@@ -480,11 +502,13 @@ botonAgregarOperacion.onclick = () => {
     tarjetaOperacionesAgregadas.classList.remove("is-hidden")
     contenedorOperacionesAgregadas.classList.remove("is-hidden")
 
+
     const valorInputDescripcionNuevaOperacion = inputDescripcionNuevaOperacion.value
     const valorInputMontoNuevaOperacion = inputMontoNuevaOperacion.value
     const valorOpcionCategoriaNuevaOperacion = selectCategoriaNuevaOperacion.value
     const valorInputDateNuevaOperacion = inputDateNuevaOperacion.value
     const valorOpcionTipoNuevaOperacion = selectTipoNuevaOperacion.value
+
 
     const operacion = {
         descripcion: valorInputDescripcionNuevaOperacion,
@@ -497,6 +521,7 @@ botonAgregarOperacion.onclick = () => {
     operaciones.push(operacion)
     funcionOperacionesLS(operaciones)
     mostrarOperacionesEnHTML(operaciones)
+
 
     valorInputDescripcionNuevaOperacion.value = ""
     valorInputMontoNuevaOperacion.value = ""
@@ -548,74 +573,73 @@ const agregarCategoriasAHTML = () => {
 // aca empiezan las funciones de botones
 // BOTON EDITAR CATEGORIA
 const botonEditarSeccionOperaciones = () => {
-    const botonEditarSeccionOperaciones = document.querySelectorAll(".boton-editar-seccion-operaciones")
-    for (let i = 0; i < botonEditarSeccionOperaciones.length; i++) {
-        botonEditarSeccionOperaciones[i].onclick = () => {
-            const idRecortado = botonEditarSeccionOperaciones[i].id.slice(31)
-            idDelBoton = Number(idRecortado)
-            tarjetaEditarOperacionEditar(idDelBoton)
-            ocultarSecciones()
+        const botonEditarSeccionOperaciones = document.querySelectorAll(".boton-editar-seccion-operaciones")
+        for (let i = 0; i < botonEditarSeccionOperaciones.length; i++) {
+            botonEditarSeccionOperaciones[i].onclick = () => {
+                const idRecortado = botonEditarSeccionOperaciones[i].id.slice(31)
+                idDelBoton = Number(idRecortado)
+                tarjetaEditarOperacionEditar(idDelBoton)
+                ocultarSecciones()
+            }
         }
     }
-    console.log(botonEditarSeccionOperaciones);
-}
-
-// TARJETA EDITAR CATEGORIA
+    // TARJETA EDITAR CATEGORIA
 const tarjetaEditarOperacionEditar = (id) => {
     const formTarjetaEditarOperacion = document.querySelector(".form-tarjeta-editar-operacion")
-
-    const objeto = operaciones[id]
+    const operacion = operacionesObtenidas()
+    const objeto = operacion[id]
 
     formTarjetaEditarOperacion.innerHTML = `
-    <div class="tarjeta-editar-operacion column is-offset-2 is-8 is-hidden">
-        <form class="box form-seccion-operacion">
-            <h2 class="title is-1 has-text-weight-bold">Editar operación</h2>
-            <div class="field">
-                <div class="control">
-                    <label for="Descripción" class="label"> Descripción </label>
-                    <input class="input" id="input-descripcion" type="text" value="${objeto.descripcion}">
+<div class="tarjeta-editar-operacion column is-offset-2 is-8 is-hidden">
+    <form class="box form-seccion-operacion">
+        <h2 class="title is-1 has-text-weight-bold">Editar operación</h2>
+        <div class="field">
+            <div class="control">
+                <label for="Descripción" class="label"> Descripción </label>
+                <input class="input" id="input-descripcion" type="text" value="${objeto.descripcion}">
+            </div>
+        </div>
+        <div class="field">
+            <div class="control">
+                <label for="Monto" class="label"> Monto</label>
+                    <input class="input" id="input-monto" type="number" value="${objeto.monto}">
+             </div>
+        </div>
+        <div class="field">
+            <div class="control">
+                <label for="Tipo" class="label"> Tipo</label>
+                <div class="select is-fullwidth">
+                    <select id="editar-tipo-operacion">
+                    <option value="ganancias">Ganancias</option>
+                    <option value="gastos">Gastos</option>
+                    </select>
                 </div>
             </div>
-            <div class="field">
-                <div class="control">
-                    <label for="Monto" class="label"> Monto</label>
-                        <input class="input" id="input-monto" type="number" value="${objeto.monto}">
-                 </div>
-            </div>
-            <div class="field">
-                <div class="control">
-                    <label for="Tipo" class="label"> Tipo</label>
-                    <div class="select is-fullwidth">
-                        <select id="editar-tipo-operacion">
-                        <option >Ganancia</option>
-                        <option >Gastos</option>
-                        </select>
-                    </div>
+        </div>
+        <div class="field">
+            <label for="Categoria" class="label"> Categoria</label>
+            <div class="control">
+                <div class="select is-fullwidth">
+                    <select id="input-categoria">
+                    <option>Gasto</option>
+                    <option>Ganancia</option>
+                    </select>
                 </div>
+            </div>         
+        </div>
+        <div class="field">
+            <div class="control">
+                <label for="Fecha" class="label"> Fecha</label>
+                <input class="input" type="date">
             </div>
-            <div class="field">
-                <label for="Categoria" class="label"> Categoria</label>
-                <div class="control">
-                    <div class="select is-fullwidth">
-                        <select id="input-categoria">
-                        <option>Gasto</option>
-                        <option>Ganancia</option>
-                        </select>
-                    </div>
-                </div>         
-            </div>
-            <div class="field">
-                <div class="control">
-                    <label for="Fecha" class="label"> Fecha</label>
-                    <input class="input" type="date">
-                </div>
-            </div>
-            <div class="has-text-right">
-                <button type="button" id="boton-cancelar-seccion-operaciones" class="button is-light"> Cancelar </button>
-                <input type="submit" value="Editar"  class="button is-success">
-            </div>
-        </form>
-    </div>`
+        </div>
+        <div class="has-text-right">
+            <button type="button" id="boton-cancelar-seccion-operaciones" class="button is-light"> Cancelar </button>
+            <input type="submit" value="Editar"  class="button is-success">
+        </div>
+    </form>
+</div>`
+
     const formSeccionOperacion = document.querySelector(".form-seccion-operacion")
     const inputDescripcion = document.querySelector("#input-descripcion")
     const inputMonto = document.querySelector("#input-monto")
@@ -632,7 +656,7 @@ const tarjetaEditarOperacionEditar = (id) => {
     formSeccionOperacion.onsubmit = (e) => {
         e.preventDefault()
         ocultarSecciones()
-        console.log(formSeccionOperacion);
+
 
         const valorMonto = Number(inputMonto.value)
         const valorDescripcion = inputDescripcion.value
@@ -640,9 +664,11 @@ const tarjetaEditarOperacionEditar = (id) => {
         objeto.monto = valorMonto
         objeto.descripcion = valorDescripcion
 
-        mostrarOperacionesEnHTML(operaciones)
+
+        mostrarOperacionesEnHTML(operacion)
         botonEditarSeccionOperaciones()
     }
+
 }
 
 // funcion auxiliar ocultar secciones - operaciones
@@ -690,6 +716,8 @@ const ocultarSeccionesCategoria = () => {
     tarjetaEditarCategoria.classList.toggle("is-hidden")
 }
 
+
+
 agregarCategoriasAHTML()
 adicionDeNuevasCategoriasSelect()
 
@@ -706,3 +734,6 @@ botonAgregarCategoria.onclick = () => {
     agregarCategoriasAHTML()
 
 }
+
+
+
