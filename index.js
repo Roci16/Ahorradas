@@ -34,7 +34,11 @@ const filtroTipo = document.getElementById("select-tipo")
 const filtroCategorias = document.getElementById("select-categoria")
 const filtroFecha = document.getElementById("date")
 const selectOrdenarPor = document.getElementById("select-ordenar")
-    // const divOperaciones = document.getElementById("div-operaciones")
+const divOperaciones = document.getElementById("div-operaciones")
+//-------------------------Elementos de Reportes---------------------------
+const divdatosResumen = document.getElementById("datos-resumen")
+const divdatosTotalesCategorias = document.getElementById("datos-totales-por-categorias")
+const divDatosTotalesMes = document.getElementById("datos-totales-por-mes")
     //-----------------------------------------------
 
 
@@ -97,8 +101,10 @@ botonCancelarOperacion.onclick = () => {
     seccionCategorias.classList.add("is-hidden")
     seccionCentral.classList.remove("is-hidden")
     seccionReportes.classList.add("is-hidden")
-    seccionNuevaOperacion.classList.add("is-hidden")
+
 }
+
+//Boton Agregar Operacion
 
 
 // Array de prueba
@@ -200,25 +206,25 @@ let funcionOperacionesLS = (elemento) => {
     }
     ////////////////////////////// 
 
+//----------convertirOperacionesAHTML
 
+// const convertirOperacionesAHTML = (operaciones) => {
+//     let acc = ""
 
-const convertirOperacionesAHTML = (operaciones) => {
-    let acc = ""
-
-    operaciones.map((operacion) => {
-        acc = acc + `
-        <div class="columns ">
-            <p class="column">${operacion.descripcion}</p>
-            <div class="column is-1" >
-                <p class="has-background-primary-light has-text-primary-dark has-text-centered">
-                 ${operacion.categoria}
-                 </p> 
-            </div> 
-            <p class="column  has-text-centered" >${operacion.fecha}</p> 
-            <p class="column has-text-success has-text-weight-bold">${operacion.monto}</p> 
-            <p class="column">${operacion.tipo}</p> `
-    })
-}
+//     operaciones.map((operacion) => {
+//         acc = acc + `
+//         <div class="columns ">
+//             <p class="column">${operacion.descripcion}</p>
+//             <div class="column is-1" >
+//                 <p class="has-background-primary-light has-text-primary-dark has-text-centered">
+//                  ${operacion.categoria}
+//                  </p> 
+//             </div> 
+//             <p class="column  has-text-centered" >${operacion.fecha}</p> 
+//             <p class="column has-text-success has-text-weight-bold">${operacion.monto}</p> 
+//             <p class="column">${operacion.tipo}</p> `
+//     })
+// }
 
 
 
@@ -238,43 +244,38 @@ const aplicarDescripcionAOperaciones = () => {
 
 
 //aca junto la funcion anterior mas la acumuladora que toma los datos del objeto y los muestra
-const mostrarOperacionesEnHTML = (array) => {
 
-    const operaciones = operacionesObtenidas()
+// const mostrarOperacionesEnHTML = (array) => {
+
+//     const operaciones = operacionesObtenidas()
 
 
-    const html = array.reduce((acc, operacion, index) => {
-        return (
-            acc +
-            `
+//     const html = array.reduce((acc, operacion, index) => {
+//         return (
+//             acc +
+//             `
+//       <div class="fila columns">
+//       <div class="column is-3 has-text-weight-semibold">
+//         <p>${operacion.descripcion}</p>
+//         </div>
+//         <div class="column is-3">
+//         <p>${operacion.categoria}</p>
+//         </div>
+//         <div class="column is-2 has-text-right">
+//         <p>${operacion.fecha}</p>
+//         </div>
+//         <div class="column is-2 has-text-right">
+//         <p>${operacion.tipo}</p>
+//         </div>
+//         <div class="column is-2 has-text-right">
+//         <button id="editar-categoria-${index}" class="button is-info is-inverted boton-editar-categoria">Editar</button>
+//         <button id="borrar-${index}"  class="boton-borrar-operacion button is-info is-inverted ">Eliminar</button>
+//         </div>
+//       </div>
+//       `
+//         );
+//     }, "")
 
-      <div class="fila columns">
-        <div class="column is-3 has-text-weight-semibold">
-            <span class="span-descripcion">${operacion.descripcion}</span>
-        </div>
-
-        <div class="column is-1">
-        <p>${operacion.categoria}</p>
-
-        </div>
-
-        <div class="column is-2 has-text-right">
-            <span>${operacion.fecha}</span>
-        </div>
-
-        <div class="column is-2 has-text-right">
-
-        <p >${operacion.monto}</p>
-        </div>
-        <div class="column is-3 has-text-right">
-        <button id="boton-editar-seccion-principal-${index}" class="button is-info is-inverted boton-editar-seccion-operaciones">Editar</button>
-        <button id="borrar-${index}"  class="boton-borrar-operacion button is-info is-inverted ">Eliminar</button>
-
-        </div>
-      </div>
-      `
-        );
-    }, "")
 
     tarjetaOperacionesAgregadas.innerHTML = html;
 
@@ -293,31 +294,15 @@ const mostrarOperacionesEnHTML = (array) => {
         }
     }
 
-}
+
+
 mostrarOperacionesEnHTML(operaciones)
 
-// --------Balances-----------
-// ---------- Funcion mostrar suma total de ganancias en la seccion balances-----
-const mostrarGananciasEnBalances = (array) => {
-
-    const gananciasFiltradas = array.filter((elemento) => {
-        return elemento.tipo === "Ganancia"
-    })
-    console.log(gananciasFiltradas);
-
-    const sumarGanancias = gananciasFiltradas.reduce((acc, elemento) => {
-        return acc + elemento.monto
-    }, 0)
-
-    return balancesSumaGanancias.textContent = sumarGanancias
-}
-
-
-
-//---------- Funcion mostrar suma total de gastos en la seccion balances-----
-const mostrarGastosEnBalances = (array) => {
-    const gastosFiltrados = array.filter((elemento) => {
-        return elemento.tipo === "Gasto"
+  //--------Balances-----------
+//---------- Funcion mostrar suma total de ganancias en la seccion balances-----
+const mostrarGananciasEnBalances = (array) =>{
+  const gananciasFiltradas = array.filter((elemento)=>{
+    return elemento.tipo === "Ganancia"
 
     })
 
@@ -339,7 +324,6 @@ const mostrarTotalEnBalances = (array) => {
 }
 
 mostrarTotalEnBalances(operaciones)
-
 
 
 //-----------funciones para ordenar los filtros-----
@@ -741,3 +725,41 @@ botonAgregarCategoria.onclick = () => {
     agregarCategoriasAHTML()
 
 }
+
+
+//--------------- Seccion reportes----------------------------
+//3 bloques
+//Resumen
+//Categoría con mayor ganancia Salidas +$134555
+// Categoría con mayor gasto Comida -$34165
+// Categoría con mayor balance Salidas $134555
+// Mes con mayor ganancia 2021/11/17 $134555
+// Mes con mayor gasto 2021/10/05 -$34165
+
+//Totales por categorías
+// Categoria Ganancias Gastos Balance
+// Comida    +$28077   -$34165 $-6088
+// Salidas  +$134555    -$0    $134555
+// Educación   +$50     -$0     $50
+// Transporte  +$100    -$0     $100
+// Servicios    +$0   -$5000   $-5000
+// Trabajo     +$0    -$48     $-48
+// hamburguesas  +$0  -$32     $-32
+
+// Totales por mes
+// Mes     Ganancias      Gastos    Balance
+// 11/2021  +$162502     -$5712     $156790
+// 10/2021   +$200       -$33333    $-33133
+// 6/2021    +$30         -$0          $30
+// 9/2021     +$0        -$200       $-200
+// 8/2021    +$50         -$0          $50
+// const divdatosResumen = document.getElementById("datos-resumen")
+// const divdatosTotalesCategorias = document.getElementById("datos-totales-por-categorias")
+// const divDatosTotalesMes = document.getElementById("datos-totales-por-mes")
+
+
+//funciones para totales por categorias
+//accede al array de categorias filtrado por aquellas que fueron utilizadas para operaciones (filter)
+// la funcion debe mostrar en catgoria el nombre de la misma. 
+// necesito una acumuladora que muestre el array de las categorias filtradas
+//las funciones deben incluir que cuando el monto sea menor a 0 agregar la clase para que el texto sea rojo y cuando sea mayo clase verde
