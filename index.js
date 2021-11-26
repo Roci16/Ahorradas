@@ -288,7 +288,7 @@ let funcionOperacionesLS = (elemento) => {
         }
     }
 
-}
+
 mostrarOperacionesEnHTML(operaciones)
 
   //--------Balances-----------
@@ -538,8 +538,9 @@ botonAgregarCategoria.onclick = () => {
     agregarCategoriasAHTML()
 
 }
-    
-    //--------------- Seccion reportes----------------------------
+
+
+//--------------- Seccion reportes----------------------------
 //3 bloques
 //Resumen
 //Categoría con mayor ganancia Salidas +$134555
@@ -569,3 +570,9 @@ botonAgregarCategoria.onclick = () => {
 // const divdatosTotalesCategorias = document.getElementById("datos-totales-por-categorias")
 // const divDatosTotalesMes = document.getElementById("datos-totales-por-mes")
 
+
+//funciones para totales por categorias
+//accede al array de categorias filtrado por aquellas que fueron utilizadas para operaciones (filter)
+// la funcion debe mostrar en catgoria el nombre de la misma. 
+// necesito una acumuladora que muestre el array de las categorias filtradas
+//las funciones deben incluir que cuando el monto sea menor a 0 agregar la clase para que el texto sea rojo y cuando sea mayo clase verde
