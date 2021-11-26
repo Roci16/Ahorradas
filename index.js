@@ -741,3 +741,99 @@ botonAgregarCategoria.onclick = () => {
     agregarCategoriasAHTML()
 
 }
+//------------------------------------------------------------------------------------------------------------------------
+//                                     reportes- resumen
+//------------------------------------------------------------------------------------------------------------------------
+
+// "categoria con mayor ganancia"
+const montoMayorGanancia = (array) => {
+    const mayorMonto = array.reduce((acc, elemento)=>{
+        if (acc < elemento.monto) {
+            return elemento.monto
+        }
+        return acc
+    }, 0)
+    return mayorMonto
+}
+const categoriaConMayorGanancia = (array) => {
+    const filtrarTipo = array.filter((elemento)=>{
+        return elemento.tipo === "Ganancia"
+    })
+    const filtrarCategoria = filtrarTipo.reduce((acc, elemento)=>{
+        if (acc > elemento.monto) {
+            return acc
+        }
+        return elemento.categoria
+    }, 0)
+    return filtrarCategoria
+}
+console.log("MAYOR GANANCIA", categoriaConMayorGanancia(operaciones), montoMayorGanancia(operaciones)) 
+
+// "categoria con mayor gasto"
+const montoMayorGasto = (array) => {
+    const filtrarTipo = array.filter((elemento)=>{
+        return elemento.tipo === "Gasto"
+    })
+    const filtrarmenorGasto = filtrarTipo.reduce((acc, elemento)=>{
+        if (acc < elemento.monto) {
+            acc = elemento.monto
+        }
+        return acc
+    }, 0)
+    return filtrarmenorGasto
+}
+
+const categoriaConMayorGasto = (array) => {
+    const filtrarTipo = array.filter((elemento)=>{
+        return elemento.tipo === "Gasto"
+    })
+    const filtrarmenorGasto = filtrarTipo.reduce((acc, elemento)=>{
+        if (acc < elemento.monto) {
+            acc = elemento.categoria
+        }
+        return acc
+    }, 0)
+    return filtrarmenorGasto
+}
+console.log("MAYOR GASTO:",  montoMayorGasto(operaciones), categoriaConMayorGasto(operaciones)) 
+
+
+// //               funcion html
+
+// const contenedorReportes = ()=>{
+//     const seccionReportes = document.querySelector(".seccion-reportes")
+//     seccionReportes.innerHTML = `
+//     <h1>Reportes</h1>
+//     <div class="contenedor-resumen">
+//         <h3>Resumen</h3>
+
+//         <!-- titulo -->
+//         <div class="contenedor-chico">
+//             <h5>CATEGORIA CON MAYOR GANANCIA</h5>
+//             <h5>CATEGORIA CON MAYOR GASTO</h5>
+//             <h5>CATEGORIA CON MAYOR BALANCE</h5>
+//             <h5>MES CON MAYOR GANANCIA</h5>
+//             <h5>Mes con mayor gasto</h5>
+//         </div>
+
+//         <!-- categoria -->
+
+//         <div class="contenedor-chico">
+//         <h5>${categoriaConMayorGanancia(operaciones)}</h5>
+//         <h5>${categoriaConMayorGasto(operaciones)}</h5>
+//         <h5>${categoriaConMayorGanancia(operaciones)}</h5>
+//         <h5>FALTA</h5>
+//         <h5>FALTA</h5>
+//         </div>
+
+//         <!-- monto -->
+//         <div class="contenedor-chico">
+//             <h5>${montoMayorGanancia(operaciones)}</h5>
+//             <h5>${montoMayorGasto(operaciones)}</h5>
+//             <h5>${montoMayorGanancia(operaciones)}</h5>
+//             <h5>${montoMayorGanancia(operaciones)}</h5>
+//             <h5>${montoMayorGasto(operaciones)}</h5>
+//         </div>
+//     </div>`
+// }
+// contenedorReportes()
