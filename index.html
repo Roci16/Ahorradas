@@ -188,6 +188,19 @@
 
 
 
+                            <!-- Tarjeta de operaciones que ya se agregaron -->
+                            <div id="contenedor-operaciones-agregadas" class="column">
+                                <div class="columns">
+                                    <div class="column">Descripción</div>
+                                    <div class="column is-1 has-text-centered">Categoría</div>
+                                    <div class="column  has-text-centered">Fecha</div>
+                                    <div class="column">Monto</div>
+                                    <div class="column">Acciones</div>
+                                </div>
+                                <div>
+                                    <div id="tarjeta-operaciones-agregadas"></div>
+                                </div>
+
                             </div>
                         </div>
 
@@ -334,15 +347,16 @@
         </div> 
 
         <!-- Seccion reportes -->
-        <section id="seccion-reportes" class="section is-hidden m-1">
+        <section id="seccion-reportes" class="section  m-1">
             <div class="column is-8 is-offset-2">
                 <div class="box">
 
                     <div class="columns">
                         <h2 class="title column is-size-2 has-text-weight-bold ">Reportes</h2>
                     </div>
-
-                    <div class="columns my-5">
+                          <!-- Este div contiene la imagen y aparece cuando no hay ninguna operacion -->
+                    <!-- <div class="box-sin-operaciones is-hidden">
+                    <div class="columns my-5 ">
 
                         <figure class="image column is-offset-3 is-6">
                             <img src="imagenes/undraw_investment_data_re_sh9x.svg">
@@ -357,6 +371,93 @@
                     <div class="columns mb-6">
                         <p class="column has-text-centered">Prueba agregando más operaciones</p>
                     </div>
+                </div> -->
+        <!-- fin div que desaparece-->
+         <!-- Este div contiene los reportes cuando ya tiene cargadas varias operaciones -->
+         <!-- resumen-->
+         <section class="resumen columns is-flex is-flex-direction-column block">
+            <div class="column ">
+                <h3 class="title is-size-4 column">Resumen</h3>
+         </div>
+            <div id="datos-resumen" class="column">
+                <div class="columns">
+                    <div class="column is-6 has-text-weight-semibold">Categoría con mayor ganancia</div>
+                    <div class="column is-3 has-text-right">Categoría</div>
+                    <div class="column  is-3 has-text-right">Monto</div>  
+                </div>
+                <div class="columns">
+                    <div class="column is-6 has-text-weight-semibold">Categoría con mayor gasto</div>
+                    <div class="column is-3 has-text-right">Categoría</div>
+                    <div class="column is-3  has-text-right">Monto</div>  
+                </div>
+                <div class="columns">
+                    <div class="column is-6 has-text-weight-semibold">Categoría con mayor balance</div>
+                    <div class="column is-3 has-text-right">Categoría</div>
+                    <div class="column  is-3 has-text-right">Monto</div>  
+                </div>
+                <div class="columns">
+                    <div class="column is-6 has-text-weight-semibold">Mes con mayor ganancia</div>
+                    <div class="column is-3 has-text-right">Fecha</div>
+                    <div class="column is-3  has-text-right">Monto</div>  
+                </div>
+                <div class="columns">
+                    <div class="column is-6 has-text-weight-semibold">Mes con mayor gasto</div>
+                    <div class="column is-3 has-text-right">Fecha</div>
+                    <div class="column is-3 has-text-right">Monto</div>  
+                </div>
+             </div>
+              
+                 
+            </section>
+           
+        
+         <!-- totales por categorias-->
+         <section class="totales-por-categoria columns  is-flex is-flex-direction-column block">
+             <div class="column block">
+            <h3 class="title is-size-4">Totales por categorías</h3>
+            </div>
+         <div  class="column">
+                <div class="columns">
+                    <div class="column is-3 has-text-weight-semibold ">Categoría</div>
+                        <div class="column is-3 has-text-weight-semibold has-text-right">Ganancias</div>
+                        <div class="column is-3 has-text-weight-semibold has-text-right">Gastos</div>
+                        <div class="column is-3 has-text-weight-semibold has-text-right">Balances</div> 
+                </div>
+                <div class="columns">
+                    <div class="column is-3 has-text-weight-semibold ">Categoria</div>
+                    <div class="column is-3 has-text-danger has-text-right">monto</div>
+                    <div class="column is-3 has-text-success  has-text-right">monto</div>
+                    <div class="column is-3 has-text-right">total</div>
+                   
+                </div>
+
+            </div>
+            
+         </section>
+         <!-- totales por mes-->
+         <section class="resumen columns is-flex is-flex-direction-column ">
+            <div class="column block">
+            <h3 class="title is-size-4">Totales por mes</h3>
+        </div>
+        <div  class="column">
+            <div class="columns">
+                <div class="column is-3 has-text-weight-semibold ">Mes</div>
+                <div class="column is-3 has-text-weight-semibold has-text-right">Ganancias</div>
+                <div class="column is-3 has-text-weight-semibold has-text-right">Gastos</div>
+                <div class="column is-3 has-text-weight-semibold has-text-right">Balances</div>
+               
+            </div>
+            <div class="columns">
+                <div class="column is-3 has-text-weight-semibold ">fecha</div>
+                <div class="column is-3 has-text-danger has-text-right">monto</div>
+                <div class="column is-3 has-text-success  has-text-right">monto</div>
+                <div class="column is-3 has-text-right">total</div>
+               
+            </div>
+        </div>
+           
+                </section>
+          <!-- fin div reportes con operaciones-->
 
                 </div>
 
