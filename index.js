@@ -1,40 +1,46 @@
-const tarjetaOperacionesAgregadas = document.getElementById("tarjeta-operaciones-agregadas")
+//------------------------- Nav-------------------------
 const botonCategorias = document.getElementById("boton-categorias")
 const botonBalance = document.getElementById("boton-balance")
 const botonReporte = document.getElementById("boton-reportes")
+
+// -------------------------Tarjetas categorias-balance-reporte-------------------------
 const seccionCategorias = document.getElementById("seccion-categorias")
 const seccionCentral = document.getElementById("seccion-central")
 const seccionReportes = document.getElementById("seccion-reportes")
+
+//------------------------- Operaciones-------------------------
 const botonNuevaOperacion = document.getElementById("boton-nueva-operacion")
-
 const seccionNuevaOperacion = document.getElementById("accion-boton-nueva-operacion")
-
-
+const tarjetaOperacionesAgregadas = document.getElementById("tarjeta-operaciones-agregadas")
 const botonCancelarOperacion = document.querySelector("#boton-cancelar-operacion");
 const botonAgregarOperacion = document.querySelector("#boton-agregar-operacion");
+const tarjetaSinOperaciones = document.getElementById("tarjeta-sin-operaciones")
+const inputDescripcionNuevaOperacion = document.getElementById("descripcion-nueva-operacion")
+const inputMontoNuevaOperacion = document.getElementById("monto-nueva-operacion")
+const contenedorOperacionesAgregadas = document.getElementById("contenedor-operaciones-agregadas")
+const selectCategoriaNuevaOperacion = document.getElementById("select-categoria-nueva-operacion")
+const inputDateNuevaOperacion = document.getElementById("dateNuevaOperacion")
+const selectTipoNuevaOperacion = document.getElementById("select-tipo-nueva-operacion")
 
-// Boton Agregar categorias
-
-
+//------------------------- Boton Agregar categorias-------------------------
 const botonAgregarCategoria = document.getElementById("agregar-categoria-boton")
 const inputCategoriaNuevoNombre = document.getElementById("input-categorias-nuevo-nombre")
 
-//-------- Totales balances-----------
+//-------------------------Totales balances-------------------------
 const balancesSumaGanancias = document.querySelector(".sumaGanancias")
 const balancesSumaGastos = document.querySelector(".sumaGastos")
 const balancesTotalFinal = document.querySelector(".totalBalances")
 
-
 // -------------funciones formulario FILTROS-------------------
-
-
-
+const botonOcultarFiltros = document.getElementById("boton-ocultar-filtros")
+const formularioFiltros = document.getElementById("form")
 const formulario = document.getElementById("form")
 const filtroTipo = document.getElementById("select-tipo")
 const filtroCategorias = document.getElementById("select-categoria")
 const filtroFecha = document.getElementById("date")
 const selectOrdenarPor = document.getElementById("select-ordenar")
 const divOperaciones = document.getElementById("div-operaciones")
+
 //-------------------------Elementos de Reportes---------------------------
 const divdatosResumen = document.getElementById("datos-resumen")
 const divdatosTotalesCategorias = document.getElementById("datos-totales-por-categorias")
@@ -44,17 +50,10 @@ const divDatosTotalesMes = document.getElementById("datos-totales-por-mes")
 
 
 
-const tarjetaSinOperaciones = document.getElementById("tarjeta-sin-operaciones")
-const inputDescripcionNuevaOperacion = document.getElementById("descripcion-nueva-operacion")
-const inputMontoNuevaOperacion = document.getElementById("monto-nueva-operacion")
-const contenedorOperacionesAgregadas = document.getElementById("contenedor-operaciones-agregadas")
-
-const selectCategoriaNuevaOperacion = document.getElementById("select-categoria-nueva-operacion")
-const inputDateNuevaOperacion = document.getElementById("dateNuevaOperacion")
-const selectTipoNuevaOperacion = document.getElementById("select-tipo-nueva-operacion")
 
 
 
+// navbarBasicExample
 
 
 // Funciones Botones Nav Superior
@@ -83,7 +82,7 @@ botonReporte.onclick = () => {
 
 }
 
-//Balance
+//-------------------------Operaciones-------------------------
 
 botonNuevaOperacion.onclick = () => {
     seccionCentral.classList.add("is-hidden")
@@ -104,85 +103,10 @@ botonCancelarOperacion.onclick = () => {
 
 }
 
-//Boton Agregar Operacion
-
-
 // Array de prueba
-const operaciones = [
-    // {
-    //     descripcion: 'Sueldo',
-    //     categoria: 'Trabajo',
-    //     fecha: '2021-01-01',
-    //     monto: 50000,
-    //     tipo: 'Ganancia',
-    // },
+let operaciones = [
 
-    // {
-    //     descripcion: 'Pago de alquiler',
-    //     categoria: 'Alquiler',
-    //     fecha: '2021-01-02',
-    //     monto: 15000,
-    //     tipo: 'Gasto',
-    // },
-    // {
-    //     descripcion: 'Pago de expensas',
-    //     categoria: 'Alquiler',
-    //     fecha: '2021-01-02',
-    //     monto: 5000,
-    //     tipo: 'Gasto',
-    // },
-    // {
-    //     descripcion: 'Pago de internet',
-    //     categoria: 'Servicios',
-    //     fecha: '2021-01-10',
-    //     monto: 2000,
-    //     tipo: 'Gasto',
-    // },
-    // {
-    //     descripcion: 'Trabajo freelance',
-    //     categoria: 'Trabajo',
-    //     fecha: '2021-01-15',
-    //     monto: 20000,
-    //     tipo: 'Ganancia',
-    // },
-    // {
-    //     descripcion: 'Cena con amigas',
-    //     categoria: 'Salidas',
-    //     fecha: '2021-01-18',
-    //     monto: 1500,
-    //     tipo: 'Gasto',
-    // },
-    // {
-    //     descripcion: 'Salida turistica',
-    //     categoria: 'Salidas',
-    //     fecha: '2020-01-18',
-    //     monto: 3500,
-    //     tipo: 'Gasto',
-    // },
-    // {
-    //     descripcion: 'Pasantía',
-    //     categoria: 'Educación',
-    //     fecha: '2020-06-13',
-    //     monto: 6600,
-    //     tipo: 'Gasto',
-    // },
-    // {
-    //     descripcion: 'Viaje a las toninas',
-    //     categoria: 'Transporte',
-    //     fecha: '2020-05-18',
-    //     monto: 4000,
-    //     tipo: 'Gasto',
-    // },
-    // {
-    //     descripcion: 'Edelap',
-    //     categoria: 'Servicios',
-    //     fecha: '2021-04-18',
-    //     monto: 300,
-    //     tipo: 'Gasto',
-    // },
 ];
-
-
 
 
 // LocalStorage operaciones///////////////
@@ -228,53 +152,38 @@ let funcionOperacionesLS = (elemento) => {
 
 
 
-
-//---------- Funcion mostrar en HTML------------flor---------
-//esta funcion muestra los titulos de las categorias una vez que se ingresan los datos (no debe ser parte de la acumuladora)
-const aplicarDescripcionAOperaciones = () => {
-    return ` <div class="columns has-text-weight-semibold is-hidden-mobile">
-            <div class="column is-3">Descripción</div>
-            <div class="column is-2">Categoría</div>
-            <div class="column is-2 has-text-centered">Fecha</div>
-            <div class="column is-2 has-text-right">Monto</div>
-            <div class="column is-3 has-text-centered">Acciones</div>
-             </div> 
-             `
-}
-
-
 //aca junto la funcion anterior mas la acumuladora que toma los datos del objeto y los muestra
 
-// const mostrarOperacionesEnHTML = (array) => {
+const mostrarOperacionesEnHTML = (array) => {
 
-//     const operaciones = operacionesObtenidas()
+    operaciones = operacionesObtenidas()
 
 
-//     const html = array.reduce((acc, operacion, index) => {
-//         return (
-//             acc +
-//             `
-//       <div class="fila columns">
-//       <div class="column is-3 has-text-weight-semibold">
-//         <p>${operacion.descripcion}</p>
-//         </div>
-//         <div class="column is-3">
-//         <p>${operacion.categoria}</p>
-//         </div>
-//         <div class="column is-2 has-text-right">
-//         <p>${operacion.fecha}</p>
-//         </div>
-//         <div class="column is-2 has-text-right">
-//         <p>${operacion.tipo}</p>
-//         </div>
-//         <div class="column is-2 has-text-right">
-//         <button id="editar-categoria-${index}" class="button is-info is-inverted boton-editar-categoria">Editar</button>
-//         <button id="borrar-${index}"  class="boton-borrar-operacion button is-info is-inverted ">Eliminar</button>
-//         </div>
-//       </div>
-//       `
-//         );
-//     }, "")
+    const html = array.reduce((acc, operacion, index) => {
+        return (
+            acc +
+            `
+      <div class="fila columns">
+      <div class="column is-3 has-text-weight-semibold">
+        <p>${operacion.descripcion}</p>
+        </div>
+        <div class="column is-3">
+        <p>${operacion.categoria}</p>
+        </div>
+        <div class="column is-2 has-text-right">
+        <p>${operacion.fecha}</p>
+        </div>
+        <div class="column is-2 has-text-right">
+        <p>${operacion.tipo}</p>
+        </div>
+        <div class="column is-2 has-text-right">
+        <button id="editar-categoria-${index}" class="button is-info is-inverted boton-editar-categoria">Editar</button>
+        <button id="borrar-${index}"  class="boton-borrar-operacion button is-info is-inverted ">Eliminar</button>
+        </div>
+      </div>
+      `
+        );
+    }, "")
 
 
     tarjetaOperacionesAgregadas.innerHTML = html;
@@ -284,7 +193,7 @@ const aplicarDescripcionAOperaciones = () => {
         botonesBorrarOperaciones[i].onclick = () => {
             const idOperaciones = botonesBorrarOperaciones[i].id
             const indiceOperaciones = idOperaciones.slice(7)
-            const filtrarOperaciones = operaciones.filter((elemento, index) => {
+            const filtrarOperaciones = array.filter((elemento, index) => {
                 return index != indiceOperaciones
             })
 
@@ -293,37 +202,96 @@ const aplicarDescripcionAOperaciones = () => {
 
         }
     }
+}
 
 
 
 mostrarOperacionesEnHTML(operaciones)
 
-  //--------Balances-----------
-//---------- Funcion mostrar suma total de ganancias en la seccion balances-----
-const mostrarGananciasEnBalances = (array) =>{
-  const gananciasFiltradas = array.filter((elemento)=>{
-    return elemento.tipo === "Ganancia"
 
-    })
 
-    const sumarGastos = gastosFiltrados.reduce((acc, elemento) => {
-        return acc + elemento.monto
-    }, 0)
+botonAgregarOperacion.onclick = () => {
 
-    return balancesSumaGastos.textContent = sumarGastos
+    seccionCategorias.classList.add("is-hidden");
+    seccionNuevaOperacion.classList.add("is-hidden");
+    seccionCentral.classList.remove("is-hidden")
+    tarjetaSinOperaciones.classList.add("is-hidden")
+    tarjetaOperacionesAgregadas.classList.remove("is-hidden")
+    contenedorOperacionesAgregadas.classList.remove("is-hidden")
+
+
+    const valorInputDescripcionNuevaOperacion = inputDescripcionNuevaOperacion.value
+    const valorInputMontoNuevaOperacion = inputMontoNuevaOperacion.value
+    const valorOpcionCategoriaNuevaOperacion = selectCategoriaNuevaOperacion.value
+    const valorInputDateNuevaOperacion = inputDateNuevaOperacion.value
+    const valorOpcionTipoNuevaOperacion = selectTipoNuevaOperacion.value
+
+
+    const operacion = {
+        descripcion: valorInputDescripcionNuevaOperacion,
+        categoria: valorOpcionCategoriaNuevaOperacion,
+        fecha: valorInputDateNuevaOperacion,
+        monto: valorInputMontoNuevaOperacion,
+        tipo: valorOpcionTipoNuevaOperacion,
+    }
+
+    operaciones.push(operacion)
+    funcionOperacionesLS(operaciones)
+    mostrarOperacionesEnHTML(operaciones)
+    valorInputDescripcionNuevaOperacion.value = ""
+    valorInputMontoNuevaOperacion.value = ""
+    valorOpcionCategoriaNuevaOperacion.value = ""
+    valorInputDateNuevaOperacion.value = ""
+    valorOpcionTipoNuevaOperacion.value = ""
+
+
 
 }
-console.log(mostrarGastosEnBalances(operaciones))
+
+operaciones = operacionesObtenidas()
+mostrarOperacionesEnHTML(operaciones)
+    //--------Balances-----------
+
 
 // ---------- Funcion mostrar suma total de gastos en la seccion balances-----
-const mostrarTotalEnBalances = (array) => {
-    const resultadoFinalGanancias = mostrarGananciasEnBalances(array)
-    const resultadoFinalGastos = mostrarGastosEnBalances(array)
-    const resultadoFinal = resultadoFinalGanancias - resultadoFinalGastos
-    return balancesTotalFinal.textContent = resultadoFinal
-}
 
-mostrarTotalEnBalances(operaciones)
+// const mostrarGastosEnBalances = (array) => {
+//     const gastosFiltrados = array.filter((elemento) => {
+//         return elemento.tipo === "Gasto"
+//     })
+
+//     const sumarGastos = gastosFiltrados.reduce((acc, elemento) => {
+//         return acc + elemento.monto
+//     }, 0)
+
+//     return balancesSumaGastos.textContent = sumarGastos
+// }
+// console.log(mostrarGastosEnBalances(operaciones))
+
+// //---------- Funcion mostrar suma total de ganancias en la seccion balances-----
+// const mostrarGananciasEnBalances = (array) => {
+//         const gananciasFiltradas = array.filter((elemento) => {
+//             return elemento.tipo === "Ganancia"
+
+//         })
+
+//         const sumarGastos = gastosFiltrados.reduce((acc, elemento) => {
+//             return acc + elemento.monto
+//         }, 0)
+
+//         return balancesSumaGastos.textContent = sumarGastos
+
+//     }
+//     // console.log(mostrarGastosEnBalances(operaciones))
+
+// const mostrarTotalEnBalances = (array) => {
+//     const resultadoFinalGanancias = mostrarGananciasEnBalances(array)
+//     const resultadoFinalGastos = mostrarGastosEnBalances(array)
+//     const resultadoFinal = resultadoFinalGanancias - resultadoFinalGastos
+//     return balancesTotalFinal.textContent = resultadoFinal
+// }
+
+// mostrarTotalEnBalances(operaciones)
 
 
 //-----------funciones para ordenar los filtros-----
@@ -439,6 +407,28 @@ selectOrdenarPor.onchange = () => {
     mostrarOperacionesEnHTML(arrayFiltrado)
 }
 
+// evento ocultar filtros
+//funcion auxiliar 
+const cerrarFormularioFiltros = (box, boton) => {
+    box.classList.add("is-hidden")
+    boton.textContent = "Mostrar filtros"
+}
+const mostrarFormularioFiltros = (box, boton) => {
+    box.classList.remove("is-hidden")
+    boton.textContent = "Ocultar filtros"
+}
+
+//mostrarFormularioFiltros(formularioFiltros,botonOcultarFiltros)
+botonOcultarFiltros.onclick = () => {
+    if (botonOcultarFiltros.textContent === "Ocultar filtros") {
+        return cerrarFormularioFiltros(formularioFiltros, botonOcultarFiltros)
+    } else {
+        return mostrarFormularioFiltros(formularioFiltros, botonOcultarFiltros)
+    }
+
+}
+
+
 //----este e.preventDefault evita que el formulario se envie --flor---
 formulario.onsubmit = (e) => {
     e.preventDefault()
@@ -482,47 +472,6 @@ const adicionDeNuevasCategoriasSelect = () => {
 
 }
 
-
-
-botonAgregarOperacion.onclick = () => {
-
-    seccionCategorias.classList.add("is-hidden");
-    seccionNuevaOperacion.classList.add("is-hidden");
-    seccionCentral.classList.remove("is-hidden")
-    tarjetaSinOperaciones.classList.add("is-hidden")
-    tarjetaOperacionesAgregadas.classList.remove("is-hidden")
-    contenedorOperacionesAgregadas.classList.remove("is-hidden")
-
-
-    const valorInputDescripcionNuevaOperacion = inputDescripcionNuevaOperacion.value
-    const valorInputMontoNuevaOperacion = inputMontoNuevaOperacion.value
-    const valorOpcionCategoriaNuevaOperacion = selectCategoriaNuevaOperacion.value
-    const valorInputDateNuevaOperacion = inputDateNuevaOperacion.value
-    const valorOpcionTipoNuevaOperacion = selectTipoNuevaOperacion.value
-
-
-    const operacion = {
-        descripcion: valorInputDescripcionNuevaOperacion,
-        categoria: valorOpcionCategoriaNuevaOperacion,
-        fecha: valorInputDateNuevaOperacion,
-        monto: valorInputMontoNuevaOperacion,
-        tipo: valorOpcionTipoNuevaOperacion,
-    }
-
-    operaciones.push(operacion)
-    funcionOperacionesLS(operaciones)
-    mostrarOperacionesEnHTML(operaciones)
-
-
-    valorInputDescripcionNuevaOperacion.value = ""
-    valorInputMontoNuevaOperacion.value = ""
-    valorOpcionCategoriaNuevaOperacion.value = ""
-    valorInputDateNuevaOperacion.value = ""
-    valorOpcionTipoNuevaOperacion.value = ""
-}
-
-const operacion = operacionesObtenidas()
-mostrarOperacionesEnHTML(operacion)
 
 const agregarCategoriasAHTML = () => {
     const categorias = categoriasObtenidas()
@@ -762,4 +711,5 @@ botonAgregarCategoria.onclick = () => {
 //accede al array de categorias filtrado por aquellas que fueron utilizadas para operaciones (filter)
 // la funcion debe mostrar en catgoria el nombre de la misma. 
 // necesito una acumuladora que muestre el array de las categorias filtradas
-//las funciones deben incluir que cuando el monto sea menor a 0 agregar la clase para que el texto sea rojo y cuando sea mayo clase verde
+//las funciones deben incluir que cuando el monto sea menor a 0 agregar la clase para 
+// que el texto sea rojo y cuando sea mayo clase verde
