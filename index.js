@@ -35,7 +35,7 @@ const filtroCategorias = document.getElementById("select-categoria")
 const filtroFecha = document.getElementById("date")
 const selectOrdenarPor = document.getElementById("select-ordenar")
 const divOperaciones = document.getElementById("div-operaciones")
-//-------------------------Elementos de Reportes---------------------------
+    //-------------------------Elementos de Reportes---------------------------
 const divdatosResumen = document.getElementById("datos-resumen")
 const divdatosTotalesCategorias = document.getElementById("datos-totales-por-categorias")
 const divDatosTotalesMes = document.getElementById("datos-totales-por-mes")
@@ -277,32 +277,32 @@ const aplicarDescripcionAOperaciones = () => {
 //     }, "")
 
 
-    tarjetaOperacionesAgregadas.innerHTML = html;
+tarjetaOperacionesAgregadas.innerHTML = html;
 
-    const botonesBorrarOperaciones = document.querySelectorAll(".boton-borrar-operacion")
-    for (let i = 0; i < botonesBorrarOperaciones.length; i++) {
-        botonesBorrarOperaciones[i].onclick = () => {
-            const idOperaciones = botonesBorrarOperaciones[i].id
-            const indiceOperaciones = idOperaciones.slice(7)
-            const filtrarOperaciones = operaciones.filter((elemento, index) => {
-                return index != indiceOperaciones
-            })
+const botonesBorrarOperaciones = document.querySelectorAll(".boton-borrar-operacion")
+for (let i = 0; i < botonesBorrarOperaciones.length; i++) {
+    botonesBorrarOperaciones[i].onclick = () => {
+        const idOperaciones = botonesBorrarOperaciones[i].id
+        const indiceOperaciones = idOperaciones.slice(7)
+        const filtrarOperaciones = operaciones.filter((elemento, index) => {
+            return index != indiceOperaciones
+        })
 
-            funcionOperacionesLS(filtrarOperaciones)
-            mostrarOperacionesEnHTML(filtrarOperaciones)
+        funcionOperacionesLS(filtrarOperaciones)
+        mostrarOperacionesEnHTML(filtrarOperaciones)
 
-        }
     }
+}
 
 
 
 mostrarOperacionesEnHTML(operaciones)
 
-  //--------Balances-----------
+//--------Balances-----------
 //---------- Funcion mostrar suma total de ganancias en la seccion balances-----
-const mostrarGananciasEnBalances = (array) =>{
-  const gananciasFiltradas = array.filter((elemento)=>{
-    return elemento.tipo === "Ganancia"
+const mostrarGananciasEnBalances = (array) => {
+    const gananciasFiltradas = array.filter((elemento) => {
+        return elemento.tipo === "Ganancia"
 
     })
 
@@ -581,7 +581,7 @@ const tarjetaEditarOperacionEditar = (id) => {
     const objeto = operacion[id]
 
     formTarjetaEditarOperacion.innerHTML = `
-<div class="tarjeta-editar-operacion column is-offset-2 is-8 is-hidden">
+<div class="tarjeta-editar-operacion column is-offset-2 is-8 is-hidden is-relative">
     <form class="box form-seccion-operacion">
         <h2 class="title is-1 has-text-weight-bold">Editar operación</h2>
         <div class="field">
