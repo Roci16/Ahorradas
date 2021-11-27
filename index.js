@@ -109,77 +109,77 @@ botonCancelarOperacion.onclick = () => {
 
 // Array de prueba
 const operaciones = [
-    // {
-    //     descripcion: 'Sueldo',
-    //     categoria: 'Trabajo',
-    //     fecha: '2021-01-01',
-    //     monto: 50000,
-    //     tipo: 'Ganancia',
-    // },
+    {
+        descripcion: 'Sueldo',
+        categoria: 'Trabajo',
+        fecha: '2021-01-01',
+        monto: 50000,
+        tipo: 'Ganancia',
+    },
 
-    // {
-    //     descripcion: 'Pago de alquiler',
-    //     categoria: 'Alquiler',
-    //     fecha: '2021-01-02',
-    //     monto: 15000,
-    //     tipo: 'Gasto',
-    // },
-    // {
-    //     descripcion: 'Pago de expensas',
-    //     categoria: 'Alquiler',
-    //     fecha: '2021-01-02',
-    //     monto: 5000,
-    //     tipo: 'Gasto',
-    // },
-    // {
-    //     descripcion: 'Pago de internet',
-    //     categoria: 'Servicios',
-    //     fecha: '2021-01-10',
-    //     monto: 2000,
-    //     tipo: 'Gasto',
-    // },
-    // {
-    //     descripcion: 'Trabajo freelance',
-    //     categoria: 'Trabajo',
-    //     fecha: '2021-01-15',
-    //     monto: 20000,
-    //     tipo: 'Ganancia',
-    // },
-    // {
-    //     descripcion: 'Cena con amigas',
-    //     categoria: 'Salidas',
-    //     fecha: '2021-01-18',
-    //     monto: 1500,
-    //     tipo: 'Gasto',
-    // },
-    // {
-    //     descripcion: 'Salida turistica',
-    //     categoria: 'Salidas',
-    //     fecha: '2020-01-18',
-    //     monto: 3500,
-    //     tipo: 'Gasto',
-    // },
-    // {
-    //     descripcion: 'Pasantía',
-    //     categoria: 'Educación',
-    //     fecha: '2020-06-13',
-    //     monto: 6600,
-    //     tipo: 'Gasto',
-    // },
-    // {
-    //     descripcion: 'Viaje a las toninas',
-    //     categoria: 'Transporte',
-    //     fecha: '2020-05-18',
-    //     monto: 4000,
-    //     tipo: 'Gasto',
-    // },
-    // {
-    //     descripcion: 'Edelap',
-    //     categoria: 'Servicios',
-    //     fecha: '2021-04-18',
-    //     monto: 300,
-    //     tipo: 'Gasto',
-    // },
+    {
+        descripcion: 'Pago de alquiler',
+        categoria: 'Alquiler',
+        fecha: '2021-01-02',
+        monto: 15000,
+        tipo: 'Gasto',
+    },
+    {
+        descripcion: 'Pago de expensas',
+        categoria: 'Alquiler',
+        fecha: '2021-01-02',
+        monto: 5000,
+        tipo: 'Gasto',
+    },
+    {
+        descripcion: 'Pago de internet',
+        categoria: 'Servicios',
+        fecha: '2021-01-10',
+        monto: 2000,
+        tipo: 'Gasto',
+    },
+    {
+        descripcion: 'Trabajo freelance',
+        categoria: 'Trabajo',
+        fecha: '2021-01-15',
+        monto: 20000,
+        tipo: 'Ganancia',
+    },
+    {
+        descripcion: 'Cena con amigas',
+        categoria: 'Salidas',
+        fecha: '2021-01-18',
+        monto: 1500,
+        tipo: 'Gasto',
+    },
+    {
+        descripcion: 'Salida turistica',
+        categoria: 'Salidas',
+        fecha: '2020-01-18',
+        monto: 3500,
+        tipo: 'Gasto',
+    },
+    {
+        descripcion: 'Pasantía',
+        categoria: 'Educación',
+        fecha: '2020-06-13',
+        monto: 6600,
+        tipo: 'Gasto',
+    },
+    {
+        descripcion: 'Viaje a las toninas',
+        categoria: 'Transporte',
+        fecha: '2020-05-18',
+        monto: 4000,
+        tipo: 'Gasto',
+    },
+    {
+        descripcion: 'Edelap',
+        categoria: 'Servicios',
+        fecha: '2021-04-18',
+        monto: 300,
+        tipo: 'Gasto',
+    },
 ];
 
 
@@ -277,7 +277,7 @@ const aplicarDescripcionAOperaciones = () => {
 //     }, "")
 
 
-    tarjetaOperacionesAgregadas.innerHTML = html;
+    // tarjetaOperacionesAgregadas.innerHTML = html;
 
     const botonesBorrarOperaciones = document.querySelectorAll(".boton-borrar-operacion")
     for (let i = 0; i < botonesBorrarOperaciones.length; i++) {
@@ -296,34 +296,34 @@ const aplicarDescripcionAOperaciones = () => {
 
 
 
-mostrarOperacionesEnHTML(operaciones)
+// mostrarOperacionesEnHTML(operaciones)
 
   //--------Balances-----------
 //---------- Funcion mostrar suma total de ganancias en la seccion balances-----
-const mostrarGananciasEnBalances = (array) =>{
-  const gananciasFiltradas = array.filter((elemento)=>{
-    return elemento.tipo === "Ganancia"
+// const mostrarGananciasEnBalances = (array) =>{
+//   const gananciasFiltradas = array.filter((elemento)=>{
+//     return elemento.tipo === "Ganancia"
 
-    })
+//     })
 
-    const sumarGastos = gastosFiltrados.reduce((acc, elemento) => {
-        return acc + elemento.monto
-    }, 0)
+//     const sumarGastos = gastosFiltrados.reduce((acc, elemento) => {
+//         return acc + elemento.monto
+//     }, 0)
 
-    return balancesSumaGastos.textContent = sumarGastos
+//     return balancesSumaGastos.textContent = sumarGastos
 
-}
-console.log(mostrarGastosEnBalances(operaciones))
+// }
+// console.log(mostrarGastosEnBalances(operaciones))
 
 // ---------- Funcion mostrar suma total de gastos en la seccion balances-----
-const mostrarTotalEnBalances = (array) => {
-    const resultadoFinalGanancias = mostrarGananciasEnBalances(array)
-    const resultadoFinalGastos = mostrarGastosEnBalances(array)
-    const resultadoFinal = resultadoFinalGanancias - resultadoFinalGastos
-    return balancesTotalFinal.textContent = resultadoFinal
-}
+// const mostrarTotalEnBalances = (array) => {
+//     const resultadoFinalGanancias = mostrarGananciasEnBalances(array)
+//     const resultadoFinalGastos = mostrarGastosEnBalances(array)
+//     const resultadoFinal = resultadoFinalGanancias - resultadoFinalGastos
+//     return balancesTotalFinal.textContent = resultadoFinal
+// }
 
-mostrarTotalEnBalances(operaciones)
+// mostrarTotalEnBalances(operaciones)
 
 
 //-----------funciones para ordenar los filtros-----
@@ -522,7 +522,7 @@ botonAgregarOperacion.onclick = () => {
 }
 
 const operacion = operacionesObtenidas()
-mostrarOperacionesEnHTML(operacion)
+// mostrarOperacionesEnHTML(operacion)
 
 const agregarCategoriasAHTML = () => {
     const categorias = categoriasObtenidas()
@@ -723,13 +723,13 @@ botonAgregarCategoria.onclick = () => {
 
     adicionDeNuevasCategoriasSelect()
     agregarCategoriasAHTML()
-
 }
-//------------------------------------------------------------------------------------------------------------------------
-//                                     reportes- resumen
-//------------------------------------------------------------------------------------------------------------------------
 
-// "categoria con mayor ganancia"
+//----------------------------------------------------------------------------
+//                       REPORTES RESUMEN
+//----------------------------------------------------------------------------
+
+// FUNCION AUXILIAR "categoria con mayor ganancia"
 const montoMayorGanancia = (array) => {
     const mayorMonto = array.reduce((acc, elemento)=>{
         if (acc < elemento.monto) {
@@ -753,7 +753,7 @@ const categoriaConMayorGanancia = (array) => {
 }
 console.log("MAYOR GANANCIA", categoriaConMayorGanancia(operaciones), montoMayorGanancia(operaciones)) 
 
-// "categoria con mayor gasto"
+// FUNCION AUXILIAR "categoria con mayor gasto"
 const montoMayorGasto = (array) => {
     const filtrarTipo = array.filter((elemento)=>{
         return elemento.tipo === "Gasto"
@@ -779,45 +779,37 @@ const categoriaConMayorGasto = (array) => {
     }, 0)
     return filtrarmenorGasto
 }
-console.log("MAYOR GASTO:",  montoMayorGasto(operaciones), categoriaConMayorGasto(operaciones)) 
+console.log("MAYOR GASTO", categoriaConMayorGasto(operaciones),  montoMayorGasto(operaciones)) 
 
-
-//               funcion html
+// FUNCION REPORTES RESUMEN
 
 const contenedorReportes = ()=>{
     const seccionReportes = document.querySelector(".seccion-reportes")
     seccionReportes.innerHTML = `
-    <h1>Reportes</h1>
-    <div class="contenedor-resumen">
-        <h3>Resumen</h3>
-
-        <!-- titulo -->
-        <div class="contenedor-chico">
-            <h5>CATEGORIA CON MAYOR GANANCIA</h5>
-            <h5>CATEGORIA CON MAYOR GASTO</h5>
-            <h5>CATEGORIA CON MAYOR BALANCE</h5>
-            <h5>MES CON MAYOR GANANCIA</h5>
-            <h5>Mes con mayor gasto</h5>
-        </div>
-
-        <!-- categoria -->
-
-        <div class="contenedor-chico">
-        <h5>${categoriaConMayorGanancia(operaciones)}</h5>
-        <h5>${categoriaConMayorGasto(operaciones)}</h5>
-        <h5>${categoriaConMayorGanancia(operaciones)}</h5>
-        <h5>FALTA</h5>
-        <h5>FALTA</h5>
-        </div>
-
-        <!-- monto -->
-        <div class="contenedor-chico">
-            <h5>${montoMayorGanancia(operaciones)}</h5>
-            <h5>${montoMayorGasto(operaciones)}</h5>
-            <h5>${montoMayorGanancia(operaciones)}</h5>
-            <h5>${montoMayorGanancia(operaciones)}</h5>
-            <h5>${montoMayorGasto(operaciones)}</h5>
-        </div>
+    <div class="columns">
+        <div class="column is-6 has-text-weight-semibold">Categoría con mayor ganancia</div>
+        <div class="column is-3 has-text-right tag is-primary is-light">${categoriaConMayorGanancia(operaciones)}</div>
+        <div class="column  is-3 has-text-right has-text-success has-text-weight-semibold">+$${montoMayorGanancia(operaciones)}</div>  
+    </div>
+    <div class="columns">
+        <div class="column is-6 has-text-weight-semibold">Categoría con mayor gasto</div>
+        <div class="column is-3 has-text-right tag is-primary is-light">${categoriaConMayorGasto(operaciones)}</div>
+        <div class="column is-3  has-text-right has-text-danger has-text-weight-semibold">-$${montoMayorGasto(operaciones)}</div>  
+    </div>
+    <div class="columns">
+        <div class="column is-6 has-text-weight-semibold">Categoría con mayor balance</div>
+        <div class="column is-3 has-text-right tag is-primary is-light">${categoriaConMayorGanancia(operaciones)}</div>
+        <div class="column  is-3 has-text-right has-text-weight-semibold">$${montoMayorGanancia(operaciones)}</div>  
+    </div>
+    <div class="columns">
+        <div class="column is-6 has-text-weight-semibold">Mes con mayor ganancia</div>
+        <div class="column is-3 has-text-right">Fecha</div>
+        <div class="column is-3  has-text-right has-text-success has-text-weight-semibold">$${montoMayorGanancia(operaciones)}</div>  
+    </div>
+    <div class="columns">
+        <div class="column is-6 has-text-weight-semibold">Mes con mayor gasto</div>
+        <div class="column is-3 has-text-right">Fecha</div>
+        <div class="column is-3 has-text-right has-text-danger has-text-weight-semibold">-$${montoMayorGasto(operaciones)}</div>  
     </div>`
 }
 contenedorReportes()
