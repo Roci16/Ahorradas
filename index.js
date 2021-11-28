@@ -45,15 +45,12 @@ const divOperaciones = document.getElementById("div-operaciones")
 const divdatosResumen = document.getElementById("datos-resumen")
 const divdatosTotalesCategorias = document.getElementById("datos-totales-por-categorias")
 const divDatosTotalesMes = document.getElementById("datos-totales-por-mes")
-    //-----------------------------------------------
+
+//----------------------------Navbar-Burger/Navbar-Menu-----------------------------------
+const navbarBurger = document.getElementById("navbar-burger")
+const navbarMenu = document.getElementById("navbarBasicExample")
 
 
-
-
-
-
-
-// navbarBasicExample
 
 
 // Funciones Botones Nav Superior
@@ -713,3 +710,9 @@ botonAgregarCategoria.onclick = () => {
 // necesito una acumuladora que muestre el array de las categorias filtradas
 //las funciones deben incluir que cuando el monto sea menor a 0 agregar la clase para 
 // que el texto sea rojo y cuando sea mayo clase verde
+
+
+navbarBurger.onclick = () => {
+    navbarBurger.classList.toggle("is-active")
+    navbarMenu.classList.toggle("is-active")
+}
