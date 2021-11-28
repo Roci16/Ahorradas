@@ -486,7 +486,7 @@ formulario.onsubmit = (e) => {
 
 // // Seccion categorias
 
-const categorias = ["Comida", "Servicios", "Salidas", "Educación", "Transporte", "Trabajo"]
+const categorias = ["Todos", "Comida", "Servicios", "Salidas", "Educación", "Transporte", "Trabajo"]
 
 // // LocalStorage///////////////
 const categoriasObtenidas = () => {
