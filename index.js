@@ -44,6 +44,7 @@ const selectOrdenarPor = document.getElementById("select-ordenar")
 const divOperaciones = document.getElementById("div-operaciones")
 
 //-------------------------Elementos de Reportes---------------------------
+
 const divdatosResumen = document.getElementById("datos-resumen")
 const divdatosTotalesCategorias = document.getElementById("datos-totales-por-categorias")
 const divDatosTotalesMes = document.getElementById("datos-totales-por-mes")
@@ -111,7 +112,6 @@ botonCancelarOperacion.onclick = () => {
     seccionCentral.classList.remove("is-hidden")
     seccionReportes.classList.add("is-hidden")
 }
-
 
 
 
@@ -189,7 +189,6 @@ let operaciones = [
     //         monto: 300,
     //         tipo: 'Gasto',
     //     },
-
 ];
 
 
@@ -219,8 +218,6 @@ const mostrarOperacionesEnHTML = (array) => {
 
 
     const html = array.reduce((acc, operacion, index) => {
-
-
         return (
             acc +
             `
@@ -235,7 +232,7 @@ const mostrarOperacionesEnHTML = (array) => {
         <p>${operacion.fecha}</p>
         </div>
         <div class="column is-1 has-text-right">
-        <p>$${operacion.monto}</p>
+        <p>${operacion.monto}</p>
         </div>
         <div class="column is-4 has-text-right">
         <button id="editar-categoria-${index}" class="button is-info is-inverted boton-editar-seccion-operaciones ">Editar</button>
@@ -264,6 +261,7 @@ const mostrarOperacionesEnHTML = (array) => {
     }
 }
 
+
 botonAgregarOperacion.onclick = () => {
 
     seccionCategorias.classList.add("is-hidden");
@@ -272,6 +270,7 @@ botonAgregarOperacion.onclick = () => {
     tarjetaSinOperaciones.classList.add("is-hidden")
     tarjetaOperacionesAgregadas.classList.remove("is-hidden")
     contenedorOperacionesAgregadas.classList.remove("is-hidden")
+
 
     const valorInputDescripcionNuevaOperacion = inputDescripcionNuevaOperacion.value
     const valorInputMontoNuevaOperacion = inputMontoNuevaOperacion.value
@@ -297,16 +296,21 @@ botonAgregarOperacion.onclick = () => {
     valorOpcionCategoriaNuevaOperacion.value = ""
     valorInputDateNuevaOperacion.value = ""
     valorOpcionTipoNuevaOperacion.value = ""
+
+
+
 }
 
 operaciones = operacionesObtenidas()
 mostrarOperacionesEnHTML(operaciones)
 
+
+
 //--------Balances-----------
 //---------- Funcion mostrar suma total de ganancias en la seccion balances-----
 const mostrarGananciasEnBalances = (array) => {
     const gananciasFiltradas = array.filter((elemento) => {
-        return elemento.tipo === "ganancias"
+        return elemento.tipo === "Ganancia"
     })
 
 
@@ -321,14 +325,12 @@ const mostrarGananciasEnBalances = (array) => {
 // //---------- Funcion mostrar suma total de gastos en la seccion balances-----
 const mostrarGastosEnBalances = (array) => {
     const gastosFiltrados = array.filter((elemento) => {
-        return elemento.tipo === "gastos"
+        return elemento.tipo === "Gasto"
     })
 
-
-//     const sumarGastos = gastosFiltrados.reduce((acc, elemento) => {
-//         return acc + elemento.monto
-//     }, 0)
-
+    const sumarGastos = gastosFiltrados.reduce((acc, elemento) => {
+        return acc + elemento.monto
+    }, 0)
 
     return balancesSumaGastos.textContent = sumarGastos
 }
@@ -342,7 +344,6 @@ const mostrarTotalEnBalances = (array) => {
     return balancesTotalFinal.textContent = resultadoFinal
 }
 mostrarTotalEnBalances(operaciones)
-
 
 // //-----------funciones para ordenar los filtros-----
 
@@ -517,6 +518,7 @@ const adicionDeNuevasCategoriasSelect = () => {
 }
 
 
+
 const agregarCategoriasAHTML = () => {
     const categorias = categoriasObtenidas()
     const lista = document.getElementById("lista-categoria")
@@ -578,7 +580,6 @@ const tarjetaEditarOperacionEditar = (id) => {
     const objeto = operaciones[id]
 
     formTarjetaEditarOperacion.innerHTML = `
-
 <div class="tarjeta-editar-operacion column is-offset-2 is-8 is-hidden is-relative">
 <form class="box form-seccion-operacion">
     <h2 class="title is-1 has-text-weight-bold">Editar operación</h2>
@@ -719,103 +720,23 @@ botonAgregarCategoria.onclick = () => {
 
     adicionDeNuevasCategoriasSelect()
     agregarCategoriasAHTML()
+
 }
+
+
 
 //----------------------------------------------------------------------------
-//                       REPORTES RESUMEN
+//                      SECCION REPORTES 
 //----------------------------------------------------------------------------
-
-// FUNCION AUXILIAR "categoria con mayor ganancia"
-const montoMayorGanancia = (array) => {
-    const mayorMonto = array.reduce((acc, elemento)=>{
-        if (acc < elemento.monto) {
-            return elemento.monto
-        }
-        return acc
-    }, 0)
-    return mayorMonto
-}
-const categoriaConMayorGanancia = (array) => {
-    const filtrarTipo = array.filter((elemento)=>{
-        return elemento.tipo === "Ganancia"
-    })
-    const filtrarCategoria = filtrarTipo.reduce((acc, elemento)=>{
-        if (acc > elemento.monto) {
-            return acc
-        }
-        return elemento.categoria
-    }, 0)
-    return filtrarCategoria
-}
-console.log("MAYOR GANANCIA", categoriaConMayorGanancia(operaciones), montoMayorGanancia(operaciones)) 
-
-// FUNCION AUXILIAR "categoria con mayor gasto"
-const montoMayorGasto = (array) => {
-    const filtrarTipo = array.filter((elemento)=>{
-        return elemento.tipo === "Gasto"
-    })
-    const filtrarmenorGasto = filtrarTipo.reduce((acc, elemento)=>{
-        if (acc < elemento.monto) {
-            acc = elemento.monto
-        }
-        return acc
-    }, 0)
-    return filtrarmenorGasto
-}
-
-
-//--------------- Seccion reportes---------------------------
-
-//aca estoy filtrado el array de objetos, saco las categorias 
-const separarporCategorias = (array) => {
-    const categoriasSepadas = array.map((elemento) => {
-        return elemento.categoria
-    })
-    return categoriasSepadas
-}
-
-// aca filtro las categorias para que no se repitan
-const todasLasCategorias = separarporCategorias(operaciones)
-
-const categoriasSinRepetir = todasLasCategorias.filter((elemento, index) => {
-    return todasLasCategorias.indexOf(elemento) === index;
-})
-
-
-
-//array vacio
-let arrayOperacionPorCategoria = []
-    // aca creo la matriz de categorias, por cada categoria se crea un array vacio
-categoriasSinRepetir.map((categoria) => {
-    arrayOperacionPorCategoria.push([])
-});
-
-
-//aca relleno cada array con los datos de esas categorias
-
-operaciones.map((operacion) => {
-    const indiceCategoria = categoriasSinRepetir.indexOf(operacion.categoria)
-    arrayOperacionPorCategoria[indiceCategoria].push(operacion)
-})
-
-
-
-let gananciasPorcategoria = []
-let gastosPorCategoria = []
-for (let i = 0; i < arrayOperacionPorCategoria.length; i++) {
-    for (let j = 0; j < arrayOperacionPorCategoria[j].length; j++) {
-        if (arrayOperacionPorCategoria[j][4] === "Gasto") {
-            gastosPorCategoria.push(arrayOperacionPorCategoria[j][3])
-        } else if (arrayOperacionPorCategoria[j][4] === "Ganancia") {
-            gananciasPorcategoria.push(arrayOperacionPorCategoria[j][3])
-        }
-    }
-}
-console.log(gananciasPorcategoria)
-console.log(gastosPorCategoria)
-
-
-
+//funcion para que aparezca reportes una vez que tenga mas de 2 operaciones en localS
+// const aparicionReporte =() =>{
+//      if(operaciones.length >= 2){ 
+         
+         
+//          else{
+//              sigue iigual
+//             }
+//         }
 //----------------------------------------------------------------------------
 //                       REPORTES RESUMEN
 //----------------------------------------------------------------------------
@@ -873,7 +794,6 @@ const categoriaConMayorGasto = (array) => {
     }, 0)
     return filtrarmenorGasto
 }
-
 console.log("MAYOR GASTO", categoriaConMayorGasto(operaciones), montoMayorGasto(operaciones))
 
 // FUNCION REPORTES RESUMEN
@@ -910,7 +830,6 @@ const contenedorReportes = () => {
 contenedorReportes()
 
 
-
 //   operaciones.map((operacion) => {
 //     const fecha = new Date(operacion.fecha + " 11:00:00")
 //     const mes = fecha.getMonth()
@@ -933,4 +852,54 @@ contenedorReportes()
 // }
 
 // obtenerTotalesPorMes()
+//----------------------------------------------------------------------------
+//                     REPORTES POR CATEGORIAS
+//----------------------------------------------------------------------------
 
+//aca estoy filtrado el array de objetos, saco las categorias 
+const separarporCategorias = (array) => {
+    const categoriasSepadas = array.map((elemento) => {
+        return elemento.categoria
+    })
+    return categoriasSepadas
+}
+
+// aca filtro las categorias para que no se repitan
+const todasLasCategorias = separarporCategorias(operaciones)
+
+const categoriasSinRepetir = todasLasCategorias.filter((elemento, index) => {
+    return todasLasCategorias.indexOf(elemento) === index;
+})
+
+
+
+//array vacio
+let arrayOperacionPorCategoria = []
+    // aca creo la matriz de categorias, por cada categoria se crea un array vacio
+categoriasSinRepetir.map((categoria) => {
+    arrayOperacionPorCategoria.push([])
+});
+
+
+//aca relleno cada array con los datos de esas categorias
+
+operaciones.map((operacion) => {
+    const indiceCategoria = categoriasSinRepetir.indexOf(operacion.categoria)
+    arrayOperacionPorCategoria[indiceCategoria].push(operacion)
+})
+
+
+
+let gananciasPorcategoria = []
+let gastosPorCategoria = []
+for (let i = 0; i < arrayOperacionPorCategoria.length; i++) {
+    for (let j = 0; j < arrayOperacionPorCategoria[j].length; j++) {
+        if (arrayOperacionPorCategoria[j][4] === "Gasto") {
+            gastosPorCategoria.push(arrayOperacionPorCategoria[j][3])
+        } else if (arrayOperacionPorCategoria[j][4] === "Ganancia") {
+            gananciasPorcategoria.push(arrayOperacionPorCategoria[j][3])
+        }
+    }
+}
+console.log(gananciasPorcategoria)
+console.log(gastosPorCategoria)
