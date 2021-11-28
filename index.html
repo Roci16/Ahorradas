@@ -7,12 +7,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AhorrADAs</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+    <!-- <link rel="stylesheet" href="estilo.css"> -->
     <script src="https://kit.fontawesome.com/fc20ae3cbb.js" crossorigin="anonymous"></script>
     <link rel="icon" type="image/ico" href="favicon/beneficios.png" />
 </head>
 
 <body>
-    <!-- Seccion Nav Main -->
+    <!-- SECCION NAV MAIN -->
     <nav class="navbar  is-primary is-spaced" aria-label="Barra de navegacion">
         <div class="navbar-brand">
             <!-- Icono izquierda ahorradas -->
@@ -46,20 +47,16 @@
         </div>
     </nav>
 
-    <!-- "Seccion central" -->
+    
     <div class="hero has-background-light  is-fullheight">
-
-
-
+        <!-----------------------------------
+            SECCION CENTRAL 
+        -------------------------------------->
         <section id="seccion-central" class="section">
             <div class="conteiner ">
-
                 <div class="columns">
-
                     <!-- Box Balance -->
                     <div class=" column is-offset-1 is-3">
-
-
                         <div class="box">
                             <h2 class="title has-text-weight-bold has-text-grey-dark mb-6">Balance</h2>
                             <div class="columns">
@@ -82,9 +79,6 @@
                                 <h2 class="title column is-5 has-text-weight-bold has-text-grey-dark">Filtros</h2>
                                 <button class="button  column has-text-right is-info is-inverted " id="boton-ocultar-filtros">Ocultar filtros</button>
                             </div>
-
-
-
                             <form id="form">
                                 <!-- Select Tipo  -->
                                 <div class="field" id="div-formulario-filtros">
@@ -97,8 +91,6 @@
                                     </select>
                                     </div>
                                 </div>
-
-
                                 <!-- Select Categoría -->
                                 <div class="field">
                                     <label class="label" for="select-categoria">Categoría</label>
@@ -122,8 +114,6 @@
                                         <input class="input" id="date" type="date">
                                     </div>
                                 </div>
-
-
 
                                 <!-- Select Ordenar por -->
                                 <div class="field">
@@ -202,13 +192,14 @@
 
                     </div>
 
-
                 </div>
+
         </section>
         <!--Tarjeta de nueva operacion  -->
         <section id="accion-boton-nueva-operacion" class=" columns m-5 is-hidden is-relative">
             <div class="box column is-8 is-offset-2">
                 <h2 class="title is-size-2 has-text-weight-bold has-text-black-ter my-5">Nueva operación</h2>
+
                 <form>
 
 
@@ -223,53 +214,62 @@
                     </div>
 
 
-                    <div class="field">
-                        <label class="label" for="select-tipo-nueva-operacion">Tipo</label>
-                        <div class="select is-fullwidth ">
-                            <select id="select-tipo-nueva-operacion"> 
-                                         <option value="gastos">Gasto</option>
-                                         <option value="ganancias">Ganancia</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="field">
-                        <label class="label" for="select-categoria-nueva-operacion">Categoría</label>
-                        <div class="select is-fullwidth  ">
-                            <select id="select-categoria-nueva-operacion">                        
-
-                                                 <option value="comida">Comida</option>
-                                                 <option value="servicios">Servicios</option>
-                                                 <option value="salidas">Salidas</option>
-                                                 <option value="educacion">Educación</option>
-                                                 <option value="transporte">Transporte</option>
-                                                 <option value="trabajo">Trabajo</option>
-
-                                            </select>
+                        <div class="field">
+                            <label class="label" for="descripcion-nueva-operacion">Descripción</label>
+                            <input class="input" type="text" id="descripcion-nueva-operacion">
                         </div>
 
-                    </div>
-
-                    <div class="field">
-                        <label class="label" for="dateNuevaOperacion">Desde</label>
-                        <div class="control">
-                            <input class="input" id="dateNuevaOperacion" type="date">
+                        <div class="field">
+                            <label class="label" for="monto-nueva-operacion">Monto</label>
+                            <input class="input" type="number" id="monto-nueva-operacion" value="0">
                         </div>
+
+
+                        <div class="field">
+                            <label class="label" for="select-tipo-nueva-operacion">Tipo</label>
+                            <div class="select is-fullwidth ">
+                                <select id="select-tipo-nueva-operacion"> 
+                                            <option value="gastos">Gasto</option>
+                                            <option value="ganancias">Ganancia</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="field">
+                            <label class="label" for="select-categoria-nueva-operacion">Categoría</label>
+                            <div class="select is-fullwidth  ">
+                                <select id="select-categoria-nueva-operacion">                        
+                                                    <option>Comida</option>
+                                                    <option>Servicios</option>
+                                                    <option>Salidas</option>
+                                                    <option>Educación</option>
+                                                    <option>Transporte</option>
+                                                    <option>Trabajo</option>
+                                </select>
+                            </div>
+
+                        </div>
+                        <div class="field">
+                            <label class="label" for="dateNuevaOperacion">Desde</label>
+                            <div class="control">
+                                <input class="input" id="dateNuevaOperacion" type="date">
+                            </div>
+                        </div>
+                    </form>
+                    <div class="column has-text-right">
+
+                        <button class="button mt-5 is-light" id="boton-cancelar-operacion">Cancelar</button>
+                        <button class="button mt-5 is-success" id="boton-agregar-operacion">Agregar</button>
+
+
                     </div>
-
-                </form>
-                <div class="column has-text-right">
-
-                    <button class="button mt-5 is-light" id="boton-cancelar-operacion">Cancelar</button>
-                    <button class="button mt-5 is-success" id="boton-agregar-operacion">Agregar</button>
-
-
-                </div>
         </section>
+
 
 
         <section class="section is-hidden is-relative" id="seccion-categorias">
             <!-- Seccion Categorias - is hidden -->
+
             <div class="conteiner">
                 <div class=" column is-offset-2 is-8">
 
@@ -292,57 +292,51 @@
                         <div id="lista-categoria">
 
                         </div>
+                        <!--- MAQUETADO DE TARJETA QUE VA EN JS ---->
+                        <!-- 
+                        <div class=" columns">
+                            <div class="column">
+                                <span class=" has-background-success-light has-text-success-dark">Comidas</span>
+                            </div>
+                            <div class="column has-text-right">
+                                <button class="button is-info is-inverted">Editar</button>
 
 
-                        <!--------------------------------------------------------
-                                 MAQUETADO DE TARJETA QUE VA EN JS
-                     --------------------------------------------------------->
-
-
-                        <!-- <div class=" columns">
-                    <div class="column">
-                        <span class=" has-background-success-light has-text-success-dark">Comidas</span>
-                    </div>
-                    <div class="column has-text-right">
-                        <button class="button is-info is-inverted">Editar</button>
-
-
-                        <button class="button  is-info is-inverted">Eliminar</button>
-                    </div>
-                </div> -->
-
-                    </div>
-
-
-                </div>
-            </div>
-
-        </section>
-        <!--------------------------------------------------------
-            TARJETA EDITAR CATEGORIA - brenda
-    --------------------------------------------------------->
-        <div class="section is-hidden tarjeta-editar-categoria">
-            <div class="column is-offset-2 is-8">
-                <div class="box ">
-                    <h2 class="title has-text-weight-bold has-text-grey-dark mb-6">Editar categoría</h2>
-                    <div class="field">
-                        <label class="label " for="username">Nombre</label>
-                        <div class="columns">
-                            <div class="control column is-12">
-                                <div>
-                                    <input class="input input-categorias-nombre-editar" value="" id="username" type="text">
-                                </div>
+                                <button class="button  is-info is-inverted">Eliminar</button>
                             </div>
                         </div>
-                        <div class="has-text-right">
-                            <button class="button is-light boton-cancelar-categoria-editada">Cancelar</button>
-                            <button class="button is-success boton-editar-categoria-editada">Editar</button>
-                        </div>
+                        -->
+
                     </div>
 
                 </div>
             </div>
+        </section>
+        
+    </section>
+    <!-- tarjeta editar categoria -->
+    <div class="section is-hidden">
+        <div class="column is-offset-2 is-8">
+            <div class="tarjeta-editar-categoria box">
+                <h2 class="title has-text-weight-bold has-text-grey-dark mb-6">Editar categoría</h2>
+                <div class="field">
+                    <label class="label " for="username">Nombre</label>
+                    <div class="columns">
+                        <div class="control column is-12">
+                            <div>
+                                <input class="input input-categorias-nombre-editar" value="" id="username" type="text">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="has-text-right">
+                            <button class="button is-light boton-cancelar-categoria-editada">Cancelar</button>
+                            <button class="button is-success boton-editar-categoria-editada">Editar</button>
+                    </div>
+                </div>
+                    
+            </div>
         </div>
+
         <!--------------------------------------------------------- 
     TARJETA BOTON EDITAR SECCION PRINCIPAL- brenda
 --------------------------------------------------------->
@@ -350,13 +344,13 @@
 
         </div>
 
+      <!--------------------------------------------------------- 
+                      SECCIÓN REPORTES
+--------------------------------------------------------->
         <!-- Seccion reportes -->
         <section id="seccion-reportes" class="section  m-1 is-hidden">
             <div class="column is-8 is-offset-2">
                 <div class="box">
-
-
-
 
                     <div class="columns">
                         <h2 class="title column is-size-2 has-text-weight-bold ">Reportes</h2>
@@ -366,114 +360,87 @@
                     <!-- <div class="box-sin-operaciones is-hidden  is-relative">
 
                     <div class="columns my-5 ">
-
-                        <figure class="image column is-offset-3 is-6">
-                            <img aria-hidden="true" src="imagenes/undraw_investment_data_re_sh9x.svg">
-                        </figure>
-
-                    </div>
-
-                    <div class="columns">
-                        <p class="column has-text-centered is-size-4 has-text-weight-semibold has-text-grey-dark">Operaciones insuficientes</p>
-                    </div>
-
-                    <div class="columns mb-6">
-                        <p class="column has-text-centered">Prueba agregando más operaciones</p>
-                    </div>
-                </div> -->
-                    <!-- fin div que desaparece-->
-                    <!-- Este div contiene los reportes cuando ya tiene cargadas varias operaciones -->
-                    <!-- resumen-->
-                    <section class="resumen columns is-flex is-flex-direction-column block">
-                        <div class="column ">
-                            <h3 class="title is-size-4 column">Resumen</h3>
-                        </div>
-                        <div id="datos-resumen" class="column">
-                            <div class="columns">
-                                <div class="column is-6 has-text-weight-semibold">Categoría con mayor ganancia</div>
-                                <div class="column is-3 has-text-right">Categoría</div>
-                                <div class="column  is-3 has-text-right">Monto</div>
-                            </div>
-                            <div class="columns">
-                                <div class="column is-6 has-text-weight-semibold">Categoría con mayor gasto</div>
-                                <div class="column is-3 has-text-right">Categoría</div>
-                                <div class="column is-3  has-text-right">Monto</div>
-                            </div>
-                            <div class="columns">
-                                <div class="column is-6 has-text-weight-semibold">Categoría con mayor balance</div>
-                                <div class="column is-3 has-text-right">Categoría</div>
-                                <div class="column  is-3 has-text-right">Monto</div>
-                            </div>
-                            <div class="columns">
-                                <div class="column is-6 has-text-weight-semibold">Mes con mayor ganancia</div>
-                                <div class="column is-3 has-text-right">Fecha</div>
-                                <div class="column is-3  has-text-right">Monto</div>
-                            </div>
-                            <div class="columns">
-                                <div class="column is-6 has-text-weight-semibold">Mes con mayor gasto</div>
-                                <div class="column is-3 has-text-right">Fecha</div>
-                                <div class="column is-3 has-text-right">Monto</div>
-                            </div>
-                        </div>
-
-
-                    </section>
-
-
-                    <!-- totales por categorias-->
-                    <section class="totales-por-categoria columns  is-flex is-flex-direction-column block">
-                        <div class="column block">
-                            <h3 class="title is-size-4">Totales por categorías</h3>
-                        </div>
-                        <div class="column">
-                            <div class="columns">
-                                <div class="column is-3 has-text-weight-semibold ">Categoría</div>
-                                <div class="column is-3 has-text-weight-semibold has-text-right">Ganancias</div>
-                                <div class="column is-3 has-text-weight-semibold has-text-right">Gastos</div>
-                                <div class="column is-3 has-text-weight-semibold has-text-right">Balances</div>
-                            </div>
-                            <div class="columns">
-                                <div class="column is-3 has-text-weight-semibold ">Categoria</div>
-                                <div class="column is-3 has-text-danger has-text-right">monto</div>
-                                <div class="column is-3 has-text-success  has-text-right">monto</div>
-                                <div class="column is-3 has-text-right">total</div>
-
-                            </div>
-
-                        </div>
-
-                    </section>
-                    <!-- totales por mes-->
-                    <section class="resumen columns is-flex is-flex-direction-column ">
-                        <div class="column block">
-                            <h3 class="title is-size-4">Totales por mes</h3>
-                        </div>
-                        <div class="column">
-                            <div class="columns">
-                                <div class="column is-3 has-text-weight-semibold ">Mes</div>
-                                <div class="column is-3 has-text-weight-semibold has-text-right">Ganancias</div>
-                                <div class="column is-3 has-text-weight-semibold has-text-right">Gastos</div>
-                                <div class="column is-3 has-text-weight-semibold has-text-right">Balances</div>
-
-                            </div>
-                            <div class="columns">
-                                <div class="column is-3 has-text-weight-semibold ">fecha</div>
-                                <div class="column is-3 has-text-danger has-text-right">monto</div>
-                                <div class="column is-3 has-text-success  has-text-right">monto</div>
-                                <div class="column is-3 has-text-right">total</div>
-
-                            </div>
-                        </div>
-
-                    </section>
-                    <!-- fin div reportes con operaciones-->
+                    <figure class="image column is-offset-3 is-6">
+                        <img src="imagenes/undraw_investment_data_re_sh9x.svg">
+                    </figure>
 
                 </div>
 
+                <div class="columns">
+                    <p class="column has-text-centered is-size-4 has-text-weight-semibold has-text-grey-dark">Operaciones insuficientes</p>
+                </div>
+
+                <div class="columns mb-6">
+                    <p class="column has-text-centered">Prueba agregando más operaciones</p>
+                </div>
+                </div> -->
+                <!-- fin div que desaparece-->
+
+                <!-- Este div contiene los reportes cuando ya tiene cargadas varias operaciones -->
+                
+                <!-- resumen-->
+                <section class="resumen columns is-flex is-flex-direction-column block">
+                    <div class="column ">
+                        <h3 class="title is-size-4 column">Resumen</h3>
+                    </div>
+
+                    <div id="datos-resumen" class="column seccion-reportes">
+                    </div>        
+                </section>
+    
+                <!-- totales por categorias-->
+                <section class="totales-por-categoria columns  is-flex is-flex-direction-column block">
+                    <div class="column block">
+                        <h3 class="title is-size-4">Totales por categorías</h3>
+
+                    <div  class="column">
+                        <div class="columns">
+                            <div class="column is-3 has-text-weight-semibold ">Categoría</div>
+                                <div class="column is-3 has-text-weight-semibold has-text-right">Ganancias</div>
+                                <div class="column is-3 has-text-weight-semibold has-text-right">Gastos</div>
+                                <div class="column is-3 has-text-weight-semibold has-text-right">Balances</div> 
+                        </div>
+                        <div class="columns">
+                            <div class="column is-3 has-text-weight-semibold ">Categoria</div>
+                            <div class="column is-3 has-text-danger has-text-right">monto</div>
+                            <div class="column is-3 has-text-success  has-text-right">monto</div>
+                            <div class="column is-3 has-text-right">total</div>
+                            
+                        </div>
+                    </div>
+                </section>
+
+                <!-- totales por mes-->
+                <section class="resumen columns is-flex is-flex-direction-column ">
+                    <div class="column block">
+                        <h3 class="title is-size-4">Totales por mes</h3>
+                    </div>
+                    <div  class="column">
+                        <div class="columns">
+                            <div class="column is-3 has-text-weight-semibold ">Mes</div>
+                            <div class="column is-3 has-text-weight-semibold has-text-right">Ganancias</div>
+                            <div class="column is-3 has-text-weight-semibold has-text-right">Gastos</div>
+                            <div class="column is-3 has-text-weight-semibold has-text-right">Balances</div>
+                        
+                        </div>
+                        <div class="columns">
+                            <div class="column is-3 has-text-weight-semibold ">fecha</div>
+                            <div class="column is-3 has-text-danger has-text-right">monto</div>
+                            <div class="column is-3 has-text-success  has-text-right">monto</div>
+                            <div class="column is-3 has-text-right">total</div>
+                        
+                        </div>
+                    </div>
+
+                </section>
+                <!-- fin div reportes con operaciones-->
+               
             </div>
-        </section>
         </div>
-        <script src="index.js"></script>
+    </section>
+        
+    </div>
+    <script src="index.js"></script>
 </body>
 
 </html>
