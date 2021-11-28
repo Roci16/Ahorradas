@@ -218,6 +218,8 @@ const mostrarOperacionesEnHTML = (array) => {
 
 
     const html = array.reduce((acc, operacion, index) => {
+
+
         return (
             acc +
             `
@@ -232,7 +234,7 @@ const mostrarOperacionesEnHTML = (array) => {
         <p>${operacion.fecha}</p>
         </div>
         <div class="column is-1 has-text-right">
-        <p>${operacion.monto}</p>
+        <p>$${operacion.monto}</p>
         </div>
         <div class="column is-4 has-text-right">
         <button id="editar-categoria-${index}" class="button is-info is-inverted boton-editar-seccion-operaciones ">Editar</button>
@@ -260,7 +262,6 @@ const mostrarOperacionesEnHTML = (array) => {
         }
     }
 }
-
 
 botonAgregarOperacion.onclick = () => {
 
@@ -296,21 +297,16 @@ botonAgregarOperacion.onclick = () => {
     valorOpcionCategoriaNuevaOperacion.value = ""
     valorInputDateNuevaOperacion.value = ""
     valorOpcionTipoNuevaOperacion.value = ""
-
-
-
 }
 
 operaciones = operacionesObtenidas()
 mostrarOperacionesEnHTML(operaciones)
 
-
-
 //--------Balances-----------
 //---------- Funcion mostrar suma total de ganancias en la seccion balances-----
 const mostrarGananciasEnBalances = (array) => {
     const gananciasFiltradas = array.filter((elemento) => {
-        return elemento.tipo === "Ganancia"
+        return elemento.tipo === "ganancias"
     })
 
 
@@ -325,7 +321,7 @@ const mostrarGananciasEnBalances = (array) => {
 // //---------- Funcion mostrar suma total de gastos en la seccion balances-----
 const mostrarGastosEnBalances = (array) => {
     const gastosFiltrados = array.filter((elemento) => {
-        return elemento.tipo === "Gasto"
+        return elemento.tipo === "gastos"
     })
 
     const sumarGastos = gastosFiltrados.reduce((acc, elemento) => {
