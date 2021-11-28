@@ -107,7 +107,7 @@ botonAgregarOperacion.onclick = () => {
 //Boton Cancelar nueva operacion
 
 botonCancelarOperacion.onclick = () => {
-
+    seccionNuevaOperacion.classList.add("is-hidden")
     seccionCategorias.classList.add("is-hidden")
     seccionCentral.classList.remove("is-hidden")
     seccionReportes.classList.add("is-hidden")
