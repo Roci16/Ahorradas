@@ -54,6 +54,13 @@ const navbarBurger = document.getElementById("navbar-burger")
 const navbarMenu = document.getElementById("navbarBasicExample")
 
 
+// Navbar-Menu//Navbar-burger
+navbarBurger.onclick = () => {
+    navbarBurger.classList.toggle("is-active")
+    navbarMenu.classList.toggle("is-active")
+}
+
+
 // Funciones Botones Nav Superior
 botonBalance.onclick = () => {
 
@@ -941,9 +948,3 @@ operaciones.map((operacion) => {
 // necesito una acumuladora que muestre el array de las categorias filtradas
 //las funciones deben incluir que cuando el monto sea menor a 0 agregar la clase para 
 // que el texto sea rojo y cuando sea mayo clase verde
-
-
-navbarBurger.onclick = () => {
-    navbarBurger.classList.toggle("is-active")
-    navbarMenu.classList.toggle("is-active")
-}
