@@ -35,7 +35,7 @@ const filtroCategorias = document.getElementById("select-categoria")
 const filtroFecha = document.getElementById("date")
 const selectOrdenarPor = document.getElementById("select-ordenar")
 const divOperaciones = document.getElementById("div-operaciones")
-    //-------------------------Elementos de Reportes---------------------------
+//-------------------------Elementos de Reportes---------------------------
 const divdatosResumen = document.getElementById("datos-resumen")
 const divdatosTotalesCategorias = document.getElementById("datos-totales-por-categorias")
 const divDatosTotalesMes = document.getElementById("datos-totales-por-mes")
@@ -109,77 +109,77 @@ botonCancelarOperacion.onclick = () => {
 
 // Array de prueba
 const operaciones = [
-    // {
-    //     descripcion: 'Sueldo',
-    //     categoria: 'Trabajo',
-    //     fecha: '2021-01-01',
-    //     monto: 50000,
-    //     tipo: 'Ganancia',
-    // },
+    {
+        descripcion: 'Sueldo',
+        categoria: 'Trabajo',
+        fecha: '2021-01-01',
+        monto: 50000,
+        tipo: 'Ganancia',
+    },
 
-    // {
-    //     descripcion: 'Pago de alquiler',
-    //     categoria: 'Alquiler',
-    //     fecha: '2021-01-02',
-    //     monto: 15000,
-    //     tipo: 'Gasto',
-    // },
-    // {
-    //     descripcion: 'Pago de expensas',
-    //     categoria: 'Alquiler',
-    //     fecha: '2021-01-02',
-    //     monto: 5000,
-    //     tipo: 'Gasto',
-    // },
-    // {
-    //     descripcion: 'Pago de internet',
-    //     categoria: 'Servicios',
-    //     fecha: '2021-01-10',
-    //     monto: 2000,
-    //     tipo: 'Gasto',
-    // },
-    // {
-    //     descripcion: 'Trabajo freelance',
-    //     categoria: 'Trabajo',
-    //     fecha: '2021-01-15',
-    //     monto: 20000,
-    //     tipo: 'Ganancia',
-    // },
-    // {
-    //     descripcion: 'Cena con amigas',
-    //     categoria: 'Salidas',
-    //     fecha: '2021-01-18',
-    //     monto: 1500,
-    //     tipo: 'Gasto',
-    // },
-    // {
-    //     descripcion: 'Salida turistica',
-    //     categoria: 'Salidas',
-    //     fecha: '2020-01-18',
-    //     monto: 3500,
-    //     tipo: 'Gasto',
-    // },
-    // {
-    //     descripcion: 'Pasantía',
-    //     categoria: 'Educación',
-    //     fecha: '2020-06-13',
-    //     monto: 6600,
-    //     tipo: 'Gasto',
-    // },
-    // {
-    //     descripcion: 'Viaje a las toninas',
-    //     categoria: 'Transporte',
-    //     fecha: '2020-05-18',
-    //     monto: 4000,
-    //     tipo: 'Gasto',
-    // },
-    // {
-    //     descripcion: 'Edelap',
-    //     categoria: 'Servicios',
-    //     fecha: '2021-04-18',
-    //     monto: 300,
-    //     tipo: 'Gasto',
-    // },
+    {
+        descripcion: 'Pago de alquiler',
+        categoria: 'Alquiler',
+        fecha: '2021-01-02',
+        monto: 15000,
+        tipo: 'Gasto',
+    },
+    {
+        descripcion: 'Pago de expensas',
+        categoria: 'Alquiler',
+        fecha: '2021-01-02',
+        monto: 5000,
+        tipo: 'Gasto',
+    },
+    {
+        descripcion: 'Pago de internet',
+        categoria: 'Servicios',
+        fecha: '2021-01-10',
+        monto: 2000,
+        tipo: 'Gasto',
+    },
+    {
+        descripcion: 'Trabajo freelance',
+        categoria: 'Trabajo',
+        fecha: '2021-01-15',
+        monto: 20000,
+        tipo: 'Ganancia',
+    },
+    {
+        descripcion: 'Cena con amigas',
+        categoria: 'Salidas',
+        fecha: '2021-01-18',
+        monto: 1500,
+        tipo: 'Gasto',
+    },
+    {
+        descripcion: 'Salida turistica',
+        categoria: 'Salidas',
+        fecha: '2020-01-18',
+        monto: 3500,
+        tipo: 'Gasto',
+    },
+    {
+        descripcion: 'Pasantía',
+        categoria: 'Educación',
+        fecha: '2020-06-13',
+        monto: 6600,
+        tipo: 'Gasto',
+    },
+    {
+        descripcion: 'Viaje a las toninas',
+        categoria: 'Transporte',
+        fecha: '2020-05-18',
+        monto: 4000,
+        tipo: 'Gasto',
+    },
+    {
+        descripcion: 'Edelap',
+        categoria: 'Servicios',
+        fecha: '2021-04-18',
+        monto: 300,
+        tipo: 'Gasto',
+    },
 ];
 
 
@@ -277,53 +277,53 @@ const aplicarDescripcionAOperaciones = () => {
 //     }, "")
 
 
-tarjetaOperacionesAgregadas.innerHTML = html;
+    // tarjetaOperacionesAgregadas.innerHTML = html;
 
-const botonesBorrarOperaciones = document.querySelectorAll(".boton-borrar-operacion")
-for (let i = 0; i < botonesBorrarOperaciones.length; i++) {
-    botonesBorrarOperaciones[i].onclick = () => {
-        const idOperaciones = botonesBorrarOperaciones[i].id
-        const indiceOperaciones = idOperaciones.slice(7)
-        const filtrarOperaciones = operaciones.filter((elemento, index) => {
-            return index != indiceOperaciones
-        })
+    const botonesBorrarOperaciones = document.querySelectorAll(".boton-borrar-operacion")
+    for (let i = 0; i < botonesBorrarOperaciones.length; i++) {
+        botonesBorrarOperaciones[i].onclick = () => {
+            const idOperaciones = botonesBorrarOperaciones[i].id
+            const indiceOperaciones = idOperaciones.slice(7)
+            const filtrarOperaciones = operaciones.filter((elemento, index) => {
+                return index != indiceOperaciones
+            })
 
-        funcionOperacionesLS(filtrarOperaciones)
-        mostrarOperacionesEnHTML(filtrarOperaciones)
+            funcionOperacionesLS(filtrarOperaciones)
+            mostrarOperacionesEnHTML(filtrarOperaciones)
 
+        }
     }
-}
 
 
 
-mostrarOperacionesEnHTML(operaciones)
+// mostrarOperacionesEnHTML(operaciones)
 
-//--------Balances-----------
+  //--------Balances-----------
 //---------- Funcion mostrar suma total de ganancias en la seccion balances-----
-const mostrarGananciasEnBalances = (array) => {
-    const gananciasFiltradas = array.filter((elemento) => {
-        return elemento.tipo === "Ganancia"
+// const mostrarGananciasEnBalances = (array) =>{
+//   const gananciasFiltradas = array.filter((elemento)=>{
+//     return elemento.tipo === "Ganancia"
 
-    })
+//     })
 
-    const sumarGastos = gastosFiltrados.reduce((acc, elemento) => {
-        return acc + elemento.monto
-    }, 0)
+//     const sumarGastos = gastosFiltrados.reduce((acc, elemento) => {
+//         return acc + elemento.monto
+//     }, 0)
 
-    return balancesSumaGastos.textContent = sumarGastos
+//     return balancesSumaGastos.textContent = sumarGastos
 
-}
-console.log(mostrarGastosEnBalances(operaciones))
+// }
+// console.log(mostrarGastosEnBalances(operaciones))
 
 // ---------- Funcion mostrar suma total de gastos en la seccion balances-----
-const mostrarTotalEnBalances = (array) => {
-    const resultadoFinalGanancias = mostrarGananciasEnBalances(array)
-    const resultadoFinalGastos = mostrarGastosEnBalances(array)
-    const resultadoFinal = resultadoFinalGanancias - resultadoFinalGastos
-    return balancesTotalFinal.textContent = resultadoFinal
-}
+// const mostrarTotalEnBalances = (array) => {
+//     const resultadoFinalGanancias = mostrarGananciasEnBalances(array)
+//     const resultadoFinalGastos = mostrarGastosEnBalances(array)
+//     const resultadoFinal = resultadoFinalGanancias - resultadoFinalGastos
+//     return balancesTotalFinal.textContent = resultadoFinal
+// }
 
-mostrarTotalEnBalances(operaciones)
+// mostrarTotalEnBalances(operaciones)
 
 
 //-----------funciones para ordenar los filtros-----
@@ -522,7 +522,7 @@ botonAgregarOperacion.onclick = () => {
 }
 
 const operacion = operacionesObtenidas()
-mostrarOperacionesEnHTML(operacion)
+// mostrarOperacionesEnHTML(operacion)
 
 const agregarCategoriasAHTML = () => {
     const categorias = categoriasObtenidas()
@@ -581,7 +581,7 @@ const tarjetaEditarOperacionEditar = (id) => {
     const objeto = operacion[id]
 
     formTarjetaEditarOperacion.innerHTML = `
-<div class="tarjeta-editar-operacion column is-offset-2 is-8 is-hidden is-relative">
+<div class="tarjeta-editar-operacion column is-offset-2 is-8 is-hidden">
     <form class="box form-seccion-operacion">
         <h2 class="title is-1 has-text-weight-bold">Editar operación</h2>
         <div class="field">
@@ -723,43 +723,93 @@ botonAgregarCategoria.onclick = () => {
 
     adicionDeNuevasCategoriasSelect()
     agregarCategoriasAHTML()
-
 }
 
+//----------------------------------------------------------------------------
+//                       REPORTES RESUMEN
+//----------------------------------------------------------------------------
 
-//--------------- Seccion reportes----------------------------
-//3 bloques
-//Resumen
-//Categoría con mayor ganancia Salidas +$134555
-// Categoría con mayor gasto Comida -$34165
-// Categoría con mayor balance Salidas $134555
-// Mes con mayor ganancia 2021/11/17 $134555
-// Mes con mayor gasto 2021/10/05 -$34165
+// FUNCION AUXILIAR "categoria con mayor ganancia"
+const montoMayorGanancia = (array) => {
+    const mayorMonto = array.reduce((acc, elemento)=>{
+        if (acc < elemento.monto) {
+            return elemento.monto
+        }
+        return acc
+    }, 0)
+    return mayorMonto
+}
+const categoriaConMayorGanancia = (array) => {
+    const filtrarTipo = array.filter((elemento)=>{
+        return elemento.tipo === "Ganancia"
+    })
+    const filtrarCategoria = filtrarTipo.reduce((acc, elemento)=>{
+        if (acc > elemento.monto) {
+            return acc
+        }
+        return elemento.categoria
+    }, 0)
+    return filtrarCategoria
+}
+console.log("MAYOR GANANCIA", categoriaConMayorGanancia(operaciones), montoMayorGanancia(operaciones)) 
 
-//Totales por categorías
-// Categoria Ganancias Gastos Balance
-// Comida    +$28077   -$34165 $-6088
-// Salidas  +$134555    -$0    $134555
-// Educación   +$50     -$0     $50
-// Transporte  +$100    -$0     $100
-// Servicios    +$0   -$5000   $-5000
-// Trabajo     +$0    -$48     $-48
-// hamburguesas  +$0  -$32     $-32
+// FUNCION AUXILIAR "categoria con mayor gasto"
+const montoMayorGasto = (array) => {
+    const filtrarTipo = array.filter((elemento)=>{
+        return elemento.tipo === "Gasto"
+    })
+    const filtrarmenorGasto = filtrarTipo.reduce((acc, elemento)=>{
+        if (acc < elemento.monto) {
+            acc = elemento.monto
+        }
+        return acc
+    }, 0)
+    return filtrarmenorGasto
+}
 
-// Totales por mes
-// Mes     Ganancias      Gastos    Balance
-// 11/2021  +$162502     -$5712     $156790
-// 10/2021   +$200       -$33333    $-33133
-// 6/2021    +$30         -$0          $30
-// 9/2021     +$0        -$200       $-200
-// 8/2021    +$50         -$0          $50
-// const divdatosResumen = document.getElementById("datos-resumen")
-// const divdatosTotalesCategorias = document.getElementById("datos-totales-por-categorias")
-// const divDatosTotalesMes = document.getElementById("datos-totales-por-mes")
+const categoriaConMayorGasto = (array) => {
+    const filtrarTipo = array.filter((elemento)=>{
+        return elemento.tipo === "Gasto"
+    })
+    const filtrarmenorGasto = filtrarTipo.reduce((acc, elemento)=>{
+        if (acc < elemento.monto) {
+            acc = elemento.categoria
+        }
+        return acc
+    }, 0)
+    return filtrarmenorGasto
+}
+console.log("MAYOR GASTO", categoriaConMayorGasto(operaciones),  montoMayorGasto(operaciones)) 
 
+// FUNCION REPORTES RESUMEN
 
-//funciones para totales por categorias
-//accede al array de categorias filtrado por aquellas que fueron utilizadas para operaciones (filter)
-// la funcion debe mostrar en catgoria el nombre de la misma. 
-// necesito una acumuladora que muestre el array de las categorias filtradas
-//las funciones deben incluir que cuando el monto sea menor a 0 agregar la clase para que el texto sea rojo y cuando sea mayo clase verde
+const contenedorReportes = ()=>{
+    const seccionReportes = document.querySelector(".seccion-reportes")
+    seccionReportes.innerHTML = `
+    <div class="columns">
+        <div class="column is-6 has-text-weight-semibold">Categoría con mayor ganancia</div>
+        <div class="column mt-3 is-1 has-text-right tag is-primary is-light">${categoriaConMayorGanancia(operaciones)}</div>
+        <div class="column is-4 has-text-right has-text-success has-text-weight-semibold">+$${montoMayorGanancia(operaciones)}</div>  
+    </div>
+    <div class="columns">
+        <div class="column is-6 has-text-weight-semibold">Categoría con mayor gasto</div>
+        <div class="column mt-3 is-1 has-text-right tag is-primary is-light">${categoriaConMayorGasto(operaciones)}</div>
+        <div class="column is-4  has-text-right has-text-danger has-text-weight-semibold">-$${montoMayorGasto(operaciones)}</div>  
+    </div>
+    <div class="columns">
+        <div class="column is-6 has-text-weight-semibold">Categoría con mayor balance</div>
+        <div class="column mt-3 is-1 has-text-right tag is-primary is-light">${categoriaConMayorGanancia(operaciones)}</div>
+        <div class="column  is-4 has-text-right has-text-weight-semibold">$${montoMayorGanancia(operaciones)}</div>  
+    </div>
+    <div class="columns">
+        <div class="column is-6 has-text-weight-semibold">Mes con mayor ganancia</div>
+        <div class="column is-1 has-text-right">Fecha</div>
+        <div class="column is-4  has-text-right has-text-success has-text-weight-semibold">$${montoMayorGanancia(operaciones)}</div>  
+    </div>
+    <div class="columns">
+        <div class="column is-6 has-text-weight-semibold">Mes con mayor gasto</div>
+        <div class="column is-1 has-text-right">Fecha</div>
+        <div class="column is-4 has-text-right has-text-danger has-text-weight-semibold">-$${montoMayorGasto(operaciones)}</div>  
+    </div>`
+}
+contenedorReportes()
