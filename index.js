@@ -107,7 +107,7 @@ botonAgregarOperacion.onclick = () => {
 //Boton Cancelar nueva operacion
 
 botonCancelarOperacion.onclick = () => {
-
+    seccionNuevaOperacion.classList.add("is-hidden")
     seccionCategorias.classList.add("is-hidden")
     seccionCentral.classList.remove("is-hidden")
     seccionReportes.classList.add("is-hidden")
@@ -228,13 +228,13 @@ const mostrarOperacionesEnHTML = (array) => {
         <div class="column is-1">
         <p>${operacion.categoria}</p>
         </div>
-        <div class="column is-2 has-text-right">
+        <div class="column is-3 has-text-right">
         <p>${operacion.fecha}</p>
         </div>
         <div class="column is-1 has-text-right">
         <p>${operacion.monto}</p>
         </div>
-        <div class="column is-5 has-text-right">
+        <div class="column is-4 has-text-right">
         <button id="editar-categoria-${index}" class="button is-info is-inverted boton-editar-seccion-operaciones ">Editar</button>
         <button id="borrar-${index}"  class="boton-borrar-operacion button is-info is-inverted ">Eliminar</button>
         </div>
@@ -244,7 +244,7 @@ const mostrarOperacionesEnHTML = (array) => {
     }, "")
 
 
-    // tarjetaOperacionesAgregadas.innerHTML = html;
+    tarjetaOperacionesAgregadas.innerHTML = html;
 
     const botonesBorrarOperaciones = document.querySelectorAll(".boton-borrar-operacion")
     for (let i = 0; i < botonesBorrarOperaciones.length; i++) {
@@ -486,7 +486,7 @@ formulario.onsubmit = (e) => {
 
 // // Seccion categorias
 
-const categorias = ["Comida", "Servicios", "Salidas", "Educación", "Transporte", "Trabajo"]
+const categorias = ["Todos", "Comida", "Servicios", "Salidas", "Educación", "Transporte", "Trabajo"]
 
 // // LocalStorage///////////////
 const categoriasObtenidas = () => {
@@ -762,15 +762,14 @@ operaciones.map((operacion) => {
 
 let gananciasPorcategoria = []
 let gastosPorCategoria = []
-for(let i=0; i < arrayOperacionPorCategoria.length; i++){
-        for(let j = 0; j<arrayOperacionPorCategoria[j].length; j++){
-                if(arrayOperacionPorCategoria[j][4] === "Gasto"){
-                    gastosPorCategoria.push(arrayOperacionPorCategoria[j][3])
-                }
-                else if (arrayOperacionPorCategoria[j][4] === "Ganancia"){
-                    gananciasPorcategoria.push(arrayOperacionPorCategoria[j][3])
-                }
+for (let i = 0; i < arrayOperacionPorCategoria.length; i++) {
+    for (let j = 0; j < arrayOperacionPorCategoria[j].length; j++) {
+        if (arrayOperacionPorCategoria[j][4] === "Gasto") {
+            gastosPorCategoria.push(arrayOperacionPorCategoria[j][3])
+        } else if (arrayOperacionPorCategoria[j][4] === "Ganancia") {
+            gananciasPorcategoria.push(arrayOperacionPorCategoria[j][3])
         }
+    }
 }
 console.log(gananciasPorcategoria)
 console.log(gastosPorCategoria)
@@ -784,7 +783,7 @@ console.log(gastosPorCategoria)
 
 // FUNCION AUXILIAR "categoria con mayor ganancia"
 const montoMayorGanancia = (array) => {
-    const mayorMonto = array.reduce((acc, elemento)=>{
+    const mayorMonto = array.reduce((acc, elemento) => {
         if (acc < elemento.monto) {
             return elemento.monto
         }
@@ -793,10 +792,10 @@ const montoMayorGanancia = (array) => {
     return mayorMonto
 }
 const categoriaConMayorGanancia = (array) => {
-    const filtrarTipo = array.filter((elemento)=>{
+    const filtrarTipo = array.filter((elemento) => {
         return elemento.tipo === "Ganancia"
     })
-    const filtrarCategoria = filtrarTipo.reduce((acc, elemento)=>{
+    const filtrarCategoria = filtrarTipo.reduce((acc, elemento) => {
         if (acc > elemento.monto) {
             return acc
         }
@@ -804,16 +803,16 @@ const categoriaConMayorGanancia = (array) => {
     }, 0)
     return filtrarCategoria
 }
-console.log("MAYOR GANANCIA", categoriaConMayorGanancia(operaciones), montoMayorGanancia(operaciones)) 
+console.log("MAYOR GANANCIA", categoriaConMayorGanancia(operaciones), montoMayorGanancia(operaciones))
 
 
 
 // FUNCION AUXILIAR "categoria con mayor gasto"
 const montoMayorGasto = (array) => {
-    const filtrarTipo = array.filter((elemento)=>{
+    const filtrarTipo = array.filter((elemento) => {
         return elemento.tipo === "Gasto"
     })
-    const filtrarmenorGasto = filtrarTipo.reduce((acc, elemento)=>{
+    const filtrarmenorGasto = filtrarTipo.reduce((acc, elemento) => {
         if (acc < elemento.monto) {
             acc = elemento.monto
         }
@@ -823,10 +822,10 @@ const montoMayorGasto = (array) => {
 }
 
 const categoriaConMayorGasto = (array) => {
-    const filtrarTipo = array.filter((elemento)=>{
+    const filtrarTipo = array.filter((elemento) => {
         return elemento.tipo === "Gasto"
     })
-    const filtrarmenorGasto = filtrarTipo.reduce((acc, elemento)=>{
+    const filtrarmenorGasto = filtrarTipo.reduce((acc, elemento) => {
         if (acc < elemento.monto) {
             acc = elemento.categoria
         }
@@ -834,11 +833,11 @@ const categoriaConMayorGasto = (array) => {
     }, 0)
     return filtrarmenorGasto
 }
-console.log("MAYOR GASTO", categoriaConMayorGasto(operaciones),  montoMayorGasto(operaciones)) 
+console.log("MAYOR GASTO", categoriaConMayorGasto(operaciones), montoMayorGasto(operaciones))
 
 // FUNCION REPORTES RESUMEN
 
-const contenedorReportes = ()=>{
+const contenedorReportes = () => {
     const seccionReportes = document.querySelector(".seccion-reportes")
     seccionReportes.innerHTML = `
     <div class="columns">
@@ -892,5 +891,3 @@ contenedorReportes()
 // }
 
 // obtenerTotalesPorMes()
-
-
