@@ -22,21 +22,27 @@
                     <i class="fas fa-wallet mr-2"></i> AhorrADAs
                 </h1>
             </a>
+            <div id="navbar-burger" class="navbar-burger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+
         </div>
         <!-- botones derecho -->
         <div id="navbarBasicExample" class="navbar-menu">
             <div class="navbar-end">
-                <a id="boton-balance" class="navbar-item">
+                <button id="boton-balance" class="button is-primary">
                     <i class="fas fa-chart-line mr-2 "></i> Balance
-                </a>
+                </button>
 
-                <a id="boton-categorias" class="navbar-item">
+                <button id="boton-categorias" class="button is-primary">
                     <i class="fas fa-tag mr-2 "></i> Categorías
-                </a>
+                </button>
 
-                <a id="boton-reportes" class="navbar-item">
+                <button id="boton-reportes" class="button is-primary">
                     <i class="fas fa-chart-pie mr-2 "></i> Reportes
-                </a>
+                </button>
             </div>
         </div>
     </nav>
@@ -145,7 +151,7 @@
 
 
                                         <figure class="image column is-offset-3 is-6">
-                                            <img src="imagenes/undraw_Pie_chart_re_bgs8.svg">
+                                            <img aria-hidden="true" src="imagenes/undraw_Pie_chart_re_bgs8.svg">
 
                                         </figure>
 
@@ -161,10 +167,13 @@
                                     </div>
                                 </div>
 
+
                                 <!-- Tarjeta de operaciones que ya se agregaron -->
-                                <div id="contenedor-operaciones-agregadas" class="column is-hidden">
+
+                                <div id="contenedor-operaciones-agregadas" class="column is-hidden is-relative">
+
                                     <div class="columns">
-                                        <div class="column">Descropción</div>
+                                        <div class="column">Descripción</div>
                                         <div class="column is-1 has-text-centered">Categoría</div>
                                         <div class="column  has-text-centered">Fecha</div>
                                         <div class="column">Monto</div>
@@ -173,38 +182,36 @@
                                     <div>
                                         <div id="tarjeta-operaciones-agregadas"></div>
                                     </div>
+
+
+
                                 </div>
-
-
-
-                            <!-- Tarjeta de operaciones que ya se agregaron -->
-                            <div id="contenedor-operaciones-agregadas" class="column">
-                                <div class="columns">
-                                    <div class="column">Descripción</div>
-                                    <div class="column is-1 has-text-centered">Categoría</div>
-                                    <div class="column  has-text-centered">Fecha</div>
-                                    <div class="column">Monto</div>
-                                    <div class="column">Acciones</div>
-                                </div>
-                                <div>
-                                    <div id="tarjeta-operaciones-agregadas"></div>
-                                </div>
-
                             </div>
+
                         </div>
 
                     </div>
 
                 </div>
-            </div>
+
         </section>
         <!--Tarjeta de nueva operacion  -->
-        <section id="accion-boton-nueva-operacion" class=" columns m-5 is-hidden">
+        <section id="accion-boton-nueva-operacion" class=" columns m-5 is-hidden is-relative">
             <div class="box column is-8 is-offset-2">
                 <h2 class="title is-size-2 has-text-weight-bold has-text-black-ter my-5">Nueva operación</h2>
 
+                <form>
 
-                    <form>
+
+                    <div class="field">
+                        <label class="label" for="descripcion-nueva-operacion">Descripción</label>
+                        <input class="input" type="text" id="descripcion-nueva-operacion">
+                    </div>
+
+                    <div class="field">
+                        <label class="label" for="monto-nueva-operacion">Monto</label>
+                        <input class="input" type="number" id="monto-nueva-operacion" value="0">
+                    </div>
 
 
                         <div class="field">
@@ -257,10 +264,12 @@
 
                     </div>
         </section>
-        <!-----------------------------------
-            SECCION CATEGORIAS 
-        -------------------------------------->
-        <section class="section is-hidden" id="seccion-categorias">
+
+
+
+        <section class="section is-hidden is-relative" id="seccion-categorias">
+            <!-- Seccion Categorias - is hidden -->
+
             <div class="conteiner">
                 <div class=" column is-offset-2 is-8">
 
@@ -364,6 +373,7 @@
                     <div class="column ">
                         <h3 class="title is-size-4 column">Resumen</h3>
                     </div>
+
                     <div id="datos-resumen" class="column seccion-reportes">
                     </div>        
                 </section>
@@ -372,7 +382,7 @@
                 <section class="totales-por-categoria columns  is-flex is-flex-direction-column block">
                     <div class="column block">
                         <h3 class="title is-size-4">Totales por categorías</h3>
-                    </div>
+
                     <div  class="column">
                         <div class="columns">
                             <div class="column is-3 has-text-weight-semibold ">Categoría</div>
@@ -411,9 +421,10 @@
                         
                         </div>
                     </div>
+
                 </section>
                 <!-- fin div reportes con operaciones-->
-                
+               
             </div>
         </div>
     </section>
