@@ -754,7 +754,7 @@ const montoMayorGanancia = (array) => {
 }
 const categoriaConMayorGanancia = (array) => {
     const filtrarTipo = array.filter((elemento) => {
-        return elemento.tipo === "Ganancia"
+        return elemento.tipo === "ganancias"
     })
     const filtrarCategoria = filtrarTipo.reduce((acc, elemento) => {
         if (acc > elemento.monto) {
@@ -771,7 +771,7 @@ console.log("MAYOR GANANCIA", categoriaConMayorGanancia(operaciones), montoMayor
 // FUNCION AUXILIAR "categoria con mayor gasto"
 const montoMayorGasto = (array) => {
     const filtrarTipo = array.filter((elemento) => {
-        return elemento.tipo === "Gasto"
+        return elemento.tipo === "gastos"
     })
     const filtrarmenorGasto = filtrarTipo.reduce((acc, elemento) => {
         if (acc < elemento.monto) {
@@ -799,9 +799,8 @@ console.log("MAYOR GASTO", categoriaConMayorGasto(operaciones), montoMayorGasto(
 // FUNCION REPORTES RESUMEN
 
 const contenedorReportes = () => {
-    const seccionReportes = document.querySelector(".seccion-reportes")
-    seccionReportes.innerHTML = `
-    <div class="columns">
+    const seccionReportes = document.getElementById("seccion-reportes")
+    seccionReportes.innerHTML = ` <div class="columns">
         <div class="column is-6 has-text-weight-semibold">Categoría con mayor ganancia</div>
         <div class="column mt-3 is-1 has-text-right tag is-primary is-light">${categoriaConMayorGanancia(operaciones)}</div>
         <div class="column is-4 has-text-right has-text-success has-text-weight-semibold">+$${montoMayorGanancia(operaciones)}</div>  
