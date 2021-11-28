@@ -52,6 +52,10 @@ const divDatosTotalesMes = document.getElementById("datos-totales-por-mes")
 const navbarBurger = document.getElementById("navbar-burger")
 const navbarMenu = document.getElementById("navbarBasicExample")
 
+//----------------------------Editar-----------------------------------
+const formTarjetaEditarOperacion = document.querySelector(".form-tarjeta-editar-operacion")
+const tarjetaEditarCategoria = document.querySelector(".tarjeta-editar-categoria")
+
 
 // Navbar-Menu//Navbar-burger
 navbarBurger.onclick = () => {
@@ -561,6 +565,7 @@ const agregarCategoriasAHTML = () => {
 // aca empiezan las funciones de botones
 // BOTON EDITAR CATEGORIA
 const botonEditarSeccionOperaciones = () => {
+        formTarjetaEditarOperacion.classList.remove("is-hidden")
         const botonEditarSeccionOperaciones = document.querySelectorAll(".boton-editar-seccion-operaciones")
         for (let i = 0; i < botonEditarSeccionOperaciones.length; i++) {
             botonEditarSeccionOperaciones[i].onclick = () => {
@@ -573,7 +578,7 @@ const botonEditarSeccionOperaciones = () => {
     }
     // TARJETA EDITAR CATEGORIA
 const tarjetaEditarOperacionEditar = (id) => {
-    const formTarjetaEditarOperacion = document.querySelector(".form-tarjeta-editar-operacion")
+
     operaciones = operacionesObtenidas()
     const objeto = operaciones[id]
 
@@ -673,6 +678,7 @@ const botonEditarSeccionCategoria = () => {
 
     for (let i = 0; i < botonEditarCategoria.length; i++) {
         botonEditarCategoria[i].onclick = () => {
+
             const botonEditarCategoriaEditada = document.querySelector(".boton-editar-categoria-editada")
             const nombreCategoria = document.querySelectorAll(".nombre-categoria")
             const inputCategoriasNombreEditar = document.querySelector(".input-categorias-nombre-editar")
@@ -683,6 +689,7 @@ const botonEditarSeccionCategoria = () => {
 
             botonEditarCategoriaEditada.onclick = () => {
                 ocultarSeccionesCategoria()
+                tarjetaEditarCategoria.classList.remove("is-hidden")
                 nombreCategoria[i].textContent = inputCategoriasNombreEditar.value
             }
             botonCancelarDentroCategoria()
@@ -698,7 +705,7 @@ const botonCancelarDentroCategoria = () => {
     }
     // funcion auxiliar ocultar secciones- categoria 
 const ocultarSeccionesCategoria = () => {
-    const tarjetaEditarCategoria = document.querySelector(".tarjeta-editar-categoria")
+
     seccionCategorias.classList.toggle("is-hidden")
     tarjetaEditarCategoria.classList.toggle("is-hidden")
 }
