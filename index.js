@@ -218,6 +218,8 @@ const mostrarOperacionesEnHTML = (array) => {
 
 
     const html = array.reduce((acc, operacion, index) => {
+
+
         return (
             acc +
             `
@@ -261,7 +263,6 @@ const mostrarOperacionesEnHTML = (array) => {
     }
 }
 
-
 botonAgregarOperacion.onclick = () => {
 
     seccionCategorias.classList.add("is-hidden");
@@ -296,15 +297,10 @@ botonAgregarOperacion.onclick = () => {
     valorOpcionCategoriaNuevaOperacion.value = ""
     valorInputDateNuevaOperacion.value = ""
     valorOpcionTipoNuevaOperacion.value = ""
-
-
-
 }
 
 operaciones = operacionesObtenidas()
 mostrarOperacionesEnHTML(operaciones)
-
-
 
 //--------Balances-----------
 //---------- Funcion mostrar suma total de ganancias en la seccion balances-----
