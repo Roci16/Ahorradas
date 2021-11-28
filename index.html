@@ -31,17 +31,17 @@
         <!-- botones derecho -->
         <div id="navbarBasicExample" class="navbar-menu">
             <div class="navbar-end">
-                <a id="boton-balance" class="navbar-item">
+                <button id="boton-balance" class="button is-primary">
                     <i class="fas fa-chart-line mr-2 "></i> Balance
-                </a>
+                </button>
 
-                <a id="boton-categorias" class="navbar-item">
+                <button id="boton-categorias" class="button is-primary">
                     <i class="fas fa-tag mr-2 "></i> Categorías
-                </a>
+                </button>
 
-                <a id="boton-reportes" class="navbar-item">
+                <button id="boton-reportes" class="button is-primary">
                     <i class="fas fa-chart-pie mr-2 "></i> Reportes
-                </a>
+                </button>
             </div>
         </div>
     </nav>
@@ -161,7 +161,7 @@
 
 
                                         <figure class="image column is-offset-3 is-6">
-                                            <img src="imagenes/undraw_Pie_chart_re_bgs8.svg">
+                                            <img aria-hidden="true" src="imagenes/undraw_Pie_chart_re_bgs8.svg">
 
                                         </figure>
 
@@ -179,7 +179,9 @@
 
 
                                 <!-- Tarjeta de operaciones que ya se agregaron -->
-                                <div id="contenedor-operaciones-agregadas" class="column">
+
+                                <div id="contenedor-operaciones-agregadas" class="column is-hidden is-relative">
+
                                     <div class="columns">
                                         <div class="column">Descripción</div>
                                         <div class="column is-1 has-text-centered">Categoría</div>
@@ -190,6 +192,8 @@
                                     <div>
                                         <div id="tarjeta-operaciones-agregadas"></div>
                                     </div>
+
+
 
                                 </div>
                             </div>
@@ -202,11 +206,9 @@
                 </div>
         </section>
         <!--Tarjeta de nueva operacion  -->
-        <section id="accion-boton-nueva-operacion" class=" columns m-5 is-hidden">
+        <section id="accion-boton-nueva-operacion" class=" columns m-5 is-hidden is-relative">
             <div class="box column is-8 is-offset-2">
                 <h2 class="title is-size-2 has-text-weight-bold has-text-black-ter my-5">Nueva operación</h2>
-
-
                 <form>
 
 
@@ -266,7 +268,7 @@
         </section>
 
 
-        <section class="section is-hidden" id="seccion-categorias">
+        <section class="section is-hidden is-relative" id="seccion-categorias">
             <!-- Seccion Categorias - is hidden -->
             <div class="conteiner">
                 <div class=" column is-offset-2 is-8">
@@ -360,11 +362,13 @@
                         <h2 class="title column is-size-2 has-text-weight-bold ">Reportes</h2>
                     </div>
                     <!-- Este div contiene la imagen y aparece cuando no hay ninguna operacion -->
-                    <!-- <div class="box-sin-operaciones is-hidden">
+
+                    <!-- <div class="box-sin-operaciones is-hidden  is-relative">
+
                     <div class="columns my-5 ">
 
                         <figure class="image column is-offset-3 is-6">
-                            <img src="imagenes/undraw_investment_data_re_sh9x.svg">
+                            <img aria-hidden="true" src="imagenes/undraw_investment_data_re_sh9x.svg">
                         </figure>
 
                     </div>
