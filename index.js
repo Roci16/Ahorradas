@@ -44,7 +44,6 @@ const selectOrdenarPor = document.getElementById("select-ordenar")
 const divOperaciones = document.getElementById("div-operaciones")
 
 //-------------------------Elementos de Reportes---------------------------
-
 const divdatosResumen = document.getElementById("datos-resumen")
 const divdatosTotalesCategorias = document.getElementById("datos-totales-por-categorias")
 const divDatosTotalesMes = document.getElementById("datos-totales-por-mes")
@@ -112,6 +111,7 @@ botonCancelarOperacion.onclick = () => {
     seccionCentral.classList.remove("is-hidden")
     seccionReportes.classList.add("is-hidden")
 }
+
 
 
 
@@ -189,6 +189,7 @@ let operaciones = [
     //         monto: 300,
     //         tipo: 'Gasto',
     //     },
+
 ];
 
 
@@ -272,7 +273,6 @@ botonAgregarOperacion.onclick = () => {
     tarjetaOperacionesAgregadas.classList.remove("is-hidden")
     contenedorOperacionesAgregadas.classList.remove("is-hidden")
 
-
     const valorInputDescripcionNuevaOperacion = inputDescripcionNuevaOperacion.value
     const valorInputMontoNuevaOperacion = inputMontoNuevaOperacion.value
     const valorOpcionCategoriaNuevaOperacion = selectCategoriaNuevaOperacion.value
@@ -324,9 +324,11 @@ const mostrarGastosEnBalances = (array) => {
         return elemento.tipo === "gastos"
     })
 
-    const sumarGastos = gastosFiltrados.reduce((acc, elemento) => {
-        return acc + elemento.monto
-    }, 0)
+
+//     const sumarGastos = gastosFiltrados.reduce((acc, elemento) => {
+//         return acc + elemento.monto
+//     }, 0)
+
 
     return balancesSumaGastos.textContent = sumarGastos
 }
@@ -340,6 +342,7 @@ const mostrarTotalEnBalances = (array) => {
     return balancesTotalFinal.textContent = resultadoFinal
 }
 mostrarTotalEnBalances(operaciones)
+
 
 // //-----------funciones para ordenar los filtros-----
 
@@ -514,7 +517,6 @@ const adicionDeNuevasCategoriasSelect = () => {
 }
 
 
-
 const agregarCategoriasAHTML = () => {
     const categorias = categoriasObtenidas()
     const lista = document.getElementById("lista-categoria")
@@ -576,6 +578,7 @@ const tarjetaEditarOperacionEditar = (id) => {
     const objeto = operaciones[id]
 
     formTarjetaEditarOperacion.innerHTML = `
+
 <div class="tarjeta-editar-operacion column is-offset-2 is-8 is-hidden is-relative">
 <form class="box form-seccion-operacion">
     <h2 class="title is-1 has-text-weight-bold">Editar operación</h2>
@@ -716,7 +719,48 @@ botonAgregarCategoria.onclick = () => {
 
     adicionDeNuevasCategoriasSelect()
     agregarCategoriasAHTML()
+}
 
+//----------------------------------------------------------------------------
+//                       REPORTES RESUMEN
+//----------------------------------------------------------------------------
+
+// FUNCION AUXILIAR "categoria con mayor ganancia"
+const montoMayorGanancia = (array) => {
+    const mayorMonto = array.reduce((acc, elemento)=>{
+        if (acc < elemento.monto) {
+            return elemento.monto
+        }
+        return acc
+    }, 0)
+    return mayorMonto
+}
+const categoriaConMayorGanancia = (array) => {
+    const filtrarTipo = array.filter((elemento)=>{
+        return elemento.tipo === "Ganancia"
+    })
+    const filtrarCategoria = filtrarTipo.reduce((acc, elemento)=>{
+        if (acc > elemento.monto) {
+            return acc
+        }
+        return elemento.categoria
+    }, 0)
+    return filtrarCategoria
+}
+console.log("MAYOR GANANCIA", categoriaConMayorGanancia(operaciones), montoMayorGanancia(operaciones)) 
+
+// FUNCION AUXILIAR "categoria con mayor gasto"
+const montoMayorGasto = (array) => {
+    const filtrarTipo = array.filter((elemento)=>{
+        return elemento.tipo === "Gasto"
+    })
+    const filtrarmenorGasto = filtrarTipo.reduce((acc, elemento)=>{
+        if (acc < elemento.monto) {
+            acc = elemento.monto
+        }
+        return acc
+    }, 0)
+    return filtrarmenorGasto
 }
 
 
@@ -829,6 +873,7 @@ const categoriaConMayorGasto = (array) => {
     }, 0)
     return filtrarmenorGasto
 }
+
 console.log("MAYOR GASTO", categoriaConMayorGasto(operaciones), montoMayorGasto(operaciones))
 
 // FUNCION REPORTES RESUMEN
@@ -865,6 +910,7 @@ const contenedorReportes = () => {
 contenedorReportes()
 
 
+
 //   operaciones.map((operacion) => {
 //     const fecha = new Date(operacion.fecha + " 11:00:00")
 //     const mes = fecha.getMonth()
@@ -887,3 +933,4 @@ contenedorReportes()
 // }
 
 // obtenerTotalesPorMes()
+
