@@ -1,47 +1,59 @@
 
- // Botones Nav
-const tarjetaOperacionesAgregadas = document.getElementById("tarjeta-operaciones-agregadas")
+//------------------------- Nav-------------------------
 const botonCategorias = document.getElementById("boton-categorias")
 const botonBalance = document.getElementById("boton-balance")
 const botonReporte = document.getElementById("boton-reportes")
-// Secciones
+
+// -------------------------Tarjetas categorias-balance-reporte-------------------------
 const seccionCategorias = document.getElementById("seccion-categorias")
 const seccionCentral = document.getElementById("seccion-central")
 const seccionReportes = document.getElementById("seccion-reportes")
-const seccionNuevaOperacion = document.getElementById("accion-boton-nueva-operacion")
-// Boton nueva operacion 
+
+//------------------------- Operaciones-------------------------
 const botonNuevaOperacion = document.getElementById("boton-nueva-operacion")
-// ---Boton Agregar/cancelar operaciones
-const botonCancelarOperacion = document.getElementById("boton-cancelar-operacion")
-const botonAgregarOperacion = document.getElementById("boton-agregar-operacion");
-// Boton Agregar categorias
+const seccionNuevaOperacion = document.getElementById("accion-boton-nueva-operacion")
+const tarjetaOperacionesAgregadas = document.getElementById("tarjeta-operaciones-agregadas")
+const botonCancelarOperacion = document.querySelector("#boton-cancelar-operacion");
+const botonAgregarOperacion = document.querySelector("#boton-agregar-operacion");
+const tarjetaSinOperaciones = document.getElementById("tarjeta-sin-operaciones")
+const inputDescripcionNuevaOperacion = document.getElementById("descripcion-nueva-operacion")
+const inputMontoNuevaOperacion = document.getElementById("monto-nueva-operacion")
+const contenedorOperacionesAgregadas = document.getElementById("contenedor-operaciones-agregadas")
+const selectCategoriaNuevaOperacion = document.getElementById("select-categoria-nueva-operacion")
+const inputDateNuevaOperacion = document.getElementById("dateNuevaOperacion")
+const selectTipoNuevaOperacion = document.getElementById("select-tipo-nueva-operacion")
+
+//------------------------- Boton Agregar categorias-------------------------
+
 const botonAgregarCategoria = document.getElementById("agregar-categoria-boton")
 const inputCategoriaNuevoNombre = document.getElementById("input-categorias-nuevo-nombre")
 
-//-------- Totales balances-----------
+//-------------------------Totales balances-------------------------
 const balancesSumaGanancias = document.querySelector(".sumaGanancias")
 const balancesSumaGastos = document.querySelector(".sumaGastos")
 const balancesTotalFinal = document.querySelector(".totalBalances")
+const datosPorCategorias = document.getElementById("totales-por-categorias")
 
- // -------------funciones formulario FILTROS-------------------
-
+// -------------funciones formulario FILTROS-------------------
+const botonOcultarFiltros = document.getElementById("boton-ocultar-filtros")
+const formularioFiltros = document.getElementById("form")
 const formulario = document.getElementById("form")
 const filtroTipo = document.getElementById("select-tipo")
 const filtroCategorias = document.getElementById("select-categoria")
 const filtroFecha = document.getElementById("date")
 const selectOrdenarPor = document.getElementById("select-ordenar")
 const divOperaciones = document.getElementById("div-operaciones")
+
 //-------------------------Elementos de Reportes---------------------------
-const datosPorCategorias = document.getElementById("totales-por-categorias")
-    //-----------------------------------------------
-const tarjetaSinOperaciones = document.getElementById("tarjeta-sin-operaciones")
-const inputDescripcionNuevaOperacion = document.getElementById("descripcion-nueva-operacion")
-const inputMontoNuevaOperacion = document.getElementById("monto-nueva-operacion")
-const contenedorOperacionesAgregadas = document.getElementById("contenedor-operaciones-agregadas")
-    
-const selectCategoriaNuevaOperacion = document.getElementById("select-categoria-nueva-operacion")
-const inputDateNuevaOperacion = document.getElementById("dateNuevaOperacion")
-const selectTipoNuevaOperacion = document.getElementById("select-tipo-nueva-operacion")
+
+const divdatosResumen = document.getElementById("datos-resumen")
+const divdatosTotalesCategorias = document.getElementById("datos-totales-por-categorias")
+const divDatosTotalesMes = document.getElementById("datos-totales-por-mes")
+
+//----------------------------Navbar-Burger/Navbar-Menu-----------------------------------
+const navbarBurger = document.getElementById("navbar-burger")
+const navbarMenu = document.getElementById("navbarBasicExample")
+
 
 // Funciones Botones Nav Superior
 botonBalance.onclick = () => {
@@ -68,15 +80,17 @@ botonReporte.onclick = () => {
     seccionCategorias.classList.add("is-hidden")
 
 }
-// Boton nueva operacion
 
+
+//-------------------------Operaciones-------------------------
+
+// Boton nueva operacion
 botonNuevaOperacion.onclick = () => {
     seccionNuevaOperacion.classList.remove("is-hidden")
     seccionCentral.classList.add("is-hidden")
 }
 
 //Boton Agregar Operacion
-
 botonAgregarOperacion.onclick = () => {
   
     //seccionCategorias.classList.add("is-hidden");
@@ -94,10 +108,9 @@ botonCancelarOperacion.onclick = () => {
 }
 
 
-
 //Array de prueba
 
-const operaciones = [{
+let operaciones = [{
         descripcion: 'Sueldo',
         categoria: 'Trabajo',
         fecha: '2021-01-01',
@@ -172,6 +185,7 @@ const operaciones = [{
 
 
 
+
 // funcion agregar oparacion html 
 
 //   formularioAgregarNuevaOperacion.onsubmit = (event) => {
@@ -217,24 +231,125 @@ let funcionOperacionesLS = (elemento) => {
 
 //----------convertirOperacionesAHTML
 
+// const convertirOperacionesAHTML = (operaciones) => {
+//     let acc = ""
 
-    //  tarjetaOperacionesAgregadas.innerHTML = html;
+//     operaciones.map((operacion) => {
+//         acc = acc + `
+//         <div class="columns ">
+//             <p class="column">${operacion.descripcion}</p>
+//             <div class="column is-1" >
+//                 <p class="has-background-primary-light has-text-primary-dark has-text-centered">
+//                  ${operacion.categoria}
+//                  </p> 
+//             </div> 
+//             <p class="column  has-text-centered" >${operacion.fecha}</p> 
+//             <p class="column has-text-success has-text-weight-bold">${operacion.monto}</p> 
+//             <p class="column">${operacion.tipo}</p> `
+//     })
+// }
 
-    //  const botonesBorrarOperaciones = document.querySelectorAll(".boton-borrar-operacion")
-    //  for (let i = 0; i < botonesBorrarOperaciones.length; i++) {
-    //      botonesBorrarOperaciones[i].onclick = () => {
-    //         const idOperaciones = botonesBorrarOperaciones[i].id
-    //         const indiceOperaciones = idOperaciones.slice(7)
-    //         const filtrarOperaciones = operaciones.filter((elemento, index) => {
-    //             return index != indiceOperaciones
-    //         })
-    //          funcionOperacionesLS(filtrarOperaciones)
-    //          mostrarOperacionesEnHTML(filtrarOperaciones)
-    //      }
-    //  }
 
 
-// mostrarOperacionesEnHTML(operaciones)
+//aca junto la funcion anterior mas la acumuladora que toma los datos del objeto y los muestra
+
+const mostrarOperacionesEnHTML = (array) => {
+
+    operaciones = operacionesObtenidas()
+
+
+    const html = array.reduce((acc, operacion, index) => {
+        return (
+            acc +
+            `
+      <div class="fila columns">
+      <div class="column is-3 has-text-weight-semibold">
+        <p>${operacion.descripcion}</p>
+        </div>
+        <div class="column is-3">
+        <p>${operacion.categoria}</p>
+        </div>
+        <div class="column is-2 has-text-right">
+        <p>${operacion.fecha}</p>
+        </div>
+        <div class="column is-2 has-text-right">
+        <p>${operacion.tipo}</p>
+        </div>
+        <div class="column is-2 has-text-right">
+        <button id="editar-categoria-${index}" class="button is-info is-inverted boton-editar-categoria">Editar</button>
+        <button id="borrar-${index}"  class="boton-borrar-operacion button is-info is-inverted ">Eliminar</button>
+        </div>
+      </div>
+      `
+        );
+    }, "")
+
+
+    tarjetaOperacionesAgregadas.innerHTML = html;
+
+    const botonesBorrarOperaciones = document.querySelectorAll(".boton-borrar-operacion")
+    for (let i = 0; i < botonesBorrarOperaciones.length; i++) {
+        botonesBorrarOperaciones[i].onclick = () => {
+            const idOperaciones = botonesBorrarOperaciones[i].id
+            const indiceOperaciones = idOperaciones.slice(7)
+            const filtrarOperaciones = array.filter((elemento, index) => {
+                return index != indiceOperaciones
+            })
+
+            funcionOperacionesLS(filtrarOperaciones)
+            mostrarOperacionesEnHTML(filtrarOperaciones)
+      }
+   }
+}
+
+
+
+mostrarOperacionesEnHTML(operaciones)
+
+
+
+botonAgregarOperacion.onclick = () => {
+
+    seccionCategorias.classList.add("is-hidden");
+    seccionNuevaOperacion.classList.add("is-hidden");
+    seccionCentral.classList.remove("is-hidden")
+    tarjetaSinOperaciones.classList.add("is-hidden")
+    tarjetaOperacionesAgregadas.classList.remove("is-hidden")
+    contenedorOperacionesAgregadas.classList.remove("is-hidden")
+
+
+    const valorInputDescripcionNuevaOperacion = inputDescripcionNuevaOperacion.value
+    const valorInputMontoNuevaOperacion = inputMontoNuevaOperacion.value
+    const valorOpcionCategoriaNuevaOperacion = selectCategoriaNuevaOperacion.value
+    const valorInputDateNuevaOperacion = inputDateNuevaOperacion.value
+    const valorOpcionTipoNuevaOperacion = selectTipoNuevaOperacion.value
+
+
+    const operacion = {
+        descripcion: valorInputDescripcionNuevaOperacion,
+        categoria: valorOpcionCategoriaNuevaOperacion,
+        fecha: valorInputDateNuevaOperacion,
+        monto: valorInputMontoNuevaOperacion,
+        tipo: valorOpcionTipoNuevaOperacion,
+    }
+
+    operaciones.push(operacion)
+    funcionOperacionesLS(operaciones)
+    mostrarOperacionesEnHTML(operaciones)
+    valorInputDescripcionNuevaOperacion.value = ""
+    valorInputMontoNuevaOperacion.value = ""
+    valorOpcionCategoriaNuevaOperacion.value = ""
+    valorInputDateNuevaOperacion.value = ""
+    valorOpcionTipoNuevaOperacion.value = ""
+
+
+
+}
+
+operaciones = operacionesObtenidas()
+mostrarOperacionesEnHTML(operaciones)
+
+
 
 //--------Balances-----------
  //---------- Funcion mostrar suma total de ganancias en la seccion balances-----
@@ -273,7 +388,7 @@ let funcionOperacionesLS = (elemento) => {
        const resultadoFinal = resultadoFinalGanancias - resultadoFinalGastos
          return balancesTotalFinal.textContent = resultadoFinal    
         }
-     mostrarTotalEnBalances(operaciones)
+          mostrarTotalEnBalances(operaciones)
 
 // //-----------funciones para ordenar los filtros-----
 
@@ -355,7 +470,8 @@ let funcionOperacionesLS = (elemento) => {
 
      return filtroOrdenarPor(arrayFiltradoPorFechas)
  }
-
+ 
+ 
 
 // //----Agrega filtro cuando modifico los select-----
 
@@ -384,10 +500,32 @@ let funcionOperacionesLS = (elemento) => {
      mostrarOperacionesEnHTML(arrayFiltrado)
  }
 
- //----este e.preventDefault evita que el formulario se envie 
- formulario.onsubmit = (e) => {
-     e.preventDefault()
- }
+// evento ocultar filtros
+//funcion auxiliar 
+const cerrarFormularioFiltros = (box, boton) => {
+    box.classList.add("is-hidden")
+    boton.textContent = "Mostrar filtros"
+}
+const mostrarFormularioFiltros = (box, boton) => {
+    box.classList.remove("is-hidden")
+    boton.textContent = "Ocultar filtros"
+}
+
+//mostrarFormularioFiltros(formularioFiltros,botonOcultarFiltros)
+botonOcultarFiltros.onclick = () => {
+    if (botonOcultarFiltros.textContent === "Ocultar filtros") {
+        return cerrarFormularioFiltros(formularioFiltros, botonOcultarFiltros)
+    } else {
+        return mostrarFormularioFiltros(formularioFiltros, botonOcultarFiltros)
+    }
+
+}
+
+
+//----este e.preventDefault evita que el formulario se envie --flor---
+formulario.onsubmit = (e) => {
+    e.preventDefault()
+}
 
 // //--------------- Seccion categorias----------------------------
 
@@ -424,6 +562,7 @@ let funcionOperacionesLS = (elemento) => {
  }
 
 
+ 
  const agregarCategoriasAHTML = () => {
      const categorias = categoriasObtenidas()
      const lista = document.getElementById("lista-categoria")
@@ -447,19 +586,20 @@ let funcionOperacionesLS = (elemento) => {
      const botonesBorrar = document.querySelectorAll(".boton-borrar")
 
      for (let i = 0; i < botonesBorrar.length; i++) {
-         botonesBorrar[i].onclick = () => {
+        botonesBorrar[i].onclick = () => {
             const id = botonesBorrar[i].id
-             const indice = id.charAt(7)
+            const indice = id.charAt(7)
             const nuevasCategoriasFiltradas = categorias.filter((elemento, index) => {
-                 return index != indice
-             })
+                return index != indice
+            })
 
-             funcionLS(nuevasCategoriasFiltradas)
-             agregarCategoriasAHTML()
-             adicionDeNuevasCategoriasSelect()
-         }
-
-     }
+            funcionLS(nuevasCategoriasFiltradas)
+            agregarCategoriasAHTML()
+            adicionDeNuevasCategoriasSelect()
+        }
+    }
+    botonEditarSeccionOperaciones()
+    botonEditarSeccionCategoria()
 
  }
 
@@ -542,7 +682,7 @@ console.log(gastosPorCategoria)
 //          return operacion.tipo === "gasto"
 //        })
 //      console.log(gananciasPorMascota)
-
+  
 //      const sumaGananciasMascota = gananciasPorMascota.reduce((acc, curr) => {
 //        return acc + curr.monto
 //      }, 0)
@@ -561,6 +701,7 @@ console.log(gastosPorCategoria)
  
 
 //  separarPorCategoria()
+
 
 
 
@@ -665,4 +806,49 @@ console.log(gastosPorCategoria)
 // arrays que contienen arrays
 // para trabajar con matrices necesitamos un FOR ADENTRO DE UN FOR
 // o UN MAP ADENTRO DE UN MAP (O REDUCE, O FILTER, ETC)
+
+
+//--------------- Seccion reportes----------------------------
+//3 bloques
+//Resumen
+//Categoría con mayor ganancia Salidas +$134555
+// Categoría con mayor gasto Comida -$34165
+// Categoría con mayor balance Salidas $134555
+// Mes con mayor ganancia 2021/11/17 $134555
+// Mes con mayor gasto 2021/10/05 -$34165
+
+//Totales por categorías
+// Categoria Ganancias Gastos Balance
+// Comida    +$28077   -$34165 $-6088
+// Salidas  +$134555    -$0    $134555
+// Educación   +$50     -$0     $50
+// Transporte  +$100    -$0     $100
+// Servicios    +$0   -$5000   $-5000
+// Trabajo     +$0    -$48     $-48
+// hamburguesas  +$0  -$32     $-32
+
+// Totales por mes
+// Mes     Ganancias      Gastos    Balance
+// 11/2021  +$162502     -$5712     $156790
+// 10/2021   +$200       -$33333    $-33133
+// 6/2021    +$30         -$0          $30
+// 9/2021     +$0        -$200       $-200
+// 8/2021    +$50         -$0          $50
+// const divdatosResumen = document.getElementById("datos-resumen")
+// const divdatosTotalesCategorias = document.getElementById("datos-totales-por-categorias")
+// const divDatosTotalesMes = document.getElementById("datos-totales-por-mes")
+
+
+//funciones para totales por categorias
+//accede al array de categorias filtrado por aquellas que fueron utilizadas para operaciones (filter)
+// la funcion debe mostrar en catgoria el nombre de la misma. 
+// necesito una acumuladora que muestre el array de las categorias filtradas
+//las funciones deben incluir que cuando el monto sea menor a 0 agregar la clase para 
+// que el texto sea rojo y cuando sea mayo clase verde
+
+
+navbarBurger.onclick = () => {
+    navbarBurger.classList.toggle("is-active")
+    navbarMenu.classList.toggle("is-active")
+}
 
