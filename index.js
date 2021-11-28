@@ -60,31 +60,24 @@ navbarBurger.onclick = () => {
     navbarMenu.classList.toggle("is-active")
 }
 
-
 // Funciones Botones Nav Superior
 botonBalance.onclick = () => {
-
-    seccionCategorias.classList.add("is-hidden")
     seccionCentral.classList.remove("is-hidden")
+    seccionCategorias.classList.add("is-hidden")
     seccionReportes.classList.add("is-hidden")
-
 }
 
 botonCategorias.onclick = () => {
-
     seccionCategorias.classList.remove("is-hidden")
     seccionCentral.classList.add("is-hidden")
     seccionReportes.classList.add("is-hidden")
     seccionNuevaOperacion.classList.add("is-hidden")
-
 }
 
 botonReporte.onclick = () => {
-
-    seccionReportes.classList.remove("is-hidden")
     seccionCentral.classList.add("is-hidden")
     seccionCategorias.classList.add("is-hidden")
-
+    seccionReportes.classList.remove("is-hidden")
 }
 
 
