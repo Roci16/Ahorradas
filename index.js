@@ -108,6 +108,7 @@ botonCancelarOperacion.onclick = () => {
 }
 
 
+
 //Array de prueba
 
 let operaciones = [{
@@ -285,7 +286,7 @@ const mostrarOperacionesEnHTML = (array) => {
     }, "")
 
 
-    tarjetaOperacionesAgregadas.innerHTML = html;
+    // tarjetaOperacionesAgregadas.innerHTML = html;
 
     const botonesBorrarOperaciones = document.querySelectorAll(".boton-borrar-operacion")
     for (let i = 0; i < botonesBorrarOperaciones.length; i++) {
@@ -303,11 +304,6 @@ const mostrarOperacionesEnHTML = (array) => {
 }
 
 
-
-mostrarOperacionesEnHTML(operaciones)
-
-
-
 botonAgregarOperacion.onclick = () => {
 
     seccionCategorias.classList.add("is-hidden");
@@ -323,6 +319,7 @@ botonAgregarOperacion.onclick = () => {
     const valorOpcionCategoriaNuevaOperacion = selectCategoriaNuevaOperacion.value
     const valorInputDateNuevaOperacion = inputDateNuevaOperacion.value
     const valorOpcionTipoNuevaOperacion = selectTipoNuevaOperacion.value
+
 
 
     const operacion = {
@@ -582,6 +579,26 @@ formulario.onsubmit = (e) => {
      }, "")
 
 
+const operacion = operacionesObtenidas()
+// mostrarOperacionesEnHTML(operacion)
+
+const agregarCategoriasAHTML = () => {
+    const categorias = categoriasObtenidas()
+    const lista = document.getElementById("lista-categoria")
+
+    const stringCategoriasIniciadoras = categorias.reduce((acc, elemento, index) => {
+        return acc + ` <div class=" columns">
+            <div class="column">
+                 <span id="nombre-categoria-${index}" class="nombre-categoria has-background-success-light has-text-success-dark">${elemento}</span>
+            </div>
+            <div class="column has-text-right">
+                <button id="editar-categoria-${index}" class="button is-info is-inverted boton-editar-categoria">Editar</button>
+                <button id="borrar-${index}"  class="boton-borrar button is-info is-inverted ">Eliminar</button>
+            </div>
+     </div>`
+    }, "")
+
+
      lista.innerHTML = stringCategoriasIniciadoras
      const botonesBorrar = document.querySelectorAll(".boton-borrar")
 
@@ -673,182 +690,104 @@ for(let i=0; i < arrayOperacionPorCategoria.length; i++){
 }
 console.log(gananciasPorcategoria)
 console.log(gastosPorCategoria)
-// todo este codigo tendria que hacerse con un for sobre nuestra matriz 
-
-//       const gananciasPorMascota = categoriaMascotas.filter((operacion) => {
-//          return operacion.tipo === "ganancia"
-//        })
-//        const gastosPorMascota = categoriaMascotas.filter((operacion) => {
-//          return operacion.tipo === "gasto"
-//        })
-//      console.log(gananciasPorMascota)
-  
-//      const sumaGananciasMascota = gananciasPorMascota.reduce((acc, curr) => {
-//        return acc + curr.monto
-//      }, 0)
-
-//      const sumaGastosMascota = gastosPorMascota.reduce((acc, curr) => {
-//        return acc + curr.monto
-//      }, 0)
 
 
-//      const balanceMascotas = sumaGananciasMascota - sumaGastosMascota
+//----------------------------------------------------------------------------
+//                       REPORTES RESUMEN
+//----------------------------------------------------------------------------
 
-//      console.log("sumaGananciasMascota", sumaGananciasMascota)
-//      console.log("sumaGastosMascota", sumaGastosMascota)
-//      console.log("balanceMascotas", balanceMascotas)
-
- 
-
-//  separarPorCategoria()
-
-
-
-
-
-//----------------insertar la matriz en html--------------------
-//por categoria deberia tener un array que sean todas las ganancias
-//uno que sean todos los gastos
-// con eso hago un reduce y los sumo entre si
-//una vez que tengo la suma de todos tomo cada resultado y los resto
-//eso va a ser igual al total
-//aca antes tengo que crear un objeto que tenga 4 categorias: 
-//categoria, el monto de ganancias(suma de todas la ganancias de esa categoria), 
-//el monto de gastos(tambien la suma de todos los gastos de esa categoria),
-// y total que van a ser la resta de ambas partes
-
-// const datosPorCategoria = (array) =>{
-//     const insertarDatosPorcategoria = array.reduce((acc, elemento, index) => {
-//         return (
-//              acc +  `
-//             <div class="column is-3 has-text-weight-semibold ">${elemento.categoria}</div>
-//             <div class="column is-3 has-text-success has-text-right">${elemento.ganancia}</div>
-//             <div class="column is-3 has-text-danger  has-text-right">monto</div>
-//             <div class="column is-3 has-text-right">total</div>`
-//         );
-//          }, 0)
-//          return insertarDatosPorcategoria
-// }
-
-// datosPorCategorias.innerHTML = datosPorCategoria
-
-//------------------male funciones------------------------
-// const categorias = ["mascotas", "trabajo", "servicios"]
-
-//  const separarPorCategoria = () => {
-
-// let arrayOperacionPorCategoria = []
-
-//   categorias.map((categoria) => {
-//  arrayOperacionPorCategoria.push([])
-//   })
-//-------------------------------------------------------------------------
-//   // [ [], [], [] ]
-//   operaciones.map((operacion) => {
-//     const indiceCategoria = categorias.indexOf(operacion.categoria)
-//     arrayOperacionPorCategoria[indiceCategoria].push(operacion)
-//   })
-
-//   console.log(arrayOperacionPorCategoria)
-
- // esto es lo que hicimos antes, esta mal: 
-  // const categoriaMascotas = []
-  // const categoriaTrabajo = []
-  // operaciones.map((operacion) => {
-  //   if (operacion.categoria === "mascotas") {
-  //     categoriaMascotas.push(operacion)
-  //   }
-  //   if (operacion.categoria === "trabajo") {
-  //     categoriaTrabajo.push(operacion)
-  //   }
-  // })
+// FUNCION AUXILIAR "categoria con mayor ganancia"
+const montoMayorGanancia = (array) => {
+    const mayorMonto = array.reduce((acc, elemento)=>{
+        if (acc < elemento.monto) {
+            return elemento.monto
+        }
+        return acc
+    }, 0)
+    return mayorMonto
+}
+const categoriaConMayorGanancia = (array) => {
+    const filtrarTipo = array.filter((elemento)=>{
+        return elemento.tipo === "Ganancia"
+    })
+    const filtrarCategoria = filtrarTipo.reduce((acc, elemento)=>{
+        if (acc > elemento.monto) {
+            return acc
+        }
+        return elemento.categoria
+    }, 0)
+    return filtrarCategoria
+}
+console.log("MAYOR GANANCIA", categoriaConMayorGanancia(operaciones), montoMayorGanancia(operaciones)) 
 
 
+// FUNCION AUXILIAR "categoria con mayor gasto"
+const montoMayorGasto = (array) => {
+    const filtrarTipo = array.filter((elemento)=>{
+        return elemento.tipo === "Gasto"
+    })
+    const filtrarmenorGasto = filtrarTipo.reduce((acc, elemento)=>{
+        if (acc < elemento.monto) {
+            acc = elemento.monto
+        }
+        return acc
+    }, 0)
+    return filtrarmenorGasto
+}
+
+const categoriaConMayorGasto = (array) => {
+    const filtrarTipo = array.filter((elemento)=>{
+        return elemento.tipo === "Gasto"
+    })
+    const filtrarmenorGasto = filtrarTipo.reduce((acc, elemento)=>{
+        if (acc < elemento.monto) {
+            acc = elemento.categoria
+        }
+        return acc
+    }, 0)
+    return filtrarmenorGasto
+}
+console.log("MAYOR GASTO", categoriaConMayorGasto(operaciones),  montoMayorGasto(operaciones)) 
+
+// FUNCION REPORTES RESUMEN
+
+const contenedorReportes = ()=>{
+    const seccionReportes = document.querySelector(".seccion-reportes")
+    seccionReportes.innerHTML = `
+    <div class="columns">
+        <div class="column is-6 has-text-weight-semibold">Categoría con mayor ganancia</div>
+        <div class="column mt-3 is-1 has-text-right tag is-primary is-light">${categoriaConMayorGanancia(operaciones)}</div>
+        <div class="column is-4 has-text-right has-text-success has-text-weight-semibold">+$${montoMayorGanancia(operaciones)}</div>  
+    </div>
+    <div class="columns">
+        <div class="column is-6 has-text-weight-semibold">Categoría con mayor gasto</div>
+        <div class="column mt-3 is-1 has-text-right tag is-primary is-light">${categoriaConMayorGasto(operaciones)}</div>
+        <div class="column is-4  has-text-right has-text-danger has-text-weight-semibold">-$${montoMayorGasto(operaciones)}</div>  
+    </div>
+    <div class="columns">
+        <div class="column is-6 has-text-weight-semibold">Categoría con mayor balance</div>
+        <div class="column mt-3 is-1 has-text-right tag is-primary is-light">${categoriaConMayorGanancia(operaciones)}</div>
+        <div class="column  is-4 has-text-right has-text-weight-semibold">$${montoMayorGanancia(operaciones)}</div>  
+    </div>
+    <div class="columns">
+        <div class="column is-6 has-text-weight-semibold">Mes con mayor ganancia</div>
+        <div class="column is-1 has-text-right">Fecha</div>
+        <div class="column is-4  has-text-right has-text-success has-text-weight-semibold">$${montoMayorGanancia(operaciones)}</div>  
+    </div>
+    <div class="columns">
+        <div class="column is-6 has-text-weight-semibold">Mes con mayor gasto</div>
+        <div class="column is-1 has-text-right">Fecha</div>
+        <div class="column is-4 has-text-right has-text-danger has-text-weight-semibold">-$${montoMayorGasto(operaciones)}</div>  
+    </div>`
+}
+contenedorReportes()
 
 
-
-// totales por mes
-
-// const obtenerTotalesPorMes = () => {
-//   const meses = [0, 1, 2 , 3, 4, 5, 6, 7, 8, 9, 10, 11]
-
-//   const operacionPorMes = []
-
-//   meses.map((mes) => {
-//     operacionPorMes.push([])
-//   })
-
-//   operaciones.map((operacion) => {
-//     const fecha = new Date(operacion.fecha + " 11:00:00")
-//     const mes = fecha.getMonth()
-    
-//     operacionPorMes[mes].push(operacion)
-//   })
-
-//   console.log(operacionPorMes)
-
-//   operacionPorMes.map((array) => {
-//     const sumaGanancias = array.reduce((acc, curr) => {
-//       if (curr.tipo === "ganancia") {
-//       return acc + curr.monto
-//       }
-//       return acc
-//     }, 0)
-//     console.log(sumaGanancias)
-//     // hacer el html aca mismo (o llamar aca a la funcion que hace el html)
-//   })
-// }
-
-// obtenerTotalesPorMes()
-
-
-// operacionPorMes y arrayOperacionPorCategoria son MATRICES
-// arrays que contienen arrays
-// para trabajar con matrices necesitamos un FOR ADENTRO DE UN FOR
-// o UN MAP ADENTRO DE UN MAP (O REDUCE, O FILTER, ETC)
-
-
-//--------------- Seccion reportes----------------------------
-//3 bloques
-//Resumen
-//Categoría con mayor ganancia Salidas +$134555
-// Categoría con mayor gasto Comida -$34165
-// Categoría con mayor balance Salidas $134555
-// Mes con mayor ganancia 2021/11/17 $134555
-// Mes con mayor gasto 2021/10/05 -$34165
-
-//Totales por categorías
-// Categoria Ganancias Gastos Balance
-// Comida    +$28077   -$34165 $-6088
-// Salidas  +$134555    -$0    $134555
-// Educación   +$50     -$0     $50
-// Transporte  +$100    -$0     $100
-// Servicios    +$0   -$5000   $-5000
-// Trabajo     +$0    -$48     $-48
-// hamburguesas  +$0  -$32     $-32
-
-// Totales por mes
-// Mes     Ganancias      Gastos    Balance
-// 11/2021  +$162502     -$5712     $156790
-// 10/2021   +$200       -$33333    $-33133
-// 6/2021    +$30         -$0          $30
-// 9/2021     +$0        -$200       $-200
-// 8/2021    +$50         -$0          $50
-// const divdatosResumen = document.getElementById("datos-resumen")
-// const divdatosTotalesCategorias = document.getElementById("datos-totales-por-categorias")
-// const divDatosTotalesMes = document.getElementById("datos-totales-por-mes")
-
-
-//funciones para totales por categorias
-//accede al array de categorias filtrado por aquellas que fueron utilizadas para operaciones (filter)
-// la funcion debe mostrar en catgoria el nombre de la misma. 
-// necesito una acumuladora que muestre el array de las categorias filtradas
-//las funciones deben incluir que cuando el monto sea menor a 0 agregar la clase para 
-// que el texto sea rojo y cuando sea mayo clase verde
 
 
 navbarBurger.onclick = () => {
     navbarBurger.classList.toggle("is-active")
     navbarMenu.classList.toggle("is-active")
 }
+
 
