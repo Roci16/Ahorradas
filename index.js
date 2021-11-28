@@ -788,28 +788,28 @@ const contenedorReportes = ()=>{
     seccionReportes.innerHTML = `
     <div class="columns">
         <div class="column is-6 has-text-weight-semibold">Categoría con mayor ganancia</div>
-        <div class="column is-3 has-text-right tag is-primary is-light">${categoriaConMayorGanancia(operaciones)}</div>
-        <div class="column  is-3 has-text-right has-text-success has-text-weight-semibold">+$${montoMayorGanancia(operaciones)}</div>  
+        <div class="column mt-3 is-1 has-text-right tag is-primary is-light">${categoriaConMayorGanancia(operaciones)}</div>
+        <div class="column is-4 has-text-right has-text-success has-text-weight-semibold">+$${montoMayorGanancia(operaciones)}</div>  
     </div>
     <div class="columns">
         <div class="column is-6 has-text-weight-semibold">Categoría con mayor gasto</div>
-        <div class="column is-3 has-text-right tag is-primary is-light">${categoriaConMayorGasto(operaciones)}</div>
-        <div class="column is-3  has-text-right has-text-danger has-text-weight-semibold">-$${montoMayorGasto(operaciones)}</div>  
+        <div class="column mt-3 is-1 has-text-right tag is-primary is-light">${categoriaConMayorGasto(operaciones)}</div>
+        <div class="column is-4  has-text-right has-text-danger has-text-weight-semibold">-$${montoMayorGasto(operaciones)}</div>  
     </div>
     <div class="columns">
         <div class="column is-6 has-text-weight-semibold">Categoría con mayor balance</div>
-        <div class="column is-3 has-text-right tag is-primary is-light">${categoriaConMayorGanancia(operaciones)}</div>
-        <div class="column  is-3 has-text-right has-text-weight-semibold">$${montoMayorGanancia(operaciones)}</div>  
+        <div class="column mt-3 is-1 has-text-right tag is-primary is-light">${categoriaConMayorGanancia(operaciones)}</div>
+        <div class="column  is-4 has-text-right has-text-weight-semibold">$${montoMayorGanancia(operaciones)}</div>  
     </div>
     <div class="columns">
         <div class="column is-6 has-text-weight-semibold">Mes con mayor ganancia</div>
-        <div class="column is-3 has-text-right">Fecha</div>
-        <div class="column is-3  has-text-right has-text-success has-text-weight-semibold">$${montoMayorGanancia(operaciones)}</div>  
+        <div class="column is-1 has-text-right">Fecha</div>
+        <div class="column is-4  has-text-right has-text-success has-text-weight-semibold">$${montoMayorGanancia(operaciones)}</div>  
     </div>
     <div class="columns">
         <div class="column is-6 has-text-weight-semibold">Mes con mayor gasto</div>
-        <div class="column is-3 has-text-right">Fecha</div>
-        <div class="column is-3 has-text-right has-text-danger has-text-weight-semibold">-$${montoMayorGasto(operaciones)}</div>  
+        <div class="column is-1 has-text-right">Fecha</div>
+        <div class="column is-4 has-text-right has-text-danger has-text-weight-semibold">-$${montoMayorGasto(operaciones)}</div>  
     </div>`
 }
 contenedorReportes()
