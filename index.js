@@ -316,7 +316,7 @@ const mostrarGananciasEnBalances = (array) => {
 
     const sumarGanancias = gananciasFiltradas.reduce((acc, elemento) => {
         return acc + elemento.monto
-    }, 0)
+    }, "")
 
     return balancesSumaGanancias.textContent = sumarGanancias
 }
@@ -331,7 +331,7 @@ const mostrarGastosEnBalances = (array) => {
 
     const sumarGastos = gastosFiltrados.reduce((acc, elemento) => {
         return acc + elemento.monto
-    }, 0)
+    }, "")
 
 
     return balancesSumaGastos.textContent = sumarGastos
@@ -343,7 +343,7 @@ const mostrarTotalEnBalances = (array) => {
     const resultadoFinalGanancias = mostrarGananciasEnBalances(array)
     const resultadoFinalGastos = mostrarGastosEnBalances(array)
     const resultadoFinal = resultadoFinalGanancias - resultadoFinalGastos
-    return balancesTotalFinal.textContent = resultadoFinal
+    return balancesTotalFinal.textContent = `$${resultadoFinal}`
 }
 mostrarTotalEnBalances(operaciones)
 
@@ -689,7 +689,6 @@ const botonEditarSeccionCategoria = () => {
 
             botonEditarCategoriaEditada.onclick = () => {
                 ocultarSeccionesCategoria()
-
                 nombreCategoria[i].textContent = inputCategoriasNombreEditar.value
             }
             botonCancelarDentroCategoria()
@@ -717,7 +716,7 @@ adicionDeNuevasCategoriasSelect()
 
 
 botonAgregarCategoria.onclick = () => {
-    tarjetaEditarCategoria.classList.toggle("is-hidden")
+    tarjetaEditarCategoria.classList.add("is-hidden")
     const valorInputCategoriaNuevo = inputCategoriaNuevoNombre.value
     const categorias = categoriasObtenidas()
     categorias.push(valorInputCategoriaNuevo)
