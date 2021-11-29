@@ -727,23 +727,6 @@ const ocultarSeccionesCategoria = () => {
 
 
 
-agregarCategoriasAHTML()
-adicionDeNuevasCategoriasSelect()
-
-
-botonAgregarCategoria.onclick = () => {
-    tarjetaEditarCategoria.classList.add("is-hidden")
-    const valorInputCategoriaNuevo = inputCategoriaNuevoNombre.value
-    const categorias = categoriasObtenidas()
-    categorias.push(valorInputCategoriaNuevo)
-    inputCategoriaNuevoNombre.value = ""
-
-    funcionLS(categorias)
-
-    adicionDeNuevasCategoriasSelect()
-    agregarCategoriasAHTML()
-
-}
 
 
 
@@ -823,7 +806,6 @@ console.log("MAYOR GASTO", categoriaConMayorGasto(operaciones), montoMayorGasto(
 // FUNCION REPORTES RESUMEN
 
 const contenedorReportes = () => {
-
 
     seccionResumenReportes.innerHTML = ` <div class="columns">
         <div class="column is-6 has-text-weight-semibold">Categoría con mayor ganancia</div>
