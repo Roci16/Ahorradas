@@ -906,13 +906,12 @@ for(let i = 0; i < arrayOperacionPorCategoria.length; i++){
             
         }
     }
-   console.log(gananciasPorCategoria)
-   console.log(gastosPorCategoria)
 
-   const categoriasSolas = arrayOperacionPorCategoria.map((elemento)=>{
-       return  elemento.categoria
-   })
-  
+
+   const categoriasSolas = categoriasSinRepetir.reduce((acc,elemento)=>{
+       return   elemento
+   },)
+  console.log(categoriasSolas)
  const totalGastosPorCategoria = gastosPorCategoria.reduce((acc,elemento)=>{
         
     return acc + elemento.monto
@@ -936,6 +935,6 @@ html = html +  `<div class="columns">
 console.log(reportesDatosTotalesCategorias)
   }
 
-    console.log(totalGananciasPorCategoria)
-console.log(gananciasPorCategoria)
-    console.log(gastosPorCategoria)
+//     console.log(totalGananciasPorCategoria)
+// console.log(gananciasPorCategoria)
+//     console.log(gastosPorCategoria)
