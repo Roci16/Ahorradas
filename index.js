@@ -60,11 +60,6 @@ const tarjetaEditarCategoria = document.querySelector(".tarjeta-editar-categoria
 
 
 
-// Navbar-Menu//Navbar-burger
-navbarBurger.onclick = () => {
-    navbarBurger.classList.toggle("is-active")
-    navbarMenu.classList.toggle("is-active")
-}
 
 // Navbar-Menu//Navbar-burger
 navbarBurger.onclick = () => {
@@ -104,10 +99,7 @@ botonNuevaOperacion.onclick = () => {
 
 //Boton Agregar Operacion
 botonAgregarOperacion.onclick = () => {
-
-    //seccionCategorias.classList.add("is-hidden");
     seccionNuevaOperacion.classList.add("is-hidden");
-    //botonBalance.classList.remove("is-hidden");
 }
 
 //Boton Cancelar nueva operacion
@@ -123,77 +115,7 @@ botonCancelarOperacion.onclick = () => {
 //Array de prueba
 
 let operaciones = [
-    //  {
-    //         descripcion: 'Sueldo',
-    //         categoria: 'Trabajo',
-    //         fecha: '2021-01-01',
-    //         monto: 50000,
-    //         tipo: 'Ganancia',
-    //     },
 
-    //     {
-    //         descripcion: 'Pago de alquiler',
-    //         categoria: 'Alquiler',
-    //         fecha: '2021-01-02',
-    //         monto: 15000,
-    //         tipo: 'Gasto',
-    //     },
-    //     {
-    //         descripcion: 'Pago de expensas',
-    //         categoria: 'Alquiler',
-    //         fecha: '2021-01-02',
-    //         monto: 5000,
-    //         tipo: 'Gasto',
-    //     },
-    //     {
-    //         descripcion: 'Pago de internet',
-    //         categoria: 'Servicios',
-    //         fecha: '2021-01-10',
-    //         monto: 2000,
-    //         tipo: 'Gasto',
-    //     },
-    //     {
-    //         descripcion: 'Trabajo freelance',
-    //         categoria: 'Trabajo',
-    //         fecha: '2021-01-15',
-    //         monto: 20000,
-    //         tipo: 'Ganancia',
-    //     },
-    //     {
-    //         descripcion: 'Cena con amigas',
-    //         categoria: 'Salidas',
-    //         fecha: '2021-01-18',
-    //         monto: 1500,
-    //         tipo: 'Gasto',
-    //     },
-    //     {
-    //         descripcion: 'Salida turistica',
-    //         categoria: 'Salidas',
-    //         fecha: '2020-01-18',
-    //         monto: 3500,
-    //         tipo: 'Gasto',
-    //     },
-    //     {
-    //         descripcion: 'Pasantía',
-    //         categoria: 'Educación',
-    //         fecha: '2020-06-13',
-    //         monto: 6600,
-    //         tipo: 'Gasto',
-    //     },
-    //     {
-    //         descripcion: 'Viaje a las toninas',
-    //         categoria: 'Transporte',
-    //         fecha: '2020-05-18',
-    //         monto: 4000,
-    //         tipo: 'Gasto',
-    //     },
-    //     {
-    //         descripcion: 'Edelap',
-    //         categoria: 'Servicios',
-    //         fecha: '2021-04-18',
-    //         monto: 300,
-    //         tipo: 'Gasto',
-    //     },
 ];
 
 
@@ -264,7 +186,7 @@ const mostrarTotalEnBalances = (array) => {
     return balancesTotalFinal.textContent = `$${resultadoFinal}`
 }
 mostrarTotalEnBalances(operaciones)
-console.log(operaciones);
+
 
 ////////////////////////////// 
 // Operaciones///////////////
@@ -395,55 +317,6 @@ mostrarOperacionesEnHTML(operaciones)
 borrarOperacion(operaciones)
 
 
-// //--------Balances-----------
-// //---------- Funcion mostrar suma total de ganancias en la seccion balances-----
-
-
-// const mostrarGananciasEnBalances = (array) => {
-//     const gananciasFiltradas = array.filter((elemento) => {
-//         return elemento.tipo === "ganancias"
-//     })
-
-
-//     const sumarGanancias = gananciasFiltradas.reduce((acc, elemento) => {
-//         let numeroMontoGanacia = Number(elemento.monto)
-//         return acc + numeroMontoGanacia
-//     }, 0)
-
-
-//     return balancesSumaGanancias.textContent = sumarGanancias
-
-// }
-// mostrarGananciasEnBalances(operaciones)
-
-
-// // //---------- Funcion mostrar suma total de gastos en la seccion balances-----
-// const mostrarGastosEnBalances = (array) => {
-//     const gastosFiltrados = array.filter((elemento) => {
-//         return elemento.tipo === "gastos"
-//     })
-
-//     const sumarGastos = gastosFiltrados.reduce((acc, elemento) => {
-//         let numeroMontoGastos = Number(elemento.monto)
-//         return acc + numeroMontoGastos
-//     }, 0)
-
-//     return balancesSumaGastos.textContent = sumarGastos
-// }
-// mostrarGastosEnBalances(operaciones)
-
-// //---------- Funcion mostrar suma del  total  en la seccion balances-----
-// const mostrarTotalEnBalances = (array) => {
-//     const resultadoFinalGanancias = mostrarGananciasEnBalances(array)
-//     const resultadoFinalGastos = mostrarGastosEnBalances(array)
-//     const resultadoFinal = resultadoFinalGanancias - resultadoFinalGastos
-
-
-
-//     return balancesTotalFinal.textContent = `$${resultadoFinal}`
-// }
-// mostrarTotalEnBalances(operaciones)
-// console.log(operaciones);
 // //-----------funciones para ordenar los filtros-----
 
 //funciones auxiliares
@@ -572,7 +445,7 @@ botonOcultarFiltros.onclick = () => {
 }
 
 
-//----este e.preventDefault evita que el formulario se envie --flor---
+//---- evita que el formulario se envie 
 formulario.onsubmit = (e) => {
     e.preventDefault()
 }
@@ -595,9 +468,8 @@ const categoriasObtenidas = () => {
 let funcionLS = (elemento) => {
     const categoriasAJSON = JSON.stringify(elemento)
     localStorage.setItem("categorias", categoriasAJSON)
-
-
 }
+
 
 //////////////////////////////////////// 
 
@@ -654,39 +526,27 @@ const agregarCategoriasAHTML = () => {
     botonEditarSeccionCategoria()
     botonEditarSeccionOperaciones()
 }
-
+agregarCategoriasAHTML(categorias)
 
 // aca empiezan las funciones de botones
 // BOTON EDITAR CATEGORIA
 const botonEditarSeccionOperaciones = () => {
-        formTarjetaEditarOperacion.classList.remove("is-hidden")
+    formTarjetaEditarOperacion.classList.remove("is-hidden")
 
-        const botonEditarOperaciones = document.querySelectorAll(".editar-operaciones")
+    const botonEditarOperaciones = document.querySelectorAll(".editar-operaciones")
 
-        for (let i = 0; i < botonEditarOperaciones.length; i++) {
-            botonEditarOperaciones[i].onclick = () => {
-                const idRecortado = botonEditarOperaciones[i].id.slice(19)
-                idDelBoton = Number(idRecortado)
-                console.log(idDelBoton);
+    for (let i = 0; i < botonEditarOperaciones.length; i++) {
+        botonEditarOperaciones[i].onclick = () => {
+            const idRecortado = botonEditarOperaciones[i].id.slice(19)
+            idDelBoton = Number(idRecortado)
 
-                tarjetaEditarOperacionEditar(idDelBoton)
-                ocultarSecciones()
-            }
+            tarjetaEditarOperacionEditar(idDelBoton)
+            ocultarSecciones()
         }
-
     }
-    // const crearBotonesEditar = () => {
-    //     const botonesEditar = document.querySelectorAll('.boton-editar');
-    //     for (let i = 0; i < botonesEditar.length; i++) {
-    //       botonesEditar[i].onclick = () => {
-    //         const idRecortado = botonesEditar[i].id.slice(13)
-    //         idDelBoton = Number(idRecortado);
-    //         console.log(idDelBoton);
 
-//         crearFormularioEditar(idDelBoton)
-//       };
-//     }
-//   };
+}
+
 // TARJETA EDITAR CATEGORIA
 const tarjetaEditarOperacionEditar = (idDelBoton) => {
     operaciones = operacionesObtenidas()
@@ -842,7 +702,7 @@ const aparicionReporte = (operaciones) => {
     } else {
         reportesSinOperaciones.classList.remove("is-hidden")
     }
-   
+
 }
 aparicionReporte(operaciones)
 
@@ -903,7 +763,6 @@ const categoriaConMayorGasto = (array) => {
     }, 0)
     return filtrarmenorGasto
 }
-console.log("MAYOR GASTO", categoriaConMayorGasto(operaciones), montoMayorGasto(operaciones))
 
 // FUNCION REPORTES RESUMEN
 
@@ -991,10 +850,8 @@ categoriasSinRepetir.map((categoria) => {
     arrayOperacionPorCategoria.push([])
 });
 
-console.log(arrayOperacionPorCategoria)
 
 //aca relleno cada array con los datos de esas categorias
-
 
 operaciones.map((operacion) => {
     const indiceCategoria = categoriasSinRepetir.indexOf(operacion.categoria)
@@ -1017,22 +874,22 @@ for (let i = 0; i < arrayOperacionPorCategoria.length; i++) {
 
         }
     }
-console.log(categoriasSinRepetir)
 
 
-   const categoriasSolas = categoriasSinRepetir.reduce((acc,elemento)=>{
-       return elemento
-   },"")
-  console.log(categoriasSolas)
 
- const totalGastosPorCategoria = gastosPorCategoria.reduce((acc,elemento)=>{
+    const categoriasSolas = categoriasSinRepetir.reduce((acc, elemento) => {
+        return elemento
+    }, "")
+
+
+    const totalGastosPorCategoria = gastosPorCategoria.reduce((acc, elemento) => {
         let gastosMonto = Number(elemento.monto)
-    return acc + gastosMonto
-}, 0)
+        return acc + gastosMonto
+    }, 0)
 
-const totalGananciasPorCategoria = gananciasPorCategoria.reduce((acc,elemento)=>{
-    let gananciasMonto = Number(elemento.monto)
-    return acc + gananciasMonto
+    const totalGananciasPorCategoria = gananciasPorCategoria.reduce((acc, elemento) => {
+        let gananciasMonto = Number(elemento.monto)
+        return acc + gananciasMonto
 
     }, 0)
 
@@ -1048,7 +905,7 @@ const totalGananciasPorCategoria = gananciasPorCategoria.reduce((acc,elemento)=>
 
                                 </div>`
     reportesDatosTotalesCategorias.innerHTML = html
-    console.log(reportesDatosTotalesCategorias)
+
 }
 
 //     console.log(totalGananciasPorCategoria)
@@ -1061,5 +918,3 @@ const totalGananciasPorCategoria = gananciasPorCategoria.reduce((acc,elemento)=>
 //     let numeroMontoGastos = Number(elemento.monto)
 //     return acc + numeroMontoGastos
 // }, 0)
-
-
