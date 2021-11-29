@@ -229,6 +229,23 @@ const sinOperaciones = (array) => {
 }
 sinOperaciones(operaciones)
 
+const borrarOperacion = (array) => {
+
+
+    const botonesBorrarOperaciones = document.querySelectorAll(".boton-borrar-operacion")
+    for (let i = 0; i < botonesBorrarOperaciones.length; i++) {
+        botonesBorrarOperaciones[i].onclick = () => {
+            const idOperaciones = botonesBorrarOperaciones[i].id
+            const indiceOperaciones = idOperaciones.slice(7)
+            const filtrarOperaciones = array.filter((elemento, index) => {
+                return index != indiceOperaciones
+            })
+
+            funcionOperacionesLS(filtrarOperaciones)
+            mostrarOperacionesEnHTML(filtrarOperaciones)
+        }
+    }
+}
 
 const mostrarOperacionesEnHTML = (array) => {
 
@@ -260,23 +277,10 @@ const mostrarOperacionesEnHTML = (array) => {
       `
         );
     }, "")
-
-
     tarjetaOperacionesAgregadas.innerHTML = html;
 
-    const botonesBorrarOperaciones = document.querySelectorAll(".boton-borrar-operacion")
-    for (let i = 0; i < botonesBorrarOperaciones.length; i++) {
-        botonesBorrarOperaciones[i].onclick = () => {
-            const idOperaciones = botonesBorrarOperaciones[i].id
-            const indiceOperaciones = idOperaciones.slice(7)
-            const filtrarOperaciones = array.filter((elemento, index) => {
-                return index != indiceOperaciones
-            })
 
-            funcionOperacionesLS(filtrarOperaciones)
-            mostrarOperacionesEnHTML(filtrarOperaciones)
-        }
-    }
+    borrarOperacion(operaciones)
     sinOperaciones(operaciones)
 }
 
@@ -310,6 +314,7 @@ botonAgregarOperacion.onclick = () => {
     operaciones.push(operacion)
     funcionOperacionesLS(operaciones)
     mostrarOperacionesEnHTML(operaciones)
+
     valorInputDescripcionNuevaOperacion.value = ""
     valorInputMontoNuevaOperacion.value = ""
     valorOpcionCategoriaNuevaOperacion.value = ""
@@ -323,19 +328,21 @@ botonAgregarOperacion.onclick = () => {
 operaciones = operacionesObtenidas()
 mostrarOperacionesEnHTML(operaciones)
 
-
+borrarOperacion(operaciones)
 
 //--------Balances-----------
 //---------- Funcion mostrar suma total de ganancias en la seccion balances-----
+
 const mostrarGananciasEnBalances = (array) => {
     const gananciasFiltradas = array.filter((elemento) => {
-        return elemento.tipo === "Ganancia"
+        return elemento.tipo === "ganancias"
     })
 
-
     const sumarGanancias = gananciasFiltradas.reduce((acc, elemento) => {
-        return acc + elemento.monto
+        let numeroMontoGanacia = Number(elemento.monto)
+        return acc + numeroMontoGanacia
     }, 0)
+
 
     return balancesSumaGanancias.textContent = sumarGanancias
 
@@ -345,11 +352,12 @@ mostrarGananciasEnBalances(operaciones)
 // //---------- Funcion mostrar suma total de gastos en la seccion balances-----
 const mostrarGastosEnBalances = (array) => {
     const gastosFiltrados = array.filter((elemento) => {
-        return elemento.tipo === "Gasto"
+        return elemento.tipo === "gastos"
     })
 
     const sumarGastos = gastosFiltrados.reduce((acc, elemento) => {
-        return acc + elemento.monto
+        let numeroMontoGastos = Number(elemento.monto)
+        return acc + numeroMontoGastos
     }, 0)
 
     return balancesSumaGastos.textContent = sumarGastos
@@ -361,10 +369,12 @@ const mostrarTotalEnBalances = (array) => {
     const resultadoFinalGanancias = mostrarGananciasEnBalances(array)
     const resultadoFinalGastos = mostrarGastosEnBalances(array)
     const resultadoFinal = resultadoFinalGanancias - resultadoFinalGastos
+
+
     return balancesTotalFinal.textContent = `$${resultadoFinal}`
 }
 mostrarTotalEnBalances(operaciones)
-
+console.log(operaciones);
 // //-----------funciones para ordenar los filtros-----
 
 //funciones auxiliares
