@@ -261,12 +261,10 @@ const mostrarOperacionesEnHTML = (array) => {
         }
     }
     sinOperaciones()
-    // FALTA EL EDITAR OPERACIONES ??
 }
 
 // BOTON AGREGAR OPERACIONES
 botonAgregarOperacion.onclick = () => {
-
     seccionCategorias.classList.add("is-hidden");
     seccionNuevaOperacion.classList.add("is-hidden");
     seccionCentral.classList.remove("is-hidden")
@@ -295,11 +293,128 @@ botonAgregarOperacion.onclick = () => {
     valorOpcionCategoriaNuevaOperacion.value = ""
     valorInputDateNuevaOperacion.value = ""
     valorOpcionTipoNuevaOperacion.value = ""
-    
 }
 
 operaciones = operacionesObtenidas()
 mostrarOperacionesEnHTML(operaciones)
+
+//BOTON EDITAR OPERACIONES
+const botonEditarSeccionOperaciones = () => {
+    formTarjetaEditarOperacion.classList.remove("is-hidden")
+    const botonEditarOperaciones = document.querySelectorAll(".editar-operaciones")
+
+    for (let i = 0; i < botonEditarOperaciones.length; i++) {
+        botonEditarOperaciones[i].onclick = () => {
+            const idRecortado = botonEditarOperaciones[i].id.slice(19)
+            idDelBoton = Number(idRecortado)
+            tarjetaEditarOperacionEditar(idDelBoton)
+            ocultarSecciones()
+        }
+    }
+}
+
+// TARJETA EDITAR OPERACIONES
+const tarjetaEditarOperacionEditar = (idDelBoton) => {
+    operaciones = operacionesObtenidas()
+    const objeto = operaciones[idDelBoton]
+
+    formTarjetaEditarOperacion.innerHTML = `
+    <div class="tarjeta-editar-operacion column is-offset-2 is-8 is-hidden is-relative">
+        <form class="box form-seccion-operacion">
+            <h2 class="title is-1 has-text-weight-bold">Editar operación</h2>
+            <div class="field">
+                <div class="control">
+                    <label for="Descripción" class="label"> Descripción </label>
+                    <input class="input" id="input-descripcion" type="text" value="${objeto.descripcion}">
+                </div>
+            </div>
+            <div class="field">
+                <div class="control">
+                    <label for="Monto" class="label"> Monto</label>
+                        <input class="input" id="input-monto" type="number" value="${objeto.monto}">
+                </div>
+            </div>
+            <div class="field">
+                <div class="control">
+                    <label for="Tipo" class="label"> Tipo</label>
+                    <div class="select is-fullwidth">
+                        <select id="editar-tipo-operacion">
+                            <option value="ganancias">Ganancias</option>
+                            <option value="gastos">Gastos</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="field">
+                <label for="Categoria" class="label">Categoria</label>
+                <div class="control">
+                    <div class="select is-fullwidth">
+                        <select id="input-categoria">
+                            <option>Comida</option>
+                            <option>Servicios</option>
+                            <option>Salidas</option>
+                            <option>Educación</option>
+                            <option>Transporte</option>
+                            <option>Trabajo</option>
+                        </select>
+                    </div>
+                </div>         
+            </div>
+            <div class="field">
+                <div class="control">
+                    <label for="Fecha" class="label"> Fecha</label>
+                    <input class="input" type="date">
+                </div>
+            </div>
+            <div class="has-text-right">
+                <button type="button" id="boton-cancelar-seccion-operaciones" class="button is-light"> Cancelar </button>
+                <input type="submit" value="Editar"  class="button is-success">
+            </div>
+        </form>
+    </div>`
+
+    const formSeccionOperacion = document.querySelector(".form-seccion-operacion")
+    const inputDescripcion = document.querySelector("#input-descripcion")
+    const inputMonto = document.querySelector("#input-monto")
+    const inputCategoria = document.querySelector("#input-categoria")
+    // const editarTipoOperacion = document.querySelector("#editar-tipo-operacion")
+
+    const botonCancelarSeccionOperaciones = document.querySelector("#boton-cancelar-seccion-operaciones")
+
+    //click BOTON CANCELAR
+    botonCancelarSeccionOperaciones.onclick = (e) => {
+        e.preventDefault()
+        ocultarSecciones()
+        inputDescripcion.value = objeto.descripcion
+        inputMonto.value = objeto.monto
+        inputCategoria.value = objeto.categoria
+    }
+    // click BOTON EDITAR, EDITADO
+    formSeccionOperacion.onsubmit = (e) => {
+        e.preventDefault()
+        ocultarSecciones()
+
+        //los valores predeterminados, si fueron editados se envien editados
+        const valorMonto = Number(inputMonto.value)
+        const valorDescripcion = inputDescripcion.value
+        const valorCategoria = inputCategoria.value
+
+        objeto.monto = valorMonto
+        objeto.descripcion = valorDescripcion
+        objeto.categoria = valorCategoria
+
+        mostrarOperacionesEnHTML(operaciones)
+        botonEditarSeccionOperaciones()
+    }
+}
+
+// funcion auxiliar ocultar secciones - operaciones
+const ocultarSecciones = () => {
+    const tarjetaEditarOperacion = document.querySelector(".tarjeta-editar-operacion")
+    seccionCentral.classList.toggle("is-hidden")
+    tarjetaEditarOperacion.classList.toggle("is-hidden")
+}
+
 
 //----------------------------------------------------------------------------
 //                     BALANCES
@@ -468,13 +583,13 @@ formulario.onsubmit = (e) => {
     e.preventDefault()
 }
 
-// //--------------- Seccion categorias----------------------------
-
-// // Seccion categorias
+//----------------------------------------------------------------------------
+//                     CATEGORIAS
+//----------------------------------------------------------------------------
 
 const categorias = ["Todos", "Comida", "Servicios", "Salidas", "Educación", "Transporte", "Trabajo"]
 
-// // LocalStorage///////////////
+//// LocalStorage///
 const categoriasObtenidas = () => {
     const categoriasLS = localStorage.getItem("categorias")
     if (categoriasLS === null) {
@@ -486,7 +601,6 @@ const categoriasObtenidas = () => {
 let funcionLS = (elemento) => {
         const categoriasAJSON = JSON.stringify(elemento)
         localStorage.setItem("categorias", categoriasAJSON)
-
 }
 const adicionDeNuevasCategoriasSelect = () => {
     const categorias = categoriasObtenidas()
@@ -538,130 +652,6 @@ const agregarCategoriasAHTML = () => {
     }
     botonEditarSeccionCategoria()
     botonEditarSeccionOperaciones()
-}
-
-
-
-// aca empiezan las funciones de botones
-// BOTON EDITAR CATEGORIA
-const botonEditarSeccionOperaciones = () => {
-        formTarjetaEditarOperacion.classList.remove("is-hidden")
-        const botonEditarOperaciones = document.querySelectorAll(".editar-operaciones")
-
-        for (let i = 0; i < botonEditarOperaciones.length; i++) {
-            botonEditarOperaciones[i].onclick = () => {
-                const idRecortado = botonEditarOperaciones[i].id.slice(19)
-                idDelBoton = Number(idRecortado)
-                console.log(idDelBoton);
-                tarjetaEditarOperacionEditar(idDelBoton)
-                ocultarSecciones()
-            }
-        }
-
-}
-// const crearBotonesEditar = () => {
-//     const botonesEditar = document.querySelectorAll('.boton-editar');
-//     for (let i = 0; i < botonesEditar.length; i++) {
-//       botonesEditar[i].onclick = () => {
-//         const idRecortado = botonesEditar[i].id.slice(13)
-//         idDelBoton = Number(idRecortado);
-//         console.log(idDelBoton);
-  
-//         crearFormularioEditar(idDelBoton)
-//       };
-//     }
-//   };
-// TARJETA EDITAR CATEGORIA
-const tarjetaEditarOperacionEditar = (idDelBoton) => {
-    operaciones = operacionesObtenidas()
-    const objeto = operaciones[idDelBoton]
-
-    formTarjetaEditarOperacion.innerHTML = `
-    <div class="tarjeta-editar-operacion column is-offset-2 is-8 is-hidden is-relative">
-        <form class="box form-seccion-operacion">
-            <h2 class="title is-1 has-text-weight-bold">Editar operación</h2>
-            <div class="field">
-                <div class="control">
-                    <label for="Descripción" class="label"> Descripción </label>
-                    <input class="input" id="input-descripcion" type="text" value="${objeto.descripcion}">
-                </div>
-            </div>
-            <div class="field">
-                <div class="control">
-                    <label for="Monto" class="label"> Monto</label>
-                        <input class="input" id="input-monto" type="number" value="${objeto.monto}">
-                </div>
-            </div>
-            <div class="field">
-                <div class="control">
-                    <label for="Tipo" class="label"> Tipo</label>
-                    <div class="select is-fullwidth">
-                        <select id="editar-tipo-operacion">
-                        <option value="ganancias">Ganancias</option>
-                        <option value="gastos">Gastos</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
-            <div class="field">
-                <label for="Categoria" class="label"> Categoria</label>
-                <div class="control">
-                    <div class="select is-fullwidth">
-                        <select id="input-categoria">
-                        <option>Gasto</option>
-                        <option>Ganancia</option>
-                        </select>
-                    </div>
-                </div>         
-            </div>
-            <div class="field">
-                <div class="control">
-                    <label for="Fecha" class="label"> Fecha</label>
-                    <input class="input" type="date">
-                </div>
-            </div>
-            <div class="has-text-right">
-                <button type="button" id="boton-cancelar-seccion-operaciones" class="button is-light"> Cancelar </button>
-                <input type="submit" value="Editar"  class="button is-success">
-            </div>
-        </form>
-    </div>`
-
-    const formSeccionOperacion = document.querySelector(".form-seccion-operacion")
-    const inputDescripcion = document.querySelector("#input-descripcion")
-    const inputMonto = document.querySelector("#input-monto")
-    const editarTipoOperacion = document.querySelector("#editar-tipo-operacion")
-
-    const botonCancelarSeccionOperaciones = document.querySelector("#boton-cancelar-seccion-operaciones")
-
-    botonCancelarSeccionOperaciones.onclick = (e) => {
-        e.preventDefault()
-        ocultarSecciones()
-        inputDescripcion.value = objeto.descripcion
-    }
-
-    formSeccionOperacion.onsubmit = (e) => {
-        e.preventDefault()
-        ocultarSecciones()
-
-
-        const valorMonto = Number(inputMonto.value)
-        const valorDescripcion = inputDescripcion.value
-            // const valorTipo = 
-        objeto.monto = valorMonto
-        objeto.descripcion = valorDescripcion
-
-
-        mostrarOperacionesEnHTML(operaciones)
-        botonEditarSeccionOperaciones()
-    }
-}
-
-// funcion auxiliar ocultar secciones - operaciones
-const ocultarSecciones = () => {
-    const tarjetaEditarOperacion = document.querySelector(".tarjeta-editar-operacion")
-    seccionCentral.classList.toggle("is-hidden")
-    tarjetaEditarOperacion.classList.toggle("is-hidden")
 }
 
 // BOTON EDITAR CATEGORIA
