@@ -830,24 +830,6 @@ const ocultarSeccionesCategoria = () => {
 
 
 
-agregarCategoriasAHTML()
-adicionDeNuevasCategoriasSelect()
-
-
-botonAgregarCategoria.onclick = () => {
-    tarjetaEditarCategoria.classList.add("is-hidden")
-    const valorInputCategoriaNuevo = inputCategoriaNuevoNombre.value
-    const categorias = categoriasObtenidas()
-    categorias.push(valorInputCategoriaNuevo)
-    inputCategoriaNuevoNombre.value = ""
-
-    funcionLS(categorias)
-
-    adicionDeNuevasCategoriasSelect()
-    agregarCategoriasAHTML()
-
-}
-
 
 //----------------------------------------------------------------------------
 //                      SECCION REPORTES 
