@@ -58,6 +58,14 @@ const navbarMenu = document.getElementById("navbarBasicExample")
 const formTarjetaEditarOperacion = document.querySelector(".form-tarjeta-editar-operacion")
 const tarjetaEditarCategoria = document.querySelector(".tarjeta-editar-categoria")
 
+
+
+// Navbar-Menu//Navbar-burger
+navbarBurger.onclick = () => {
+    navbarBurger.classList.toggle("is-active")
+    navbarMenu.classList.toggle("is-active")
+}
+
 // Navbar-Menu//Navbar-burger
 navbarBurger.onclick = () => {
     navbarBurger.classList.toggle("is-active")
@@ -84,9 +92,9 @@ botonReporte.onclick = () => {
     seccionCategorias.classList.add("is-hidden")
 }
 
-//----------------------------------------------------------------------------
-//                     OPERACIONES
-//----------------------------------------------------------------------------
+
+
+//-------------------------Operaciones-------------------------
 
 // Boton nueva operacion
 botonNuevaOperacion.onclick = () => {
@@ -110,6 +118,7 @@ botonCancelarOperacion.onclick = () => {
     seccionCentral.classList.remove("is-hidden")
     seccionReportes.classList.add("is-hidden")
 }
+
 
 //Array de prueba
 
@@ -188,7 +197,9 @@ let operaciones = [
 ];
 
 
-// LocalStorage operaciones//
+
+// LocalStorage operaciones///////////////
+
 const operacionesObtenidas = () => {
     const operacionesLS = localStorage.getItem("operaciones")
     if (operacionesLS === null) {
@@ -201,19 +212,41 @@ const operacionesObtenidas = () => {
 }
 
 let funcionOperacionesLS = (elemento) => {
-    const operacionesAJSON = JSON.stringify(elemento)
-    localStorage.setItem("operaciones", operacionesAJSON)
+
+        const operacionesAJSON = JSON.stringify(elemento)
+        localStorage.setItem("operaciones", operacionesAJSON)
+
+    }
+//////////////////////////////////////////
+const sinOperaciones = (array) => {
+    if (array.length === 0) {
+        tarjetaSinOperaciones.classList.remove("is-hidden")
+        tarjetaOperacionesAgregadas.classList.add("is-hidden")
+        contenedorOperacionesAgregadas.classList.add("is-hidden")
+
+    } else {
+        tarjetaSinOperaciones.classList.add("is-hidden")
+        tarjetaOperacionesAgregadas.classList.remove("is-hidden")
+        contenedorOperacionesAgregadas.classList.remove("is-hidden")
+    }
+
 }
+sinOperaciones(operaciones)
+
+
 
 const mostrarOperacionesEnHTML = (array) => {
+
     operaciones = operacionesObtenidas()
+
 
     const html = array.reduce((acc, operacion, index) => {
         return (
             acc +
             `
-      <div class="fila columns">
-      <div class="column is-3 has-text-weight-semibold">
+
+      <div class="fila columns  is-mobile is-multiline">
+      <div class="column is-3 has-text-weight-semibold ">
         <p>${operacion.descripcion}</p>
         </div>
         <div class="column is-1">
@@ -226,13 +259,18 @@ const mostrarOperacionesEnHTML = (array) => {
         <p class="${operacion.tipo === "ganancias" ? "has-text-success" : "has-text-danger"}">$${operacion.monto}</p>
         </div>
         <div class="column is-4 has-text-right">
+
         <button id="editar-operaciones-${index}" class="button is-info is-inverted editar-operaciones">Editar</button>
+
         <button id="borrar-${index}"  class="boton-borrar-operacion button is-info is-inverted ">Eliminar</button>
         </div>
       </div>
       `
         );
     }, "")
+
+
+
     tarjetaOperacionesAgregadas.innerHTML = html;
 
     //BOTON BORRAR OPERACIONES//
@@ -249,22 +287,10 @@ const mostrarOperacionesEnHTML = (array) => {
         }
     }
 
-    // APARECE LA IMAGEN CUANDO NO HAY OPERACIONES
-    const sinOperaciones =()=>{
-        if (operaciones.length === 0) {
-            tarjetaSinOperaciones.classList.remove('is-hidden')
-            contenedorOperacionesAgregadas.classList.add('is-hidden')
-            return
-        }else{
-            contenedorOperacionesAgregadas.classList.remove('is-hidden')
-            tarjetaSinOperaciones.classList.add('is-hidden')
-        }
-    }
-    sinOperaciones()
-    // FALTA EL EDITAR OPERACIONES ??
+    sinOperaciones(operaciones)
 }
 
-// BOTON AGREGAR OPERACIONES
+
 botonAgregarOperacion.onclick = () => {
 
     seccionCategorias.classList.add("is-hidden");
@@ -274,11 +300,14 @@ botonAgregarOperacion.onclick = () => {
     tarjetaOperacionesAgregadas.classList.remove("is-hidden")
     contenedorOperacionesAgregadas.classList.remove("is-hidden")
 
+
     const valorInputDescripcionNuevaOperacion = inputDescripcionNuevaOperacion.value
     const valorInputMontoNuevaOperacion = inputMontoNuevaOperacion.value
     const valorOpcionCategoriaNuevaOperacion = selectCategoriaNuevaOperacion.value
     const valorInputDateNuevaOperacion = inputDateNuevaOperacion.value
     const valorOpcionTipoNuevaOperacion = selectTipoNuevaOperacion.value
+
+
 
     const operacion = {
         descripcion: valorInputDescripcionNuevaOperacion,
@@ -287,6 +316,7 @@ botonAgregarOperacion.onclick = () => {
         monto: valorInputMontoNuevaOperacion,
         tipo: valorOpcionTipoNuevaOperacion,
     }
+
     operaciones.push(operacion)
     funcionOperacionesLS(operaciones)
     mostrarOperacionesEnHTML(operaciones)
@@ -295,7 +325,9 @@ botonAgregarOperacion.onclick = () => {
     valorOpcionCategoriaNuevaOperacion.value = ""
     valorInputDateNuevaOperacion.value = ""
     valorOpcionTipoNuevaOperacion.value = ""
-    
+
+
+
 }
 
 operaciones = operacionesObtenidas()
@@ -305,21 +337,26 @@ mostrarOperacionesEnHTML(operaciones)
 //                     BALANCES
 //----------------------------------------------------------------------------
 
+
+
 //---------- Funcion mostrar suma total de ganancias en la seccion balances-----
 const mostrarGananciasEnBalances = (array) => {
     const gananciasFiltradas = array.filter((elemento) => {
         return elemento.tipo === "Ganancia"
     })
 
+
     const sumarGanancias = gananciasFiltradas.reduce((acc, elemento) => {
         return acc + elemento.monto
-    }, "")
+    }, 0)
 
     return balancesSumaGanancias.textContent = sumarGanancias
+
 }
 mostrarGananciasEnBalances(operaciones)
 
-//---------- Funcion mostrar suma total de gastos en la seccion balances-----
+// //---------- Funcion mostrar suma total de gastos en la seccion balances-----
+
 const mostrarGastosEnBalances = (array) => {
     const gastosFiltrados = array.filter((elemento) => {
         return elemento.tipo === "Gasto"
@@ -327,7 +364,9 @@ const mostrarGastosEnBalances = (array) => {
 
     const sumarGastos = gastosFiltrados.reduce((acc, elemento) => {
         return acc + elemento.monto
-    }, "")
+
+    }, 0)
+
 
     return balancesSumaGastos.textContent = sumarGastos
 }
@@ -342,7 +381,7 @@ const mostrarTotalEnBalances = (array) => {
 }
 mostrarTotalEnBalances(operaciones)
 
-//-----------funciones para ordenar los filtros-----
+// //-----------funciones para ordenar los filtros-----
 
 //funciones auxiliares
 const ordenarPorFechaMasReciente = (array) => {
@@ -391,7 +430,7 @@ const filtroOrdenarPor = (array) => {
     }
 }
 
-// -------------------Función aplicar filtros---------------
+// // -------------------Función aplicar filtros---------------
 const aplicarFiltros = () => {
     const tipo = filtroTipo.value //filtro por tipo
     const filtradoPorTipo = operaciones.filter((operacion) => {
@@ -408,6 +447,7 @@ const aplicarFiltros = () => {
         }
         return operacion.categoria === categoriaSelect
     })
+
     const arrayFiltradoPorFechas = filtradoPorCategoria.map((operacion) => { //filtro por fechas
         const nuevoElemento = {...operacion }
         nuevoElemento.fecha = new Date(operacion.fecha).toLocaleDateString()
@@ -416,9 +456,12 @@ const aplicarFiltros = () => {
     return filtroOrdenarPor(arrayFiltradoPorFechas)
 }
 
-//---Agrega filtro cuando modifico los select-----
 
-// evento cuando modifico categoria
+
+
+// //----Agrega filtro cuando modifico los select-----
+
+// // evento cuando modifico categoria
 
 filtroTipo.onchange = () => {
     const arrayFiltrado = aplicarFiltros()
@@ -437,7 +480,9 @@ filtroFecha.oninput = () => {
     mostrarOperacionesEnHTML(arrayFiltrado)
 }
 
+
 // evento ordeno por 
+
 selectOrdenarPor.onchange = () => {
     const arrayFiltrado = aplicarFiltros()
     mostrarOperacionesEnHTML(arrayFiltrado)
@@ -461,7 +506,9 @@ botonOcultarFiltros.onclick = () => {
     } else {
         return mostrarFormularioFiltros(formularioFiltros, botonOcultarFiltros)
     }
+
 }
+
 
 //----este e.preventDefault evita que el formulario se envie --flor---
 formulario.onsubmit = (e) => {
@@ -487,7 +534,11 @@ let funcionLS = (elemento) => {
         const categoriasAJSON = JSON.stringify(elemento)
         localStorage.setItem("categorias", categoriasAJSON)
 
+
 }
+
+//////////////////////////////////////// 
+
 const adicionDeNuevasCategoriasSelect = () => {
     const categorias = categoriasObtenidas()
     const selectCategoria = document.getElementById("select-categoria")
@@ -519,6 +570,7 @@ const agregarCategoriasAHTML = () => {
       </div>`
     }, "")
 
+
     lista.innerHTML = stringCategoriasIniciadoras
 
     const botonesBorrar = document.querySelectorAll(".boton-borrar")
@@ -541,11 +593,11 @@ const agregarCategoriasAHTML = () => {
 }
 
 
-
 // aca empiezan las funciones de botones
 // BOTON EDITAR CATEGORIA
 const botonEditarSeccionOperaciones = () => {
         formTarjetaEditarOperacion.classList.remove("is-hidden")
+
         const botonEditarOperaciones = document.querySelectorAll(".editar-operaciones")
 
         for (let i = 0; i < botonEditarOperaciones.length; i++) {
@@ -553,6 +605,7 @@ const botonEditarSeccionOperaciones = () => {
                 const idRecortado = botonEditarOperaciones[i].id.slice(19)
                 idDelBoton = Number(idRecortado)
                 console.log(idDelBoton);
+
                 tarjetaEditarOperacionEditar(idDelBoton)
                 ocultarSecciones()
             }
@@ -619,13 +672,23 @@ const tarjetaEditarOperacionEditar = (idDelBoton) => {
                     <label for="Fecha" class="label"> Fecha</label>
                     <input class="input" type="date">
                 </div>
+
             </div>
-            <div class="has-text-right">
-                <button type="button" id="boton-cancelar-seccion-operaciones" class="button is-light"> Cancelar </button>
-                <input type="submit" value="Editar"  class="button is-success">
+        </div>
+    </div>
+    <div class="field">
+        <label for="Categoria" class="label"> Categoria</label>
+        <div class="control">
+            <div class="select is-fullwidth">
+                <select id="input-categoria">
+                <option>Gasto</option>
+                <option>Ganancia</option>
+                </select>
             </div>
+
         </form>
     </div>`
+
 
     const formSeccionOperacion = document.querySelector(".form-seccion-operacion")
     const inputDescripcion = document.querySelector("#input-descripcion")
@@ -655,6 +718,7 @@ const tarjetaEditarOperacionEditar = (idDelBoton) => {
         mostrarOperacionesEnHTML(operaciones)
         botonEditarSeccionOperaciones()
     }
+
 }
 
 // funcion auxiliar ocultar secciones - operaciones
@@ -721,22 +785,27 @@ botonAgregarCategoria.onclick = () => {
 
 }
 
+
 //----------------------------------------------------------------------------
 //                      SECCION REPORTES 
 //----------------------------------------------------------------------------
 //funcion para que aparezca reportes una vez que tenga mas de 2 operaciones en localS
-//  const aparicionReporte = (operaciones) =>{
-//       if(operaciones.length > 2){ 
-//         panelEstadisticasReportes.classList.remove("is-hidden")
-//       }
-//       else{
-//         reportesSinOperaciones.classList.remove("is-hidden")
-//       }
-    
-// }
-// aparicionReporte(operaciones)
 
-//REPORTES RESUMEN
+const aparicionReporte = (operaciones) => {
+    if (operaciones.length > 2) {
+        panelEstadisticasReportes.classList.remove("is-hidden")
+    } else {
+        reportesSinOperaciones.classList.remove("is-hidden")
+    }
+
+}
+aparicionReporte(operaciones)
+
+//----------------------------------------------------------------------------
+//                       REPORTES RESUMEN
+//----------------------------------------------------------------------------
+
+
 // FUNCION AUXILIAR "categoria con mayor ganancia"
 const montoMayorGanancia = (array) => {
     const mayorMonto = array.reduce((acc, elemento) => {
@@ -794,8 +863,10 @@ console.log("MAYOR GASTO", categoriaConMayorGasto(operaciones), montoMayorGasto(
 // FUNCION REPORTES RESUMEN
 
 const contenedorReportes = () => {
+
     const seccionResumenReportes = document.querySelector(".resumen")
     seccionResumenReportes.innerHTML = `<div class="columns">
+
         <div class="column is-6 has-text-weight-semibold">Categoría con mayor ganancia</div>
         <div class="column mt-3 is-1 has-text-right tag is-primary is-light">${categoriaConMayorGanancia(operaciones)}</div>
         <div class="column is-4 has-text-right has-text-success has-text-weight-semibold">+$${montoMayorGanancia(operaciones)}</div>  
@@ -848,6 +919,7 @@ contenedorReportes()
 // obtenerTotalesPorMes()
 
 
+
 //----------------------------------------------------------------------------
 //                     REPORTES POR CATEGORIAS
 //----------------------------------------------------------------------------
@@ -875,7 +947,9 @@ categoriasSinRepetir.map((categoria) => {
 });
 
 console.log(arrayOperacionPorCategoria)
+
 //aca relleno cada array con los datos de esas categorias
+
 
 operaciones.map((operacion) => {
     const indiceCategoria = categoriasSinRepetir.indexOf(operacion.categoria)
@@ -887,33 +961,34 @@ operaciones.map((operacion) => {
 let gananciasPorcategoria = []
 let gastosPorCategoria = []
 
-for(let i = 0; i < arrayOperacionPorCategoria.length; i++){
+
+for (let i = 0; i < arrayOperacionPorCategoria.length; i++) {
     let gananciasPorCategoria = []
     let gastosPorCategoria = []
-    for(let j = 0; j < arrayOperacionPorCategoria[i].length; j++){
+    for (let j = 0; j < arrayOperacionPorCategoria[i].length; j++) {
         if (arrayOperacionPorCategoria[i][j].tipo === "gastos") {
             gastosPorCategoria.push(arrayOperacionPorCategoria[i][j])
-         }
-      else{
+        } else {
             gananciasPorCategoria.push(arrayOperacionPorCategoria[i][j])
-             console.log(gananciasPorCategoria)
+            console.log(gananciasPorCategoria)
         }
     }
-  
-   console.log(gastosPorCategoria)
-   // SEGUI CODEANDO ACA 
-   // EN LOS DOS ARRAYS DE ARRIBA TENES LAS OPERACIONES SEPARADAS POR GANANCIA Y GASTO 
-  // HAY QUE ENCONTRAR LA SUMA DE TODAS ELLAS 
 
-//esto iría adentro del for?
- gastosPorCategoria.reduce((acc,elemento)=>{
-return acc + elemento.monto
-}, 0)
+    console.log(gastosPorCategoria)
+        // SEGUI CODEANDO ACA 
+        // EN LOS DOS ARRAYS DE ARRIBA TENES LAS OPERACIONES SEPARADAS POR GANANCIA Y GASTO 
+        // HAY QUE ENCONTRAR LA SUMA DE TODAS ELLAS 
 
-gananciasPorCategoria.reduce((acc,elemento)=>{
-    return acc + elemento.monto
+    //esto iría adentro del for?
+    gastosPorCategoria.reduce((acc, elemento) => {
+        return acc + elemento.monto
+    }, 0)
+
+    gananciasPorCategoria.reduce((acc, elemento) => {
+        return acc + elemento.monto
     }, 0)
 
 }
-    //console.log(gananciasPorCategoria)
-    console.log(gastosPorCategoria)
+//console.log(gananciasPorCategoria)
+console.log(gastosPorCategoria)
+
