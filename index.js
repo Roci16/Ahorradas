@@ -47,7 +47,7 @@ const divOperaciones = document.getElementById("div-operaciones")
 const panelEstadisticasReportes = document.getElementById("panel-estadisticas-reportes")
 const seccionResumenReportes = document.getElementById("seccion-resumen-reportes")
 const reportesSinOperaciones = document.getElementById("reportes-sin-operaciones")
-const reportesdatosTotalesCategorias = document.getElementById("datos-totales-por-categorias")
+const reportesDatosTotalesCategorias = document.getElementById("datos-reportes-por-categorias")
 const reportesDatosTotalesMes = document.getElementById("datos-totales-por-mes")
 
 //----------------------------Navbar-Burger/Navbar-Menu-----------------------------------
@@ -1022,36 +1022,53 @@ operaciones.map((operacion) => {
 
 
 
-let gananciasPorcategoria = []
-let gastosPorCategoria = []
+let html = ""
+for(let i = 0; i < arrayOperacionPorCategoria.length; i++){
 
-
-for (let i = 0; i < arrayOperacionPorCategoria.length; i++) {
     let gananciasPorCategoria = []
     let gastosPorCategoria = []
     for (let j = 0; j < arrayOperacionPorCategoria[i].length; j++) {
         if (arrayOperacionPorCategoria[i][j].tipo === "gastos") {
             gastosPorCategoria.push(arrayOperacionPorCategoria[i][j])
-        } else {
+
+         }
+      else {
             gananciasPorCategoria.push(arrayOperacionPorCategoria[i][j])
-            console.log(gananciasPorCategoria)
+            
         }
     }
 
-    console.log(gastosPorCategoria)
-        // SEGUI CODEANDO ACA 
-        // EN LOS DOS ARRAYS DE ARRIBA TENES LAS OPERACIONES SEPARADAS POR GANANCIA Y GASTO 
-        // HAY QUE ENCONTRAR LA SUMA DE TODAS ELLAS 
 
-    //esto iría adentro del for?
-    gastosPorCategoria.reduce((acc, elemento) => {
-        return acc + elemento.monto
+   const categoriasSolas = categoriasSinRepetir.reduce((acc,elemento)=>{
+       return   elemento
+   },)
+  console.log(categoriasSolas)
+ const totalGastosPorCategoria = gastosPorCategoria.reduce((acc,elemento)=>{
+        
+    return acc + elemento.monto
+}, 0)
+
+const totalGananciasPorCategoria = gananciasPorCategoria.reduce((acc,elemento)=>{
+    return acc + elemento.monto
     }, 0)
 
-    gananciasPorCategoria.reduce((acc, elemento) => {
-        return acc + elemento.monto
-    }, 0)
 
-}
-//console.log(gananciasPorCategoria)
-console.log(gastosPorCategoria)
+  const sumarTotales = totalGananciasPorCategoria - totalGastosPorCategoria
+     
+
+html = html +  `<div class="columns">
+                                    <div class="column is-3 has-text-weight-semibold">${categoriasSolas}</div>
+                                    <div class="column is-3 has-text-success has-text-right">+${totalGananciasPorCategoria}</div>
+                                    <div class="column is-3 has-text-danger  has-text-right">-${totalGastosPorCategoria}</div>
+                                    <div class="column is-3 has-text-right">${sumarTotales}</div>
+
+                                </div>`
+ reportesDatosTotalesCategorias.innerHTML = html
+console.log(reportesDatosTotalesCategorias)
+  }
+
+//     console.log(totalGananciasPorCategoria)
+// console.log(gananciasPorCategoria)
+//     console.log(gastosPorCategoria)
+
+
