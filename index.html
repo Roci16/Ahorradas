@@ -78,9 +78,9 @@
                                 <label class="label" for="select-tipo">Tipo</label>
                                 <div class="select is-fullwidth ">
                                     <select id="select-tipo">
-                                         <option>Todos</option>
-                                         <option>Gasto</option>
-                                         <option>Ganancia</option>
+                                        <option>Todos</option>
+                                        <option>Gasto</option>
+                                        <option>Ganancia</option>
                                     </select>
                                 </div>
                             </div>
@@ -90,13 +90,13 @@
                                 <label class="label" for="select-categoria">Categoría</label>
                                 <div class="select is-fullwidth  ">
                                     <select id="select-categoria">
-                                         <option>Todos</option>
-                                         <option>Comida</option>
-                                         <option>Servicios</option>
-                                         <option>Salidas</option>
-                                         <option>Educación</option>
-                                         <option>Transporte</option>
-                                         <option>Trabajo</option>
+                                        <option>Todos</option>
+                                        <option>Comida</option>
+                                        <option>Servicios</option>
+                                        <option>Salidas</option>
+                                        <option>Educación</option>
+                                        <option>Transporte</option>
+                                        <option>Trabajo</option>
                                     </select>
                                 </div>
                             </div>
@@ -115,12 +115,12 @@
                                 <label class="label" for="select-odenar">Categoría</label>
                                 <div class="select is-fullwidth  ">
                                     <select id="select-ordenar">
-                                         <option>Más reciente</option>
-                                         <option>Menos reciente</option>
-                                         <option>Mayor monto</option>
-                                         <option>Menor monto</option>
-                                         <option>A/Z</option>
-                                         <option>Z/A</option>
+                                        <option>Más reciente</option>
+                                        <option>Menos reciente</option>
+                                        <option>Mayor monto</option>
+                                        <option>Menor monto</option>
+                                        <option>A/Z</option>
+                                        <option>Z/A</option>
                                     </select>
                                 </div>
                             </div>
@@ -143,7 +143,7 @@
                             <!-- Funcion de lo que aparece cuando se agrega una operacion -->
                             <!-- <div class=" column">
                                 <div class="columns">
-                                    <div class="column">Descropción</div>
+                                    <div class="column">Descripción</div>
                                     <div class="column is-1 has-text-centered">Categoría</div>
                                     <div class="column  has-text-centered">Fecha</div>
                                     <div class="column">Monto</div>
@@ -165,7 +165,8 @@
 
 
                         <div class="columns">
-                            <p class="column has-text-centered is-size-4 has-text-weight-semibold has-text-grey-dark">Sin resultados</p>
+                            <p class="column has-text-centered is-size-4 has-text-weight-semibold has-text-grey-dark">
+                                Sin resultados</p>
 
                         </div>
                         <div class="columns mb-6">
@@ -178,7 +179,7 @@
 
         </div>
     </section>
-    
+
     <!--Tarjeta de nueva operacion  -->
     <section id="accion-boton-nueva-operacion" class=" columns m-5 is-hidden">
         <div class="box column is-8 is-offset-2">
@@ -191,7 +192,7 @@
                     <input class="input" type="text" id="descripcion-nueva-operacion">
                 </div>
 
-            
+
                 <div class="field">
                     <label class="label" for="monto-nueva-operacion">Monto</label>
                     <input class="input" type="number" id="monto-nueva-operacion" value="0">
@@ -200,26 +201,28 @@
                 <div class="field">
                     <label class="label" for="select-tipo-nueva-operacion">Tipo</label>
                     <div class="select is-fullwidth ">
-                        <select id="select-tipo-nueva-operacion"> 
-                                         <option>Gasto</option>
-                                         <option>Ganancia</option>
-                                    </select>
+                        <select id="select-tipo-nueva-operacion">
+                            <option>Gasto</option>
+                            <option>Ganancia</option>
+                        </select>
                     </div>
                 </div>
 
                 <div class="field">
                     <label class="label" for="select-categoria-nueva-operacion">Categoría</label>
                     <div class="select is-fullwidth  ">
-                        <select id="select-categoria-nueva-operacion">                        
-                                                 <option>Comida</option>
-                                                 <option>Servicios</option>
-                                                 <option>Salidas</option>
-                                                 <option>Educación</option>
-                                                 <option>Transporte</option>
-                                                 <option>Trabajo</option>
-                                            </select>
+                        <select id="select-categoria-nueva-operacion">
+                            <option value="comida">comida</option>
+                            <option value="servicio">Servicio</option>
+                            <option value="salida">Salida</option>
+                            <option value="educacion">comida</option>
+                            <option value="trasporte">Transporte</option>
+                            <option value="trabajo">Trabajo</option>
+                        </select>
                     </div>
                 </div>
+
+                   
 
                 <div class="field">
                     <label class="label" for="date">Desde</label>
@@ -306,7 +309,8 @@
                 </div>
 
                 <div class="columns">
-                    <p class="column has-text-centered is-size-4 has-text-weight-semibold has-text-grey-dark">Operaciones insuficientes</p>
+                    <p class="column has-text-centered is-size-4 has-text-weight-semibold has-text-grey-dark">
+                        Operaciones insuficientes</p>
                 </div>
 
                 <div class="columns mb-6">
