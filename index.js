@@ -512,7 +512,7 @@ const aplicarFiltros = () => {
     })
 
     const arrayFiltradoPorFechas = filtradoPorCategoria.map((operacion) => { //filtro por fechas
-        const nuevoElemento = { ...operacion }
+        const nuevoElemento = {...operacion }
         nuevoElemento.fecha = new Date(operacion.fecha).toLocaleDateString()
         return nuevoElemento
     })
@@ -527,10 +527,10 @@ const aplicarFiltros = () => {
 // // evento cuando modifico categoria
 
 filtroTipo.onchange = () => {
-    const arrayFiltrado = aplicarFiltros()
-    mostrarOperacionesEnHTML(arrayFiltrado)
-}
-// evento cuando modifico tipo
+        const arrayFiltrado = aplicarFiltros()
+        mostrarOperacionesEnHTML(arrayFiltrado)
+    }
+    // evento cuando modifico tipo
 filtroCategorias.onchange = () => {
     const arrayFiltrado = aplicarFiltros()
     mostrarOperacionesEnHTML(arrayFiltrado)
@@ -659,29 +659,29 @@ const agregarCategoriasAHTML = () => {
 // aca empiezan las funciones de botones
 // BOTON EDITAR CATEGORIA
 const botonEditarSeccionOperaciones = () => {
-    formTarjetaEditarOperacion.classList.remove("is-hidden")
+        formTarjetaEditarOperacion.classList.remove("is-hidden")
 
-    const botonEditarOperaciones = document.querySelectorAll(".editar-operaciones")
+        const botonEditarOperaciones = document.querySelectorAll(".editar-operaciones")
 
-    for (let i = 0; i < botonEditarOperaciones.length; i++) {
-        botonEditarOperaciones[i].onclick = () => {
-            const idRecortado = botonEditarOperaciones[i].id.slice(19)
-            idDelBoton = Number(idRecortado)
-            console.log(idDelBoton);
+        for (let i = 0; i < botonEditarOperaciones.length; i++) {
+            botonEditarOperaciones[i].onclick = () => {
+                const idRecortado = botonEditarOperaciones[i].id.slice(19)
+                idDelBoton = Number(idRecortado)
+                console.log(idDelBoton);
 
-            tarjetaEditarOperacionEditar(idDelBoton)
-            ocultarSecciones()
+                tarjetaEditarOperacionEditar(idDelBoton)
+                ocultarSecciones()
+            }
         }
-    }
 
-}
-// const crearBotonesEditar = () => {
-//     const botonesEditar = document.querySelectorAll('.boton-editar');
-//     for (let i = 0; i < botonesEditar.length; i++) {
-//       botonesEditar[i].onclick = () => {
-//         const idRecortado = botonesEditar[i].id.slice(13)
-//         idDelBoton = Number(idRecortado);
-//         console.log(idDelBoton);
+    }
+    // const crearBotonesEditar = () => {
+    //     const botonesEditar = document.querySelectorAll('.boton-editar');
+    //     for (let i = 0; i < botonesEditar.length; i++) {
+    //       botonesEditar[i].onclick = () => {
+    //         const idRecortado = botonesEditar[i].id.slice(13)
+    //         idDelBoton = Number(idRecortado);
+    //         console.log(idDelBoton);
 
 //         crearFormularioEditar(idDelBoton)
 //       };
@@ -773,7 +773,7 @@ const tarjetaEditarOperacionEditar = (idDelBoton) => {
 
         const valorMonto = Number(inputMonto.value)
         const valorDescripcion = inputDescripcion.value
-        // const valorTipo = 
+            // const valorTipo = 
         objeto.monto = valorMonto
         objeto.descripcion = valorDescripcion
 
@@ -816,12 +816,12 @@ const botonEditarSeccionCategoria = () => {
     }
 }
 const botonCancelarDentroCategoria = () => {
-    const botonCancelarCategoriaEditada = document.querySelector(".boton-cancelar-categoria-editada")
-    botonCancelarCategoriaEditada.onclick = () => {
-        ocultarSeccionesCategoria()
+        const botonCancelarCategoriaEditada = document.querySelector(".boton-cancelar-categoria-editada")
+        botonCancelarCategoriaEditada.onclick = () => {
+            ocultarSeccionesCategoria()
+        }
     }
-}
-// funcion auxiliar ocultar secciones- categoria 
+    // funcion auxiliar ocultar secciones- categoria 
 const ocultarSeccionesCategoria = () => {
 
     seccionCategorias.classList.toggle("is-hidden")
@@ -910,28 +910,28 @@ console.log("MAYOR GASTO", categoriaConMayorGasto(operaciones), montoMayorGasto(
 const contenedorReportes = () => {
 
     const seccionResumenReportes = document.querySelector(".resumen")
-    seccionResumenReportes.innerHTML = `<div class="columns">
+    seccionResumenReportes.innerHTML = `<div class="columns  is-mobile">
 
         <div class="column is-6 has-text-weight-semibold">Categoría con mayor ganancia</div>
         <div class="column mt-3 is-1 has-text-right tag is-primary is-light">${categoriaConMayorGanancia(operaciones)}</div>
         <div class="column is-4 has-text-right has-text-success has-text-weight-semibold">+$${montoMayorGanancia(operaciones)}</div>  
     </div>
-    <div class="columns">
+    <div class="columns  is-mobile">
         <div class="column is-6 has-text-weight-semibold">Categoría con mayor gasto</div>
         <div class="column mt-3 is-1 has-text-right tag is-primary is-light">${categoriaConMayorGasto(operaciones)}</div>
         <div class="column is-4  has-text-right has-text-danger has-text-weight-semibold">-$${montoMayorGasto(operaciones)}</div>  
     </div>
-    <div class="columns">
+    <div class="columns  is-mobile">
         <div class="column is-6 has-text-weight-semibold">Categoría con mayor balance</div>
         <div class="column mt-3 is-1 has-text-right tag is-primary is-light">${categoriaConMayorGanancia(operaciones)}</div>
         <div class="column  is-4 has-text-right has-text-weight-semibold">$${montoMayorGanancia(operaciones)}</div>  
     </div>
-    <div class="columns">
+    <div class="columns  is-mobile">
         <div class="column is-6 has-text-weight-semibold">Mes con mayor ganancia</div>
         <div class="column is-1 has-text-right">Fecha</div>
         <div class="column is-4  has-text-right has-text-success has-text-weight-semibold">$${montoMayorGanancia(operaciones)}</div>  
     </div>
-    <div class="columns">
+    <div class="columns  is-mobile">
         <div class="column is-6 has-text-weight-semibold">Mes con mayor gasto</div>
         <div class="column is-1 has-text-right">Fecha</div>
         <div class="column is-4 has-text-right has-text-danger has-text-weight-semibold">-$${montoMayorGasto(operaciones)}</div>  
@@ -986,7 +986,7 @@ const categoriasSinRepetir = todasLasCategorias.filter((elemento, index) => {
 
 //array vacio
 let arrayOperacionPorCategoria = []
-// aca creo la matriz de categorias, por cada categoria se crea un array vacio
+    // aca creo la matriz de categorias, por cada categoria se crea un array vacio
 categoriasSinRepetir.map((categoria) => {
     arrayOperacionPorCategoria.push([])
 });
@@ -1012,8 +1012,7 @@ for (let i = 0; i < arrayOperacionPorCategoria.length; i++) {
         if (arrayOperacionPorCategoria[i][j].tipo === "gastos") {
             gastosPorCategoria.push(arrayOperacionPorCategoria[i][j])
 
-        }
-        else {
+        } else {
             gananciasPorCategoria.push(arrayOperacionPorCategoria[i][j])
 
         }
@@ -1041,11 +1040,11 @@ const totalGananciasPorCategoria = gananciasPorCategoria.reduce((acc,elemento)=>
     const sumarTotales = totalGananciasPorCategoria - totalGastosPorCategoria
 
 
-    html = html + `<div class="columns">
-                                    <div class="column is-3 has-text-weight-semibold">${categoriasSolas}</div>
-                                    <div class="column is-3 has-text-success has-text-right">+${totalGananciasPorCategoria}</div>
-                                    <div class="column is-3 has-text-danger  has-text-right">-${totalGastosPorCategoria}</div>
-                                    <div class="column is-3 has-text-right">${sumarTotales}</div>
+    html = html + `<div class="columns  is-mobile">
+                                    <div class="column  has-text-weight-semibold">${categoriasSolas}</div>
+                                    <div class="column  has-text-success has-text-right">+${totalGananciasPorCategoria}</div>
+                                    <div class="column  has-text-danger  has-text-right">-${totalGastosPorCategoria}</div>
+                                    <div class="column  has-text-right">${sumarTotales}</div>
 
                                 </div>`
     reportesDatosTotalesCategorias.innerHTML = html
@@ -1054,6 +1053,7 @@ const totalGananciasPorCategoria = gananciasPorCategoria.reduce((acc,elemento)=>
 
 //     console.log(totalGananciasPorCategoria)
 // console.log(gananciasPorCategoria)
+
 //     console.log(gastosPorCategoria)
 
 
@@ -1061,4 +1061,5 @@ const totalGananciasPorCategoria = gananciasPorCategoria.reduce((acc,elemento)=>
 //     let numeroMontoGastos = Number(elemento.monto)
 //     return acc + numeroMontoGastos
 // }, 0)
+
 
