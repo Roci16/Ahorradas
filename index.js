@@ -264,6 +264,18 @@ const mostrarOperacionesEnHTML = (array) => {
             mostrarOperacionesEnHTML(filtrarOperaciones)
         }
     }
+    // aparece la imagen cuando no hay operaciones
+    const sinOperaciones =()=>{
+        if (operaciones.length === 0) {
+            tarjetaSinOperaciones.classList.remove('is-hidden')
+            contenedorOperacionesAgregadas.classList.add('is-hidden')
+            return
+        }else{
+            contenedorOperacionesAgregadas.classList.remove('is-hidden')
+            tarjetaSinOperaciones.classList.add('is-hidden')
+        }
+    }
+    sinOperaciones()
 }
 
 
@@ -292,7 +304,6 @@ botonAgregarOperacion.onclick = () => {
         monto: valorInputMontoNuevaOperacion,
         tipo: valorOpcionTipoNuevaOperacion,
     }
-
     operaciones.push(operacion)
     funcionOperacionesLS(operaciones)
     mostrarOperacionesEnHTML(operaciones)
@@ -301,15 +312,11 @@ botonAgregarOperacion.onclick = () => {
     valorOpcionCategoriaNuevaOperacion.value = ""
     valorInputDateNuevaOperacion.value = ""
     valorOpcionTipoNuevaOperacion.value = ""
-
-
-
+    
 }
 
 operaciones = operacionesObtenidas()
 mostrarOperacionesEnHTML(operaciones)
-
-
 
 //--------Balances-----------
 //---------- Funcion mostrar suma total de ganancias en la seccion balances-----
@@ -318,13 +325,11 @@ const mostrarGananciasEnBalances = (array) => {
         return elemento.tipo === "Ganancia"
     })
 
-
     const sumarGanancias = gananciasFiltradas.reduce((acc, elemento) => {
         return acc + elemento.monto
     }, "")
 
     return balancesSumaGanancias.textContent = sumarGanancias
-    
 }
 mostrarGananciasEnBalances(operaciones)
 
@@ -507,9 +512,7 @@ let funcionLS = (elemento) => {
         const categoriasAJSON = JSON.stringify(elemento)
         localStorage.setItem("categorias", categoriasAJSON)
 
-    }
-    //     ////////////////////////////// 
-
+}
 const adicionDeNuevasCategoriasSelect = () => {
     const categorias = categoriasObtenidas()
     const selectCategoria = document.getElementById("select-categoria")
@@ -522,8 +525,6 @@ const adicionDeNuevasCategoriasSelect = () => {
     selectCategoria.innerHTML = stringCategoriasIniciadoras
     selectCategoriaNuevaOperacion.innerHTML = stringCategoriasIniciadoras
 }
-
-
 
 const agregarCategoriasAHTML = () => {
     const categorias = categoriasObtenidas()
@@ -542,7 +543,6 @@ const agregarCategoriasAHTML = () => {
           </div>
       </div>`
     }, "")
-
 
     lista.innerHTML = stringCategoriasIniciadoras
 
@@ -565,6 +565,8 @@ const agregarCategoriasAHTML = () => {
     botonEditarSeccionCategoria()
 
 }
+
+
 
 // aca empiezan las funciones de botones
 // BOTON EDITAR CATEGORIA
@@ -738,16 +740,16 @@ botonAgregarCategoria.onclick = () => {
 //                      SECCION REPORTES 
 //----------------------------------------------------------------------------
 //funcion para que aparezca reportes una vez que tenga mas de 2 operaciones en localS
- const aparicionReporte = (operaciones) =>{
-      if(operaciones.length > 2){ 
-        panelEstadisticasReportes.classList.remove("is-hidden")
-      }
-      else{
-        reportesSinOperaciones.classList.remove("is-hidden")
-      }
+//  const aparicionReporte = (operaciones) =>{
+//       if(operaciones.length > 2){ 
+//         panelEstadisticasReportes.classList.remove("is-hidden")
+//       }
+//       else{
+//         reportesSinOperaciones.classList.remove("is-hidden")
+//       }
     
-}
-aparicionReporte(operaciones)
+// }
+// aparicionReporte(operaciones)
 
 //----------------------------------------------------------------------------
 //                       REPORTES RESUMEN
@@ -811,8 +813,7 @@ console.log("MAYOR GASTO", categoriaConMayorGasto(operaciones), montoMayorGasto(
 // FUNCION REPORTES RESUMEN
 
 const contenedorReportes = () => {
-
-
+    const seccionResumenReportes = document.querySelector(".seccion-reportes")
     seccionResumenReportes.innerHTML = ` <div class="columns">
 
         <div class="column is-6 has-text-weight-semibold">Categoría con mayor ganancia</div>
