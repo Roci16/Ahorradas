@@ -213,12 +213,12 @@ const operacionesObtenidas = () => {
 
 let funcionOperacionesLS = (elemento) => {
 
-        const operacionesAJSON = JSON.stringify(elemento)
-        localStorage.setItem("operaciones", operacionesAJSON)
+    const operacionesAJSON = JSON.stringify(elemento)
+    localStorage.setItem("operaciones", operacionesAJSON)
 
-    }
+}
 
-    ////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////
 
 //--------Balances-----------
 //---------- Funcion mostrar suma total de ganancias en la seccion balances-----
@@ -315,23 +315,21 @@ const mostrarOperacionesEnHTML = (array) => {
             acc +
             `
 
-      <div class="fila columns  is-mobile is-multiline">
-      <div class="column is-3 has-text-weight-semibold ">
+      <div class="fila columns is-mobile is-multiline">
+      <div class="column  has-text-weight-semibold ">
         <p>${operacion.descripcion}</p>
         </div>
-        <div class="column is-1">
-        <p>${operacion.categoria}</p>
+        <div class="column is-2-tablet is-6-mobile has-text-right-mobile">
+        <p class="tag is-primary is-light">${operacion.categoria}</p>
         </div>
-        <div class="column is-3 has-text-right">
+        <div class="column  has-text-left is-hidden-mobile">
         <p>${operacion.fecha}</p>
         </div>
-        <div class="column is-1 has-text-right">
-        <p class="${operacion.tipo === "ganancias" ? "has-text-success" : "has-text-danger"}">$${operacion.monto}</p>
+        <div class="column  is-6-mobile is-size-4-mobile">
+        <p class=" ${operacion.tipo === "ganancias" ? "has-text-success" : "has-text-danger"}">$${operacion.monto}</p>
         </div>
-        <div class="column is-4 has-text-right">
-
+        <div class="column is-6-mobile has-text-right">
         <button id="editar-operaciones-${index}" class="button is-info is-inverted editar-operaciones">Editar</button>
-
         <button id="borrar-${index}"  class="boton-borrar-operacion button is-info is-inverted ">Eliminar</button>
         </div>
       </div>
@@ -596,8 +594,8 @@ const categoriasObtenidas = () => {
     }
 }
 let funcionLS = (elemento) => {
-        const categoriasAJSON = JSON.stringify(elemento)
-        localStorage.setItem("categorias", categoriasAJSON)
+    const categoriasAJSON = JSON.stringify(elemento)
+    localStorage.setItem("categorias", categoriasAJSON)
 
 
 }
@@ -623,9 +621,9 @@ const agregarCategoriasAHTML = () => {
 
     const stringCategoriasIniciadoras = categorias.reduce((acc, elemento, index) => {
 
-        return acc + ` <div class=" columns">
+        return acc + ` <div class=" columns is-mobile">
              <div class="column">
-                  <span  id="nombre-categoria-${index}" class="nombre-categoria has-background-success-light has-text-success-dark">${elemento}</span>
+                  <span  id="nombre-categoria-${index}" class="nombre-categoria tag is-primary is-light">${elemento}</span>
              </div>
           <div class="column has-text-right">
                   <button id="editar-categoria-${index}" class="button is-info is-inverted boton-editar-categoria">Editar</button>
@@ -649,6 +647,7 @@ const agregarCategoriasAHTML = () => {
             })
 
             funcionLS(nuevasCategoriasFiltradas)
+
             agregarCategoriasAHTML()
             adicionDeNuevasCategoriasSelect()
         }
@@ -676,15 +675,15 @@ const botonEditarSeccionOperaciones = () => {
             }
         }
 
-}
-// const crearBotonesEditar = () => {
-//     const botonesEditar = document.querySelectorAll('.boton-editar');
-//     for (let i = 0; i < botonesEditar.length; i++) {
-//       botonesEditar[i].onclick = () => {
-//         const idRecortado = botonesEditar[i].id.slice(13)
-//         idDelBoton = Number(idRecortado);
-//         console.log(idDelBoton);
-  
+    }
+    // const crearBotonesEditar = () => {
+    //     const botonesEditar = document.querySelectorAll('.boton-editar');
+    //     for (let i = 0; i < botonesEditar.length; i++) {
+    //       botonesEditar[i].onclick = () => {
+    //         const idRecortado = botonesEditar[i].id.slice(13)
+    //         idDelBoton = Number(idRecortado);
+    //         console.log(idDelBoton);
+
 //         crearFormularioEditar(idDelBoton)
 //       };
 //     }
@@ -1053,6 +1052,7 @@ const totalGananciasPorCategoria = gananciasPorCategoria.reduce((acc,elemento)=>
     return acc + elemento.monto
     }, 0)
 
+
   const sumarTotales = totalGananciasPorCategoria - totalGastosPorCategoria
      
 
@@ -1070,4 +1070,5 @@ console.log(reportesDatosTotalesCategorias)
 //     console.log(totalGananciasPorCategoria)
 // console.log(gananciasPorCategoria)
 //     console.log(gastosPorCategoria)
+
 
