@@ -842,7 +842,7 @@ const aparicionReporte = (operaciones) => {
     } else {
         reportesSinOperaciones.classList.remove("is-hidden")
     }
-
+   
 }
 aparicionReporte(operaciones)
 
@@ -873,7 +873,7 @@ const categoriaConMayorGanancia = (array) => {
     }, 0)
     return filtrarCategoria
 }
-console.log("MAYOR GANANCIA", categoriaConMayorGanancia(operaciones), montoMayorGanancia(operaciones))
+
 
 
 
@@ -1017,19 +1017,23 @@ for (let i = 0; i < arrayOperacionPorCategoria.length; i++) {
 
         }
     }
+console.log(categoriasSinRepetir)
 
 
-    const categoriasSolas = categoriasSinRepetir.reduce((acc, elemento) => {
-        return elemento
-    })
-    console.log(categoriasSolas)
-    const totalGastosPorCategoria = gastosPorCategoria.reduce((acc, elemento) => {
+   const categoriasSolas = categoriasSinRepetir.reduce((acc,elemento)=>{
+       return elemento
+   },"")
+  console.log(categoriasSolas)
 
-        return acc + elemento.monto
-    }, 0)
+ const totalGastosPorCategoria = gastosPorCategoria.reduce((acc,elemento)=>{
+        let gastosMonto = Number(elemento.monto)
+    return acc + gastosMonto
+}, 0)
 
-    const totalGananciasPorCategoria = gananciasPorCategoria.reduce((acc, elemento) => {
-        return acc + elemento.monto
+const totalGananciasPorCategoria = gananciasPorCategoria.reduce((acc,elemento)=>{
+    let gananciasMonto = Number(elemento.monto)
+    return acc + gananciasMonto
+
     }, 0)
 
 
@@ -1049,4 +1053,13 @@ for (let i = 0; i < arrayOperacionPorCategoria.length; i++) {
 
 //     console.log(totalGananciasPorCategoria)
 // console.log(gananciasPorCategoria)
+
 //     console.log(gastosPorCategoria)
+
+
+// const sumarGastos = gastosFiltrados.reduce((acc, elemento) => {
+//     let numeroMontoGastos = Number(elemento.monto)
+//     return acc + numeroMontoGastos
+// }, 0)
+
+
