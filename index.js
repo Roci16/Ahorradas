@@ -689,7 +689,7 @@ const botonEditarSeccionCategoria = () => {
 
             botonEditarCategoriaEditada.onclick = () => {
                 ocultarSeccionesCategoria()
-                tarjetaEditarCategoria.classList.remove("is-hidden")
+
                 nombreCategoria[i].textContent = inputCategoriasNombreEditar.value
             }
             botonCancelarDentroCategoria()
@@ -717,6 +717,7 @@ adicionDeNuevasCategoriasSelect()
 
 
 botonAgregarCategoria.onclick = () => {
+    tarjetaEditarCategoria.classList.toggle("is-hidden")
     const valorInputCategoriaNuevo = inputCategoriaNuevoNombre.value
     const categorias = categoriasObtenidas()
     categorias.push(valorInputCategoriaNuevo)
