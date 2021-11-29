@@ -54,6 +54,10 @@ const reportesDatosTotalesMes = document.getElementById("datos-totales-por-mes")
 const navbarBurger = document.getElementById("navbar-burger")
 const navbarMenu = document.getElementById("navbarBasicExample")
 
+//----------------------------Editar-----------------------------------
+const formTarjetaEditarOperacion = document.querySelector(".form-tarjeta-editar-operacion")
+const tarjetaEditarCategoria = document.querySelector(".tarjeta-editar-categoria")
+
 
 // Navbar-Menu//Navbar-burger
 navbarBurger.onclick = () => {
@@ -317,7 +321,7 @@ const mostrarGananciasEnBalances = (array) => {
 
     const sumarGanancias = gananciasFiltradas.reduce((acc, elemento) => {
         return acc + elemento.monto
-    }, 0)
+    }, "")
 
     return balancesSumaGanancias.textContent = sumarGanancias
     
@@ -332,7 +336,7 @@ const mostrarGastosEnBalances = (array) => {
 
     const sumarGastos = gastosFiltrados.reduce((acc, elemento) => {
         return acc + elemento.monto
-    }, 0)
+    }, "")
 
     return balancesSumaGastos.textContent = sumarGastos
 }
@@ -343,7 +347,7 @@ const mostrarTotalEnBalances = (array) => {
     const resultadoFinalGanancias = mostrarGananciasEnBalances(array)
     const resultadoFinalGastos = mostrarGastosEnBalances(array)
     const resultadoFinal = resultadoFinalGanancias - resultadoFinalGastos
-    return balancesTotalFinal.textContent = resultadoFinal
+    return balancesTotalFinal.textContent = `$${resultadoFinal}`
 }
 mostrarTotalEnBalances(operaciones)
 
@@ -565,6 +569,7 @@ const agregarCategoriasAHTML = () => {
 // aca empiezan las funciones de botones
 // BOTON EDITAR CATEGORIA
 const botonEditarSeccionOperaciones = () => {
+        formTarjetaEditarOperacion.classList.remove("is-hidden")
         const botonEditarSeccionOperaciones = document.querySelectorAll(".boton-editar-seccion-operaciones")
         for (let i = 0; i < botonEditarSeccionOperaciones.length; i++) {
             botonEditarSeccionOperaciones[i].onclick = () => {
@@ -577,7 +582,7 @@ const botonEditarSeccionOperaciones = () => {
     }
     // TARJETA EDITAR CATEGORIA
 const tarjetaEditarOperacionEditar = (id) => {
-    const formTarjetaEditarOperacion = document.querySelector(".form-tarjeta-editar-operacion")
+
     operaciones = operacionesObtenidas()
     const objeto = operaciones[id]
 
@@ -657,7 +662,7 @@ const tarjetaEditarOperacionEditar = (id) => {
         objeto.descripcion = valorDescripcion
 
 
-        mostrarOperacionesEnHTML(operacion)
+        mostrarOperacionesEnHTML(operaciones)
         botonEditarSeccionOperaciones()
     }
 
@@ -676,6 +681,7 @@ const botonEditarSeccionCategoria = () => {
 
     for (let i = 0; i < botonEditarCategoria.length; i++) {
         botonEditarCategoria[i].onclick = () => {
+
             const botonEditarCategoriaEditada = document.querySelector(".boton-editar-categoria-editada")
             const nombreCategoria = document.querySelectorAll(".nombre-categoria")
             const inputCategoriasNombreEditar = document.querySelector(".input-categorias-nombre-editar")
@@ -701,7 +707,7 @@ const botonCancelarDentroCategoria = () => {
     }
     // funcion auxiliar ocultar secciones- categoria 
 const ocultarSeccionesCategoria = () => {
-    const tarjetaEditarCategoria = document.querySelector(".tarjeta-editar-categoria")
+
     seccionCategorias.classList.toggle("is-hidden")
     tarjetaEditarCategoria.classList.toggle("is-hidden")
 }
@@ -713,6 +719,7 @@ adicionDeNuevasCategoriasSelect()
 
 
 botonAgregarCategoria.onclick = () => {
+    tarjetaEditarCategoria.classList.add("is-hidden")
     const valorInputCategoriaNuevo = inputCategoriaNuevoNombre.value
     const categorias = categoriasObtenidas()
     categorias.push(valorInputCategoriaNuevo)
