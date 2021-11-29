@@ -215,6 +215,19 @@ let funcionOperacionesLS = (elemento) => {
 
     }
     ////////////////////////////// 
+const sinOperaciones = (array) => {
+    if (array.length === 0) {
+        tarjetaSinOperaciones.classList.remove("is-hidden")
+        tarjetaOperacionesAgregadas.classList.add("is-hidden")
+        contenedorOperacionesAgregadas.classList.add("is-hidden")
+
+    } else {
+        tarjetaSinOperaciones.classList.add("is-hidden")
+        tarjetaOperacionesAgregadas.classList.remove("is-hidden")
+        contenedorOperacionesAgregadas.classList.remove("is-hidden")
+    }
+}
+sinOperaciones(operaciones)
 
 
 const mostrarOperacionesEnHTML = (array) => {
@@ -226,8 +239,8 @@ const mostrarOperacionesEnHTML = (array) => {
         return (
             acc +
             `
-      <div class="fila columns">
-      <div class="column is-3 has-text-weight-semibold">
+      <div class="fila columns  is-mobile is-multiline">
+      <div class="column is-3 has-text-weight-semibold ">
         <p>${operacion.descripcion}</p>
         </div>
         <div class="column is-1">
@@ -264,6 +277,7 @@ const mostrarOperacionesEnHTML = (array) => {
             mostrarOperacionesEnHTML(filtrarOperaciones)
         }
     }
+    sinOperaciones(operaciones)
 }
 
 
@@ -321,10 +335,10 @@ const mostrarGananciasEnBalances = (array) => {
 
     const sumarGanancias = gananciasFiltradas.reduce((acc, elemento) => {
         return acc + elemento.monto
-    }, "")
+    }, 0)
 
     return balancesSumaGanancias.textContent = sumarGanancias
-    
+
 }
 mostrarGananciasEnBalances(operaciones)
 
@@ -336,7 +350,7 @@ const mostrarGastosEnBalances = (array) => {
 
     const sumarGastos = gastosFiltrados.reduce((acc, elemento) => {
         return acc + elemento.monto
-    }, "")
+    }, 0)
 
     return balancesSumaGastos.textContent = sumarGastos
 }
@@ -738,14 +752,13 @@ botonAgregarCategoria.onclick = () => {
 //                      SECCION REPORTES 
 //----------------------------------------------------------------------------
 //funcion para que aparezca reportes una vez que tenga mas de 2 operaciones en localS
- const aparicionReporte = (operaciones) =>{
-      if(operaciones.length > 2){ 
+const aparicionReporte = (operaciones) => {
+    if (operaciones.length > 2) {
         panelEstadisticasReportes.classList.remove("is-hidden")
-      }
-      else{
+    } else {
         reportesSinOperaciones.classList.remove("is-hidden")
-      }
-    
+    }
+
 }
 aparicionReporte(operaciones)
 
@@ -892,7 +905,7 @@ categoriasSinRepetir.map((categoria) => {
 });
 
 console.log(arrayOperacionPorCategoria)
-//aca relleno cada array con los datos de esas categorias
+    //aca relleno cada array con los datos de esas categorias
 
 operaciones.map((operacion) => {
     const indiceCategoria = categoriasSinRepetir.indexOf(operacion.categoria)
@@ -904,33 +917,32 @@ operaciones.map((operacion) => {
 let gananciasPorcategoria = []
 let gastosPorCategoria = []
 
-for(let i = 0; i < arrayOperacionPorCategoria.length; i++){
+for (let i = 0; i < arrayOperacionPorCategoria.length; i++) {
     let gananciasPorCategoria = []
     let gastosPorCategoria = []
-    for(let j = 0; j < arrayOperacionPorCategoria[i].length; j++){
+    for (let j = 0; j < arrayOperacionPorCategoria[i].length; j++) {
         if (arrayOperacionPorCategoria[i][j].tipo === "gastos") {
             gastosPorCategoria.push(arrayOperacionPorCategoria[i][j])
-         }
-      else{
+        } else {
             gananciasPorCategoria.push(arrayOperacionPorCategoria[i][j])
-             console.log(gananciasPorCategoria)
+            console.log(gananciasPorCategoria)
         }
     }
-  
-   console.log(gastosPorCategoria)
-   // SEGUI CODEANDO ACA 
-   // EN LOS DOS ARRAYS DE ARRIBA TENES LAS OPERACIONES SEPARADAS POR GANANCIA Y GASTO 
-  // HAY QUE ENCONTRAR LA SUMA DE TODAS ELLAS 
 
-//esto iría adentro del for?
- gastosPorCategoria.reduce((acc,elemento)=>{
-return acc + elemento.monto
-}, 0)
+    console.log(gastosPorCategoria)
+        // SEGUI CODEANDO ACA 
+        // EN LOS DOS ARRAYS DE ARRIBA TENES LAS OPERACIONES SEPARADAS POR GANANCIA Y GASTO 
+        // HAY QUE ENCONTRAR LA SUMA DE TODAS ELLAS 
 
-gananciasPorCategoria.reduce((acc,elemento)=>{
-    return acc + elemento.monto
+    //esto iría adentro del for?
+    gastosPorCategoria.reduce((acc, elemento) => {
+        return acc + elemento.monto
+    }, 0)
+
+    gananciasPorCategoria.reduce((acc, elemento) => {
+        return acc + elemento.monto
     }, 0)
 
 }
-    //console.log(gananciasPorCategoria)
-    console.log(gastosPorCategoria)
+//console.log(gananciasPorCategoria)
+console.log(gastosPorCategoria)
