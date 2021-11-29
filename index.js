@@ -659,7 +659,7 @@ const tarjetaEditarOperacionEditar = (id) => {
         objeto.descripcion = valorDescripcion
 
 
-        mostrarOperacionesEnHTML(operacion)
+        mostrarOperacionesEnHTML(operaciones)
         botonEditarSeccionOperaciones()
     }
 
