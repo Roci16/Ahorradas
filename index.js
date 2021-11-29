@@ -891,7 +891,6 @@ operaciones.map((operacion) => {
 })
 
 
-
 let gananciasPorcategoria = []
 let gastosPorCategoria = []
 
@@ -902,18 +901,14 @@ for(let i = 0; i < arrayOperacionPorCategoria.length; i++){
         if (arrayOperacionPorCategoria[i][j].tipo === "gastos") {
             gastosPorCategoria.push(arrayOperacionPorCategoria[i][j])
          }
-      else{
+      else {
             gananciasPorCategoria.push(arrayOperacionPorCategoria[i][j])
-             console.log(gananciasPorCategoria)
+            
         }
     }
-  
+   console.log(gananciasPorCategoria)
    console.log(gastosPorCategoria)
-   // SEGUI CODEANDO ACA 
-   // EN LOS DOS ARRAYS DE ARRIBA TENES LAS OPERACIONES SEPARADAS POR GANANCIA Y GASTO 
-  // HAY QUE ENCONTRAR LA SUMA DE TODAS ELLAS 
-
-//esto iría adentro del for?
+  
  gastosPorCategoria.reduce((acc,elemento)=>{
 return acc + elemento.monto
 }, 0)
@@ -923,5 +918,7 @@ gananciasPorCategoria.reduce((acc,elemento)=>{
     }, 0)
 
 }
-    //console.log(gananciasPorCategoria)
+
+
+    console.log(gananciasPorCategoria)
     console.log(gastosPorCategoria)
