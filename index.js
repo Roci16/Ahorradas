@@ -233,7 +233,7 @@ const mostrarOperacionesEnHTML = (array) => {
         <p>${operacion.fecha}</p>
         </div>
         <div class="column is-1 has-text-right">
-        <p>${operacion.monto}</p>
+        <p class="${operacion.tipo === "ganancias" ? "has-text-success" : "has-text-danger"}">$${operacion.monto}</p>
         </div>
         <div class="column is-4 has-text-right">
         <button id="editar-categoria-${index}" class="button is-info is-inverted boton-editar-seccion-operaciones ">Editar</button>
@@ -805,7 +805,9 @@ console.log("MAYOR GASTO", categoriaConMayorGasto(operaciones), montoMayorGasto(
 
 const contenedorReportes = () => {
 
+
     seccionResumenReportes.innerHTML = ` <div class="columns">
+
         <div class="column is-6 has-text-weight-semibold">Categoría con mayor ganancia</div>
         <div class="column mt-3 is-1 has-text-right tag is-primary is-light">${categoriaConMayorGanancia(operaciones)}</div>
         <div class="column is-4 has-text-right has-text-success has-text-weight-semibold">+$${montoMayorGanancia(operaciones)}</div>  
