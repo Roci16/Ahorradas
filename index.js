@@ -328,7 +328,7 @@ const mostrarOperacionesEnHTML = (array) => {
         <div class="column  is-6-mobile is-size-4-mobile">
         <p class=" ${operacion.tipo === "ganancias" ? "has-text-success" : "has-text-danger"}">$${operacion.monto}</p>
         </div>
-        <div class="column  has-text-right">
+        <div class="column is-6-mobile has-text-right">
         <button id="editar-operaciones-${index}" class="button is-info is-inverted editar-operaciones">Editar</button>
         <button id="borrar-${index}"  class="boton-borrar-operacion button is-info is-inverted ">Eliminar</button>
         </div>
@@ -621,9 +621,9 @@ const agregarCategoriasAHTML = () => {
 
     const stringCategoriasIniciadoras = categorias.reduce((acc, elemento, index) => {
 
-        return acc + ` <div class=" columns">
+        return acc + ` <div class=" columns is-mobile">
              <div class="column">
-                  <span  id="nombre-categoria-${index}" class="nombre-categoria has-background-success-light has-text-success-dark">${elemento}</span>
+                  <span  id="nombre-categoria-${index}" class="nombre-categoria tag is-primary is-light">${elemento}</span>
              </div>
           <div class="column has-text-right">
                   <button id="editar-categoria-${index}" class="button is-info is-inverted boton-editar-categoria">Editar</button>
