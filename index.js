@@ -891,9 +891,7 @@ operaciones.map((operacion) => {
 })
 
 
-let gananciasPorcategoria = []
-let gastosPorCategoria = []
-
+let html = ""
 for(let i = 0; i < arrayOperacionPorCategoria.length; i++){
     let gananciasPorCategoria = []
     let gastosPorCategoria = []
@@ -909,16 +907,19 @@ for(let i = 0; i < arrayOperacionPorCategoria.length; i++){
    console.log(gananciasPorCategoria)
    console.log(gastosPorCategoria)
   
- gastosPorCategoria.reduce((acc,elemento)=>{
+ const totalGastosPorCategoria = gastosPorCategoria.reduce((acc,elemento)=>{
 return acc + elemento.monto
 }, 0)
 
-gananciasPorCategoria.reduce((acc,elemento)=>{
+const totalGananciasPorCategoria = gananciasPorCategoria.reduce((acc,elemento)=>{
     return acc + elemento.monto
     }, 0)
 
+    console.log(totalGastosPorCategoria)
+    console.log(totalGananciasPorCategoria)
 }
 
-
-    console.log(gananciasPorCategoria)
+console.log(gananciasPorCategoria)
     console.log(gastosPorCategoria)
+
+   
