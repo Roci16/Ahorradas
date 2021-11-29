@@ -215,6 +215,19 @@ let funcionOperacionesLS = (elemento) => {
 
     }
     ////////////////////////////// 
+const sinOperaciones = (array) => {
+    if (array.length === 0) {
+        tarjetaSinOperaciones.classList.remove("is-hidden")
+        tarjetaOperacionesAgregadas.classList.add("is-hidden")
+        contenedorOperacionesAgregadas.classList.add("is-hidden")
+
+    } else {
+        tarjetaSinOperaciones.classList.add("is-hidden")
+        tarjetaOperacionesAgregadas.classList.remove("is-hidden")
+        contenedorOperacionesAgregadas.classList.remove("is-hidden")
+    }
+}
+sinOperaciones(operaciones)
 
 
 const mostrarOperacionesEnHTML = (array) => {
@@ -264,6 +277,7 @@ const mostrarOperacionesEnHTML = (array) => {
             mostrarOperacionesEnHTML(filtrarOperaciones)
         }
     }
+    sinOperaciones(operaciones)
 }
 
 
@@ -321,7 +335,7 @@ const mostrarGananciasEnBalances = (array) => {
 
     const sumarGanancias = gananciasFiltradas.reduce((acc, elemento) => {
         return acc + elemento.monto
-    }, "0")
+    }, 0)
 
     return balancesSumaGanancias.textContent = sumarGanancias
 
@@ -336,7 +350,7 @@ const mostrarGastosEnBalances = (array) => {
 
     const sumarGastos = gastosFiltrados.reduce((acc, elemento) => {
         return acc + elemento.monto
-    }, "0")
+    }, 0)
 
     return balancesSumaGastos.textContent = sumarGastos
 }
