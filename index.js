@@ -1038,19 +1038,21 @@ for(let i = 0; i < arrayOperacionPorCategoria.length; i++){
             
         }
     }
-
+console.log(categoriasSinRepetir)
 
    const categoriasSolas = categoriasSinRepetir.reduce((acc,elemento)=>{
-       return   elemento
-   },)
+       return elemento
+   },"")
   console.log(categoriasSolas)
+
  const totalGastosPorCategoria = gastosPorCategoria.reduce((acc,elemento)=>{
         let gastosMonto = Number(elemento.monto)
     return acc + gastosMonto
 }, 0)
 
 const totalGananciasPorCategoria = gananciasPorCategoria.reduce((acc,elemento)=>{
-    return acc + elemento.monto
+    let gananciasMonto = Number(elemento.monto)
+    return acc + gananciasMonto
     }, 0)
 
   const sumarTotales = totalGananciasPorCategoria - totalGastosPorCategoria
