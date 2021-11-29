@@ -689,8 +689,6 @@ const ocultarSeccionesCategoria = () => {
 }
 
 
-
-
 //----------------------------------------------------------------------------
 //                      SECCION REPORTES 
 //----------------------------------------------------------------------------
@@ -733,8 +731,6 @@ const categoriaConMayorGanancia = (array) => {
     }, 0)
     return filtrarCategoria
 }
-
-
 
 
 // FUNCION AUXILIAR "categoria con mayor gasto"
