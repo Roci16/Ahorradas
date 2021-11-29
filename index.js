@@ -1045,8 +1045,8 @@ for(let i = 0; i < arrayOperacionPorCategoria.length; i++){
    },)
   console.log(categoriasSolas)
  const totalGastosPorCategoria = gastosPorCategoria.reduce((acc,elemento)=>{
-        
-    return acc + elemento.monto
+        let gastosMonto = Number(elemento.monto)
+    return acc + gastosMonto
 }, 0)
 
 const totalGananciasPorCategoria = gananciasPorCategoria.reduce((acc,elemento)=>{
@@ -1071,3 +1071,7 @@ console.log(reportesDatosTotalesCategorias)
 // console.log(gananciasPorCategoria)
 //     console.log(gastosPorCategoria)
 
+// const sumarGastos = gastosFiltrados.reduce((acc, elemento) => {
+//     let numeroMontoGastos = Number(elemento.monto)
+//     return acc + numeroMontoGastos
+// }, 0)
