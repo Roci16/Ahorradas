@@ -214,7 +214,52 @@ let funcionOperacionesLS = (elemento) => {
         localStorage.setItem("operaciones", operacionesAJSON)
 
     }
-    ////////////////////////////// 
+    //--------Balances-----------
+    //---------- Funcion mostrar suma total de ganancias en la seccion balances-----
+
+const mostrarGananciasEnBalances = (array) => {
+    const gananciasFiltradas = array.filter((elemento) => {
+        return elemento.tipo === "ganancias"
+    })
+
+    const sumarGanancias = gananciasFiltradas.reduce((acc, elemento) => {
+        let numeroMontoGanacia = Number(elemento.monto)
+        return acc + numeroMontoGanacia
+    }, 0)
+
+
+    return balancesSumaGanancias.textContent = sumarGanancias
+
+}
+mostrarGananciasEnBalances(operaciones)
+
+// //---------- Funcion mostrar suma total de gastos en la seccion balances-----
+const mostrarGastosEnBalances = (array) => {
+    const gastosFiltrados = array.filter((elemento) => {
+        return elemento.tipo === "gastos"
+    })
+
+    const sumarGastos = gastosFiltrados.reduce((acc, elemento) => {
+        let numeroMontoGastos = Number(elemento.monto)
+        return acc + numeroMontoGastos
+    }, 0)
+
+    return balancesSumaGastos.textContent = sumarGastos
+}
+mostrarGastosEnBalances(operaciones)
+
+//---------- Funcion mostrar suma del  total  en la seccion balances-----
+const mostrarTotalEnBalances = (array) => {
+    const resultadoFinalGanancias = mostrarGananciasEnBalances(array)
+    const resultadoFinalGastos = mostrarGastosEnBalances(array)
+    const resultadoFinal = resultadoFinalGanancias - resultadoFinalGastos
+
+
+    return balancesTotalFinal.textContent = `$${resultadoFinal}`
+}
+mostrarTotalEnBalances(operaciones)
+console.log(operaciones);
+////////////////////////////// 
 const sinOperaciones = (array) => {
     if (array.length === 0) {
         tarjetaSinOperaciones.classList.remove("is-hidden")
@@ -245,6 +290,9 @@ const borrarOperacion = (array) => {
             mostrarOperacionesEnHTML(filtrarOperaciones)
         }
     }
+    mostrarGananciasEnBalances(operaciones)
+    mostrarGastosEnBalances(operaciones)
+    mostrarTotalEnBalances(operaciones)
 }
 
 const mostrarOperacionesEnHTML = (array) => {
@@ -314,7 +362,9 @@ botonAgregarOperacion.onclick = () => {
     operaciones.push(operacion)
     funcionOperacionesLS(operaciones)
     mostrarOperacionesEnHTML(operaciones)
-
+    mostrarGananciasEnBalances(operaciones)
+    mostrarGastosEnBalances(operaciones)
+    mostrarTotalEnBalances(operaciones)
     valorInputDescripcionNuevaOperacion.value = ""
     valorInputMontoNuevaOperacion.value = ""
     valorOpcionCategoriaNuevaOperacion.value = ""
@@ -330,51 +380,51 @@ mostrarOperacionesEnHTML(operaciones)
 
 borrarOperacion(operaciones)
 
-//--------Balances-----------
-//---------- Funcion mostrar suma total de ganancias en la seccion balances-----
+// //--------Balances-----------
+// //---------- Funcion mostrar suma total de ganancias en la seccion balances-----
 
-const mostrarGananciasEnBalances = (array) => {
-    const gananciasFiltradas = array.filter((elemento) => {
-        return elemento.tipo === "ganancias"
-    })
+// const mostrarGananciasEnBalances = (array) => {
+//     const gananciasFiltradas = array.filter((elemento) => {
+//         return elemento.tipo === "ganancias"
+//     })
 
-    const sumarGanancias = gananciasFiltradas.reduce((acc, elemento) => {
-        let numeroMontoGanacia = Number(elemento.monto)
-        return acc + numeroMontoGanacia
-    }, 0)
-
-
-    return balancesSumaGanancias.textContent = sumarGanancias
-
-}
-mostrarGananciasEnBalances(operaciones)
-
-// //---------- Funcion mostrar suma total de gastos en la seccion balances-----
-const mostrarGastosEnBalances = (array) => {
-    const gastosFiltrados = array.filter((elemento) => {
-        return elemento.tipo === "gastos"
-    })
-
-    const sumarGastos = gastosFiltrados.reduce((acc, elemento) => {
-        let numeroMontoGastos = Number(elemento.monto)
-        return acc + numeroMontoGastos
-    }, 0)
-
-    return balancesSumaGastos.textContent = sumarGastos
-}
-mostrarGastosEnBalances(operaciones)
-
-//---------- Funcion mostrar suma del  total  en la seccion balances-----
-const mostrarTotalEnBalances = (array) => {
-    const resultadoFinalGanancias = mostrarGananciasEnBalances(array)
-    const resultadoFinalGastos = mostrarGastosEnBalances(array)
-    const resultadoFinal = resultadoFinalGanancias - resultadoFinalGastos
+//     const sumarGanancias = gananciasFiltradas.reduce((acc, elemento) => {
+//         let numeroMontoGanacia = Number(elemento.monto)
+//         return acc + numeroMontoGanacia
+//     }, 0)
 
 
-    return balancesTotalFinal.textContent = `$${resultadoFinal}`
-}
-mostrarTotalEnBalances(operaciones)
-console.log(operaciones);
+//     return balancesSumaGanancias.textContent = sumarGanancias
+
+// }
+// mostrarGananciasEnBalances(operaciones)
+
+// // //---------- Funcion mostrar suma total de gastos en la seccion balances-----
+// const mostrarGastosEnBalances = (array) => {
+//     const gastosFiltrados = array.filter((elemento) => {
+//         return elemento.tipo === "gastos"
+//     })
+
+//     const sumarGastos = gastosFiltrados.reduce((acc, elemento) => {
+//         let numeroMontoGastos = Number(elemento.monto)
+//         return acc + numeroMontoGastos
+//     }, 0)
+
+//     return balancesSumaGastos.textContent = sumarGastos
+// }
+// mostrarGastosEnBalances(operaciones)
+
+// //---------- Funcion mostrar suma del  total  en la seccion balances-----
+// const mostrarTotalEnBalances = (array) => {
+//     const resultadoFinalGanancias = mostrarGananciasEnBalances(array)
+//     const resultadoFinalGastos = mostrarGastosEnBalances(array)
+//     const resultadoFinal = resultadoFinalGanancias - resultadoFinalGastos
+
+
+//     return balancesTotalFinal.textContent = `$${resultadoFinal}`
+// }
+// mostrarTotalEnBalances(operaciones)
+// console.log(operaciones);
 // //-----------funciones para ordenar los filtros-----
 
 //funciones auxiliares
