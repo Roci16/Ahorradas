@@ -240,7 +240,7 @@ const mostrarOperacionesEnHTML = (array) => {
         <p class="${operacion.tipo === "ganancias" ? "has-text-success" : "has-text-danger"}">$${operacion.monto}</p>
         </div>
         <div class="column is-4 has-text-right">
-        <button id="editar-categoria-${index}" class="button is-info is-inverted boton-editar-seccion-operaciones ">Editar</button>
+        <button id="editar-operaciones-${index}" class="button is-info is-inverted editar-operaciones ">Editar</button>
         <button id="borrar-${index}"  class="boton-borrar-operacion button is-info is-inverted ">Eliminar</button>
         </div>
       </div>
@@ -572,10 +572,10 @@ const agregarCategoriasAHTML = () => {
 // BOTON EDITAR CATEGORIA
 const botonEditarSeccionOperaciones = () => {
         formTarjetaEditarOperacion.classList.remove("is-hidden")
-        const botonEditarSeccionOperaciones = document.querySelectorAll(".boton-editar-seccion-operaciones")
-        for (let i = 0; i < botonEditarSeccionOperaciones.length; i++) {
-            botonEditarSeccionOperaciones[i].onclick = () => {
-                const idRecortado = botonEditarSeccionOperaciones[i].id.slice(31)
+        const botonEditarOperaciones = document.querySelectorAll(".editar-operaciones")
+        for (let i = 0; i < botonEditarOperaciones.length; i++) {
+            botonEditarOperaciones[i].onclick = () => {
+                const idRecortado = botonEditarOperaciones[i].id.slice(18)
                 idDelBoton = Number(idRecortado)
                 tarjetaEditarOperacionEditar(idDelBoton)
                 ocultarSecciones()
