@@ -47,7 +47,7 @@ const divOperaciones = document.getElementById("div-operaciones")
 const panelEstadisticasReportes = document.getElementById("panel-estadisticas-reportes")
 const seccionResumenReportes = document.getElementById("seccion-resumen-reportes")
 const reportesSinOperaciones = document.getElementById("reportes-sin-operaciones")
-const reportesdatosTotalesCategorias = document.getElementById("datos-totales-por-categorias")
+const reportesDatosTotalesCategorias = document.getElementById("datos-reportes-por-categorias")
 const reportesDatosTotalesMes = document.getElementById("datos-totales-por-mes")
 
 //----------------------------Navbar-Burger/Navbar-Menu-----------------------------------
@@ -906,20 +906,34 @@ for(let i = 0; i < arrayOperacionPorCategoria.length; i++){
     }
    console.log(gananciasPorCategoria)
    console.log(gastosPorCategoria)
+
+   const categoriasSolas = arrayOperacionPorCategoria.map((elemento)=>{
+       return  elemento.categoria
+   })
   
  const totalGastosPorCategoria = gastosPorCategoria.reduce((acc,elemento)=>{
-return acc + elemento.monto
+        
+    return acc + elemento.monto
 }, 0)
 
 const totalGananciasPorCategoria = gananciasPorCategoria.reduce((acc,elemento)=>{
     return acc + elemento.monto
     }, 0)
 
-    console.log(totalGastosPorCategoria)
-    console.log(totalGananciasPorCategoria)
-}
+  const sumarTotales = totalGananciasPorCategoria - totalGastosPorCategoria
+     
 
+html = html +  `<div class="columns">
+                                    <div class="column is-3 has-text-weight-semibold">${categoriasSolas}</div>
+                                    <div class="column is-3 has-text-success has-text-right">+${totalGananciasPorCategoria}</div>
+                                    <div class="column is-3 has-text-danger  has-text-right">-${totalGastosPorCategoria}</div>
+                                    <div class="column is-3 has-text-right">${sumarTotales}</div>
+
+                                </div>`
+ reportesDatosTotalesCategorias.innerHTML = html
+console.log(reportesDatosTotalesCategorias)
+  }
+
+    console.log(totalGananciasPorCategoria)
 console.log(gananciasPorCategoria)
     console.log(gastosPorCategoria)
-
-   
