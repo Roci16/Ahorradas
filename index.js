@@ -862,7 +862,7 @@ const aparicionReporte = (operaciones) => {
     } else {
         reportesSinOperaciones.classList.remove("is-hidden")
     }
-
+   
 }
 aparicionReporte(operaciones)
 
@@ -893,7 +893,7 @@ const categoriaConMayorGanancia = (array) => {
     }, 0)
     return filtrarCategoria
 }
-console.log("MAYOR GANANCIA", categoriaConMayorGanancia(operaciones), montoMayorGanancia(operaciones))
+
 
 
 
