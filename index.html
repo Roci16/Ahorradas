@@ -144,9 +144,9 @@
                             <div id="tarjeta-operacion-con-botones">
 
                                 <div class="columns is-mobile is-multiline">
-                                    <h2 class="title column is-size-4 has-text-weight-bold has-text-grey-dark">Operaciones</h2>
-                                    <div class="column  has-text-right">
-                                        <button id="boton-nueva-operacion" class="button is-primary">+ Nueva operación</button>
+                                    <h2 class="title column is-size-4 has-text-weight-bold has-text-grey-dark  is-narrow-mobile ">Operaciones</h2>
+                                    <div class="column  has-text-right  is-narrow-mobile ">
+                                        <button id="boton-nueva-operacion" class="button is-primary ">+ Nueva operación</button>
                                     </div>
                                 </div>
                                 <div id="tarjeta-sin-operaciones">
@@ -167,9 +167,9 @@
                                 </div>
 
                                 <!-- Tarjeta de operaciones que ya se agregaron -->
-                                <div id="contenedor-operaciones-agregadas" class="column is-hidden is-relative">
+                                <div id="contenedor-operaciones-agregadas" class="column is-relative">
 
-                                    <div class="columns  is-mobile is-multiline">
+                                    <div class="columns  is-hidden-mobile is-multiline is-relative">
                                         <div class="column ">Descripción</div>
                                         <div class="column ">Categoría</div>
                                         <div class="column">Fecha</div>
@@ -199,30 +199,30 @@
                 <h2 class="title is-size-2 has-text-weight-bold has-text-black-ter my-5">Nueva operación</h2>
 
 
-                    <form>
-                        <div class="field">
-                            <label class="label" for="descripcion-nueva-operacion">Descripción</label>
-                            <input class="input" type="text" id="descripcion-nueva-operacion">
-                        </div>
-                        <div class="field">
-                            <label class="label" for="monto-nueva-operacion">Monto</label>
-                            <input class="input" type="number" id="monto-nueva-operacion" value="0">
-                        </div>
-                        <div class="field">
-                            <label class="label" for="select-tipo-nueva-operacion">Tipo</label>
-                            <div class="select is-fullwidth ">
-                                <select id="select-tipo-nueva-operacion"> 
+                <form>
+                    <div class="field">
+                        <label class="label" for="descripcion-nueva-operacion">Descripción</label>
+                        <input class="input" type="text" id="descripcion-nueva-operacion">
+                    </div>
+                    <div class="field">
+                        <label class="label" for="monto-nueva-operacion">Monto</label>
+                        <input class="input" type="number" id="monto-nueva-operacion" value="0">
+                    </div>
+                    <div class="field">
+                        <label class="label" for="select-tipo-nueva-operacion">Tipo</label>
+                        <div class="select is-fullwidth ">
+                            <select id="select-tipo-nueva-operacion"> 
                                     <option value="gastos">Gasto</option>
                                     <option value="ganancias">Ganancia</option>
                                 </select>
-                            </div>
-
-
                         </div>
-                        <div class="field">
-                            <label class="label" for="select-categoria-nueva-operacion">Categoría</label>
-                            <div class="select is-fullwidth  ">
-                                <select id="select-categoria-nueva-operacion">                        
+
+
+                    </div>
+                    <div class="field">
+                        <label class="label" for="select-categoria-nueva-operacion">Categoría</label>
+                        <div class="select is-fullwidth  ">
+                            <select id="select-categoria-nueva-operacion">                        
                                                     <option>Comida</option>
                                                     <option>Servicios</option>
                                                     <option>Salidas</option>
@@ -230,14 +230,14 @@
                                                     <option>Transporte</option>
                                                     <option>Trabajo</option>
                                 </select>
-                            </div>
                         </div>
-                        <div class="field">
-                            <label class="label" for="dateNuevaOperacion">Desde</label>
-                            <div class="control">
-                                <input class="input" id="dateNuevaOperacion" type="date">
-                            </div>
+                    </div>
+                    <div class="field">
+                        <label class="label" for="dateNuevaOperacion">Desde</label>
+                        <div class="control">
+                            <input class="input" id="dateNuevaOperacion" type="date">
                         </div>
+                    </div>
                 </form>
                 <div class="column has-text-right">
                     <button class="button mt-5 is-light" id="boton-cancelar-operacion">Cancelar</button>
