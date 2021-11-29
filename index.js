@@ -214,8 +214,10 @@ let funcionOperacionesLS = (elemento) => {
         localStorage.setItem("operaciones", operacionesAJSON)
 
     }
-    //--------Balances-----------
-    //---------- Funcion mostrar suma total de ganancias en la seccion balances-----
+    ////////////////////////////////////////////////////////////
+
+//--------Balances-----------
+//---------- Funcion mostrar suma total de ganancias en la seccion balances-----
 
 const mostrarGananciasEnBalances = (array) => {
     const gananciasFiltradas = array.filter((elemento) => {
@@ -259,7 +261,10 @@ const mostrarTotalEnBalances = (array) => {
 }
 mostrarTotalEnBalances(operaciones)
 console.log(operaciones);
+
 ////////////////////////////// 
+// Operaciones///////////////
+
 const sinOperaciones = (array) => {
     if (array.length === 0) {
         tarjetaSinOperaciones.classList.remove("is-hidden")
