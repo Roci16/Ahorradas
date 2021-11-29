@@ -1037,10 +1037,10 @@ for (let i = 0; i < arrayOperacionPorCategoria.length; i++) {
 
 
     html = html + `<div class="columns  is-mobile">
-                                    <div class="column is-3 has-text-weight-semibold">${categoriasSolas}</div>
-                                    <div class="column is-3 has-text-success has-text-right">+${totalGananciasPorCategoria}</div>
-                                    <div class="column is-3 has-text-danger  has-text-right">-${totalGastosPorCategoria}</div>
-                                    <div class="column is-3 has-text-right">${sumarTotales}</div>
+                                    <div class="column  has-text-weight-semibold">${categoriasSolas}</div>
+                                    <div class="column  has-text-success has-text-right">+${totalGananciasPorCategoria}</div>
+                                    <div class="column  has-text-danger  has-text-right">-${totalGastosPorCategoria}</div>
+                                    <div class="column  has-text-right">${sumarTotales}</div>
 
                                 </div>`
     reportesDatosTotalesCategorias.innerHTML = html
