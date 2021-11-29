@@ -44,10 +44,11 @@ const selectOrdenarPor = document.getElementById("select-ordenar")
 const divOperaciones = document.getElementById("div-operaciones")
 
 //-------------------------Elementos de Reportes---------------------------
-
-const divdatosResumen = document.getElementById("datos-resumen")
-const divdatosTotalesCategorias = document.getElementById("datos-totales-por-categorias")
-const divDatosTotalesMes = document.getElementById("datos-totales-por-mes")
+const panelEstadisticasReportes = document.getElementById("panel-estadisticas-reportes")
+const seccionResumenReportes = document.getElementById("seccion-resumen-reportes")
+const reportesSinOperaciones = document.getElementById("reportes-sin-operaciones")
+const reportesdatosTotalesCategorias = document.getElementById("datos-totales-por-categorias")
+const reportesDatosTotalesMes = document.getElementById("datos-totales-por-mes")
 
 //----------------------------Navbar-Burger/Navbar-Menu-----------------------------------
 const navbarBurger = document.getElementById("navbar-burger")
@@ -319,8 +320,9 @@ const mostrarGananciasEnBalances = (array) => {
     }, 0)
 
     return balancesSumaGanancias.textContent = sumarGanancias
+    
 }
-
+mostrarGananciasEnBalances(operaciones)
 
 // //---------- Funcion mostrar suma total de gastos en la seccion balances-----
 const mostrarGastosEnBalances = (array) => {
@@ -334,7 +336,7 @@ const mostrarGastosEnBalances = (array) => {
 
     return balancesSumaGastos.textContent = sumarGastos
 }
-
+mostrarGastosEnBalances(operaciones)
 
 //---------- Funcion mostrar suma del  total  en la seccion balances-----
 const mostrarTotalEnBalances = (array) => {
@@ -729,14 +731,17 @@ botonAgregarCategoria.onclick = () => {
 //                      SECCION REPORTES 
 //----------------------------------------------------------------------------
 //funcion para que aparezca reportes una vez que tenga mas de 2 operaciones en localS
-// const aparicionReporte =() =>{
-//      if(operaciones.length >= 2){ 
-         
-         
-//          else{
-//              sigue iigual
-//             }
-//         }
+ const aparicionReporte = (operaciones) =>{
+      if(operaciones.length > 2){ 
+        panelEstadisticasReportes.classList.remove("is-hidden")
+      }
+      else{
+        reportesSinOperaciones.classList.remove("is-hidden")
+      }
+    
+}
+aparicionReporte(operaciones)
+
 //----------------------------------------------------------------------------
 //                       REPORTES RESUMEN
 //----------------------------------------------------------------------------
@@ -799,8 +804,8 @@ console.log("MAYOR GASTO", categoriaConMayorGasto(operaciones), montoMayorGasto(
 // FUNCION REPORTES RESUMEN
 
 const contenedorReportes = () => {
-    const seccionReportes = document.getElementById("seccion-reportes")
-    seccionReportes.innerHTML = ` <div class="columns">
+
+    seccionResumenReportes.innerHTML = ` <div class="columns">
         <div class="column is-6 has-text-weight-semibold">Categoría con mayor ganancia</div>
         <div class="column mt-3 is-1 has-text-right tag is-primary is-light">${categoriaConMayorGanancia(operaciones)}</div>
         <div class="column is-4 has-text-right has-text-success has-text-weight-semibold">+$${montoMayorGanancia(operaciones)}</div>  
@@ -870,8 +875,6 @@ const categoriasSinRepetir = todasLasCategorias.filter((elemento, index) => {
     return todasLasCategorias.indexOf(elemento) === index;
 })
 
-
-
 //array vacio
 let arrayOperacionPorCategoria = []
     // aca creo la matriz de categorias, por cada categoria se crea un array vacio
@@ -879,7 +882,7 @@ categoriasSinRepetir.map((categoria) => {
     arrayOperacionPorCategoria.push([])
 });
 
-
+console.log(arrayOperacionPorCategoria)
 //aca relleno cada array con los datos de esas categorias
 
 operaciones.map((operacion) => {
@@ -891,14 +894,34 @@ operaciones.map((operacion) => {
 
 let gananciasPorcategoria = []
 let gastosPorCategoria = []
-for (let i = 0; i < arrayOperacionPorCategoria.length; i++) {
-    for (let j = 0; j < arrayOperacionPorCategoria[j].length; j++) {
-        if (arrayOperacionPorCategoria[j][4] === "Gasto") {
-            gastosPorCategoria.push(arrayOperacionPorCategoria[j][3])
-        } else if (arrayOperacionPorCategoria[j][4] === "Ganancia") {
-            gananciasPorcategoria.push(arrayOperacionPorCategoria[j][3])
+
+for(let i = 0; i < arrayOperacionPorCategoria.length; i++){
+    let gananciasPorCategoria = []
+    let gastosPorCategoria = []
+    for(let j = 0; j < arrayOperacionPorCategoria[i].length; j++){
+        if (arrayOperacionPorCategoria[i][j].tipo === "gastos") {
+            gastosPorCategoria.push(arrayOperacionPorCategoria[i][j])
+         }
+      else{
+            gananciasPorCategoria.push(arrayOperacionPorCategoria[i][j])
+             console.log(gananciasPorCategoria)
         }
     }
+  
+   console.log(gastosPorCategoria)
+   // SEGUI CODEANDO ACA 
+   // EN LOS DOS ARRAYS DE ARRIBA TENES LAS OPERACIONES SEPARADAS POR GANANCIA Y GASTO 
+  // HAY QUE ENCONTRAR LA SUMA DE TODAS ELLAS 
+
+//esto iría adentro del for?
+ gastosPorCategoria.reduce((acc,elemento)=>{
+return acc + elemento.monto
+}, 0)
+
+gananciasPorCategoria.reduce((acc,elemento)=>{
+    return acc + elemento.monto
+    }, 0)
+
 }
-console.log(gananciasPorcategoria)
-console.log(gastosPorCategoria)
+    //console.log(gananciasPorCategoria)
+    console.log(gastosPorCategoria)
