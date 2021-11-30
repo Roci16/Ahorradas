@@ -82,6 +82,7 @@ botonCategorias.onclick = () => {
 
     seccionCategorias.classList.remove("is-hidden")
     seccionCentral.classList.add("is-hidden")
+    seccionReportes.classList.add("is-hidden")
     seccionNuevaOperacion.classList.add("is-hidden")
 
 }
@@ -342,14 +343,28 @@ const mostrarOperacionesEnHTML = (array) => {
       `
         );
     }, "")
-
+    
     tarjetaOperacionesAgregadas.innerHTML = html;
     borrarOperacion(operaciones)
     sinOperaciones(operaciones)
 
 }
 
+//ESTA FUNCION NO SE PORQUÉ ESTÁ ACA
+    const botonesBorrarOperaciones = document.querySelectorAll(".boton-borrar-operacion")
+    for (let i = 0; i < botonesBorrarOperaciones.length; i++) {
+        botonesBorrarOperaciones[i].onclick = () => {
+            const idOperaciones = botonesBorrarOperaciones[i].id
+            const indiceOperaciones = idOperaciones.slice(7)
+            const filtrarOperaciones = array.filter((elemento, index) => {
+                return index != indiceOperaciones
+            })
 
+            funcionOperacionesLS(filtrarOperaciones)
+            mostrarOperacionesEnHTML(filtrarOperaciones)
+        }
+    }
+   
 
 
 //-----------------------AGREGAR OPERACIONES---------------
@@ -390,13 +405,13 @@ botonAgregarOperacion.onclick = () => {
     valorOpcionCategoriaNuevaOperacion.value = ""
     valorInputDateNuevaOperacion.value = ""
     valorOpcionTipoNuevaOperacion.value = ""
-
+    
 }
 
 operaciones = operacionesObtenidas()
 mostrarOperacionesEnHTML(operaciones)
-
-
+ 
+  
 //----------------------------------------------------------------------------
 //                                FILTROS
 //----------------------------------------------------------------------------
@@ -621,17 +636,17 @@ const agregarCategoriasAHTML = () => {
 //----------------------------------------------------------------------------
 // BOTON EDITAR CATEGORIA
 const botonEditarSeccionOperaciones = () => {
-    formTarjetaEditarOperacion.classList.remove("is-hidden")
-    const botonEditarOperaciones = document.querySelectorAll(".editar-operaciones")
-    for (let i = 0; i < botonEditarOperaciones.length; i++) {
-        botonEditarOperaciones[i].onclick = () => {
-            const idRecortado = botonEditarOperaciones[i].id.slice(18)
-            idDelBoton = Number(idRecortado)
-            tarjetaEditarOperacionEditar(idDelBoton)
-            ocultarSecciones()
+        formTarjetaEditarOperacion.classList.remove("is-hidden")
+        const botonEditarOperaciones = document.querySelectorAll(".editar-operaciones")
+        for (let i = 0; i < botonEditarOperaciones.length; i++) {
+            botonEditarOperaciones[i].onclick = () => {
+                const idRecortado = botonEditarOperaciones[i].id.slice(18)
+                idDelBoton = Number(idRecortado)
+                tarjetaEditarOperacionEditar(idDelBoton)
+                ocultarSecciones()
+            }
         }
     }
-}
 
 // TARJETA EDITAR CATEGORIA
 const tarjetaEditarOperacionEditar = (idDelBoton) => {
@@ -781,7 +796,7 @@ const aparicionReporte = (operaciones) => {
     } else {
         reportesSinOperaciones.classList.remove("is-hidden")
     }
-
+   
 }
 aparicionReporte(operaciones)
 
@@ -930,7 +945,7 @@ categoriasSinRepetir.map((categoria) => {
 });
 
 console.log(arrayOperacionPorCategoria)
-    //aca relleno cada array con los datos de esas categorias
+//aca relleno cada array con los datos de esas categorias
 
 operaciones.map((operacion) => {
     const indiceCategoria = categoriasSinRepetir.indexOf(operacion.categoria)
@@ -941,34 +956,35 @@ let html = ""
 for (let i = 0; i < arrayOperacionPorCategoria.length; i++) {
     let gananciasPorCategoria = []
     let gastosPorCategoria = []
-    for (let j = 0; j < arrayOperacionPorCategoria[i].length; j++) {
-        if (arrayOperacionPorCategoria[i][j].tipo === "gastos") {
-            gastosPorCategoria.push(arrayOperacionPorCategoria[i][j])
-        } else {
-            gananciasPorCategoria.push(arrayOperacionPorCategoria[i][j])
+        for(let j = 0; j < arrayOperacionPorCategoria[i].length; j++){
+                if (arrayOperacionPorCategoria[i][j].tipo === "gastos") {
+                    gastosPorCategoria.push(arrayOperacionPorCategoria[i][j])
+                } 
+              else {
+                    gananciasPorCategoria.push(arrayOperacionPorCategoria[i][j])
+                }
         }
-    }
 
-    const categoriasSolas = categoriasSinRepetir.reduce((acc, elemento) => {
-        return elemento
-    }, "")
+         const categoriasSolas = categoriasSinRepetir.reduce((acc,elemento)=>{
+             return elemento
+         },"")
+ 
+         const totalGastosPorCategoria = gastosPorCategoria.reduce((acc,elemento)=>{
+                let gastosMonto = Number(elemento.monto)
+            return acc + gastosMonto
+        }, 0)
 
-    const totalGastosPorCategoria = gastosPorCategoria.reduce((acc, elemento) => {
-        let gastosMonto = Number(elemento.monto)
-        return acc + gastosMonto
-    }, 0)
-
-    const totalGananciasPorCategoria = gananciasPorCategoria.reduce((acc, elemento) => {
-        let gananciasMonto = Number(elemento.monto)
-        return acc + gananciasMonto
-    }, 0)
-
-
-
-    const sumarTotales = totalGananciasPorCategoria - totalGastosPorCategoria
+      const totalGananciasPorCategoria = gananciasPorCategoria.reduce((acc,elemento)=>{
+            let gananciasMonto = Number(elemento.monto)
+            return acc + gananciasMonto
+         }, 0)
+         
 
 
-    html = html + `<div class="columns  is-mobile">
+        const sumarTotales = totalGananciasPorCategoria - totalGastosPorCategoria
+
+
+              html = html + `<div class="columns  is-mobile">
                                     <div class="column  has-text-weight-semibold">${categoriasSolas}</div>
                                     <div class="column  has-text-success has-text-right">+${totalGananciasPorCategoria}</div>
                                     <div class="column  has-text-danger  has-text-right">-${totalGastosPorCategoria}</div>
@@ -976,5 +992,6 @@ for (let i = 0; i < arrayOperacionPorCategoria.length; i++) {
 
                                 </div>`
     reportesDatosTotalesCategorias.innerHTML = html
-
+   
 }
+
