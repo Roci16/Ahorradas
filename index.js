@@ -690,6 +690,8 @@ const botonEditarSeccionCategoria = () => {
         }
     }
 }
+botonEditarSeccionCategoria()
+
 const botonCancelarDentroCategoria = () => {
         const botonCancelarCategoriaEditada = document.querySelector(".boton-cancelar-categoria-editada")
         botonCancelarCategoriaEditada.onclick = () => {
