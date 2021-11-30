@@ -824,6 +824,34 @@ const categoriaConMayorGasto = (array) => {
 }
 console.log("MAYOR GASTO", categoriaConMayorGasto(operaciones), montoMayorGasto(operaciones))
 
+// FUNCION AUXILIAR "mes con mayor ganancia"
+const fechaMayorGanancia =(array)=>{
+    const filtrarTipo = array.filter((elemento)=>{
+        return elemento.tipo === "Ganancia"
+    })
+    const filtrarCategoria = filtrarTipo.reduce((acc, elemento)=>{
+        if (acc < elemento.monto) {
+            acc = elemento.fecha
+        }
+        return acc
+    }, 0)
+    return filtrarCategoria
+}
+
+// FUNCION AUXILIAR "mes con mayor gasto"
+const fechaMayorGasto =(array)=>{
+    const filtrarTipo = array.filter((elemento)=>{
+        return elemento.tipo === "Gasto"
+    })
+    const filtrarCategoria = filtrarTipo.reduce((acc, elemento)=>{
+        if (acc < elemento.monto) {
+            acc = elemento.fecha
+        }
+        return acc
+    }, 0)
+    return filtrarCategoria
+}
+
 // FUNCION REPORTES RESUMEN
 
 const contenedorReportes = () => {
@@ -846,12 +874,12 @@ const contenedorReportes = () => {
     </div>
     <div class="columns">
         <div class="column is-6 has-text-weight-semibold">Mes con mayor ganancia</div>
-        <div class="column is-1 has-text-right">Fecha</div>
+        <div class="column is-1 has-text-right">${fechaMayorGanancia(operaciones)}</div>
         <div class="column is-4  has-text-right has-text-success has-text-weight-semibold">$${montoMayorGanancia(operaciones)}</div>  
     </div>
     <div class="columns">
         <div class="column is-6 has-text-weight-semibold">Mes con mayor gasto</div>
-        <div class="column is-1 has-text-right">Fecha</div>
+        <div class="column is-1 has-text-right">${fechaMayorGasto(operaciones)}</div>
         <div class="column is-4 has-text-right has-text-danger has-text-weight-semibold">-$${montoMayorGasto(operaciones)}</div>  
     </div>`
 }
