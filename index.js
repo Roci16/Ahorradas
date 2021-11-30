@@ -547,13 +547,17 @@ botonAgregarCategoria.onclick = () => {
 // BOTON EDITAR CATEGORIA
 const botonEditarSeccionOperaciones = () => {
     formTarjetaEditarOperacion.classList.remove("is-hidden")
-
+        // form-tarjeta-editar-operacion
     const botonEditarOperaciones = document.querySelectorAll(".editar-operaciones")
 
     for (let i = 0; i < botonEditarOperaciones.length; i++) {
         botonEditarOperaciones[i].onclick = () => {
-            const idRecortado = botonEditarOperaciones[i].id.slice(19)
-            idDelBoton = Number(idRecortado)
+            const idEditar = botonEditarOperaciones[i].id
+            const idRecortado = idEditar.charAt(19)
+            console.log(idRecortado)
+
+            const idDelBoton = Number(idRecortado)
+            console.log(idDelBoton);
 
             tarjetaEditarOperacionEditar(idDelBoton)
             ocultarSecciones()
@@ -561,6 +565,7 @@ const botonEditarSeccionOperaciones = () => {
     }
 
 }
+botonEditarSeccionOperaciones()
 
 // TARJETA EDITAR CATEGORIA
 const tarjetaEditarOperacionEditar = (idDelBoton) => {
@@ -612,25 +617,21 @@ const tarjetaEditarOperacionEditar = (idDelBoton) => {
                 </div>
 
             </div>
-        </div>
-    </div>
-    <div class="field">
-        <label for="Categoria" class="label"> Categoria</label>
-        <div class="control">
-            <div class="select is-fullwidth">
-                <select id="input-categoria">
-                <option>Gasto</option>
-                <option>Ganancia</option>
-                </select>
+       
+        <div class="has-text-right">
+                <button type="button" id="boton-cancelar-seccion-operaciones" class="button is-light"> Cancelar </button>
+                <input type="submit" value="Editar"  class="button is-success">
             </div>
+  
 
+            
         </form>
     </div>`
 
 
     const formSeccionOperacion = document.querySelector(".form-seccion-operacion")
-    const inputDescripcion = document.querySelector("#input-descripcion")
-    const inputMonto = document.querySelector("#input-monto")
+    const inputDescripcion = document.getElementById("input-descripcion")
+    const inputMonto = document.getElementById("input-monto")
     const editarTipoOperacion = document.querySelector("#editar-tipo-operacion")
 
     const botonCancelarSeccionOperaciones = document.querySelector("#boton-cancelar-seccion-operaciones")
@@ -691,7 +692,6 @@ const botonEditarSeccionCategoria = () => {
     }
 }
 botonEditarSeccionCategoria()
-
 const botonCancelarDentroCategoria = () => {
         const botonCancelarCategoriaEditada = document.querySelector(".boton-cancelar-categoria-editada")
         botonCancelarCategoriaEditada.onclick = () => {
