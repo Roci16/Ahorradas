@@ -473,18 +473,6 @@ let funcionLS = (elemento) => {
 
 //////////////////////////////////////// 
 
-const adicionDeNuevasCategoriasSelect = () => {
-    const categorias = categoriasObtenidas()
-    const selectCategoria = document.getElementById("select-categoria")
-
-    const stringCategoriasIniciadoras = categorias.reduce((acc, elemento, index) => {
-        return acc + `<option id="opcion-categoria-${index}" value="${elemento}">${elemento}</option>`
-
-    }, "")
-
-    selectCategoria.innerHTML = stringCategoriasIniciadoras
-    selectCategoriaNuevaOperacion.innerHTML = stringCategoriasIniciadoras
-}
 
 const agregarCategoriasAHTML = () => {
     const categorias = categoriasObtenidas()
@@ -507,26 +495,45 @@ const agregarCategoriasAHTML = () => {
 
     lista.innerHTML = stringCategoriasIniciadoras
 
-    const botonesBorrar = document.querySelectorAll(".boton-borrar")
+    const borrarCategoria = (array) => {
 
-    for (let i = 0; i < botonesBorrar.length; i++) {
-        botonesBorrar[i].onclick = () => {
-            const id = botonesBorrar[i].id
-            const indice = id.charAt(7)
-            const nuevasCategoriasFiltradas = categorias.filter((elemento, index) => {
-                return index != indice
-            })
+        const botonesBorrar = document.querySelectorAll(".boton-borrar")
 
-            funcionLS(nuevasCategoriasFiltradas)
+        for (let i = 0; i < botonesBorrar.length; i++) {
+            botonesBorrar[i].onclick = () => {
+                const id = botonesBorrar[i].id
+                const indice = id.charAt(7)
+                const nuevasCategoriasFiltradas = categorias.filter((elemento, index) => {
+                    return index != indice
+                })
 
-            agregarCategoriasAHTML()
-            adicionDeNuevasCategoriasSelect()
+                funcionLS(nuevasCategoriasFiltradas)
+                agregarCategoriasAHTML()
+                adicionDeNuevasCategoriasSelect()
+            }
         }
+        botonEditarSeccionCategoria()
+        botonEditarSeccionOperaciones()
     }
-    botonEditarSeccionCategoria()
-    botonEditarSeccionOperaciones()
+    borrarCategoria(categorias)
 }
 agregarCategoriasAHTML(categorias)
+
+const adicionDeNuevasCategoriasSelect = () => {
+    const categorias = categoriasObtenidas()
+    const selectCategoria = document.getElementById("select-categoria")
+
+    const stringCategoriasIniciadoras = categorias.reduce((acc, elemento, index) => {
+        return acc + `<option id="opcion-categoria-${index}" value="${elemento}">${elemento}</option>`
+
+    }, "")
+
+    agregarCategoriasAHTML(categorias)
+
+    selectCategoria.innerHTML = stringCategoriasIniciadoras
+    selectCategoriaNuevaOperacion.innerHTML = stringCategoriasIniciadoras
+
+}
 
 // aca empiezan las funciones de botones
 // BOTON EDITAR CATEGORIA
