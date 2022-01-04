@@ -31,6 +31,7 @@ const inputCategoriaNuevoNombre = document.getElementById("input-categorias-nuev
 const balancesSumaGanancias = document.querySelector(".sumaGanancias")
 const balancesSumaGastos = document.querySelector(".sumaGastos")
 const balancesTotalFinal = document.querySelector(".totalBalances")
+// Nunca usan esta variable
 const datosPorCategorias = document.getElementById("totales-por-categorias")
 
 // -------------funciones formulario FILTROS-------------------
@@ -41,13 +42,16 @@ const filtroTipo = document.getElementById("select-tipo")
 const filtroCategorias = document.getElementById("select-categoria")
 const filtroFecha = document.getElementById("date")
 const selectOrdenarPor = document.getElementById("select-ordenar")
+// Nunca usan esta variable
 const divOperaciones = document.getElementById("div-operaciones")
 
 //-------------------------Elementos de Reportes---------------------------
 const panelEstadisticasReportes = document.getElementById("panel-estadisticas-reportes")
+// Nunca usan esta variable
 const seccionResumenReportes = document.getElementById("seccion-resumen-reportes")
 const reportesSinOperaciones = document.getElementById("reportes-sin-operaciones")
 const reportesDatosTotalesCategorias = document.getElementById("datos-reportes-por-categorias")
+// Nunca usan esta variable
 const reportesDatosTotalesMes = document.getElementById("datos-totales-por-mes")
 
 //----------------------------Navbar-Burger/Navbar-Menu-----------------------------------
@@ -113,7 +117,8 @@ botonCancelarOperacion.onclick = () => {
 
 
 //Array de prueba
-
+// ¿Es de prueba, como dice el comentario de mas arriba? Mas abajo le cambian el valor por el resultado de 
+// operacionesObtenidas. Quiza seria mejor iniciar esta variable ya con ese valor
 let operaciones = [
 
 ];
@@ -133,6 +138,9 @@ const operacionesObtenidas = () => {
     }
 }
 
+// las funciones deben declararse con const
+// este no es un buen nombre, no es claro lo que hace la funcion
+// mejor algo como obtenerOperacionesLS
 let funcionOperacionesLS = (elemento) => {
 
     const operacionesAJSON = JSON.stringify(elemento)
@@ -159,6 +167,11 @@ const mostrarGananciasEnBalances = (array) => {
     return balancesSumaGanancias.textContent = sumarGanancias
 
 }
+
+// esta funcion se ejecuta apenas carga la pagina, cuando aun operaciones es un array vacio. 
+// y despues ejecutan mostrarTotalEnBalances, que vuelve a ejecutar esta funcion! 
+// les recomiendo poner todas estas ejecuciones al final del archivo 
+// de esa manera es mucho mas facil ver todas las que se ejecutan apenas carga la web
 mostrarGananciasEnBalances(operaciones)
 
 // //---------- Funcion mostrar suma total de gastos en la seccion balances-----
@@ -174,6 +187,8 @@ const mostrarGastosEnBalances = (array) => {
 
     return balancesSumaGastos.textContent = sumarGastos
 }
+
+// idem aca
 mostrarGastosEnBalances(operaciones)
 
 //---------- Funcion mostrar suma del  total  en la seccion balances-----
@@ -350,12 +365,16 @@ const ordenarPorMenorMonto = (array) => {
 //Funcion ordenar por filtros que reune a todas las funciones auxiliares ---
 const filtroOrdenarPor = (array) => {
     if (selectOrdenarPor.value === "Más reciente") {
+        // esto ordena por menos reciente
         return ordenarPorFechaMasReciente(array)
     } else if (selectOrdenarPor.value === "Menos reciente") {
+        // esto ordena por mas reciente
         return ordenarPorFechaMenosReciente(array)
     } else if (selectOrdenarPor.value === "Mayor monto") {
+        // esto ordena por menor monto
         return ordenarPorMayorMonto(array)
     } else if (selectOrdenarPor.value === "Menor monto") {
+        // esto ordena por mayor monto
         return ordenarPorMenorMonto(array)
     } else if (selectOrdenarPor.value === "A/Z") {
         return ordenarAZ(array)
@@ -366,6 +385,11 @@ const filtroOrdenarPor = (array) => {
 
 // // -------------------Función aplicar filtros---------------
 const aplicarFiltros = () => {
+    // Este filtro no funciona. Siempre nos devuelve un array vacio.
+    // Hagan console.log de filtroTipo.value: nos va a decir "Gasto" o "Ganancia". 
+    // Esto ocurre porque al select con id select-tipo le faltan los value. 
+    // Sin embargo, en las operaciones el tipo es "gastos" o "ganancias"
+    // Este filtro nunca va a funcionar, porque "gastos" nunca va a poder ser igual a "Gasto". 
     const tipo = filtroTipo.value //filtro por tipo
     const filtradoPorTipo = operaciones.filter((operacion) => {
         if (tipo === "Todos") {
@@ -376,11 +400,24 @@ const aplicarFiltros = () => {
 
     const categoriaSelect = filtroCategorias.value //filtro por categoria aplicando el filtro de tipo
     const filtradoPorCategoria = filtradoPorTipo.filter((operacion) => {
+        // El filtro por "todos" no funciona. Hagan console log de categoriaSelect: cuando el usuario
+        // elige todas, el valor es "Todas", no "Todos"
         if (categoriaSelect === "Todos") {
             return operacion
         }
         return operacion.categoria === categoriaSelect
     })
+
+    // Este filtro no hace lo que debería hacer. 
+    // Qué está haciendo: creando una nueva propiedad fecha en los elementos
+    // Qué debería hacer: filtrar de acuerdo al valor del input de tipo fecha. Queremos todas las fechas
+    // posteriores a la del input
+    // Algo asi
+    // const inputFecha = document.querySelector("#date")
+    // const fechaSeleccionada = inputFecha.value
+    // const arrayFiltradoPorFechas = filtradoPorCategoria.map((operacion) => { //filtro por fechas
+    //     return new Date(fechaSeleccionada) < new Date(operacion.fecha)
+    // })
 
     const arrayFiltradoPorFechas = filtradoPorCategoria.map((operacion) => { //filtro por fechas
         const nuevoElemento = {...operacion }
@@ -523,6 +560,7 @@ const agregarCategoriasAHTML = () => {
             adicionDeNuevasCategoriasSelect()
         }
     }
+    // No dejen codigo comentado en una entrega!
     // botonEditarSeccionCategoria()
     // botonEditarSeccionOperaciones()
 }
@@ -554,6 +592,7 @@ const botonEditarSeccionOperaciones = () => {
         botonEditarOperaciones[i].onclick = () => {
             const idEditar = botonEditarOperaciones[i].id
             const idRecortado = idEditar.charAt(19)
+            // no dejen console log en una entrega
             console.log(idRecortado)
 
             const idDelBoton = Number(idRecortado)
@@ -572,6 +611,7 @@ const tarjetaEditarOperacionEditar = (idDelBoton) => {
     operaciones = operacionesObtenidas()
     const objeto = operaciones[idDelBoton]
 
+// Ojo, aca en el input de categoria estan agregando las opciones de tipo!!
     formTarjetaEditarOperacion.innerHTML = `
     <div class="tarjeta-editar-operacion column is-offset-2 is-8 is-hidden is-relative">
         <form class="box form-seccion-operacion">
@@ -632,6 +672,7 @@ const tarjetaEditarOperacionEditar = (idDelBoton) => {
     const formSeccionOperacion = document.querySelector(".form-seccion-operacion")
     const inputDescripcion = document.getElementById("input-descripcion")
     const inputMonto = document.getElementById("input-monto")
+    // Esta variable se declara pero nunca se usa
     const editarTipoOperacion = document.querySelector("#editar-tipo-operacion")
 
     const botonCancelarSeccionOperaciones = document.querySelector("#boton-cancelar-seccion-operaciones")
@@ -646,13 +687,13 @@ const tarjetaEditarOperacionEditar = (idDelBoton) => {
         e.preventDefault()
         ocultarSecciones()
 
-
+        // Aqui estan cambiando el valor de monto y descripcion, pero no el tipo ni la categoria 
+        // Tampoco estan guardando el valor en localStorage, asi que se pierde al cambiar de pagina
         const valorMonto = Number(inputMonto.value)
         const valorDescripcion = inputDescripcion.value
             // const valorTipo = 
         objeto.monto = valorMonto
         objeto.descripcion = valorDescripcion
-
 
         mostrarOperacionesEnHTML(operaciones)
         botonEditarSeccionOperaciones()
@@ -738,10 +779,25 @@ const montoMayorGanancia = (array) => {
     }, 0)
     return mayorMonto
 }
+
+
 const categoriaConMayorGanancia = (array) => {
     const filtrarTipo = array.filter((elemento) => {
         return elemento.tipo === "ganancias"
     })
+    // // Esta función no retorna lo que debería. Queremos encontrar el elemento con mayor 
+    // // monto, por lo que deberiamos primero encontrar ese elemento y luego 
+    // // saber su categoria:
+    // const objetoConMayorGanancia = filtrarTipo.reduce((acc, elemento) => {
+    //     console.log(Number(elemento.monto), Number(acc.monto))
+    //     if (Number(elemento.monto) > Number(acc.monto)) {
+    //         return elemento
+    //     }
+    //     return acc
+    // })
+    // const categoriaBuscada = objetoConMayorGanancia.categoria
+    // Deberiamos retornar categoriaBuscada
+
     const filtrarCategoria = filtrarTipo.reduce((acc, elemento) => {
         if (acc > elemento.monto) {
             return acc
@@ -760,6 +816,12 @@ const montoMayorGasto = (array) => {
         return elemento.tipo === "gastos"
     })
     const filtrarmenorGasto = filtrarTipo.reduce((acc, elemento) => {
+        // Esto no esta bien, en el reduce no le cambiamos el valor a la acc, sino que retornamos su nuevo valor
+        // deberia ser 
+        // if (acc < elemento.monto) {
+        //     return acc
+        // }
+        // return elemento.monto
         if (acc < elemento.monto) {
             acc = elemento.monto
         }
@@ -769,6 +831,7 @@ const montoMayorGasto = (array) => {
 }
 
 const categoriaConMayorGasto = (array) => {
+    // misma observacion aqui
     const filtrarTipo = array.filter((elemento) => {
         return elemento.tipo === "Gasto"
     })
@@ -826,10 +889,13 @@ const separarporCategorias = (array) => {
     const categoriasSepadas = array.map((elemento) => {
         return elemento.categoria
     })
+    // "categoriasSeparadas", deberia ser 
     return categoriasSepadas
 }
 
 // aca filtro las categorias para que no se repitan
+// efectivamente hacen eso de mas arriba, pero lo hacen apenas carga la web: este 
+// array no se va a actualizar con nuevas operaciones
 const todasLasCategorias = separarporCategorias(operaciones)
 
 const categoriasSinRepetir = todasLasCategorias.filter((elemento, index) => {
@@ -901,6 +967,8 @@ for (let i = 0; i < arrayOperacionPorCategoria.length; i++) {
     reportesDatosTotalesCategorias.innerHTML = html
 
 }
+
+// No dejen codigo comentado en una entrega
 
 //     console.log(totalGananciasPorCategoria)
 // console.log(gananciasPorCategoria)

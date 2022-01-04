@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AhorrADAs</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+    <!-- No dejen codigo comentado en una entrega -->
     <!-- <link rel="stylesheet" href="estilo.css"> -->
     <script src="https://kit.fontawesome.com/fc20ae3cbb.js" crossorigin="anonymous"></script>
     <link rel="icon" type="image/ico" href="favicon/beneficios.png" />
@@ -32,6 +33,7 @@
 
         </div>
         <!-- botones derecho -->
+        <!-- recuerden que los id y clases se deben separar con-guiones. camelCase es para javascript -->
         <div id="navbarBasicExample" class="navbar-menu">
             <div class="navbar-end">
                 <a id="boton-balance" class="  navbar-item ">
@@ -53,12 +55,16 @@
     <!-----------------------------------------------------------------------------------
         SECCION CENTRAL
     ------------------------------------------------------------------------------------>
+
+    <!-- Este div se abre pero nunca se cierra -->
     <div class="hero has-background-light  is-fullheight">
         <section id="seccion-central" class="section">
             <div class="conteiner">
                 <div class="columns is-multiline">
 
                     <!-- Box Balance -->
+                    <!-- Sean mas prolijas con los espacios en las clases: no dejen un espacio antes o despues de 
+                    las comillas, ni dos espacios entre clases como en la linea 89 -->
                     <div class=" column is-offset-1-desktop is-3-desktop is-12-tablet">
 
                         <div class="box">
@@ -84,11 +90,14 @@
                                 <h2 class="title column is-5 has-text-weight-bold has-text-grey-dark">Filtros</h2>
                                 <button class="button  column has-text-right is-info is-inverted " id="boton-ocultar-filtros">Ocultar filtros</button>
                             </div>
+                            <!-- Tenemos muchos form en esta pagina: los ids deberian ser mas especificos
+                            para evitar confusiones -->
                             <form id="form">
                                 <!-- Select Tipo  -->
                                 <div class="field" id="div-formulario-filtros">
                                     <label class="label" for="select-tipo">Tipo</label>
                                     <div class="select is-fullwidth ">
+                                        <!-- Todos los option de un select deben tener un value! -->
                                         <select id="select-tipo">
                                          <option>Todos</option>
                                          <option>Gasto</option>
@@ -122,6 +131,7 @@
 
                                 <!-- Select Ordenar por -->
                                 <div class="field">
+                                    <!-- select-ordenar es el id del select. este for no funciona -->
                                     <label class="label" for="select-odenar">Ordenar por</label>
                                     <div class="select is-fullwidth  ">
                                         <select id="select-ordenar">
@@ -153,6 +163,7 @@
                                     <div class="columns my-5">
                                         <!-- Funcion de lo que aparece cuando se agrega una operacion -->
                                         <figure class="image column is-offset-3 is-6">
+                                            <!-- No oculten la imagen con aria: describanla al usuario con un alt! -->
                                             <img aria-hidden="true" src="imagenes/undraw_Pie_chart_re_bgs8.svg">
 
                                         </figure>
@@ -166,6 +177,7 @@
                                     </div>
                                 </div>
 
+                                <!-- Este div se repite en la linea 192 -->
                                 <!-- Tarjeta de operaciones que ya se agregaron -->
                                 <div id="contenedor-operaciones-agregadas" class="column is-relative">
 
@@ -222,6 +234,7 @@
                     <div class="field">
                         <label class="label" for="select-categoria-nueva-operacion">Categoría</label>
                         <div class="select is-fullwidth  ">
+                            <!-- esta mal el tabulado aca, las option deberian ir un tab luego del select -->
                             <select id="select-categoria-nueva-operacion">                        
                                                     <option>Comida</option>
                                                     <option>Servicios</option>
@@ -260,6 +273,8 @@
                         <label class="label " for="username">Nombre</label>
                         <div class="field is-grouped">
                             <div class="control is-expanded ">
+                                <!-- En la linea 295 hay otro input con el id username. No se deben duplicar!
+                                Como saben cual estan seleccionando en javascript? -->
                                 <input id="input-categorias-nuevo-nombre" class="input " id="username" type="text">
                             </div>
                             <div class="control">
@@ -274,6 +289,7 @@
                     </div>
                 </div>
             </div>
+            <!-- esta etiqueta de cierre se repite dos veces, ojo -->
         </section>
 
         </section>
@@ -330,6 +346,7 @@
 
                         <div class="columns my-5 ">
                             <figure class="image column is-offset-3 is-6">
+                                <!-- A esta imagen le falta el alt -->
                                 <img src="imagenes/undraw_investment_data_re_sh9x.svg">
                             </figure>
                         </div>
